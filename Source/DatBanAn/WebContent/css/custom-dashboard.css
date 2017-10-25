@@ -148,10 +148,12 @@ i, span {
 		1px 0;
 }
 
-#sidebar ul.components li ul.collapse.in li a:hover, #sidebar ul.collapse li.current-page
+#sidebar ul.components li ul.collapse.in li a:hover, #sidebar ul.components li ul.collapse.in li.active>a
 	{
 	color: #fff;
 	background: rgba(255, 255, 255, .05);
+	border-right: none;
+	box-shadow: inherit;
 }
 
 #sidebar ul li a i {
@@ -196,6 +198,7 @@ a.article, a.article:hover {
 ----------------------------------------------------- */
 #content {
 	min-height: 100vh;
+	width: 100%;
 	transition: all 0.3s;
 }
 
@@ -226,6 +229,12 @@ a.article, a.article:hover {
 }
 #content .panel-footer a{
 	color: #3c8dbc;
+}
+#content .breadcrumb{
+	color: #777;
+}
+#content .breadcrumb>.active{
+	color: #000000;
 }
 /* ---------------------------------------------------
     MEDIAQUERIES

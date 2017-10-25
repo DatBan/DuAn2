@@ -5,17 +5,7 @@
 
 <!-- Link toi file css -->
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" >
+<link href="css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" >
 <link href="css/font-awesome.css" rel="stylesheet" type="text/css" >
 <!-- tuy chinh -->
 <link href="css/custom-dashboard.css" rel="stylesheet" type="text/css" >
-
-<!-- Link toi file jquery -->
-<!-- jQuery CDN -->
-         <!-- <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script> -->
-<script src="js/jquery.min.js"></script>
- <!-- Bootstrap Js CDN -->
-         <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-<script src="js/bootstrap.min.js"></script>
-<!-- File jquery kiem tra loi -->
-<script src="js/jquery.validate.js"></script>
-<script src="js/additional-methods.min.js"></script>

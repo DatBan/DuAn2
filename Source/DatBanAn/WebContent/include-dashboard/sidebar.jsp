@@ -19,13 +19,13 @@
 		</div>
 		<!-- Sidebar links -->
 		<ul class="list-unstyled components">
-			<li class="active">
-				<a href="#ss" data-toggle="collapse" aria-expanded="true"> 
+			<li>
+				<a href="#ss" data-toggle="collapse" aria-expanded="false"> 
 					<i class="glyphicon glyphicon-home"></i>
 					Dashboard
 				</a>
-				<ul class="collapse list-unstyled in" id="ss">
-					<li class="current-page"><a href="#"><i class="fa fa-circle-o"></i> D1</a></li>
+				<ul class="collapse list-unstyled" id="ss">
+					<li><a href="#"><i class="fa fa-circle-o"></i> D1</a></li>
 					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
 				</ul>
 			</li>
@@ -35,13 +35,13 @@
 					Dashboard 2
 				</a>
 			</li>
-			<li>
+			<li class="child-menu">
 				<a href="#ss2" data-toggle="collapse" aria-expanded="false">
 						<i class="glyphicon glyphicon-home"></i> Dashboard
 				</a>
 				<ul class="collapse list-unstyled" id="ss2">
 					<li><a href="#"><i class="fa fa-circle-o"></i> D1</a></li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
+					<li><a href="dashboard/index.html"><i class="fa fa-circle-o"></i> D2</a></li>
 				</ul>
 			</li>
 			<li>
