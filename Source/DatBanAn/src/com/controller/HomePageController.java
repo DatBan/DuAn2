@@ -10,4 +10,13 @@ public class HomePageController {
 	public String index() {
 		return "index";
 	}
+	@RequestMapping("chitietnhahang")
+	public String ctnh(){
+		return"chitietnhahang";
+	}
+	@RequestMapping("timkiem")
+	public String timkiem(){
+		return"ketquatimkiem";
+	}
 }
+

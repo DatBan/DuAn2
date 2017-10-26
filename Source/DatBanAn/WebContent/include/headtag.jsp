@@ -7,7 +7,9 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" >
 <link href="css/font-awesome.css" rel="stylesheet" type="text/css" >
 <!-- tuy chinh -->
+<link href="css/slide.css" rel="stylesheet" type="text/css">
 <link href="css/custom.css" rel="stylesheet" type="text/css" >
+
 
 <!-- Link toi file jquery -->
 <script src="js/jquery.min.js"></script>

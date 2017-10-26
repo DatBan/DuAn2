@@ -1,4 +1,501 @@
 @CHARSET "ISO-8859-1";
 body{
 	margin: 0;
+	background-color:#f8f8f8;
+}
+/* 														Header*/
+.con{
+	
+}
+.tren{
+	height: 44px;
+	background-color: white;
+	margin-top: 10px;
+}
+.trai{
+	
+	height: 44px;
+	
+	float:left;
+}
+.thongtinbanan{
+	line-height: 2;
+	font-size:23px;
+}
+.phai{
+	
+	height: 44px;
+	
+	float:right;
+}
+.icondt{
+	    margin-top: 5px;
+}
+.dienthoai{
+	margin-top: 12px;
+    font-size: 18px;
+    color: #e54d3f;
+}
+.dongho{
+	margin-top: 12px;
+    font-size: 18px;
+    color: black;
+}
+.ngonngu{
+	color:#5077b8;
+}
+.duoi{
+	height: 74px;
+	background-color: white;
+	margin-top: 5px;
+}
+.btnn{
+	border: none;
+	border-color: #fff;
+	
+}
+.linkh{
+	line-height: 4;
+	text-decoration: none;
+}
+.linkheader{
+	color:#e33f1f;
+	padding-right:20px;
+	font-size:20px;
+	text-decoration: none;
+}
+.linkh.a{
+	text-decoration: none;
+}
+.linkdangnhap{
+	color:#6c97ce;
+	font-size:20px;
+	text-decoration: none;
+}
+
+.can{
+	line-height: 5;
+}
+.btndatban{
+	font-size:20px;
+	background-color:#5276b7;
+	color:#fff;
+	margin-left: 20px;
+    margin-top: -8px;
+}
+.btndatban:hover{
+	color:black;
+}
+.conf{
+	background-image: url("../images/nen.jpg");
+	margin-top: -12px;
+	background-repeat:no-repeat;
+	height:300px;
+}
+.conff{
+	
+	margin-top: -12px;
+	
+	
+}
+
+.timkiem{
+	position: relative;
+	margin-top:10px;
+	background-color:#fff;
+	height: 140px;
+	top: 210px;
+	opacity:0.6;
+}
+.timkiemm{
+	position: relative;
+	margin-top:10px;
+	background-color:#fff;
+	height: 140px;
+	
+	
+}
+.dbmp{
+	font-size:30px;
+	line-height: 2;
+	color:#e86e47;
+	
+}
+.otimk{
+	position: relative;
+	width:100%;
+	height:50px;
+	background-color:white;
+	border:solid 1px gray;
+	opacity:1 ;
+}
+.ongaythang{
+	width:125px;
+	height:50px;
+	background-color:white;
+	border:solid 1px gray;
+}
+.ndotim{
+	line-height: 4;
+	
+}
+.ongaythang{
+	line-height: 4;
+    padding-left: 17px;
+}
+.btntk{
+	font-size:27px;
+	background-color:#e86e47;
+	color:#fff;
+	margin-left: 11px;
+    margin-top: 0px;
+}
+
+/* 														Footer*/
+.footer{
+	background-color:white;
+	
+	margin-top: 10px;
+	
+	
+}
+.logoft{
+    margin-top: 12px;	    
+    margin-left: 2px;
+	    
+}
+.sdtft{
+	font-size:28px;
+	color:#e44433;
+    margin-top: 32px; 
+}
+.rlinkft{
+	margin-top: 12px;	
+	
+}
+.linkft{
+	padding-right:20px;
+	font-size:20px;
+	text-decoration: none; 
+	
+} 
+.bq{
+	margin-top: 20px;
+}
+.dcft{
+	margin-top: 15px;  
+}
+.ketnoict{
+	margin-top: 12px;	 
+}
+.ketnoi{
+	font-size:28px;
+}
+.iconft{
+	padding-left: 25px; 
+} 
+/* 																			Giam Gia*/
+
+.bodygiamgia{
+	background-color:#fff;
+	margin-top: 55px;
+}
+.giamgia{
+	color:#e33e20;
+	font-size:30px;
+	line-height: 2;
+}
+.hinhgiamgia{
+	padding-left:9px;
+}
+.tennhgiamgia{
+	color:#e33e20;
+	font-size: 18px;
+}
+.diachinhgiamgia{
+	color:black;
+}
+.ndgiamgia{
+	color:#5576b7;
+	font-size: 14px;
+}
+a:hover{
+	text-decoration: none;
+	color:none;
+}
+.xemthemgiamgia{
+	color:#5272b5;
+}
+.linkxemthemgiamgia{
+	padding-top: 20px;
+    padding-bottom: 12px;
+}
+ /*															 Slide */
+ .slide{
+ 	background-color:white;
+ 	margin-top: 5px;
+ 	
+ }
+.math{
+	color:#e2312a;
+	font-size:30px;
+}
+.monanth{
+	margin-top: 10px;
+}
+.rslide{
+	margin-bottom: 12px;
+}
+/*																				De Xuat*/
+.bodydexuat{
+	background-color:white;
+	margin-top:5px;
+}
+/*																 Chi Tiet Nha Hang */
+.ctnh{
+	margin-top: 5px;
+	background-color:white;
+}
+.imgctnh{
+	margin-left: -15px;
+}
+.dckv{
+	color:#568fcb;
+}
+.dckhuvuc{
+	line-height: 5;
+}
+.rtenctnh{
+	
+}
+.rdcctnh{
+	margin-top: 10px;
+}
+.tenctnh{
+	font-size:30px;
+}
+.btndatchongay{
+	color:white;
+	font-size:30px;
+}
+.rdatcho{
+	margin-top: 20px;
+}
+.diemdg{
+	font-size:24px;
+	line-height: 4;
+}
+.saodanhgia{
+	line-height: 6;
+}
+.dangmocua{
+	color: green;
+}
+.giatbctnh{
+	margin-top: 25px;
+}
+.lhctnh{
+    margin-top: 25px;	
+}
+/* 								Chuong Trinh Khuyen Mai*/
+.conctkm{
+	margin-top: 10px;
+	background-color:white;
+}
+.ctkm{
+	font-size:24px;
+	color:#e3411f;
+	line-height: 2;
+}
+.btndatngay{
+	color:white;
+	font-size:24px;
+}
+.ndkmctnh{
+	color:green;
+}
+.rkmctnh{
+	line-height: 4;
+	margin-bottom: 10px;
+}
+/*											Gioi Thieu */
+.gioithieuctnh{
+	background-color:white;
+	margin-top:10px;
+	line-height: 2;
+}
+.rgtctnh{
+	line-height: 4;
+}
+.gtctnh{
+	color:#e3421f;
+	font-size:24px;
+}
+.tieudegtctnh{
+	font-size:24px;
+}
+.rndgtctnh{
+    margin-bottom: 20px;	
+}
+/*											Mon An	*/
+.cmonan{
+	background-color:white;
+	margin-top:10px;
+	margin-bottom:20px;
+	line-height: 2;
+}
+.monan{
+	color:#e3421f;
+	font-size:24px;
+}
+.giamonan{
+	font-size: 24px;
+}
+.tenmonan{
+    margin-top: 12px;    	
+}
+.gmonan{
+    margin-top: 12px;	
+}
+.ndmonan{
+    padding-left: 30px;
+}
+.xtmonan{
+	color:#5272b5;
+	font-size:24px;
+	
+}
+.coxtmonan{
+	margin-top: 30px;
+    margin-bottom: 20px;
+}
+/*												Hinh Anh */
+.bodyhinhanh{
+	background-color:white;
+}
+.rhinh{
+	margin-top:14px;
+}
+/*									Danh Gia */
+.danhgia{
+	background-color:white;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.rtddg{
+	margin-top:5px;
+}
+.dgnh{
+	font-size:24px;
+	color:#e3431f;
+	
+}
+.mucdg{
+	line-hight:2;
+}
+.colsodg{
+	padding-left: 132px;
+    margin-top: 12px;
+}
+.mucdodg{
+	width:150px;
+	height:20px;
+	background-color:gray;
+}
+.mucdodg1{
+	width:150px;
+	height:20px;
+	background-color:yellow;
+}
+.rmucdg{
+	margin-top:15px;
+}
+.diemdgtb{
+	font-size:32px;
+}
+.tddiemdg{
+	font-size:30px;
+}
+.rsaodg{
+	margin-top: 10px;
+}
+.btnthemdg{
+	font-size:30px;
+}
+.ttdg{
+	font-size:24px;
+}
+.rcldg{
+	margin-top: 20px;
+}
+.sottdg1{
+	font-size:24px;
+	padding-left: 17px;
+}
+.sottdg2{
+	font-size:24px;
+	padding-left: 27px;
+}
+.sottdg3{
+	font-size:24px;
+	padding-left: 44px;
+}
+.sottdg4{
+	font-size:24px;
+	padding-left: 17px;
+}
+.timdg{
+	float:right;
+	font-size:24px;
+}
+.nddg{
+	margin-top: 5px;
+}
+.saonddg{
+	width: 30px;
+    height: 30px;
+}
+.colnddg{
+	margin-top: 10px;
+}
+.noidungdg{
+	background-color:#f1f1f1;
+}
+.xemthemdg{
+	color:#536fb2;
+	font-size:18px;
+}
+.rxtdg{
+	margin-bottom: 8px;
+}
+/*											Ban Do 		*/
+.bando{
+	background-color:white;
+	margin-top:10px;
+}
+.bandoctnh{
+	color:#e3431f;
+	font-size:24px;
+	line-height: 2;
+}
+.cobd{
+	margin-bottom: 12px;
+}
+/*											Uu Diem		*/
+.uudiem{
+	background-color:white;
+	margin-top:10px;
+}
+.tenuudiem{
+	font-size:20px;
+	
+}
+.ud{
+	line-height: 2;
+}
+.nduudiem{
+	margin-bottom:10px;
+}
+.giantoptennh{
+	margin-top: 10px;
 }
