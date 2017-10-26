@@ -63,6 +63,7 @@ i, span {
 
 #sidebar ul.components {
 	color: #b8c7ce;
+	overflow:hidden;
 }
 
 #sidebar.active {
@@ -138,7 +139,7 @@ i, span {
 	display: block;
 }
 
-#sidebar .components>li:hover>a, #sidebar ul li.active>a, a[aria-expanded="true"]
+#sidebar .components>li:hover>a, #sidebar ul li.active>a/* , a[aria-expanded="true"] */
 	{
 	color: #fff;
 	/* background: #1e282c; */
@@ -169,7 +170,7 @@ a[data-toggle="collapse"] {
 	position: relative;
 }
 
-a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+#sidebar a[aria-expanded="false"]::before, #sidebar a[aria-expanded="true"]::before {
 	content: '\e259';
 	display: block;
 	position: absolute;
@@ -178,7 +179,7 @@ a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
 	font-size: 0.6em;
 }
 
-a[aria-expanded="true"]::before {
+#sidebar a[aria-expanded="true"]::before {
 	content: '\e260';
 }
 
@@ -211,7 +212,9 @@ a.article, a.article:hover {
 #content .main-content {
 	padding: 20px;
 }
-
+#content .col-sm-6{
+	float:left;
+}
 #content .header-top ul.nav>li {
 	display: inline-block;
 }
@@ -222,6 +225,13 @@ a.article, a.article:hover {
 
 #content .header-top .navbar-right {
 	margin-right: 0px;
+}
+#content .content-header .btn-thao-tac{
+	text-align: right;
+}
+#content .header-top .profile-img img{
+	width:40px;
+	height:40px;
 }
 #content .panel-footer{
 	border-radius: 0;
@@ -236,6 +246,9 @@ a.article, a.article:hover {
 #content .breadcrumb>.active{
 	color: #000000;
 }
+#content .content-nhe .dataTables_wrapper>.row{
+	overflow:auto;
+}
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
@@ -245,6 +258,14 @@ a.article, a.article:hover {
 		max-width: 80px;
 		text-align: center;
 		margin-left: -80px !important;
+	}
+	.navbar-nav .open .dropdown-menu{
+		position: absolute;
+		left: auto;
+		right: 0%;
+		background-color:white;
+		border: 1px solid rgba(0,0,0,.15);
+		margin-top: 10px;
 	}
 	a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
 		top: auto;
@@ -284,5 +305,8 @@ a.article, a.article:hover {
 	}
 	#sidebarCollapse span {
 		display: none;
+	}
+	#example_wrapper .col-sm-6{
+		margin:10px 0px;
 	}
 }

@@ -1,12 +1,12 @@
 <%@ page pageEncoding="utf-8"%>
 <div class="row content-header">
 	<!-- Breadcrumb -->
-	<ul class="breadcrumb pull-left">
+	<ul class="breadcrumb col-sm-6">
 		<li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 		<li class="active"><b>QUẢN LÝ NHÀ HÀNG</b></li>
 	</ul>
 	<!--Nut bam -->
-	<div class="pull-right">
+	<div class="col-sm-6 btn-thao-tac">
 		<button type="button" class="btn btn-info">
 			<i class="glyphicon glyphicon-plus"></i> Thêm mới
 		</button>
