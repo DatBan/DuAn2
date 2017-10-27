@@ -1,7 +1,7 @@
 @CHARSET "ISO-8859-1";
 body{
 	margin: 0;
-	background-color:#f8f8f8;
+	background-color:#f7f7f7;
 }
 /* 														Header*/
 .con{
@@ -55,13 +55,13 @@ body{
 	
 }
 .linkh{
-	line-height: 4;
+	line-height: 5;
 	text-decoration: none;
 }
 .linkheader{
 	color:#e33f1f;
 	padding-right:20px;
-	font-size:20px;
+	font-size:15px;
 	text-decoration: none;
 }
 .linkh.a{
@@ -69,7 +69,7 @@ body{
 }
 .linkdangnhap{
 	color:#6c97ce;
-	font-size:20px;
+	font-size:15px;
 	text-decoration: none;
 }
 
@@ -77,7 +77,7 @@ body{
 	line-height: 5;
 }
 .btndatban{
-	font-size:20px;
+	font-size:15px;
 	background-color:#5276b7;
 	color:#fff;
 	margin-left: 20px;
@@ -94,7 +94,7 @@ body{
 }
 .conff{
 	
-	margin-top: -12px;
+	margin-top: -6px;
 	
 	
 }
@@ -102,10 +102,10 @@ body{
 .timkiem{
 	position: relative;
 	margin-top:10px;
-	background-color:#fff;
+	background-color:rgba(255,255,255,0.6);
 	height: 140px;
 	top: 210px;
-	opacity:0.6;
+	
 }
 .timkiemm{
 	position: relative;
@@ -116,10 +116,14 @@ body{
 	
 }
 .dbmp{
-	font-size:30px;
+	font-size:25px;
 	line-height: 2;
-	color:#e86e47;
+	color:#9c2f09;
 	
+}
+.timkiemnhc{
+	margin-top: 20px;
+	text-align: center;
 }
 .otimk{
 	position: relative;
@@ -144,7 +148,7 @@ body{
     padding-left: 17px;
 }
 .btntk{
-	font-size:27px;
+	
 	background-color:#e86e47;
 	color:#fff;
 	margin-left: 11px;
@@ -202,7 +206,7 @@ body{
 }
 .giamgia{
 	color:#e33e20;
-	font-size:30px;
+	font-size:25px;
 	line-height: 2;
 }
 .hinhgiamgia{
@@ -238,7 +242,7 @@ a:hover{
  }
 .math{
 	color:#e2312a;
-	font-size:30px;
+	font-size:25px;
 }
 .monanth{
 	margin-top: 10px;
@@ -498,4 +502,15 @@ a:hover{
 }
 .giantoptennh{
 	margin-top: 10px;
+}
+@media (min-width:992px){
+	div.duoi>div.col-md-2.can{
+		width: 12%;
+	}
+}
+.timtheodc{
+	padding-top: 22px;
+}
+.timkiemctnh{
+	margin-top: 52px;
 }
