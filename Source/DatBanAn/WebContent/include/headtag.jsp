@@ -6,13 +6,15 @@
 <!-- Link toi file css -->
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" >
 <link href="css/font-awesome.css" rel="stylesheet" type="text/css" >
+<link rel="stylesheet" href="css/jquery-ui.css">
 <!-- tuy chinh -->
-<link href="css/slide.css" rel="stylesheet" type="text/css">
 <link href="css/custom.css" rel="stylesheet" type="text/css" >
 
 
 <!-- Link toi file jquery -->
 <script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+  
 <script src="js/bootstrap.min.js"></script>
 <!-- File jquery kiem tra loi -->
 <script src="js/jquery.validate.js"></script>

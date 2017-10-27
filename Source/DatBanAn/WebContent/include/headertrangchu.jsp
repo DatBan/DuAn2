@@ -52,22 +52,11 @@
 			<div class="col-md-3 can">
 				<a href="trang-chu.html"><img src="images/logo.png"/></a>
 			</div>
-			<div class="col-md-2 dropdown can">
-					
-					<button class="btn btn-default dropdown-toggle icondt" type="button"
-						id="menu1" data-toggle="dropdown">
-						Đăk lăk <span><img class="img-response " src="images/muitenxuong.png"/></span>
-					</button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-						<li role="presentation"><a role="menuitem" tabindex="-1"
-							href="#">Đăk Lăk</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1"
-							href="#">Hà Nội</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1"
-							href="#">Hồ Chí Minh</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1"
-							href="#">Đà Nẵng</a></li>
-					</ul>
+			<div class="col-md-2 can timtheodc">
+					<select class="form-control">
+						<option>Dak lak</option>
+						<option>Ha noi</option>
+					</select>
 			</div>
 			<div class="col-md-4 linkh">
 				<a href="#" class="linkheader" style="text-decoration: none;"><b>Khuyến mãi</b></a>
@@ -86,67 +75,50 @@
 <div class="container-full conf">
 	<div class="container timkiem">
 		<div class="row">
-			<div class="col-md-2">
-				
-			</div>
 			
-			<div class="col-md-10">			
-				<span class="dbmp"><b>Đặt bàn miễn phí</b></span>
+			
+			<div class="col-md-12 text-center">			
+				<span class="dbmp"><b>ĐẶT BÀN MIỄN PHÍ</b></span>
 			</div>
 			
 			
 			
 		</div>
-		<div class="row">
-			<div class="col-md-4 ">
-				<div>					
-					<div class="otimk">
-						<img style="padding-left: 8px;margin-top: -7px;" src="images/icontim.png"/>
-						<span class="ndotim">Tên nhà hàng, món ăn, địa điểm</span>
-					</div>
+		<div class="row timkiemnhc">
+			<form class="form-inline">
+				<div class="input-group">
+					 <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+					<input type="text" class="form-control" placeholder="Tên nhà hàng, món ăn, địa điểm">
 				</div>
-			</div>
-			<div class="col-md-2 ">
-				
-				<div class="col-md-8">
-					<div class="ongaythang">
-						<span class="pngaythang">Ngày tháng</span>
-					</div>					
+				<div class="form-group">
+					<input type="text" class="form-control" id="ngaythang" placeholder="Chọn ngày tháng">
 				</div>
-				<div class="col-md-4">
-					<img src="images/ngaythang.png" style="width:60px;height:60px;margin-top: -5px;"/>
+				<div class="form-group">
+					<select class="form-control">
+						<option>-Thời gian-</option>
+					</select>
 				</div>
-				
-			</div>
-			<div class="col-md-2 ">
-				
-				<div class="col-md-8">
-					<div class="ongaythang">
-						<span class="pngaythang">Thời gian</span>
-					</div>					
+				<div class="form-group">
+					<select class="form-control">
+						<option>1 người</option>
+						<option>2 người</option>
+					</select>
 				</div>
-				<div class="col-md-4">
-					<img src="images/thoigian.png" style="width:60px;height:60px;margin-top: -5px;"/>
-				</div>
-				
-			</div>
-			<div class="col-md-2 ">
-				
-				<div class="col-md-8">
-					<div class="ongaythang">
-						<span class="pngaythang">Số người</span>
-					</div>					
-				</div>
-				<div class="col-md-4">
-					
-					<img src="images/muitentim.png" style="width:50px;height:50px;margin-top: 0px;"/>
-				</div>
-				
-			</div>
-			<div class="col-md-2 ">
 				<button class="btn warning btntk"><b>Tìm kiếm</b></button>
+			</form>
+			<div class="col-md-2 ">
+				
 			</div>
 			
 		</div>
 	</div>
 </div>
+<script>
+  $(function() {
+    $( "#ngaythang" ).datepicker({
+    	dateFormat: "dd/mm/yy",
+    	minDate: 0,
+    	defaultDate: 0
+    });
+  });
+  </script>
