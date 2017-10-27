@@ -42,7 +42,7 @@
 					  	</a>
 					</div>
 					<div class="form-group">
-					  	<a href="#" class="btn btn-default btn-block">
+					  	<a href="register.html" class="btn btn-default btn-block">
 					  		Đăng ký
 					  	</a>
 					</div>
