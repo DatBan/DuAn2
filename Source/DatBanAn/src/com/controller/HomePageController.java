@@ -18,5 +18,6 @@ public class HomePageController {
 	public String timkiem(){
 		return"ketquatimkiem";
 	}
+	
 }
 
