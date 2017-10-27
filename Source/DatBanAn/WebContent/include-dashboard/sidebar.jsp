@@ -3,8 +3,10 @@
 	<div class="left-sidebar">
 		<!-- Sidebar header -->
 		<div class="sidebar-header text-center">
-			<h3>Hallo e</h3>
-			<strong>BS</strong>
+			<a href="#">
+				<h3>Hallo e</h3>
+				<strong>BS</strong>
+			</a>
 		</div>
 
 		<!-- Profile -->

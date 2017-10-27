@@ -75,13 +75,14 @@
 				<a href="#" class="linkheader" style="text-decoration: none;"><b>Trợ giúp</b></a>
 			</div>
 			<div class="col-md-3 linkh">
-				<a href="#" class="linkdangnhap" style="text-decoration: none;"><b>Đăng nhập</b></a>
+				<a href="#" class="linkdangnhap" style="text-decoration: none;" data-toggle="modal" data-target="#myModal"><b>Đăng nhập</b></a>
 				<button class="btn info btndatban"><b>Đặt bàn</b></button>
 			</div>
 			
 		</div>
 	</div>
 </div>
+<jsp:include page="/views/homepage/modal-login.jsp"></jsp:include>
 <div class="container-full conff">
 	<div class="container timkiemm">
 		<div class="row">
