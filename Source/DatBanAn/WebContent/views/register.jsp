@@ -11,7 +11,7 @@
 <body>
 	<jsp:include page="/include/header.jsp"></jsp:include>
 	<div class="container bodydexuat">
-	 
+	 	 	
 		<div class="row rodk">
 		
 			<div class="col-sm-12">
@@ -47,7 +47,7 @@
 												<label class="control-label  labeld" for="hoten">Họ
 													Và Tên:<span style="color: red;">*</span>
 												</label> <input type="text" name="hoten"
-													placeholder="VD : Nguyễn Văn A" class="form-control">
+													placeholder="VD : Nguyễn Văn A" class="form-control" required >
 											</div>
 										</div>
 									</div>
@@ -58,7 +58,7 @@
 												<label class="control-label  labeld" for="tendangnhap">Tên
 													Đăng Nhập:<span style="color: red;">*</span>
 												</label> <input type="text" name="tendangnhap"
-													placeholder="Tên Đăng Nhập" class="form-control">
+													placeholder="Tên Đăng Nhập" class="form-control" required>
 											</div>
 										</div>
 									</div>
@@ -70,7 +70,7 @@
 												<label class="control-label  labeld" for="matkhau">Mật
 													Khẩu:<span style="color: red;">*</span>
 												</label> <input type="password" name="matkhau"
-													placeholder="Nhập Mật Khẩu" class="form-control">
+													placeholder="Nhập Mật Khẩu" class="form-control" required>
 											</div>
 										</div>
 									</div>
@@ -82,7 +82,7 @@
 												<label class="control-label  labeld" for="nhaplaimatkhau">Nhập
 													Lại Mật Khẩu:<span style="color: red;">*</span>
 												</label> <input type="password" name="nhaplaimatkhau"
-													placeholder="Nhập Lại Mật Khẩu" class="form-control">
+													placeholder="Nhập Lại Mật Khẩu" class="form-control" required>
 											</div>
 										</div>
 									</div>
@@ -92,9 +92,9 @@
 
 											<div class="col-md-6">
 												<label class="control-label  labeld" for="email">Email:<span
-													style="color: red;">*</span></label> <input type="text"
+													style="color: red;">*</span></label> <input type="email"
 													name="email" placeholder="Địa chỉ Email"
-													class="form-control">
+													class="form-control" required>
 											</div>
 										</div>
 									</div>
@@ -106,7 +106,7 @@
 												<label class="control-label  labeld" for="sdt">Số
 													điện thoại:<span style="color: red;">*</span>
 												</label> <input type="text" name="sdt" placeholder="Số điện thoại"
-													class="form-control">
+													class="form-control" required>
 											</div>
 										</div>
 									</div>
@@ -126,10 +126,10 @@
 									<div class="row rregisters">
 										<div class="col-md-3"></div>
 										<div class="col-md-3">
-											<input class="btn btn-success" type="submit" value="Đăng ký">
+											<input class="btn btn-success btn-block" type="submit" value="Đăng ký">
 										</div>
 										<div class="col-md-3">
-											<a href="trang-chu.html" class="btn btn-warning" type="button" value="Huỷ">Huỷ</a>
+											<a href="trang-chu.html" class="btn btn-warning btn-block" type="button" value="Huỷ">Huỷ</a>
 										</div>
 										<div class="col-md-3"></div>
 
