@@ -1,8 +1,15 @@
 package com.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table
@@ -31,6 +38,8 @@ public class NhaHang {
 	private Date giomocua;
 	@Temporal(TemporalType.TIME)
 	private Date giodongcua;
+	@Temporal(TemporalType.TIME)
+	private Date ngaytao;
 	@ManyToOne
 	@JoinColumn(name = "idloaiamthuc")
 	private LoaiAmThuc loaiamthuc;
@@ -38,10 +47,10 @@ public class NhaHang {
 	public NhaHang() {
 		super();
 	}
-	
+
 	public NhaHang(String tennhahang, String name, String diachi, String address, String tinhthanh, String city,
 			String quanhuyen, String district, String phuongxa, String ward, String sdt, String thumbnail,
-			String gioithieu, String aboutus, String slug, int trangthai, Date giomocua, Date giodongcua,
+			String gioithieu, String aboutus, String slug, int trangthai, Date giomocua, Date giodongcua, Date ngaytao,
 			LoaiAmThuc loaiamthuc) {
 		super();
 		this.tennhahang = tennhahang;
@@ -62,6 +71,7 @@ public class NhaHang {
 		this.trangthai = trangthai;
 		this.giomocua = giomocua;
 		this.giodongcua = giodongcua;
+		this.ngaytao = ngaytao;
 		this.loaiamthuc = loaiamthuc;
 	}
 
@@ -231,6 +241,14 @@ public class NhaHang {
 
 	public void setAboutus(String aboutus) {
 		this.aboutus = aboutus;
+	}
+
+	public Date getNgaytao() {
+		return ngaytao;
+	}
+
+	public void setNgaytao(Date ngaytao) {
+		this.ngaytao = ngaytao;
 	}
 
 }
