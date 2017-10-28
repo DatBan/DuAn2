@@ -1,9 +1,15 @@
 package com.entity;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.*;
 
+/**
+ * @author TuTo
+ *
+ */
 @Entity
 @Table
 public class NguoiDung {
@@ -27,6 +33,21 @@ public class NguoiDung {
 
 	public NguoiDung() {
 		super();
+	}
+
+	public NguoiDung(String hoten, String tendangnhap, String matkhau, String email, String sdt, String diachi,
+			int trangthai,Date ngaytao, Quyen quyennd) {
+		super();
+		
+		this.hoten = hoten;
+		this.tendangnhap = tendangnhap;
+		this.matkhau = matkhau;
+		this.email = email;
+		this.sdt = sdt;
+		this.diachi = diachi;
+		this.trangthai = trangthai;
+		this.ngaytao = (Date) ngaytao;
+		this.quyennd = quyennd;
 	}
 
 	public NguoiDung(String hoten, String tendangnhap, String matkhau, String email, String sdt, int trangthai,
