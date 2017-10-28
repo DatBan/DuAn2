@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.UserService.EnDeCryption;
 import com.entity.NguoiDung;
 import com.entity.Quyen;
 
 import net.sf.ehcache.hibernate.HibernateUtil;
+
 
 
 
@@ -52,8 +54,9 @@ public class RegisterController {
 		Quyen quyen= (Quyen) session.get(Quyen.class, 3);
 		
 		Date ngaytao = new Date();
-		
-		NguoiDung nguoidung= new NguoiDung(hoten, tendangnhap, matkhau, email, sdt, diachi, 1, ngaytao, quyen);
+		EnDeCryption mh = new EnDeCryption("sadasdasdsawqewq");
+		String mkmh= mh.encoding(matkhau);
+		NguoiDung nguoidung= new NguoiDung(hoten, tendangnhap, mkmh, email, sdt, diachi, 1, ngaytao, quyen);
 		Transaction t = session.beginTransaction();
 		try {
 			session.save(nguoidung);
