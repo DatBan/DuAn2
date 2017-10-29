@@ -1,4 +1,4 @@
-package com.UserService;
+package com.services;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
