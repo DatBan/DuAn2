@@ -9,8 +9,18 @@
 <jsp:include page="/include/headtag.jsp"></jsp:include>
 </head>
 <body>
-	<jsp:include page="/include/headertrangchu.jsp"></jsp:include>
-
+	<jsp:include page="/include/header.jsp"></jsp:include>
+	<!-- form tim kiem -->
+	<div class="container-full conf">
+		<div class="container timkiem">
+			<div class="row">
+				<div class="col-md-12 text-center">			
+					<span class="dbmp"><b>ĐẶT BÀN MIỄN PHÍ</b></span>
+				</div>		
+			</div>
+			<jsp:include page="/include/form-timkiem.jsp"></jsp:include>
+		</div>
+	</div>
 	<div class="container bodygiamgia">
 		<div class="row">
 			<div class="col-md-3">

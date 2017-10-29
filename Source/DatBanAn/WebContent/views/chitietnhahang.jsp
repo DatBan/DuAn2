@@ -10,6 +10,13 @@
 </head>
 <body>
 	<jsp:include page="/include/header.jsp"></jsp:include>
+	<!-- form tim kiem -->
+	<div class="container-full conff">
+		<div class="container timkiemm">
+			<jsp:include page="/include/form-timkiem.jsp"></jsp:include>
+		</div>
+	</div>
+	
 	<div class="container ctnh">
 		<div class="row ">
 			<div class="col-md-6">

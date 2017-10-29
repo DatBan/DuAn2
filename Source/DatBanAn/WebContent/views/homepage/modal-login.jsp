@@ -1,4 +1,5 @@
 <%@ page pageEncoding="utf-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -12,23 +13,23 @@
       <div class="modal-body">
         	<div class="row">
         		<div class="col-md-6">
-					<form>
+					<form:form action="login.html" method="post" modelAttribute="nguoidung">
 					  <div class="form-group">
-					    <label for="email">Tên đăng nhập:</label>
-					    <input type="text" class="form-control">
+					    <label for="tendangnhap">Tên đăng nhập:</label>
+					    <form:input path="tendangnhap" class="form-control"/>
 					  </div>
 					  <div class="form-group">
-					    <label for="pwd">Mật khẩu:</label>
-					    <input type="password" class="form-control" id="pwd">
+					    <label for="matkhau">Mật khẩu:</label>
+					    <form:password path="matkhau" class="form-control"/>
 					  </div>
 					  <div class="checkbox">
-					    <label><input type="checkbox"> Ghi nhớ mật khẩu</label>
+					    <label><input type="checkbox" name="remember" value="true"> Ghi nhớ mật khẩu</label>
 					    <label class="pull-right"><a href="#">Quên mật khẩu?</a></label>
 					  </div>
 					  <div class="form-group">
 					  	<button type="submit"  class="btn btn-primary btn-block">Đăng nhập</button>
 					  </div>
-					</form>
+					</form:form>
         		</div>
         		<div class="col-md-6">
         			<div class="form-group">

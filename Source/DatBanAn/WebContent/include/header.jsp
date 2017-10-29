@@ -1,63 +1,88 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <div class="container con">
-	<div class="row">
-		<div class="row tren">
-			<div class="trai col-md-6">
-				<div class="col-md-2"></div>
-				<div class="col-md-5">
-					<p class="thongtinbanan"><b> Thông tin bàn ăn</b></p>
-				</div>
-				
-			</div>
-			<div class="phai col-md-6">
-				<div class="col-md-1">
-					<a ><img class="img-response icondt" src="images/dienthoai.png"/></a>
-					
-				</div>
-				<div class="col-md-3 dienthoai">
-					<p class="sdt"><b>1900 1008</b></p>
-				</div>				
-				<div class="col-md-1">
-					<img class="img-response icondt" src="images/dongho.png"/>
-					
-				</div>
-				<div class="col-md-4 dongho">
-					<p class="thoigian"><b>7:00 AM -8:00 PM </b></p>
-				</div>
-				
-				<div class="col-md-1">
-					<img class="img-response icondt" src="images/diacau.png"/>
-					
-				</div>	
-					
-				<div class="col-md-2 dropdown">
-					
-					<button class="btn btn-default dropdown-toggle icondt btnn" type="button"
-						id="menu1" data-toggle="dropdown">
-						VI <span><img class="img-response " src="images/muiten.png"/></span>
-					</button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-						<li role="presentation"><a role="menuitem" tabindex="-1"
-							href="#">English</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1"
-							href="#">Việt Nam</a></li>
-						
+		<!-- Menu top top top -->
+		<div class="row menu-top">
+			<nav class="navbar navbar-inverse">
+			  <div class="container-fluid">
+			    <ul class="nav navbar-nav">
+			      <li class="active"><a href="#">Thông tin bàn ăn</a></li>
+			    </ul>
+			    <ul class="nav navbar-nav navbar-right">
+			    	<li><a href="tel:00000"><i class="fa fa-phone"></i> 1900 1008</a></li>
+			      <li><p class="navbar-text"><i class="fa fa-clock-o"></i> 7:00 AM - 8:00 PM</p></li>
+			      <li class="dropdown">
+			      	<a href="#" data-toggle="dropdown"><i class="fa fa-globe"></i> VI <span class="glyphicon glyphicon-menu-down"></span></a>
+			      	<ul class="dropdown-menu">
+						<li><a href="#"><i class="glyphicon glyphicon-user"></i> EN</a></li>
 					</ul>
-				</div>
-			</div>
+			      </li>
+			    </ul>
+			  </div>
+			</nav>
 			
 		</div>
-		<div class="row duoi">
-			<div class="col-md-3 can">
+		<!-- menu chinh, logo -->
+		<div class="row menu-chinh">
+			<nav class="navbar navbar-inverse">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span> 
+				      </button>
+			      <a class="navbar-brand" href="trang-chu.html"><img src="images/logo.png"/></a>
+			    </div>
+			    <div class="collapse navbar-collapse" id="myNavbar">
+			    <form class="navbar-form navbar-left">
+			    	<div class="form-group">
+			    		<select class="form-control">
+							<option>Dak lak</option>
+							<option>Ha noi</option>
+						</select>
+			    	</div>
+			    </form>
+			    <ul class="nav navbar-nav">
+				  <li><a href="#">Khuyến mãi</a></li>
+				  <li><a href="#">Bài viết</a></li>
+				  <li><a href="#">Trợ giúp</a></li>
+				  <li><a href="#">${cookie.hitCounter.value}</a></li>
+			    </ul>
+			    <ul class="nav navbar-nav navbar-right">
+			      	<c:choose>
+						<c:when test="${sessionScope.tdn == null}">
+							<li>
+								<a href="javascript:;" class="linkdangnhap" style="text-decoration: none;" data-toggle="modal" data-target="#myModal">
+									<b>Đăng nhập</b>
+								</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="dropdown">
+								<a href="#" data-toggle="dropdown">Welcome, ${sessionScope.tdn} <span class="glyphicon glyphicon-menu-down"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="#"><i class="glyphicon glyphicon-user"></i> Thông tin tài khoản</a></li>
+									<li class="divider"></li>
+									<li><a href="logout.html"><i class="fa fa-sign-out"></i>Thoát</a></li>
+								</ul>
+							</li>
+						</c:otherwise>
+					</c:choose>
+			      <li><a href="#" class="btn btn-info ">Đặt bàn</a></li>
+			    </ul>
+			    </div>
+			  </div>
+			</nav>
+			
+			<%-- <div class="col-md-3 can">
 				<a href="trang-chu.html"><img src="images/logo.png"/></a>
 			</div>
-			<div class="col-md-2 dropdown can">
-					<select class="btn btn-default dropdown-toggle icondt" 
-						id="menu1" data-toggle="dropdown">
-						<option>Đăk lăk</option>
-						<option>Ha Noi</option>
-						<option>Sai gon</option>
+			<div class="col-md-2 can timtheodc">
+					<select class="form-control">
+						<option>Dak lak</option>
+						<option>Ha noi</option>
 					</select>
 			</div>
 			<div class="col-md-4 linkh">
@@ -66,61 +91,17 @@
 				<a href="#" class="linkheader" style="text-decoration: none;"><b>Trợ giúp</b></a>
 			</div>
 			<div class="col-md-3 linkh">
-				<a href="#" class="linkdangnhap" style="text-decoration: none;" data-toggle="modal" data-target="#myModal"><b>Đăng nhập</b></a>
+				<c:choose>
+					<c:when test="${sessionScope.nguoidung == null}">
+						<a href="javascript:;" class="linkdangnhap" style="text-decoration: none;" data-toggle="modal" data-target="#myModal">
+							<b>Đăng nhập</b>
+						</a>
+					</c:when>
+					<c:otherwise>Welcome, ${sessionScope.nguoidung.hoten}</c:otherwise>
+				</c:choose>
 				<button class="btn info btndatban"><b>Đặt bàn</b></button>
-			</div>
+			</div> --%>
 			
 		</div>
-	</div>
 </div>
 <jsp:include page="/views/homepage/modal-login.jsp"></jsp:include>
-<div class="container-full conff">
-	<div class="container timkiemm">
-		<div class="row">
-			
-			
-			
-			
-			
-			
-		</div>
-		<div class="row">
-			<div class="row timkiemnhc timkiemctnh">
-			<form class="form-inline">
-				<div class="input-group">
-					 <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-					<input type="text" class="form-control" placeholder="Tên nhà hàng, món ăn, địa điểm">
-				</div>
-				<div class="form-group">
-					<input type="text" class="form-control" id="ngaythang" placeholder="Chọn ngày tháng">
-				</div>
-				<div class="form-group">
-					<select class="form-control">
-						<option>-Thời gian-</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<select class="form-control">
-						<option>1 người</option>
-						<option>2 người</option>
-					</select>
-				</div>
-				<button class="btn warning btntk"><b>Tìm kiếm</b></button>
-			</form>
-			<div class="col-md-2 ">
-				
-			</div>
-			
-		</div>
-		</div>
-	</div>
-</div>
-<script>
-  $(function() {
-    $( "#ngaythang" ).datepicker({
-    	dateFormat: "dd/mm/yy",
-    	minDate: 0,
-    	defaultDate: 0
-    });
-  });
-  </script>
