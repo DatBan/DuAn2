@@ -37,6 +37,7 @@
 									</div>
 									<div class="col-md-3"></div>
 								</div>
+								<span style="margin-top: 30px; color: red; ">${message}</span>
 								<form name="registerform" id="registerform"
 									action="RegisterForm.html" method="post">
 									<div class="row rregister">
@@ -137,7 +138,7 @@
 										<div class="col-md-3"></div>
 
 									</div>
-									<span style="margin-top: 30px; color: red; margin-left: 168px;">${message}</span>
+									
 								</form>
 							</div>
 						</div>

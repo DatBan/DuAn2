@@ -525,3 +525,8 @@ a:hover{
 	font-weight: bold; 
 	margin-top: 10px;
 }
+.error{
+	color:red;
+	font-weight:normal;
+	float: left;
+}
