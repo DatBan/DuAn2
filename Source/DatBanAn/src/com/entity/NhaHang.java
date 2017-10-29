@@ -1,10 +1,5 @@
 package com.entity;
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> e88f1a7c2efe3e26694905afc9495821d986cf39
 import java.util.Date;
 
 import javax.persistence.Entity;
