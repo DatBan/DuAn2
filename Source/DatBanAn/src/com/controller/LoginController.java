@@ -23,7 +23,13 @@ import com.entity.NguoiDung;
 public class LoginController {
 	@Autowired
 	SessionFactory factory;
-
+	
+	@RequestMapping("modal-login")
+	public String modal(ModelMap model){
+		model.addAttribute("nguoidung", new NguoiDung());
+		return "homepage/modal-login";
+	}
+	
 	//Dang nhap vao he thong
 	@RequestMapping("login")
 	public String login(ModelMap model, 

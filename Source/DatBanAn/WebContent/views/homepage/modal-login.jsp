@@ -1,6 +1,5 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html>
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
