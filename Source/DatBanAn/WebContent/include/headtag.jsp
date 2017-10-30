@@ -20,3 +20,4 @@
 <script src="js/jquery.validate.js"></script>
 <script src="js/additional-methods.min.js"></script>
 <script src="js/ScriptDangKy.js"></script>
+<script src="js/custom-script.js"></script>
