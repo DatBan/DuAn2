@@ -12,6 +12,40 @@ body{
 	background-color: white;
 	margin-top: 10px;
 }
+.navbar-inverse {
+      background-color: white; 
+     border-color: white; 
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #e54d3f;
+}
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: black;
+}
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+     color: #e54d3f; 
+     background-color: white; 
+}
+a:focus, a:hover {
+    
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+    color: black;
+    background-color:#f7f7f7;
+}
+
+
+.navbar-inverse .navbar-text {
+    color: black;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+     color: black;
+     background-color: white; 
+     font-size: 20px;
+}
+
+
 .trai{
 	
 	height: 44px;
