@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.entity.NguoiDung;
+import com.services.EnDeCryption;
 
 @Controller
 @Transactional
@@ -49,8 +50,10 @@ public class LoginController {
 			String hql = "FROM NguoiDung WHERE tendangnhap=:tdn";
 			Query query = session.createQuery(hql);
 			query.setParameter("tdn", nd.getTendangnhap());
+			EnDeCryption enDe = new EnDeCryption("sadasdasdsawqewq");
+			String mk = enDe.encoding(nd.getMatkhau());
 			nd2 = (NguoiDung) query.uniqueResult();
-			if(!nd.getMatkhau().equals(nd2.getMatkhau())){
+			if(!mk.equals(nd2.getMatkhau())){
 				System.out.println("sai mk hihi");
 				return "index";
 			}
@@ -106,7 +109,13 @@ public class LoginController {
 			Query query = session.createQuery(hql);
 			query.setParameter("tdn", tendangnhap);
 			nd2 = (NguoiDung) query.uniqueResult();
-			if(!mk.equals(nd2.getMatkhau())){
+			//decode password
+			EnDeCryption enDe = new EnDeCryption("sadasdasdsawqewq");
+			String mkmh = enDe.encoding(mk);
+			System.out.println(mkmh);
+			
+			nd2 = (NguoiDung) query.uniqueResult();
+			if(!mkmh.equals(nd2.getMatkhau())){
 				System.out.println("sai mk hihi");
 				return "false";
 			}
