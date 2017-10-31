@@ -24,7 +24,15 @@ $(document).ready(function() {
 			return true;
 		}
 	});
-	
+	// Check số trong họ tên
+	$.validator.addMethod("notNumber", function(value, element, param) {
+        var reg = /[0-9.@!#$%&'*+\/=?^_`{|}~-]/;
+        if(reg.test(value)){
+              return false;
+        }else{
+                return true;
+        }
+	});
 	$("#registerform").validate({
 		normalizer : function(value) {
 			return $.trim(value);
@@ -39,7 +47,8 @@ $(document).ready(function() {
 		                }
 		              },
 				rangelength : [ 4, 50 ],
-				wordCount : [ '2' ]
+				wordCount : [ '2' ],
+				notNumber: true
 				
 			},
 			tendangnhap : {
@@ -111,7 +120,8 @@ $(document).ready(function() {
 			hoten : {
 				required : "Vui lòng nhập đầy đủ họ tên",
 				rangelength : "Họ tên không hợp lệ",
-				wordCount : "Họ tên phải có khoảng cách"
+				wordCount : "Họ tên phải có khoảng cách",
+				notNumber:"Họ tên không được có số và ký tự đặc biệt"
 			},
 			tendangnhap : {
 				required : "Vui lòng nhập tên đăng nhập",
