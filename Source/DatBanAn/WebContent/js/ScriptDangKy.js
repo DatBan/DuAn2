@@ -127,7 +127,7 @@ $(document).ready(function() {
 				required : "Vui lòng nhập tên đăng nhập",
 				rangelength : "Tên đăng nhập chỉ từ 6 tới 50 ký tự",
 				nowhitespace : "Tên đăng nhập không được có khoảng trống",
-				remote : "Tên đăng nhập đã tồn tại",
+				remote : "Tên đăng nhập đã tồn tại. Vui lòng thử lại",
 				alphanumeric : "Tên đăng nhập viết thường không dấu và không được có ký tự đặc biệt"
 			},
 			matkhau : {
