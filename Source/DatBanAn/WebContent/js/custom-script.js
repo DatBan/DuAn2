@@ -21,7 +21,7 @@ $(document).ready(function() {
 		                }
 		              },
 				minlength : 6,
-				maxlength : 50,
+				maxlength : 30,
 				nowhitespace : true,
 				remote:{
 					type: "GET",
