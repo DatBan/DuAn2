@@ -22,12 +22,10 @@
 			<jsp:include page="/include-dashboard/header-content.jsp"></jsp:include>
 			<!--------------- Table, form cac thu ---------------->
 			<div class="content-nhe">
-			<%-- <div class="row tieudethemtrang">
-				<p class="tdthemtrangmoi">
-					<b>Thêm trang mới</b>
-				</p>
+			<div class="row tieudethemtrang">
+				
 				<span style="margin-top: 30px; color: red; ">${message}</span>
-			</div> --%>
+			</div> 
 			<script type="text/javascript"
 						src="http://js.nicedit.com/nicEdit-latest.js"></script>
 					<script type="text/javascript">
@@ -42,8 +40,8 @@
 				<div class="row rthemtrangmoi">
 					<input style="display:none"  name ="idnd"type="text" value="${sessionScope.id}">
 					<div class="form-group fullname-custom">
-						<div class=" col-md-3"></div>
-						<div class="col-md-6">
+						<div class=" col-md-1"></div>
+						<div class="col-md-10">
 							<label class="control-label  labeld" for="tieude">Tiêu
 								đề:<span style="color: red;">*</span>
 							</label> <input type="text" name="tieude" id="tieude"
@@ -51,11 +49,12 @@
 						</div>
 					</div>
 				</div>
+				
 				<div class="row rthemtrangmoi">
 					<div class="form-group fullname-custom">
-						<div class=" col-md-3"></div>
-						<div class="col-md-6">
-							<label class="control-label  labeld" for="tieude">Title:<span style="color: red;">*</span>
+						<div class=" col-md-1"></div>
+						<div class="col-md-10">
+							<label class="control-label  labeld" for="title">Title:<span style="color: red;">*</span>
 							</label> <input type="text" name="title" id="title"
 								placeholder="VD : Contact" class="form-control">
 						</div>
@@ -63,9 +62,9 @@
 				</div>
 				<div class="row rthemtrangmoi">
 					<div class="form-group fullname-custom">
-						<div class=" col-md-3"></div>
+						<div class=" col-md-1"></div>
 
-						<div class="col-md-6">
+						<div class="col-md-10">
 							<label class="control-label  labeld" for="slug">Slug:<span
 								style="color: red;">*</span>
 							</label> <input type="text" name="slug" id="slug" placeholder="Nhập Slug"
@@ -75,24 +74,24 @@
 				</div>
 				<div class="row rthemtrangmoi">
 					<div class="form-group fullname-custom">
-						<div class=" col-md-3"></div>
-						<div class="col-md-6">
+						<div class=" col-md-1"></div>
+						<div class="col-md-10">
 							<label class="control-label  labeld" for="noidung">Nội
 								dung:<span style="color: red;">*</span>
 							</label>
 							<textarea name="noidung" id ="noidung" placeholder="" class="form-control"
-								style="margin: 0px; min-height: 92px; min-width: 536px; max-width: 536px;"></textarea>
+								style="margin: 0px; min-height: 92px;"></textarea>
 						</div>
 					</div>
 				</div>
 				<div class="row rthemtrangmoi">
 					<div class="form-group fullname-custom">
-						<div class=" col-md-3"></div>
-						<div class="col-md-6">
+						<div class=" col-md-1"></div>
+						<div class="col-md-10">
 							<label class="control-label  labeld" for="content">Content:<span style="color: red;">*</span>
 							</label>
 							<textarea name="content" id="content" placeholder="" class="form-control"
-								style="margin: 0px; min-height: 92px; min-width: 536px; max-width: 536px;"></textarea>
+								style="margin: 0px; min-height: 92px;"></textarea>
 						</div>
 					</div>
 				</div>

@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <div class="container con">
 	<!-- Menu top top top -->
@@ -57,7 +58,9 @@
 						<li><a href="#"><b>Khuyến mãi</b></a></li>
 						<li><a href="#"><b>Bài viết</b></a></li>
 						<li><a href="#"><b>Trợ giúp</b></a></li>
-						<li><a href="#">${cookie.hitCounter.value}</a></li>
+						<c:forEach var="t" items="${trang}">
+						<li><a href="#">${t.tieude}</a></li>
+						</c:forEach>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<c:choose>

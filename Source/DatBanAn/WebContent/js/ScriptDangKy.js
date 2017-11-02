@@ -40,12 +40,7 @@ $(document).ready(function() {
 		onchange : true,
 		rules : {
 			hoten : {
-				required : {
-		              depends: function() {
-		                  $(this).val($.trim($(this).val()));
-		                  return true;
-		                }
-		              },
+				required :true,
 				rangelength : [ 4, 50 ],
 				wordCount : [ '2' ],
 				notNumber: true

@@ -35,6 +35,7 @@ public class TrangController {
 		@SuppressWarnings("unchecked")
 		List<Trang> list = query.list();
 		model.addAttribute("trang",list);
+		model.addAttribute("tenbreadcrumb","QUẢN LÝ TRANG");
 		return "dashboard/quanlytrang";
 	}
 	//Xoá trang
@@ -81,9 +82,12 @@ public class TrangController {
 //			query.setParameter("id", idnd);
 //			nd= (NguoiDung) query.uniqueResult();
 			//Cái tạm thời
+			String td = tieude.trim();
+			String tt = title.trim();
+			String sl = slug.trim();
 			NguoiDung nd = (NguoiDung) session.get(NguoiDung.class, 1);
 			Date ngaytao = new Date();
-			Trang trang = new Trang(tieude, title, noidung, content, slug, ngaytao, nd);
+			Trang trang = new Trang(td, tt, noidung, content, sl, ngaytao, nd);
 			Transaction t = session.beginTransaction();
 			try {
 				session.save(trang);
@@ -106,7 +110,42 @@ public class TrangController {
 		Session session = factory.getCurrentSession();
 		Trang trang = (Trang) session.get(Trang.class, id);
 		model.addAttribute("trang",trang);
-		
+		model.addAttribute("tenbreadcrumb","SỬA TRANG");
 		return "dashboard/edittrang";
+	}
+	//Sửa trang
+	@RequestMapping(value="suatrang",method = RequestMethod.POST)
+	public String suaTrang(ModelMap model, @RequestParam("idtrang") int id,
+			@RequestParam("tieude")String tieude,
+			@RequestParam("title")String title,
+			@RequestParam("noidung")String noidung,
+			@RequestParam("content")String content,
+			@RequestParam("slug")String slug){
+		Date ngaysua = new Date();
+		Session session = factory.openSession();
+		Trang trang = (Trang) session.get(Trang.class, id);
+		String td = tieude.trim();
+		String tt = title.trim();
+		String sl = slug.trim();
+		trang.setTieude(td);
+		trang.setTitle(tt);
+		trang.setNoidung(noidung);
+		trang.setContent(content);
+		trang.setSlug(sl);
+		trang.setNgaysua(ngaysua);
+		Transaction t = session.beginTransaction();
+		try {
+			session.update(trang);
+			t.commit();
+			model.addAttribute("message", "Chỉnh sửa thành công !");
+			return "redirect:/trang/index.html";
+		} catch (Exception e) {
+			// TODO: handle exception
+			t.rollback();
+			 model.addAttribute("message", "Chỉnh sửa thất bại !");
+		}finally {
+			session.close();
+		}
+		return "dashboard/quanlytrang";
 	}
 }

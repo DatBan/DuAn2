@@ -326,8 +326,7 @@ a.article, a.article:hover {
 /*															Them trang*/
 .tieudethemtrang{
 	text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+   
 }
 .tdthemtrangmoi{
 	color: #0370bd;
@@ -335,8 +334,13 @@ a.article, a.article:hover {
 }
 .rthemtrangmoi{
 	margin-top: 20px;
+	margin-bottom: 20px;
 }
-
+.error{
+	color:red;
+	font-weight:normal;
+	
+}
 
 
 
