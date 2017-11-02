@@ -31,6 +31,15 @@
 					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
 				</ul>
 			</li>
+			<li class="child-menu">
+				<a href="#ss2" data-toggle="collapse" aria-expanded="false">
+						<i class="glyphicon glyphicon-home"></i> Trang
+				</a>
+				<ul class="collapse list-unstyled" id="ss2">
+					<li><a href="trang/index.html"><i class="fa fa-circle-o"></i> Quản lý trang</a></li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
+				</ul>
+			</li>
 			<li>
 				<a href="#"> 
 					<i class="glyphicon glyphicon-briefcase"></i>
@@ -38,10 +47,10 @@
 				</a>
 			</li>
 			<li class="child-menu">
-				<a href="#ss2" data-toggle="collapse" aria-expanded="false">
+				<a href="#ss3" data-toggle="collapse" aria-expanded="false">
 						<i class="glyphicon glyphicon-home"></i> Dashboard
 				</a>
-				<ul class="collapse list-unstyled" id="ss2">
+				<ul class="collapse list-unstyled" id="ss3">
 					<li><a href="#"><i class="fa fa-circle-o"></i> D1</a></li>
 					<li><a href="dashboard/index.html"><i class="fa fa-circle-o"></i> D2</a></li>
 				</ul>

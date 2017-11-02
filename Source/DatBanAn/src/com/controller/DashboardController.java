@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.entity.NguoiDung;
 
+
 @RequestMapping("dashboard/")
 @Controller
 public class DashboardController {
@@ -14,4 +15,5 @@ public class DashboardController {
 		model.addAttribute("nguoidung", new NguoiDung());
 		return "dashboard/dashboard";
 	}
+	
 }

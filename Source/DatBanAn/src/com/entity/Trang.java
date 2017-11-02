@@ -13,7 +13,9 @@ public class Trang {
 	@GeneratedValue
 	private int id;
 	private String tieude;
+	private String title;
 	private String noidung;
+	private String content;
 	private String slug;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date ngaytao;
@@ -27,10 +29,13 @@ public class Trang {
 		super();
 	}
 
-	public Trang(String tieude, String noidung, String slug, Date ngaytao, NguoiDung nguoiviet) {
+	public Trang(String tieude, String title, String noidung, String content, String slug, Date ngaytao,
+			NguoiDung nguoiviet) {
 		super();
 		this.tieude = tieude;
+		this.title = title;
 		this.noidung = noidung;
+		this.content = content;
 		this.slug = slug;
 		this.ngaytao = ngaytao;
 		this.nguoiviet = nguoiviet;
@@ -52,12 +57,28 @@ public class Trang {
 		this.tieude = tieude;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public String getNoidung() {
 		return noidung;
 	}
 
 	public void setNoidung(String noidung) {
 		this.noidung = noidung;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public String getSlug() {
@@ -91,5 +112,7 @@ public class Trang {
 	public void setNguoiviet(NguoiDung nguoiviet) {
 		this.nguoiviet = nguoiviet;
 	}
+
+	
 
 }

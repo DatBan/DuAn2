@@ -456,11 +456,11 @@
 					</div>
 					<div class="col-md-7">
 						<button type="button" data-toggle="modal"
-							class="btn btn-warning btnthemdg" data-target="#myModal">
+							class="btn btn-warning btnthemdg" data-target="#Modaldanhgia">
 							<b>Thêm Đánh Giá</b>
 						</button>
 					</div>
-					<div class="modal fade" id="myModal" role="dialog">
+					<div class="modal fade" id="Modaldanhgia" role="dialog">
 						<div class="modal-dialog">
 
 							<!-- Modal content-->
