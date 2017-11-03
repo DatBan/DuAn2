@@ -11,7 +11,6 @@
 <!-- File jquery kiem tra loi -->
 <script src="js/jquery.validate.js"></script>
 <script src="js/additional-methods.min.js"></script>
-<<<<<<< HEAD
 <script type="text/javascript">
 		$(document).ready(function(){
 			var url = window.location;
@@ -41,7 +40,5 @@
 			 });
 		});
 	</script>
-=======
 <script src="js/custom-script.js"></script>
 <script src="js/ScriptTrang.js"></script>
->>>>>>> 0be60790a4d5b14fa89032ee7d76de93b3fae440

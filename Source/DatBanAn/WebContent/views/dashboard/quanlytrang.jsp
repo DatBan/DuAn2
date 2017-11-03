@@ -75,36 +75,4 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript">
-	$(document).ready(
-			function() {
-				var url = window.location;
-
-				//for sidebar menu entirely but not cover treeview
-				$('ul.components a').filter(function() {
-
-					return this.href == url;
-				}).parent().addClass('active');
-
-				//for treeview
-				$('ul.components ul.collapse a').filter(
-						function() {
-							if (this.href == url) {
-								$(this).parent().parent().addClass('in').attr(
-										'aria-expanded', !0).siblings().attr(
-										'aria-expanded', !0);
-							}
-							return this.href == url;
-						}).closest('.child-menu').addClass('active');
-
-				//Collapse sidebar
-				$('#sidebarCollapse').on('click', function() {
-					$('#sidebar').toggleClass('active');
-				});
-
-				$('#example').DataTable({
-					responsive : true
-				});
-			});
-</script>
 </html>
