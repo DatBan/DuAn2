@@ -28,6 +28,7 @@ public class LoginController {
 	@Autowired
 	SessionFactory factory;
 	
+	//Ham goi modal login
 	@RequestMapping("modal-login")
 	public String modal(ModelMap model){
 		model.addAttribute("nguoidung", new NguoiDung());
