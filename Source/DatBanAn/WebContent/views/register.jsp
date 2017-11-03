@@ -71,7 +71,7 @@
 												<label class="control-label  labeld" for="matkhau">Mật
 													Khẩu:<span style="color: red;">*</span>
 												</label> <input type="password" name="matkhau"
-													placeholder="Nhập Mật Khẩu" class="form-control" >
+													placeholder="Nhập Mật Khẩu" class="form-control" id="matkhaureg">
 											</div>
 										</div>
 									</div>

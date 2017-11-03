@@ -81,7 +81,7 @@ $(document).ready(function() {
 			},
 			nhaplaimatkhau : {
 				required : true,
-				equalTo : '[name="matkhau"]'
+				equalTo : '#matkhaureg'
 			},
 			email : {
 				required : {
