@@ -32,7 +32,7 @@
 					<li><a href="trang/index.html"><i class="fa fa-circle-o"></i> Quản lý trang</a></li>
 					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
 				</ul>
-			</li>
+			</li>	
 			<li class="child-menu">
 				<a href="#ss" data-toggle="collapse" aria-expanded="false"> 
 					<i class="glyphicon glyphicon-home"></i>
