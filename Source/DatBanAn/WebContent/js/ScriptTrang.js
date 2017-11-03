@@ -3,7 +3,15 @@
  */
 $(document).ready(function() {
 	
-	
+	// Check ký tự đặc biệt
+	$.validator.addMethod("kiemTraKyTu", function(value, element, param) {
+        var reg = /[.@!#$%&'*+[]\/=?^_`{|}~]/;
+        if(reg.test(value)){
+              return false;
+        }else{
+                return true;
+        }
+	});
 	
 	$("#themtrangmoi").validate({
 		
@@ -11,18 +19,20 @@ $(document).ready(function() {
 		rules : {
 			tieude : {
 				required : true,
-				rangelength : [ 4, 50 ],				
+				rangelength : [ 4, 50 ],
+				kiemTraKyTu: true
 			},
 			slug : {
 				required : true,
 				rangelength : [ 4, 80 ],
-				nowhitespace : true,
-				alphanumeric : true
+				nowhitespace : true
+				
 
 			},
 			title : {
 				required : true,
-				rangelength : [ 4, 50 ],				
+				rangelength : [ 4, 50 ],
+				kiemTraKyTu : true
 			},
 			noidung : {
 				required : true,
@@ -37,18 +47,20 @@ $(document).ready(function() {
 		messages : {
 			tieude : {
 				required : "Vui lòng nhập tiêu đề",
-				rangelength : "Tiêu đề không hợp lệ"
+				rangelength : "Tiêu đề không hợp lệ",
+				kiemTraKyTu :"Tiêu đề không được có ký tự đặc biệt"
 			},
 			
 			slug : {
 				required : "Vui lòng nhập Slug",
 				rangelength : "Slug không hợp lệ",
 				nowhitespace : "Slug không được có khoảng trống",
-				alphanumeric : "Slug viết thường không dấu"
+				
 			},
 			title : {
 				required : "invalid title",
-				rangelength : "Tiêu đề không hợp lệ"
+				rangelength : "Tiêu đề không hợp lệ",
+				kiemTraKyTu :"Title has not special character"
 			},
 			noidung : {
 				required : "Vui lòng nhập nội dung",
@@ -56,7 +68,7 @@ $(document).ready(function() {
 			},
 			content : {
 				required : "invalid content",
-				minlength : "Nội dung quá ngắn"
+				minlength : "Content too short"
 			}
 		}
 	});

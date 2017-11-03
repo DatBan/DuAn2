@@ -70,7 +70,7 @@
 											<div class="col-md-6">
 												<label class="control-label  labeld" for="matkhau">Mật
 													Khẩu:<span style="color: red;">*</span>
-												</label> <input type="password" name="matkhau"
+												</label> <input type="password" name="matkhau" id="matkhau"
 													placeholder="Nhập Mật Khẩu" class="form-control" >
 											</div>
 										</div>
@@ -82,7 +82,7 @@
 											<div class="col-md-6">
 												<label class="control-label  labeld" for="nhaplaimatkhau">Nhập
 													Lại Mật Khẩu:<span style="color: red;">*</span>
-												</label> <input type="password" name="nhaplaimatkhau"
+												</label> <input type="password" name="nhaplaimatkhau" id="nhaplaimatkhau"
 													placeholder="Nhập Lại Mật Khẩu" class="form-control"
 													>
 											</div>

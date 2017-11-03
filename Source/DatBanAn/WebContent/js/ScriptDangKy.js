@@ -34,9 +34,7 @@ $(document).ready(function() {
         }
 	});
 	$("#registerform").validate({
-		normalizer : function(value) {
-			return $.trim(value);
-		},
+	
 		onchange : true,
 		rules : {
 			hoten : {
@@ -76,7 +74,7 @@ $(document).ready(function() {
 			},
 			nhaplaimatkhau : {
 				required : true,
-				equalTo : '[name="matkhau"]'
+				equalTo : "[name='matkhau']"
 			},
 			email : {
 				required : {

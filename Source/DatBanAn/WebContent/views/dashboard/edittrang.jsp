@@ -85,7 +85,7 @@
 										dung:<span style="color: red;">*</span>
 									</label>
 									<textarea name="noidung" id="noidung" class="form-control"
-										style="margin: 0px; min-height: ">${trang.noidung}</textarea>
+										style="margin: 0px; min-height: 92px;"required>${trang.noidung}</textarea>
 								</div>
 							</div>
 						</div>
@@ -98,7 +98,7 @@
 									</label>
 									<textarea name="content" id="content" placeholder=""
 										class="form-control"
-										style="margin: 0px; min-height: 92px; ">${trang.content}</textarea>
+										style="margin: 0px; min-height: 92px; " required>${trang.content}</textarea>
 								</div>
 							</div>
 						</div>
