@@ -323,3 +323,24 @@ a.article, a.article:hover {
 		float:none;
 	}
 }
+/*															Them trang*/
+.tieudethemtrang{
+	text-align: center;
+   
+}
+.tdthemtrangmoi{
+	color: #0370bd;
+    font-size: 24px;
+}
+.rthemtrangmoi{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.error{
+	color:red;
+	font-weight:normal;
+	
+}
+
+
+

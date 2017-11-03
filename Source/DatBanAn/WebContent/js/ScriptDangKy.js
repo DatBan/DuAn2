@@ -40,12 +40,7 @@ $(document).ready(function() {
 		onchange : true,
 		rules : {
 			hoten : {
-				required : {
-		              depends: function() {
-		                  $(this).val($.trim($(this).val()));
-		                  return true;
-		                }
-		              },
+				required :true,
 				rangelength : [ 4, 50 ],
 				wordCount : [ '2' ],
 				notNumber: true
@@ -58,7 +53,7 @@ $(document).ready(function() {
 		                  return true;
 		                }
 		              },
-				rangelength : [ 6, 50 ],
+				rangelength : [ 5, 50 ],
 				nowhitespace : true,
 				remote : {
 					type : "GET",
@@ -76,7 +71,7 @@ $(document).ready(function() {
 		                }
 		              },
 				minlength : 6,
-				maxlength : 200,
+				maxlength : 30,
 				nowhitespace : true
 			},
 			nhaplaimatkhau : {
@@ -125,7 +120,7 @@ $(document).ready(function() {
 			},
 			tendangnhap : {
 				required : "Vui lòng nhập tên đăng nhập",
-				rangelength : "Tên đăng nhập chỉ từ 6 tới 50 ký tự",
+				rangelength : "Tên đăng nhập chỉ từ 5 tới 50 ký tự",
 				nowhitespace : "Tên đăng nhập không được có khoảng trống",
 				remote : "Tên đăng nhập đã tồn tại. Vui lòng thử lại",
 				alphanumeric : "Tên đăng nhập viết thường không dấu và không được có ký tự đặc biệt"

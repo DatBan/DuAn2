@@ -3,7 +3,7 @@
 	<!-- Breadcrumb -->
 	<ul class="breadcrumb col-sm-6">
 		<li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-		<li class="active"><b>QUẢN LÝ NHÀ HÀNG</b></li>
+		<li class="active"><b>${tenbreadcrumb}</b></li>
 	</ul>
 	<!--Nut bam -->
 	<div class="col-sm-6 btn-thao-tac">

@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -50,19 +51,26 @@ public class RegisterController {
 			@RequestParam("email")String email,
 			@RequestParam("sdt")String sdt,
 			@RequestParam("diachi")String diachi,
-			HttpSession httpSession){
+			HttpSession httpSession,
+			HttpServletResponse response){
 		Session session = factory.openSession();
 		Quyen quyen= (Quyen) session.get(Quyen.class, 3);
 		
+		String ht= hoten.trim();
 		Date ngaytao = new Date();
 		EnDeCryption mh = new EnDeCryption("sadasdasdsawqewq");
 		String mkmh= mh.encoding(matkhau);
-		NguoiDung nguoidung= new NguoiDung(hoten, tendangnhap, mkmh, email, sdt, diachi, 1, ngaytao, quyen);
+		NguoiDung nguoidung= new NguoiDung(ht, tendangnhap, mkmh, email, sdt, diachi, 1, ngaytao, quyen);
 		Transaction t = session.beginTransaction();
 		try {
 			session.save(nguoidung);
 			t.commit();
 			httpSession.setAttribute("nguoidung", nguoidung);
+			
+			Cookie cktdn = new Cookie("cktdn", nguoidung.getTendangnhap());
+			cktdn.setPath("/");
+			response.addCookie(cktdn);
+			httpSession.setAttribute("tdn", cktdn.getValue());
 			return"redirect:trang-chu.html";
 		} catch (Exception e) {
 			// TODO: handle exception
