@@ -20,25 +20,40 @@ $(document).ready(function() {
 			tieude : {
 				required : true,
 				rangelength : [ 4, 50 ],
-				kiemTraKyTu: true
+				kiemTraKyTu: true,
+				remote : {
+					type : "GET",
+					url : "trang/kt-trung-tieude.html"
+
+				}
 			},
 			slug : {
 				required : true,
 				rangelength : [ 4, 80 ],
-				nowhitespace : true
+				nowhitespace : true,
+				remote : {
+					type : "GET",
+					url : "trang/kt-trung-slug.html"
+
+				}
 				
 
 			},
 			title : {
 				required : true,
 				rangelength : [ 4, 50 ],
-				kiemTraKyTu : true
+				kiemTraKyTu : true,
+				remote : {
+					type : "GET",
+					url : "trang/kt-trung-title.html"
+
+				}
 			},
-			noidung : {
+			area1 : {
 				required : true,
 				minlength : 200
 			},
-			content : {
+			area2 : {
 				required : true,
 				minlength : 200
 			}
@@ -48,7 +63,8 @@ $(document).ready(function() {
 			tieude : {
 				required : "Vui lòng nhập tiêu đề",
 				rangelength : "Tiêu đề không hợp lệ",
-				kiemTraKyTu :"Tiêu đề không được có ký tự đặc biệt"
+				kiemTraKyTu :"Tiêu đề không được có ký tự đặc biệt",
+				remote : "Trang đã tồn tại"
 			},
 			
 			slug : {
@@ -62,11 +78,11 @@ $(document).ready(function() {
 				rangelength : "Tiêu đề không hợp lệ",
 				kiemTraKyTu :"Title has not special character"
 			},
-			noidung : {
+			area1 : {
 				required : "Vui lòng nhập nội dung",
 				minlength : "Nội dung quá ngắn"
 			},
-			content : {
+			area2 : {
 				required : "invalid content",
 				minlength : "Content too short"
 			}

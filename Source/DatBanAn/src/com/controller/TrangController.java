@@ -3,6 +3,8 @@ package com.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.Query;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.entity.NguoiDung;
 import com.entity.Trang;
@@ -69,8 +72,8 @@ public class TrangController {
 	public String themTrangMoi(ModelMap model,
 			@RequestParam("tieude")String tieude,
 			@RequestParam("title")String title,
-			@RequestParam("noidung")String noidung,
-			@RequestParam("content")String content,
+			@RequestParam("area1")String noidung,
+			@RequestParam("area2")String content,
 			@RequestParam("slug")String slug,
 //			@RequestParam("idnd")int idnd,
 			HttpSession httpSession) {
@@ -148,4 +151,79 @@ public class TrangController {
 		}
 		return "dashboard/quanlytrang";
 	}
+	//kiểm tra trùng trang
+	@RequestMapping(value="kt-trung-tieude",method = RequestMethod.GET)
+	public @ResponseBody String ktTrungTieuDe(@RequestParam("tieude") String tieude,
+			HttpServletResponse response,
+			HttpServletRequest request){
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		response.setCharacterEncoding("UTF-8");
+		Session session = factory.getCurrentSession();
+		
+		String hql="FROM Trang  WHERE tieude =:tieude";
+		Query query = session.createQuery(hql);
+		query.setParameter("tieude", tieude);
+		
+		Trang trang= (Trang) query.uniqueResult();
+		
+		if(trang!=null){
+			return "false";
+		}else{
+			return "true";
+		}
+	}
+	//kiểm tra trùng titile
+		@RequestMapping(value="kt-trung-title",method = RequestMethod.GET)
+		public @ResponseBody String ktTrungTitle(@RequestParam("title") String title,
+				HttpServletResponse response,
+				HttpServletRequest request){
+			try {
+				request.setCharacterEncoding("UTF-8");
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			response.setCharacterEncoding("UTF-8");
+			Session session = factory.getCurrentSession();
+			
+			String hql="FROM Trang  WHERE title =:title";
+			Query query = session.createQuery(hql);
+			query.setParameter("title", title);
+			
+			Trang trang= (Trang) query.uniqueResult();
+			
+			if(trang!=null){
+				return "false";
+			}else{
+				return "true";
+			}
+		}
+		//kiểm tra trùng slug
+				@RequestMapping(value="kt-trung-slug",method = RequestMethod.GET)
+				public @ResponseBody String ktTrungSlug(@RequestParam("slug") String slug,
+						HttpServletResponse response,
+						HttpServletRequest request){
+					try {
+						request.setCharacterEncoding("UTF-8");
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+					response.setCharacterEncoding("UTF-8");
+					Session session = factory.getCurrentSession();
+					
+					String hql="FROM Trang  WHERE slug =:slug";
+					Query query = session.createQuery(hql);
+					query.setParameter("slug", slug);
+					
+					Trang trang= (Trang) query.uniqueResult();
+					
+					if(trang!=null){
+						return "false";
+					}else{
+						return "true";
+					}
+				}
 }

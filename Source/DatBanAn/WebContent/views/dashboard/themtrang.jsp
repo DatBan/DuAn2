@@ -31,13 +31,14 @@
 					<script type="text/javascript">
 						//<![CDATA[
 						bkLib.onDomLoaded(function() {
-							nicEditors.allTextAreas()
-							
+							new nicEditor({maxHeight : 300}).panelInstance('area1');
+							new nicEditor({maxHeight : 300}).panelInstance('area2');
 						});
 						//]]>
 					</script>
 			<form name=themtrangmoi id="themtrangmoi"
 				action="trang/themtrangmoi.html" method="post">
+				
 				<div class="row rthemtrangmoi">
 					<input style="display:none"  name ="idnd"type="text" value="${sessionScope.id}">
 					<div class="form-group fullname-custom">
@@ -45,7 +46,7 @@
 						<div class="col-md-10">
 							<label class="control-label  labeld" for="tieude">Tiêu
 								đề:<span style="color: red;">*</span>
-							</label> <input type="text" name="tieude" 
+							</label> <input type="text" name="tieude" id="tieude"
 								placeholder="VD : Liên hệ" class="form-control">
 						</div>
 					</div>
@@ -56,7 +57,7 @@
 						<div class=" col-md-1"></div>
 						<div class="col-md-10">
 							<label class="control-label  labeld" for="title">Title:<span style="color: red;">*</span>
-							</label> <input type="text" name="title" 
+							</label> <input type="text" name="title" id="title"
 								placeholder="VD : Contact" class="form-control">
 						</div>
 					</div>
@@ -68,7 +69,7 @@
 						<div class="col-md-10">
 							<label class="control-label  labeld" for="slug">Slug:<span
 								style="color: red;">*</span>
-							</label> <input type="text" name="slug"  placeholder="Nhập Slug"
+							</label> <input type="text" name="slug" id="slug" placeholder="Nhập Slug"
 								class="form-control">
 						</div>
 					</div>
@@ -80,8 +81,8 @@
 							<label class="control-label  labeld" for="noidung">Nội
 								dung:<span style="color: red;">*</span>
 							</label>
-							<textarea name="noidung"  placeholder="" class="form-control"
-								style="margin: 0px; min-height: 92px;" required></textarea>
+							<textarea name="area1" id="area1"  placeholder="" class="form-control"
+								style="margin: 0px; min-height: 300px;" ></textarea>
 						</div>
 					</div>
 				</div>
@@ -91,8 +92,8 @@
 						<div class="col-md-10">
 							<label class="control-label  labeld" for="content">Content:<span style="color: red;">*</span>
 							</label>
-							<textarea name="content"  placeholder="" class="form-control" required
-								style="margin: 0px; min-height: 92px;"></textarea>
+							<textarea name="area2" id="area2"  placeholder="" class="form-control" 
+								style="margin: 0px; min-height: 300px;"></textarea>
 						</div>
 					</div>
 				</div>
@@ -121,6 +122,7 @@
 						<jsp:include page="/include-dashboard/footer.jsp"></jsp:include>
 		</div>
 	</div>
+
 </body>
 
 </html>
