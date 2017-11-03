@@ -18,9 +18,9 @@
 	<bean id="dataSource" 
 	    	class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 			p:driverClassName="com.mysql.jdbc.Driver"
-			p:url="jdbc:mysql://localhost:3306/datban"
+			p:url="jdbc:mysql://localhost:3306/datban?useSSL=false"
 			p:username="root"
-			p:password="123456">
+			p:password="1234">
 	</bean>
 	
 	<!-- Cấu hình Hibernate -->
@@ -30,7 +30,7 @@
 	    <property name="hibernateProperties">
 	      <props>        
 	            <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>          
-	            <prop key="hibernate.show_sql">false</prop>
+	            <prop key="hibernate.show_sql">true</prop>
 	       </props>
 	    </property>
 		<property name="packagesToScan" value="com.entity"/>

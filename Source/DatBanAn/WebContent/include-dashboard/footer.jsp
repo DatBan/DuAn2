@@ -11,5 +11,37 @@
 <!-- File jquery kiem tra loi -->
 <script src="js/jquery.validate.js"></script>
 <script src="js/additional-methods.min.js"></script>
+<<<<<<< HEAD
+<script type="text/javascript">
+		$(document).ready(function(){
+			var url = window.location;
+			
+			//for sidebar menu entirely but not cover treeview
+			$('ul.components a').filter(function() {
+
+			return this.href == url;
+			}).parent().addClass('active');
+			
+			//for treeview
+			$('ul.components ul.collapse a').filter(function() {
+				if(this.href == url){
+					$(this).parent().parent().addClass('in').attr('aria-expanded', !0).siblings().attr('aria-expanded', !0);
+				}
+			return this.href == url;
+			}).closest('.child-menu').addClass('active');
+			
+			//Collapse sidebar
+			$('#sidebarCollapse').on('click', function(){
+				$('#sidebar').toggleClass('active');
+			});
+			
+			 $('#example').DataTable({
+				 responsive: true,
+				 retrieve: true
+			 });
+		});
+	</script>
+=======
 <script src="js/custom-script.js"></script>
 <script src="js/ScriptTrang.js"></script>
+>>>>>>> 0be60790a4d5b14fa89032ee7d76de93b3fae440

@@ -70,8 +70,13 @@
 											<div class="col-md-6">
 												<label class="control-label  labeld" for="matkhau">Mật
 													Khẩu:<span style="color: red;">*</span>
+<<<<<<< HEAD
 												</label> <input type="password" name="matkhau" id="matkhau"
 													placeholder="Nhập Mật Khẩu" class="form-control" >
+=======
+												</label> <input type="password" name="matkhau"
+													placeholder="Nhập Mật Khẩu" class="form-control" id="matkhaureg">
+>>>>>>> 46fccde9018b07ef4dedc1c8df5deaed130a17b5
 											</div>
 										</div>
 									</div>

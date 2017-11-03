@@ -22,6 +22,9 @@
 		<!-- Sidebar links -->
 		<ul class="list-unstyled components">
 			<li>
+<<<<<<< HEAD
+				<a href="dashboard/index.html"> 
+=======
 				<a href="#ss" data-toggle="collapse" aria-expanded="false"> 
 					<i class="glyphicon glyphicon-home"></i>
 					Dashboard
@@ -42,17 +45,28 @@
 			</li>
 			<li>
 				<a href="#"> 
+>>>>>>> 0be60790a4d5b14fa89032ee7d76de93b3fae440
 					<i class="glyphicon glyphicon-briefcase"></i>
-					Dashboard 2
+					Dashboard
 				</a>
 			</li>
 			<li class="child-menu">
+<<<<<<< HEAD
+				<a href="#ss" data-toggle="collapse" aria-expanded="false"> 
+					<i class="glyphicon glyphicon-home"></i>
+					Quản lý người dùng
+				</a>
+				<ul class="collapse list-unstyled" id="ss">
+					<li><a href="dashboard/user-management.html"><i class="fa fa-circle-o"></i> Danh sách</a></li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
+=======
 				<a href="#ss3" data-toggle="collapse" aria-expanded="false">
 						<i class="glyphicon glyphicon-home"></i> Dashboard
 				</a>
 				<ul class="collapse list-unstyled" id="ss3">
 					<li><a href="#"><i class="fa fa-circle-o"></i> D1</a></li>
 					<li><a href="dashboard/index.html"><i class="fa fa-circle-o"></i> D2</a></li>
+>>>>>>> 0be60790a4d5b14fa89032ee7d76de93b3fae440
 				</ul>
 			</li>
 			<li>

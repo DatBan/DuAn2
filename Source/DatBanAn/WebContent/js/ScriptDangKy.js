@@ -74,7 +74,11 @@ $(document).ready(function() {
 			},
 			nhaplaimatkhau : {
 				required : true,
+<<<<<<< HEAD
 				equalTo : "[name='matkhau']"
+=======
+				equalTo : '#matkhaureg'
+>>>>>>> 46fccde9018b07ef4dedc1c8df5deaed130a17b5
 			},
 			email : {
 				required : {
