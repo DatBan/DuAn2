@@ -29,6 +29,7 @@
 	                			<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 								        <thead>
 								            <tr>
+								            	<th>#</th>
 								                <th>Họ tên</th>
 								                <th>Tên đăng nhập</th>
 								                <th>Điện thoại</th>
@@ -40,6 +41,7 @@
 								        </thead>
 								        <tfoot>
 								            <tr>
+								            	<th>#</th>
 								                <th>Họ tên</th>
 								                <th>Tên đăng nhập</th>
 								                <th>Điện thoại</th>
@@ -52,17 +54,26 @@
 								        <tbody>
 								        	<c:forEach var="nd" items="${nguoidunglist}" varStatus="status">
 									            <tr>
+									            	<td>${status.index + 1}</td>
 									                <td>${nd.hoten}</td>
 									                <td>${nd.tendangnhap}</td>
 									                <td>${nd.sdt}</td>
 									                <td>${nd.email}</td>
 									                <td>${nd.quyennd.tenquyen}</td>
-									                <td>${nd.trangthai == 0 ? '<span class="label label-success">Online</span>' : 1}</td>
+									                <td>${nd.trangthai == 1 ? '<span class="label label-info">Đang sử dụng</span>' : '<span class="label label-danger">Đã khóa</span>'}</td>
 									                <td>
-									                	<a href="dashboard/edit-user.html?id=${nd.id}"
-														class="btn btn-info"><i class="fa fa-edit"></i></a> 
-														<a href="dashboard/delete-user.html?idxoa=${nd.id}" onclick="return confirm('sdkj')"
-														class="btn btn-danger"><i class="fa fa-remove"></i></a>
+									                	<c:choose>
+									                		<c:when test="${tthai == 1}">
+									                			<a href="dashboard/user-management.html?edit&id=${nd.id}"
+																class="btn btn-info" data-toggle="tooltip" title="Chỉnh sửa thông tin người dùng"><i class="fa fa-edit"></i></a> 
+																<a href="dashboard/user-management.html?delete&idxoa=${nd.id}" onclick="return confirm('sdkj')"
+																class="btn btn-danger" data-toggle="tooltip" title="Bỏ vào thùng rác"><i class="fa fa-trash-o"></i></a>
+									                		</c:when>
+									                		<c:otherwise>
+									                			<a href="dashboard/user-management.html?restore&idxoa=${nd.id}" onclick="return confirm('khoi phuc hihi')"
+																class="btn btn-success" data-toggle="tooltip" title="Khôi phục người dùng"><i class="fa fa-refresh"></i></a>
+									                		</c:otherwise>
+									                	</c:choose>
 													</td>
 									            </tr>
 								            </c:forEach>

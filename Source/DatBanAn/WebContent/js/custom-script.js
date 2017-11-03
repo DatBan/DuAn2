@@ -16,6 +16,10 @@ function change_alias(alias) {
 		return str;
 	}
 $(document).ready(function() {//Đổi sang slug
+	//Tooltip the a
+	$('[data-toggle="tooltip"]').tooltip();
+	
+	//chuyen tieu de thanh slug dep
 	var tieuDe = document.getElementById('tieude');
 	if(tieuDe != null){
 		tieuDe.addEventListener('change', function() {
@@ -28,7 +32,8 @@ $(document).ready(function() {//Đổi sang slug
 		permalink.value = change_alias(tieude);
 	}
 	
-	$("#nguoidung").validate({
+	//Check validate dang nhap
+	$("#login").validate({
 		onchange : true,
 		rules : {
 			tendangnhap : {
@@ -78,6 +83,93 @@ $(document).ready(function() {//Đổi sang slug
 				nowhitespace :"Mật khẩu không được có khoảng trống",
 				remote : "Tài khoản hoặc mật khẩu sai. Vui lòng thử lại!"
 			},
+		}
+	});
+	
+	//Check validate edit-user
+	$("#edit-user-db").validate({
+		onchange : true,
+		rules : {
+			hoten : {
+				required :true,
+				rangelength : [ 4, 50 ],
+				wordCount : [ '2' ],
+				notNumber: true
+				
+			},
+			matkhau : {
+				minlength : 6,
+				maxlength : 30,
+				nowhitespace : true
+			},
+			email : {
+				required : {
+		              depends: function() {
+		                  $(this).val($.trim($(this).val()));
+		                  return true;
+		                }
+		              },
+				nowhitespace : true,
+				email:true,
+				remote : {
+					type : "GET",
+					url : "kt-trung-email.html",
+					data: {
+						tdn: function(){
+							var emailcu = $("#tendangnhap").val();
+							return emailcu;
+						}
+					}
+				},
+				maxlength : 150
+			},
+			sdt : {
+				required : {
+		              depends: function() {
+		                  $(this).val($.trim($(this).val()));
+		                  return true;
+		                }
+		              },
+				digits : true,
+				rangelength : [ 9, 11 ],
+				chuanSDT : true
+			},
+			diachi : {
+				maxlength : 200
+	              
+			}
+
+		},
+		messages : {
+			hoten : {
+				required : "Vui lòng nhập đầy đủ họ tên",
+				rangelength : "Họ tên không hợp lệ",
+				wordCount : "Họ tên phải có khoảng cách",
+				notNumber:"Họ tên không được có số và ký tự đặc biệt"
+			},
+			matkhau : {
+				minlength : "Mật khẩu quá ngắn",
+				maxlength : "Mật khẩu vượt quá giới hạn",
+				nowhitespace :"Mật khẩu không được có khoảng trống"
+			},
+			email : {
+				required : "Vui lòng điền email",
+				nowhitespace :"Email không được có khoảng cách",
+				email : "Email không hợp lệ",
+				
+				remote : "Email này đã được sử dụng",
+				maxlength : "Email không hợp lệ",
+				
+			},
+			sdt : {
+				required : "Vui lòng điền số điện thoại",
+				digits : "Số điện thoại phải là số và không có khoảng trắng",
+				rangelength : "Số điện thoại không hợp lệ",
+				chuanSDT : "Số điện thoại phải bắt đầu từ số 0"
+			},
+			diachi : {
+				maxlength : "Địa chỉ không hợp lệ"
+			}
 		}
 	});
 });

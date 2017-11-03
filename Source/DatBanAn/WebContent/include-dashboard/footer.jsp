@@ -40,5 +40,6 @@
 			 });
 		});
 	</script>
+<script src="js/validate-them.js"></script>
 <script src="js/custom-script.js"></script>
 <script src="js/ScriptTrang.js"></script>

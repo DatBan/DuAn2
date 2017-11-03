@@ -109,6 +109,7 @@ public class RegisterController {
 	//Check trùng email
 		@RequestMapping(value="kt-trung-email",method = RequestMethod.GET)
 		public @ResponseBody String ktTrungEmail(@RequestParam("email") String email,
+				@RequestParam(value="tdn", defaultValue="null",required=false) String tdn,
 				HttpServletResponse response,
 				HttpServletRequest request){
 			try {
@@ -125,7 +126,11 @@ public class RegisterController {
 			
 			NguoiDung nd= (NguoiDung) query.uniqueResult();
 			
+			
 			if(nd!=null){
+				if(nd.getTendangnhap().equals(tdn)){
+					return "true";
+				}
 				return "false";
 			}else{
 				return "true";

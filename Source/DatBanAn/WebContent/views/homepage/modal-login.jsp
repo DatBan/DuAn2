@@ -13,7 +13,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<form:form action="login.html" method="post"
-							modelAttribute="nguoidung">
+							modelAttribute="nguoidung" id="login">
 							<div class="form-group clearfix">
 								<label for="tendangnhap">Tên đăng nhập:</label>
 								<form:input path="tendangnhap" class="form-control" />
