@@ -34,7 +34,10 @@ $(document).ready(function() {//Đổi sang slug
 	
 	//Check validate dang nhap
 	$("#login").validate({
-		onchange : true,
+		onchange : false,
+		onfocusout : false,
+		onkeyup : false,
+		onclick : false,
 		rules : {
 			tendangnhap : {
 				required : {
@@ -56,7 +59,7 @@ $(document).ready(function() {//Đổi sang slug
 		              },
 				minlength : 6,
 				maxlength : 30,
-				nowhitespace : true,
+				nowhitespace : true/*,
 				remote:{
 					type: "GET",
 					url: "kt-dang-nhap.html",
@@ -66,9 +69,42 @@ $(document).ready(function() {//Đổi sang slug
 								return tdn;
 						}
 					}
-				}
+				}*/
 			}
 		},
+		submitHandler: function(form) {
+			$("#nut-dn").attr('disabled','disabled');
+			$("#nut-dn").html('<i class="fa-li fa fa-spinner fa-spin" style="position: initial;"></i> Đang kiểm tra...');
+			$.ajax({
+				type: "GET",
+				url: "kt-dang-nhap.html",
+				data: {
+					matkhau: function(){
+						var mk = $("#matkhau").val();
+						return mk;
+					},
+					tendangnhap: function(){
+						var tdn = $("#tendangnhap").val();
+							return tdn;
+					}
+				},
+				success: function(result){
+					/*alert(result);*/
+					if(result == 'true'){
+						$("#tb-loi-dn").html('');
+						form.submit();
+					}else if(result == 'khoa'){
+						$("#tb-loi-dn").html('Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị để biết thêm chi tiết!');
+					}else{
+						$("#tb-loi-dn").html('Tài khoản hoặc mật khẩu sai. Vui lòng thử lại!');
+						/*alert('Tài khoản hoặc mật khẩu sai');*/
+					}
+				}
+			}).always(function(){
+				$("#nut-dn").removeAttr('disabled');
+				$("#nut-dn").html('Đăng nhập');
+			});
+		 },
 		messages : {
 			tendangnhap : {
 				required : "Vui lòng nhập tên đăng nhập",

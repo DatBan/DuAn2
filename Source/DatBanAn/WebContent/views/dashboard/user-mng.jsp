@@ -35,6 +35,7 @@
 								                <th>Điện thoại</th>
 								                <th>Email</th>
 								                <th>Vai trò</th>
+								                <th>Mạng xã hội</th>
 								                <th>Trạng thái</th>
 								                <th>Hành động</th>
 								            </tr>
@@ -47,6 +48,7 @@
 								                <th>Điện thoại</th>
 								                <th>Email</th>
 								                <th>Vai trò</th>
+								                <th>Mạng xã hội</th>
 								                <th>Trạng thái</th>
 								                <th>Hành động</th>
 								            </tr>
@@ -60,7 +62,18 @@
 									                <td>${nd.sdt}</td>
 									                <td>${nd.email}</td>
 									                <td>${nd.quyennd.tenquyen}</td>
-									                <td>${nd.trangthai == 1 ? '<span class="label label-info">Đang sử dụng</span>' : '<span class="label label-danger">Đã khóa</span>'}</td>
+									                <td class="social-c text-center">
+									                	<c:choose>
+									                		<c:when test="${nd.idgoogle != null}">
+									                			<i class="fa fa-google-plus-square" data-toggle="tooltip" title="Google!"><span>google</span></i>
+									                		</c:when>
+									                		<c:when test="${nd.idfacebook != null}">
+									                			<i class="fa fa-facebook-square" data-toggle="tooltip" title="Facebook!"><span>facebook</span></i>
+									                		</c:when>
+									                		<c:otherwise><span class="label label-default" data-toggle="tooltip" title="Tài khoản thường!"><i class="fa fa-user"><span>thường</span></i></span></c:otherwise>
+									                	</c:choose>
+									                </td>
+									                <td>${nd.trangthai == 1 ? '<span class="label label-info" data-toggle="tooltip" title="Click vào nút thùng rác để đổi trạng thái!">Đang sử dụng</span>' : '<span class="label label-danger" data-toggle="tooltip" title="Click vào nút khôi phục để đổi trạng thái!">Đã khóa</span>'}</td>
 									                <td>
 									                	<c:choose>
 									                		<c:when test="${tthai == 1}">
