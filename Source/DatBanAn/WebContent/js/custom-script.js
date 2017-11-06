@@ -208,4 +208,10 @@ $(document).ready(function() {//Đổi sang slug
 			}
 		}
 	});
+	
+	$(function() {
+	      $('#do-an, #gia-ca, #phuc-vu, #khong-gian').barrating({
+	        theme: 'fontawesome-stars-o'
+	      });
+	   });
 });

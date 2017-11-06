@@ -478,14 +478,13 @@
 											<p style="line-height: 3;">Đồ ăn</p>
 										</div>
 										<div class="col-md-7">
-											<img src="images/saoday.png"
-												style="width: 30px; height: 30px;" /> <img
-												src="images/saoday.png" style="width: 30px; height: 30px;" />
-											<img src="images/saoday.png"
-												style="width: 30px; height: 30px;" /> <img
-												src="images/saoday.png" style="width: 30px; height: 30px;" />
-											<img src="images/saorong.png"
-												style="width: 30px; height: 30px;" />
+											<select id="do-an">
+											  <option value="1">1</option>
+											  <option value="2">2</option>
+											  <option value="3">3</option>
+											  <option value="4">4</option>
+											  <option value="5">5</option>
+											</select>
 										</div>
 										<div class="col-md-7"></div>
 									</div>
@@ -495,14 +494,13 @@
 											<p style="line-height: 3;">Phục vụ</p>
 										</div>
 										<div class="col-md-7">
-											<img src="images/saoday.png"
-												style="width: 30px; height: 30px;" /> <img
-												src="images/saoday.png" style="width: 30px; height: 30px;" />
-											<img src="images/saoday.png"
-												style="width: 30px; height: 30px;" /> <img
-												src="images/saoday.png" style="width: 30px; height: 30px;" />
-											<img src="images/saorong.png"
-												style="width: 30px; height: 30px;" />
+											<select id="phuc-vu">
+											  <option value="1">1</option>
+											  <option value="2">2</option>
+											  <option value="3">3</option>
+											  <option value="4">4</option>
+											  <option value="5">5</option>
+											</select>
 										</div>
 										<div class="col-md-7"></div>
 									</div>
@@ -512,14 +510,13 @@
 											<p style="line-height: 3;">Không gian</p>
 										</div>
 										<div class="col-md-7">
-											<img src="images/saoday.png"
-												style="width: 30px; height: 30px;" /> <img
-												src="images/saoday.png" style="width: 30px; height: 30px;" />
-											<img src="images/saoday.png"
-												style="width: 30px; height: 30px;" /> <img
-												src="images/saoday.png" style="width: 30px; height: 30px;" />
-											<img src="images/saorong.png"
-												style="width: 30px; height: 30px;" />
+											<select id="khong-gian">
+											  <option value="1">1</option>
+											  <option value="2">2</option>
+											  <option value="3">3</option>
+											  <option value="4">4</option>
+											  <option value="5">5</option>
+											</select>
 										</div>
 										<div class="col-md-7"></div>
 									</div>
@@ -529,14 +526,13 @@
 											<p style="line-height: 3;">Giá cả</p>
 										</div>
 										<div class="col-md-7">
-											<img src="images/saoday.png"
-												style="width: 30px; height: 30px;" /> <img
-												src="images/saoday.png" style="width: 30px; height: 30px;" />
-											<img src="images/saoday.png"
-												style="width: 30px; height: 30px;" /> <img
-												src="images/saoday.png" style="width: 30px; height: 30px;" />
-											<img src="images/saorong.png"
-												style="width: 30px; height: 30px;" />
+											<select id="gia-ca">
+											  <option value="1">1</option>
+											  <option value="2">2</option>
+											  <option value="3" selected="selected">3</option>
+											  <option value="4">4</option>
+											  <option value="5">5</option>
+											</select>
 										</div>
 										<div class="col-md-7"></div>
 									</div>
