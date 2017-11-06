@@ -18,6 +18,7 @@
   
 <script src="js/bootstrap.min.js"></script>
 <!-- File jquery kiem tra loi -->
+<script src="js/qcTimepicker.js"></script>
 <script src="js/jquery.validate.js"></script>
 <script src="js/additional-methods.min.js"></script>
 <script src="js/ScriptDangKy.js"></script>
