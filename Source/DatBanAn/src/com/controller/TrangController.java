@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.entity.NguoiDung;
 import com.entity.Trang;
@@ -46,6 +48,7 @@ public class TrangController {
 	public String DeleteUser(ModelMap model, @PathVariable("id") Integer id){
 		Session session= factory.openSession();
 		Trang trang = (Trang) session.get(Trang.class, id);
+		
 		Transaction t = session.beginTransaction();
 		try {
 			session.delete(trang);
@@ -79,12 +82,9 @@ public class TrangController {
 			HttpSession httpSession) {
 			Session session = factory.openSession();
 			//Khi đăng nhập thì chọn cái này
-//			NguoiDung nd = new NguoiDung();
-//			String hql= "FROM NguoiDung where id:=id";
-//			Query query = session.createQuery(hql);
-//			query.setParameter("id", idnd);
-//			nd= (NguoiDung) query.uniqueResult();
+//			NguoiDung nd = session.get(NguoiDung.class, idnd);
 			//Cái tạm thời
+			System.out.println(noidung.trim().length());
 			String td = tieude.trim();
 			String tt = title.trim();
 			String sl = slug.trim();
@@ -92,6 +92,18 @@ public class TrangController {
 			Date ngaytao = new Date();
 			Trang trang = new Trang(td, tt, noidung, content, sl, ngaytao, nd);
 			Transaction t = session.beginTransaction();
+			
+			if(noidung.length()<200||content.length()<200){
+				model.addAttribute("message", "Nội dung hoặc content không hợp lệ");
+				return "dashboard/themtrang";
+				
+			}
+//			if(noidung.length()>1500||content.length()>1500){
+//				model.addAttribute("message", "Nội dung quá dài (Content too long)");
+//				return "dashboard/themtrang";
+//				
+//			}
+			
 			try {
 				session.save(trang);
 				t.commit();
@@ -118,18 +130,22 @@ public class TrangController {
 	}
 	//Sửa trang
 	@RequestMapping(value="suatrang",method = RequestMethod.POST)
-	public String suaTrang(ModelMap model, @RequestParam("idtrang") int id,
+	public String suaTrang(ModelMap model,RedirectAttributes re, @RequestParam("idtrang") int id,
 			@RequestParam("tieude")String tieude,
 			@RequestParam("title")String title,
-			@RequestParam("noidung")String noidung,
-			@RequestParam("content")String content,
+			@RequestParam("area1")String noidung,
+			@RequestParam("area2")String content,
 			@RequestParam("slug")String slug){
 		Date ngaysua = new Date();
 		Session session = factory.openSession();
+		
+		
 		Trang trang = (Trang) session.get(Trang.class, id);
 		String td = tieude.trim();
 		String tt = title.trim();
 		String sl = slug.trim();
+		String nd = noidung.trim();
+		String ct = content.trim();
 		trang.setTieude(td);
 		trang.setTitle(tt);
 		trang.setNoidung(noidung);
@@ -137,6 +153,14 @@ public class TrangController {
 		trang.setSlug(sl);
 		trang.setNgaysua(ngaysua);
 		Transaction t = session.beginTransaction();
+		
+		System.err.println(nd.length());
+		System.err.println(ct.length());
+		if(nd.length()<400||ct.length()<400){
+			re.addFlashAttribute("message", "Nội dung hoặc content không hợp lệ");
+			return "redirect:/trang/edit/"+id+".html";
+			
+		}
 		try {
 			session.update(trang);
 			t.commit();
@@ -149,11 +173,12 @@ public class TrangController {
 		}finally {
 			session.close();
 		}
-		return "dashboard/quanlytrang";
+		return "dashboard/edittrang";
 	}
 	//kiểm tra trùng trang
 	@RequestMapping(value="kt-trung-tieude",method = RequestMethod.GET)
 	public @ResponseBody String ktTrungTieuDe(@RequestParam("tieude") String tieude,
+			@RequestParam("idtrang") int id,
 			HttpServletResponse response,
 			HttpServletRequest request){
 		try {
@@ -164,6 +189,8 @@ public class TrangController {
 		response.setCharacterEncoding("UTF-8");
 		Session session = factory.getCurrentSession();
 		
+			
+		
 		String hql="FROM Trang  WHERE tieude =:tieude";
 		Query query = session.createQuery(hql);
 		query.setParameter("tieude", tieude);
@@ -171,6 +198,9 @@ public class TrangController {
 		Trang trang= (Trang) query.uniqueResult();
 		
 		if(trang!=null){
+			if(trang.getId()==id){
+				return "true";
+			}
 			return "false";
 		}else{
 			return "true";
@@ -179,6 +209,7 @@ public class TrangController {
 	//kiểm tra trùng titile
 		@RequestMapping(value="kt-trung-title",method = RequestMethod.GET)
 		public @ResponseBody String ktTrungTitle(@RequestParam("title") String title,
+				@RequestParam("idtrang") int id,
 				HttpServletResponse response,
 				HttpServletRequest request){
 			try {
@@ -196,7 +227,11 @@ public class TrangController {
 			Trang trang= (Trang) query.uniqueResult();
 			
 			if(trang!=null){
+				if(trang.getId()==id){
+					return "true";
+				}
 				return "false";
+				
 			}else{
 				return "true";
 			}
@@ -204,6 +239,7 @@ public class TrangController {
 		//kiểm tra trùng slug
 				@RequestMapping(value="kt-trung-slug",method = RequestMethod.GET)
 				public @ResponseBody String ktTrungSlug(@RequestParam("slug") String slug,
+						@RequestParam("idtrang") int id,
 						HttpServletResponse response,
 						HttpServletRequest request){
 					try {
@@ -221,6 +257,9 @@ public class TrangController {
 					Trang trang= (Trang) query.uniqueResult();
 					
 					if(trang!=null){
+						if(trang.getId()==id){
+							return "true";
+						}
 						return "false";
 					}else{
 						return "true";

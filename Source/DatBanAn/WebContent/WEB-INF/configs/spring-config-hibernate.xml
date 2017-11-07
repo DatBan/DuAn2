@@ -20,12 +20,14 @@
 			p:driverClassName="com.mysql.jdbc.Driver"
 			p:url="jdbc:mysql://localhost:3306/datban?useSSL=false"
 			p:username="root"
-			p:password="1234">
+			p:password="123456">
+			
 	</bean>
 	
 	<!-- Cấu hình Hibernate -->
 	<bean id="sessionFactory" 
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		
 	    <property name="dataSource" ref="dataSource"/>
 	    <property name="hibernateProperties">
 	      <props>        
@@ -34,6 +36,7 @@
 	       </props>
 	    </property>
 		<property name="packagesToScan" value="com.entity"/>
+		
 	</bean>
 	
 	<!-- Transaction Manager -->
