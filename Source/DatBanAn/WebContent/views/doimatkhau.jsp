@@ -10,7 +10,8 @@
 </head>
 <body>
 	<jsp:include page="/include/header.jsp"></jsp:include>
-	<form action="changepass.htm" method="post">
+	<form name="quenmkform" id="updateuserpwdg"
+									action="changepass.html" method="post">
 		<div class="container clearfix">
 
 			<h3 style="margin-left: 490px; margin-bottom: 20px;">ĐỔI MẬT

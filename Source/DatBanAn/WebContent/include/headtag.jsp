@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="css/jquery-ui.css">
 <!-- tuy chinh -->
 <link href="css/custom.css" rel="stylesheet" type="text/css" >
+<link href="css/custom1.css" rel="stylesheet" type="text/css" >
 
 
 <!-- Link toi file jquery -->
@@ -20,4 +21,5 @@
 <script src="js/jquery.validate.js"></script>
 <script src="js/additional-methods.min.js"></script>
 <script src="js/ScriptDangKy.js"></script>
+<script src="js/Scriptdoimk.js"></script>
 <script src="js/custom-script.js"></script>
