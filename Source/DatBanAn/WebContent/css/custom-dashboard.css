@@ -339,7 +339,16 @@ a.article, a.article:hover {
 .error{
 	color:red;
 	font-weight:normal;
-	
+}
+.fa-facebook-square, .fa-google-plus-square{
+	font-size: 20px;
+	color:#c23321;
+}
+.fa-facebook-square{
+	color: #3b5998;
+}
+.social-c .fa>span{
+	display: none;
 }
 
 

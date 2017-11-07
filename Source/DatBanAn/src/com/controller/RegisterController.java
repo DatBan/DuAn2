@@ -36,12 +36,12 @@ import net.sf.ehcache.hibernate.HibernateUtil;
 public class RegisterController {
 	@Autowired
 	SessionFactory factory;
-	/* Phương thức GET Để Tạo Giao Diện khi click button Đăng kÝ */
+	/* PhÆ°Æ¡ng thá»©c GET Ä�á»ƒ Táº¡o Giao Diá»‡n khi click button Ä�Äƒng kÃ� */
 	@RequestMapping(value="RegisterForm",method = RequestMethod.GET)
 	public String RegisterForm() {
 		return "register";
 	}
-	/* Phương thức POST Để Tạo Tài Khoản khi click button Đăng kÝ */
+	/* PhÆ°Æ¡ng thá»©c POST Ä�á»ƒ Táº¡o TÃ i Khoáº£n khi click button Ä�Äƒng kÃ� */
 	
 	@RequestMapping(value="RegisterForm", method = RequestMethod.POST)
 	public String RegisterForm(ModelMap model,
@@ -75,13 +75,13 @@ public class RegisterController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();
-			model.addAttribute("message", "Đăng ký thất bại !");
+			model.addAttribute("message", "Ä�Äƒng kÃ½ tháº¥t báº¡i !");
 		}finally {
 			session.close();
 		}
 		return "register";
 	}
-	//Check trùng tên đăng nhập
+	//Check trÃ¹ng tÃªn Ä‘Äƒng nháº­p
 	@RequestMapping(value="kt-trung-tendangnhap",method = RequestMethod.GET)
 	public @ResponseBody String ktTrungTendangnhap(@RequestParam("tendangnhap") String tendangnhap,
 			HttpServletResponse response,
@@ -106,9 +106,10 @@ public class RegisterController {
 			return "true";
 		}
 	}
-	//Check trùng email
+	//Check trÃ¹ng email
 		@RequestMapping(value="kt-trung-email",method = RequestMethod.GET)
 		public @ResponseBody String ktTrungEmail(@RequestParam("email") String email,
+				@RequestParam(value="tdn", defaultValue="null",required=false) String tdn,
 				HttpServletResponse response,
 				HttpServletRequest request){
 			try {
@@ -125,7 +126,16 @@ public class RegisterController {
 			
 			NguoiDung nd= (NguoiDung) query.uniqueResult();
 			
+			
 			if(nd!=null){
+				try{
+				if(nd.getTendangnhap().equals(tdn)){
+					return "true";
+				}
+				}catch(Exception e){
+					System.out.println("ERROR! "+e.toString());
+					return "true";
+				}
 				return "false";
 			}else{
 				return "true";

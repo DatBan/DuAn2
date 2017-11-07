@@ -57,8 +57,8 @@
 					Quản lý người dùng
 				</a>
 				<ul class="collapse list-unstyled" id="ss">
-					<li><a href="dashboard/user-management.html"><i class="fa fa-circle-o"></i> Danh sách</a></li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
+					<li><a href="dashboard/user-management.html?trangthai=1"><i class="fa fa-circle-o"></i> Danh sách đang sử dụng</a></li>
+					<li><a href="dashboard/user-management.html?trangthai=0"><i class="fa fa-circle-o"></i> Danh sách đã khóa</a></li>
 				</ul>
 			</li>
 			<li>

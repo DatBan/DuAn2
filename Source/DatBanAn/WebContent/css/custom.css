@@ -574,7 +574,10 @@ a:hover{
 	font-weight:normal;
 	float: left;
 }
-
+/* .form-group:after{
+	content: "\f107";
+    font: normal normal normal 14px/1 FontAwesome;
+} */
 
 
 

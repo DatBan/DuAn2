@@ -77,10 +77,16 @@
 										class="glyphicon glyphicon-menu-down"></span>
 								</a>
 									<ul class="dropdown-menu">
-										<li><a href="#"><i class="glyphicon glyphicon-user"></i>
-												Thông tin tài khoản</a></li>
+										<li>
+											<a href="dashboard/index.html"><i class="glyphicon glyphicon-user"></i>
+												Trang quản trị</a>
+										</li>
+										<li>
+											<a href="#"><i class="glyphicon glyphicon-user"></i>
+												Thông tin tài khoản</a>
+										</li>
 										<li class="divider"></li>
-										<li><a href="logout.html"><i class="fa fa-sign-out"></i>Thoát</a></li>
+										<li><a href="logout.html" onclick="signOut();"><i class="fa fa-sign-out"></i>Thoát</a></li>
 									</ul></li>
 							</c:otherwise>
 						</c:choose>
