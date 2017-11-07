@@ -22,7 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.entity.LoaiAmThuc;
+import com.entity.NguoiDung;
 import com.entity.NhaHang;
+
+
 
 
 
@@ -66,25 +69,26 @@ public class quanlynhahang {
 		}
 		@RequestMapping(value="themnhahang",method = RequestMethod.POST)
 		public String themmoiNhaHang(ModelMap model,
-				@RequestParam("tennhahang")String tennhahang,
-				@RequestParam("name")String name,
-				@RequestParam("diachi")String diachi,
-				@RequestParam("address")String address,
-				@RequestParam("tinhthanh")String tinhthanh,
-				@RequestParam("city")String city,
-				@RequestParam("quanhuyen")String quanhuyen,
-				@RequestParam("district")String district,
-				@RequestParam("phuongxa")String phuongxa,
-				@RequestParam("ward")String ward,
-				@RequestParam("sdt")String sdt,
-				@RequestParam("thumbnail") MultipartFile thumbnail,
-				@RequestParam("gioithieu")String gioithieu,
-				@RequestParam("aboutus")String aboutus,
-				@RequestParam("trangthai")int trangthai,
-				@RequestParam("mota")String mota,
-				@RequestParam("slug")String slug,
-				@RequestParam("loaiamthuc")LoaiAmThuc loaiamthuc,
+				@RequestParam(required=false, value = "tennhahang")String tennhahang,
+				@RequestParam(required=false, value ="name")String name,
+				@RequestParam(required=false, value ="diachi")String diachi,
+				@RequestParam(required=false, value ="address")String address,
+				@RequestParam(required=false, value ="tinhthanh")String tinhthanh,
+				@RequestParam(required=false, value ="city")String city,
+				@RequestParam(required=false, value ="quanhuyen")String quanhuyen,
+				@RequestParam(required=false, value ="district")String district,
+				@RequestParam(required=false, value ="phuongxa")String phuongxa,
+				@RequestParam(required=false, value ="ward")String ward,
+				@RequestParam(required=false, value ="sdt")String sdt,
+				@RequestParam(required=false, value ="thumbnail") MultipartFile thumbnail,
+				@RequestParam(required=false, value ="gioithieu")String gioithieu,
+				@RequestParam(required=false, value ="aboutus")String aboutus,
+				@RequestParam(required=false, value ="trangthai")int trangthai,
+				@RequestParam(required=false, value ="mota")String mota,
+				@RequestParam(required=false, value ="slug")String slug,
+				@RequestParam(required=false, value ="loaiamthuc")LoaiAmThuc loaiamthuc,
 
+				
 				HttpSession httpSession) {
 				Session session = factory.openSession();
 
@@ -106,6 +110,8 @@ public class quanlynhahang {
 				int tt2 = trangthai;
 				String mt = mota.trim();
 				String sl = slug.trim();
+				
+				
 				
 				Date ngaytao = new Date();
 				Date giomocua = new Date();

@@ -176,7 +176,7 @@
 						<div class=" col-md-1"></div>
 						<div class="col-md-10">
 							<label class="control-label  labeld" for="title">Trạng thái:<span style="color: red;">*</span>
-							</label> <input type="text" name="name" id="name"
+							</label> <input type="text" name="trangthai" id="trangthai"
 								placeholder="VD : Contact" class="form-control">
 						</div>
 					</div>
@@ -235,7 +235,7 @@
 					<div class="col-md-3"></div>
 					<div class="col-md-3">
 						<input class="btn btn-success btn-block" type="submit"
-							value="Thêm mới">
+							value="Submit">
 					</div>
 					<div class="col-md-3">
 						<a href="trang/index.html" class="btn btn-warning btn-block"
