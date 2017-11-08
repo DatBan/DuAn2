@@ -35,121 +35,14 @@ import com.entity.NguoiDung;
 @Transactional
 @RequestMapping("baiviet/")
 @Controller
-public class ArticleController {
+public class ArticleUserController {
 	@Autowired
 	SessionFactory factory;
 
-	// Đổ dữ liệu ra trang quản lý
-	@RequestMapping(value = "index", method = RequestMethod.GET)
-	public String trangquanly(ModelMap model) {
-		Session session = factory.getCurrentSession();
-		String hql = "FROM BaiViet ORDER BY ngaytao DESC";
-		Query query = session.createQuery(hql);
-		@SuppressWarnings("unchecked")
-		List<BaiViet> list = query.list();
-		model.addAttribute("baiviet", list);
-		model.addAttribute("tenbreadcrumb", "QUẢN LÝ BÀI VIẾT");
-		return "dashboard/quanlybaiviet";
-	}
-	// Xoá nhiều bài viết
-
-	@RequestMapping(value = "deletemulti", method = RequestMethod.POST)
-	public String deletemulti(ModelMap model, HttpServletRequest request) {
-		Session session = factory.openSession();
-		Transaction t = session.beginTransaction();
-		try {
-			if (request.getParameterValues("idbaiviet") != null) {
-				for (String idbv : request.getParameterValues("idbaiviet")) {
-					int id = Integer.parseInt(idbv);
-					
-					BaiViet bv = (BaiViet) session.get(BaiViet.class, id);
-					//Lấy list bình luận để xoá
-					String hql = "FROM BinhLuan where idbaiviet =:idbaiviet";
-					Query query = session.createQuery(hql);
-					query.setParameter("idbaiviet", id);
-					@SuppressWarnings("unchecked")
-					List<BinhLuan> list = query.list();
-					int idbl;
-					if (list.size() > 0) {
-						for (int i = 0; i < list.size(); i++) {
-							idbl = list.get(i).getIdbinhluan();
-							BinhLuan bl = (BinhLuan) session.get(BinhLuan.class, idbl);
-							session.delete(bl);
-						}
-					}
-					session.delete(bv);
-				}
-				t.commit();
-			}
-			model.addAttribute("message", "Xoá thành công");
-			return "redirect:/baiviet/index.html";
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			t.rollback();
-			model.addAttribute("message", "Xóa thất bại !" + e.getMessage());
-		} finally {
-			session.close();
-		}
-		return "redirect:/baiviet/index.html";
-
-	}
-
-	// Duyệt bài viết của quản trị
-	@RequestMapping(value = "duyet/{id}")
-	public String duyetbv(ModelMap model, @PathVariable("id") Integer id){
-		Session session = factory.openSession();		
-		BaiViet bv = (BaiViet) session.get(BaiViet.class, id);
-		bv.setTrangthai(1);
-		Transaction t = session.beginTransaction();
-		try {			
-			session.saveOrUpdate(bv);
-			t.commit();				
-		} catch (Exception e) {
-			// TODO: handle exception
-			t.rollback();			
-		} finally {
-			session.close();
-		}		
-		return "redirect:/baiviet/index.html";
-	}
-	// Xoá bài viết của quản trị
-	@RequestMapping(value = "deletee/{id}") public String deleteBaivietquantri(ModelMap model,
-			@PathVariable("id") Integer id) {
-		Session session = factory.openSession();
-		// Lấy bình luận để xoá
-		BaiViet bv = (BaiViet) session.get(BaiViet.class, id);
-		String hql = "FROM BinhLuan where idbaiviet =:idbaiviet";
-		Query query = session.createQuery(hql);
-		query.setParameter("idbaiviet", id);
-		@SuppressWarnings("unchecked")
-		List<BinhLuan> list = query.list();
-
-		Transaction t = session.beginTransaction();
-		try {
-			int idbl;
-			if (list.size() > 0) {
-				for (int i = 0; i < list.size(); i++) {
-					idbl = list.get(i).getIdbinhluan();
-					BinhLuan bl = (BinhLuan) session.get(BinhLuan.class, idbl);
-					session.delete(bl);
-				}
-			}
-			session.delete(bv);
-			t.commit();
-			model.addAttribute("message", "Xoá thành công");
-
-		} catch (Exception e) {
-			t.rollback();
-			model.addAttribute("message", "Xóa thất bại !" + e.getMessage());
-		} finally {
-			session.close();
-		}
-		return "redirect:/baiviet/index.html";
-	}
+	
 
 	// Đổ dữ liệu ra trang quản lý của người dùng
-	@RequestMapping(value = "indexuser")
+	@RequestMapping(value = "index")
 	public String trangquanlyuser(ModelMap model) {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM BaiViet ORDER BY ngaytao DESC";
@@ -226,7 +119,7 @@ public class ArticleController {
 			BaiViet baiviet = new BaiViet(td, n, noidung, content, hinhanh, sl, mota, 0, ngaytao, loaibv, nd);
 			session.save(baiviet);
 			t.commit();
-			return "redirect:/baiviet/indexuser.html";
+			return "redirect:/baiviet/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();
@@ -270,7 +163,7 @@ public class ArticleController {
 		} finally {
 			session.close();
 		}
-		return "redirect:/baiviet/indexuser.html";
+		return "redirect:/baiviet/index.html";
 	}
 
 	// Kiểm tra trùng tên bài viết
@@ -392,7 +285,7 @@ public class ArticleController {
 			session.update(bv);
 			t.commit();
 			model.addAttribute("message", "Chỉnh sửa thành công !");
-			return "redirect:/baiviet/indexuser.html";
+			return "redirect:/baiviet/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();

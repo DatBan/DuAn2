@@ -89,6 +89,8 @@ $(document).ready(function() {//Đổi sang slug
 					}
 				},
 				success: function(result){
+					alert(result);
+					console.log(result);
 					/*alert(result);*/
 					if(result == 'true'){
 						$("#tb-loi-dn").html('');

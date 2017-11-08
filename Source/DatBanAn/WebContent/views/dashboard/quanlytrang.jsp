@@ -59,8 +59,8 @@
 									<td>${ns}</td>
 
 									<td style="text-align: center"><a
-										href="trang/edit/${t.id}.html" style="color: green;">Sửa</a> <a
-										href="trang/delete/${t.id}.html"
+										href="Dashboard/Trang/edit/${t.id}.html" style="color: green;">Sửa</a> <a
+										href="Dashboard/Trang/delete/${t.id}.html"
 										onclick="return confirm ('Bạn có thực sự muốn xoá trang này')"
 										style="color: red; padding-left: 30px;">Xoá</a></td>
 								</tr>

@@ -29,7 +29,7 @@
 						<i class="glyphicon glyphicon-home"></i> Trang
 				</a>
 				<ul class="collapse list-unstyled" id="ss2">
-					<li><a href="trang/index.html"><i class="fa fa-circle-o"></i> Quản lý trang</a></li>
+					<li><a href="Dashboard/Trang/index.html"><i class="fa fa-circle-o"></i> Quản lý trang</a></li>
 					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
 				</ul>
 			</li>	
@@ -38,7 +38,7 @@
 						<i class="glyphicon glyphicon-home"></i> Bài Viết
 				</a>
 				<ul class="collapse list-unstyled" id="ss3">
-					<li><a href="baiviet/index.html"><i class="fa fa-circle-o"></i> Quản lý bài viết</a></li>
+					<li><a href="Dashboard/BaiViet/index.html"><i class="fa fa-circle-o"></i> Quản lý bài viết</a></li>
 					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
 				</ul>
 			</li>
@@ -47,7 +47,7 @@
 						<i class="glyphicon glyphicon-home"></i> Bài Viết Của Tôi
 				</a>
 				<ul class="collapse list-unstyled" id="ss4">
-					<li><a href="baiviet/indexuser.html"><i class="fa fa-circle-o"></i> Quản lý bài viết</a></li>
+					<li><a href="baiviet/index.html"><i class="fa fa-circle-o"></i> Quản lý bài viết</a></li>
 					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
 				</ul>
 			</li>

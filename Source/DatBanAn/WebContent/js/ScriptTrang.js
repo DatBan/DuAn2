@@ -32,7 +32,7 @@ $(document).ready(function() {
 				notNumber: true,
 				remote : {
 					type : "GET",
-					url : "trang/kt-trung-tieude.html",
+					url : "Dashboard/Trang/kt-trung-tieude.html",
 					data: {
 						idtrang: function(){
 							var id = $("#idtrang").val();
@@ -75,7 +75,7 @@ $(document).ready(function() {
 				checkDau :true,
 				remote : {
 					type : "GET",
-					url : "trang/kt-trung-title.html",
+					url : "Dashboard/Trang/kt-trung-title.html",
 					data: {
 						idtrang: function(){
 							var id = $("#idtrang").val();

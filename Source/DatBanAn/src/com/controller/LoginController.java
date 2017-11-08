@@ -107,24 +107,24 @@ public class LoginController {
 	
 	//Kiem tra dang nhap, ket hop voi ajax
 	@RequestMapping(value="kt-dang-nhap",method = RequestMethod.GET)
-	public @ResponseBody String ktTrungTendangnhap(@RequestParam("tendangnhap") String tendangnhap,
+	public @ResponseBody void ktTrungTendangnhap(@RequestParam("tendangnhap") String tendangnhap,
 			@RequestParam("matkhau") String mk,
 			HttpSession httpSession,
 			HttpServletResponse response,
-			HttpServletRequest request){
+			HttpServletRequest request) throws IOException{
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		try {
+		/*try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (Exception e) {
 			// TODO: handle exception
-		}
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html");
+		}*/
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
 		NguoiDung nd2 = null;
 		try {
@@ -137,10 +137,10 @@ public class LoginController {
 			System.out.println(mkmh);
 			if(!mkmh.equals(nd2.getMatkhau())){
 				System.out.println("sai mk hihi");
-				return "false";
+				response.getWriter().print("Được không ?");
 			}
 			if(nd2.getTrangthai() != 1){
-				return "khoa";
+				response.getWriter().print("khoa");
 			}
 			System.out.println(nd2.getHoten());
 		} catch (NullPointerException e) {
@@ -148,9 +148,9 @@ public class LoginController {
 		}
 		//Kiem tra tai khoan ton tai
 		if(nd2!=null){
-			return "true";
+			response.getWriter().print("true");
 		}else{
-			return "false";
+			response.getWriter().print("false");
 		}
 	}
 	
