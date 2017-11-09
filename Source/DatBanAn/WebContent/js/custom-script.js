@@ -291,7 +291,8 @@ $(document).ready(function() {
 						"</div>" +
 						"<div class='col-md-9'>" +
 							"<img src='images/userdg.png' />" +
-							"<span>"+result.nguoidanhgia.hoten+"</span>:<span>"+result.ngaytao+" phút trước</span>" +
+							"<input type='hidden' class='gio"+result.id+"' value='"+result.ngaytao+"' /> <span>"+result.nguoidanhgia.hoten+"</span>: <span class='ngaytao"+result.id+"'>3 "+
+							"phút trước</span>" +
 						"</div>" +
 					"</div>" +
 					"</div>" +
@@ -349,6 +350,8 @@ $(document).ready(function() {
 						"initialRating:diemddg"+
 					"}).barrating('readonly', true);" +
 				"});" +
+				"var day = moment($('.gio"+result.id+"').val());"+
+					"$('.ngaytao"+result.id+"').html(day.fromNow());" +
 				"</script>" ;
 					$("#Modaldanhgia").modal('hide');
 					console.log(result.diemdanhgia);

@@ -175,8 +175,7 @@ public class RatingController {
 						"initialRating:diemddg"+
 					"}).barrating('readonly', true);"+
 				"});"+
-				"var day = moment($('.gio"+dg.getId()+"').val());"
-						+ "console.log(day.fromNow());"+
+				"var day = moment($('.gio"+dg.getId()+"').val());"+
 					"$('.ngaytao"+dg.getId()+"').html(day.fromNow());" +
 				"</script>" ;
 		}

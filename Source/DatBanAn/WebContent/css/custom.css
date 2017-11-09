@@ -581,6 +581,7 @@ a:hover{
 .tieudegtctnh{
 	font-size:20px;
 }
+.br-theme-fontawesome-stars-o .br-widget a.br-active:after,
 .br-theme-fontawesome-stars-o .br-widget a.br-selected:after, 
 .br-theme-fontawesome-stars-o .br-widget a.br-fractional:after{
 	color: gold;

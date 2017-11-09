@@ -101,23 +101,13 @@ public class LoginController {
 		httpSession.removeAttribute("tdn");
 		return "redirect:/trang-chu.html";
 	}
-<<<<<<< HEAD
 
 	// Kiem tra dang nhap, ket hop voi ajax
 	@RequestMapping(value = "kt-dang-nhap", method = RequestMethod.GET)
 	public @ResponseBody String ktTrungTendangnhap(@RequestParam("tendangnhap") String tendangnhap,
 			@RequestParam("matkhau") String mk, HttpSession httpSession, HttpServletResponse response,
 			HttpServletRequest request) {
-=======
-	
-	//Kiem tra dang nhap, ket hop voi ajax
-	@RequestMapping(value="kt-dang-nhap",method = RequestMethod.GET)
-	public @ResponseBody void ktTrungTendangnhap(@RequestParam("tendangnhap") String tendangnhap,
-			@RequestParam("matkhau") String mk,
-			HttpSession httpSession,
-			HttpServletResponse response,
-			HttpServletRequest request) throws IOException{
->>>>>>> 49b43fcc473dd7cb95e611dcebc4bc066bc80f49
+
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e1) {
@@ -128,17 +118,10 @@ public class LoginController {
 			request.setCharacterEncoding("UTF-8");
 		} catch (Exception e) {
 			// TODO: handle exception
-<<<<<<< HEAD
-		}
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html");
-
-=======
 		}*/
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
->>>>>>> 49b43fcc473dd7cb95e611dcebc4bc066bc80f49
 		NguoiDung nd2 = null;
 		try {
 			// Lay user theo tendangnhap
@@ -150,33 +133,20 @@ public class LoginController {
 			System.out.println(mkmh);
 			if (!mkmh.equals(nd2.getMatkhau())) {
 				System.out.println("sai mk hihi");
-				response.getWriter().print("Được không ?");
 			}
-<<<<<<< HEAD
 			if (nd2.getTrangthai() != 1) {
 				return "khoa";
-=======
-			if(nd2.getTrangthai() != 1){
-				response.getWriter().print("khoa");
->>>>>>> 49b43fcc473dd7cb95e611dcebc4bc066bc80f49
+
 			}
 			System.out.println(nd2.getHoten());
 		} catch (NullPointerException e) {
 			System.out.println(e.toString());
 		}
-<<<<<<< HEAD
 		// Kiem tra tai khoan ton tai
 		if (nd2 != null) {
 			return "true";
 		} else {
 			return "false";
-=======
-		//Kiem tra tai khoan ton tai
-		if(nd2!=null){
-			response.getWriter().print("true");
-		}else{
-			response.getWriter().print("false");
->>>>>>> 49b43fcc473dd7cb95e611dcebc4bc066bc80f49
 		}
 	}
 
