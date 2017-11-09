@@ -154,22 +154,38 @@ $(document).ready(function(){
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
       var profile = googleUser.getBasicProfile();
 	  var id_token = googleUser.getAuthResponse().id_token;
-	  console.log('id token: ' + id_token);
+	 /*  console.log('id token: ' + id_token);
 	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 	  console.log('Name: ' + profile.getName());
 	  console.log('Image URL: ' + profile.getImageUrl());
-	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-	
-	var xhr = new XMLHttpRequest();
+	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present. */
+	  $("#myModal").modal('hide');
+	$.ajax({
+		type: "POST",
+		url: "${pageContext.servletContext.contextPath}/lay-token.html",
+		data: {idtoken: id_token},
+		success: function(result){
+			console.log(result);
+			if(result == 'signedin2'){
+				location.reload();
+			}/* 
+			location.reload(); */
+		},
+		error: function(error){
+			console.log("Loi "+error);
+		}
+	});
+	/* var xhr = new XMLHttpRequest();
 	xhr.open('POST', 'lay-token.html', true);
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	xhr.onload = function() {	
+	xhr.onload = function() {
+		$("#myModal").hide();
 		if(xhr.responseText == 'signedin2'){
 			window.location.href= 'trang-chu.html';
 		}
-	  console.log('Signed in as: ' + xhr.responseText + ' zz ' +xhr.responseURL);
+	  console.log('Signed in as: ' + xhr.responseText + ' zz ' +xhr.redirect);
 	};
-	xhr.send('idtoken=' + id_token);
+	xhr.send('idtoken=' + id_token); */
     }
     function onFailure(error) {
       console.log(error);

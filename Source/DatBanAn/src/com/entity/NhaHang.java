@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Formula;
+
 @Entity
 @Table
 public class NhaHang {
@@ -35,6 +37,25 @@ public class NhaHang {
 	private String slug;
 	private int trangthai;
 	private String mota;
+	
+	@Formula("(SELECT ROUND((SUM(c.diemdanhgia)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
+	private double sumRating;
+	
+	@Formula("(SELECT ROUND((SUM(c.doan)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
+	private double sumDoAn;
+	
+	@Formula("(SELECT ROUND((SUM(c.khongian)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
+	private double sumKhongGian;
+	
+	@Formula("(SELECT ROUND((SUM(c.phucvu)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
+	private double sumPhucVu;
+	
+	@Formula("(SELECT ROUND((SUM(c.giaca)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
+	private double sumGiaCa;
+	
+	@Formula("(SELECT COUNT(*) FROM DanhGia c WHERE c.idnhahang = id)")
+	private int countRating;
+	
 	@Temporal(TemporalType.TIME)
 	private Date giomocua;
 	@Temporal(TemporalType.TIME)
@@ -251,5 +272,58 @@ public class NhaHang {
 	public void setNgaytao(Date ngaytao) {
 		this.ngaytao = ngaytao;
 	}
+
+	public double getSumRating() {
+		return sumRating;
+	}
+
+	public void setSumRating(int sumRating) {
+		this.sumRating = sumRating;
+	}
+
+	public int getCountRating() {
+		return countRating;
+	}
+
+	public void setCountRating(int countRating) {
+		this.countRating = countRating;
+	}
+
+	public double getSumDoAn() {
+		return sumDoAn;
+	}
+
+	public double getSumKhongGian() {
+		return sumKhongGian;
+	}
+
+	public double getSumPhucVu() {
+		return sumPhucVu;
+	}
+
+	public double getSumGiaCa() {
+		return sumGiaCa;
+	}
+
+	public void setSumRating(double sumRating) {
+		this.sumRating = sumRating;
+	}
+
+	public void setSumDoAn(double sumDoAn) {
+		this.sumDoAn = sumDoAn;
+	}
+
+	public void setSumKhongGian(double sumKhongGian) {
+		this.sumKhongGian = sumKhongGian;
+	}
+
+	public void setSumPhucVu(double sumPhucVu) {
+		this.sumPhucVu = sumPhucVu;
+	}
+
+	public void setSumGiaCa(double sumGiaCa) {
+		this.sumGiaCa = sumGiaCa;
+	}
+
 
 }

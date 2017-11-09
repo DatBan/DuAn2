@@ -2,6 +2,7 @@
 body{
 	margin: 0;
 	background-color:#f7f7f7;
+	font-family: 'Poppins', sans-serif;
 }
 /* 														Header*/
 .con{
@@ -213,7 +214,7 @@ div.menu-top ul.navbar-right>li{
 	    
 }
 .sdtft{
-	font-size:28px;
+	font-size:16px;
 	color:#e44433;
     margin-top: 32px; 
 }
@@ -223,12 +224,12 @@ div.menu-top ul.navbar-right>li{
 }
 .linkft{
 	padding-right:20px;
-	font-size:20px;
+	font-size:15px;
 	text-decoration: none; 
 	
 } 
 .bq{
-	margin-top: 20px;
+	margin-top: 0px;
 }
 .dcft{
 	margin-top: 15px;  
@@ -237,7 +238,7 @@ div.menu-top ul.navbar-right>li{
 	margin-top: 12px;	 
 }
 .ketnoi{
-	font-size:28px;
+	font-size:15px;
 }
 .iconft{
 	padding-left: 25px; 
@@ -273,6 +274,7 @@ a:hover{
 }
 .xemthemgiamgia{
 	color:#5272b5;
+	font-size: 15px;
 }
 .linkxemthemgiamgia{
 	padding-top: 20px;
@@ -320,11 +322,11 @@ a:hover{
 	margin-top: 10px;
 }
 .tenctnh{
-	font-size:30px;
+	font-size:24px;
 }
 .btndatchongay{
 	color:white;
-	font-size:30px;
+	font-size:15px;
 }
 .rdatcho{
 	margin-top: 20px;
@@ -357,7 +359,7 @@ a:hover{
 }
 .btndatngay{
 	color:white;
-	font-size:24px;
+	font-size:15px;
 }
 .ndkmctnh{
 	color:green;
@@ -379,9 +381,6 @@ a:hover{
 	color:#e3421f;
 	font-size:24px;
 }
-.tieudegtctnh{
-	font-size:24px;
-}
 .rndgtctnh{
     margin-bottom: 20px;	
 }
@@ -397,13 +396,14 @@ a:hover{
 	font-size:24px;
 }
 .giamonan{
-	font-size: 24px;
+	font-size: 15px;
 }
 .tenmonan{
     margin-top: 12px;    	
 }
 .gmonan{
     margin-top: 12px;	
+    text-align: right;
 }
 .ndmonan{
     padding-left: 30px;
@@ -462,13 +462,13 @@ a:hover{
 	font-size:32px;
 }
 .tddiemdg{
-	font-size:30px;
+	font-size:15px;
 }
 .rsaodg{
 	margin-top: 10px;
 }
 .btnthemdg{
-	font-size:30px;
+	font-size:15px;
 }
 .ttdg{
 	font-size:24px;
@@ -511,7 +511,7 @@ a:hover{
 }
 .xemthemdg{
 	color:#536fb2;
-	font-size:18px;
+	font-size:15px;
 }
 .rxtdg{
 	margin-bottom: 8px;
@@ -535,7 +535,7 @@ a:hover{
 	margin-top:10px;
 }
 .tenuudiem{
-	font-size:20px;
+	font-size:15px;
 	
 }
 .ud{
@@ -578,7 +578,13 @@ a:hover{
 	content: "\f107";
     font: normal normal normal 14px/1 FontAwesome;
 } */
-
+.tieudegtctnh{
+	font-size:20px;
+}
+.br-theme-fontawesome-stars-o .br-widget a.br-selected:after, 
+.br-theme-fontawesome-stars-o .br-widget a.br-fractional:after{
+	color: gold;
+}
 
 
 
