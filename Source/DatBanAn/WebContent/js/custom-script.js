@@ -91,6 +91,8 @@ $(document).ready(function() {
 					}
 				},
 				success: function(result){
+					alert(result);
+					console.log(result);
 					/*alert(result);*/
 					if(result == 'true'){
 						$("#tb-loi-dn").html('');

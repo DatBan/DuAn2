@@ -37,7 +37,7 @@
 						//]]>
 					</script>
 			<form name=themtrangmoi id="themtrangmoi"
-				action="trang/themtrangmoi.html" method="post">
+				action="Dashboard/Trang/themtrangmoi.html" method="post">
 				
 				<div class="row rthemtrangmoi">
 					<input style="display:none"  name ="idnd"type="text" value="${sessionScope.id}">

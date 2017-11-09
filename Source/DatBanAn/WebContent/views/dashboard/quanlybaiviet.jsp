@@ -41,7 +41,7 @@
 						<!-- <p style="text-align: center"><a type="button" class="btn btn-danger"
 										href="baiviet/deletemulti.html"
 										style="color: white; float:left;">Xoá nhiều</a></p></div> -->
-						<form method="post" action="baiviet/deletemulti.html">
+						<form method="post" action="Dashboard/BaiViet/deletemulti.html">
 							<input type="submit" type="button" class="btn btn-danger"
 								style="color: white; float: left;" value="Xoá nhiều"
 								onclick="return confirm('Bạn có muốn xoá hết?')" />
@@ -85,18 +85,18 @@
 												<td>Đã duyệt</td>
 											</c:if>
 											<c:if test="${bv.trangthai==0}">
-												<td><a href="baiviet/duyet/${bv.id}.html"
-													style="color: Green;">Duyệt</a></td>
+												<td><a href="Dashboard/BaiViet/duyet/${bv.id}.html"
+													style="color: Green;" onclick="return confirm ('Bạn có thực sự muốn duyệt bài viết này')">Duyệt</a></td>
 											</c:if>
 											<td>${nt}</td>
 											<td>${ns}</td>
 
 
 											<td style="text-align: center"><a
-												href="baiviet/xem/${bv.id}.html"
-												style="color: green; padding-left: 30px;">Xem</a> <a
-												href="baiviet/deletee/${bv.id}.html"
-												onclick="return confirm ('Bạn có thực sự muốn xoá trang này')"
+												href="Dashboard/BaiViet/xem/${bv.id}.html"
+												style="color: green; padding-left: 30px;" target="_blank">Xem</a> <a
+												href="Dashboard/BaiViet/deletee/${bv.id}.html"
+												onclick="return confirm ('Bạn có thực sự muốn xoá bài viết này')"
 												style="color: red; padding-left: 30px;">Xoá</a></td>
 										</tr>
 									</c:forEach>

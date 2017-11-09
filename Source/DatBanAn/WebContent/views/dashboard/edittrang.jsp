@@ -38,7 +38,7 @@
 						//]]>
 					</script>
 					<form name=themtrangmoi id="themtrangmoi"
-						action="trang/suatrang.html" method="post">
+						action="Dashboard/Trang/suatrang.html" method="post">
 						<input style="display:none"  name ="idtrang"type="text" value="${trang.id}" id="idtrang">
 						<div class="row rthemtrangmoi">
 

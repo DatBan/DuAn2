@@ -26,9 +26,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.entity.NguoiDung;
 import com.entity.Trang;
 @Transactional
-@RequestMapping("trang/")
+@RequestMapping("Dashboard/Trang/")
 @Controller
-public class TrangController {
+public class PageController {
 	@Autowired
 	SessionFactory factory;
 	//Đổ dữ liệu ra trang quản lý
@@ -61,7 +61,7 @@ public class TrangController {
 		}finally {
 			session.close();
 		}
-		return "redirect:/trang/index.html";
+		return "redirect:/Dashboard/Trang/index.html";
 	}
 	
 	//Phương thức GET Để Tạo Giao Diện khi click button Thêm
@@ -107,7 +107,7 @@ public class TrangController {
 			try {
 				session.save(trang);
 				t.commit();
-				return "redirect:/trang/index.html";
+				return "redirect:/Dashboard/Trang/index.html";
 			} catch (Exception e) {
 				// TODO: handle exception
 				t.rollback();
@@ -158,14 +158,14 @@ public class TrangController {
 		System.err.println(ct.length());
 		if(nd.length()<400||ct.length()<400){
 			re.addFlashAttribute("message", "Nội dung hoặc content không hợp lệ");
-			return "redirect:/trang/edit/"+id+".html";
+			return "redirect:/Dashboard/Trang/edit/"+id+".html";
 			
 		}
 		try {
 			session.update(trang);
 			t.commit();
 			model.addAttribute("message", "Chỉnh sửa thành công !");
-			return "redirect:/trang/index.html";
+			return "redirect:/Dashboard/Trang/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();
