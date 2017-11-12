@@ -15,17 +15,22 @@
 
 <!-- Link toi file jquery -->
 <script src="js/jquery.min.js"></script>
-<script src="js/jquery-ui.js"></script>
-  
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-ui.js"></script>
 <!-- File jquery kiem tra loi -->
+<script src="js/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/locale/vi.js"></script>
 <script src="js/jquery.barrating.min.js"></script>
 <script src="js/qcTimepicker.js"></script>
 <script src="js/jquery.validate.js"></script>
 <script src="js/additional-methods.min.js"></script>
 <script src="js/ScriptDangKy.js"></script>
+<<<<<<< HEAD
 <script src="js/custom-script.js"></script>
 <script src="js/ScriptDatBan.js"></script>
+=======
+<script src="js/custom-script.js" charset="utf-8" type="text/javascript"></script>
+>>>>>>> 3928a159232d22fc6d8e6cc3962341b88d567f96
  <script>
     function start() {
       gapi.load('auth2', function() {

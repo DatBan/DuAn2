@@ -39,53 +39,71 @@ import com.services.EnDeCryption;
 public class LoginController {
 	@Autowired
 	private UserDAO userDAO;
-	
+
 	@Autowired
 	SessionFactory factory;
-	
-	//Ham goi modal login
+
+	// Ham goi modal login
 	@RequestMapping("modal-login")
-	public String modal(ModelMap model){
+	public String modal(ModelMap model) {
 		model.addAttribute("nguoidung", new NguoiDung());
 		return "homepage/modal-login";
 	}
-	
-	//Dang nhap vao he thong
+
+	// Dang nhap vao he thong
 	@RequestMapping("login")
+<<<<<<< HEAD
 	public String login(ModelMap model, 
 			@ModelAttribute("nguoidung") NguoiDung nd,
 			@RequestParam(value="remember", defaultValue="false", required=false) boolean rememberMe,
 			HttpSession httpSession,
 			HttpServletResponse response) {
 		Session session = factory.openSession();
+=======
+	public String login(ModelMap model, @ModelAttribute("nguoidung") NguoiDung nd,
+			@RequestParam(value = "remember", defaultValue = "false", required = false) boolean rememberMe,
+			HttpSession httpSession, HttpServletResponse response) {
+
+>>>>>>> 3928a159232d22fc6d8e6cc3962341b88d567f96
 		System.out.println(nd.getTendangnhap());
 		response.setContentType("text/html");
-		
+
 		NguoiDung nd2 = null;
 		try {
-			//Lay user theo tendangnhap
+			// Lay user theo tendangnhap
 			nd2 = userDAO.getByUsername(nd.getTendangnhap());
 
-			//ma hoa mk
+			// ma hoa mk
 			EnDeCryption enDe = new EnDeCryption("sadasdasdsawqewq");
 			String mk = enDe.encoding(nd.getMatkhau());
 
-			if(!mk.equals(nd2.getMatkhau())){
+			if (!mk.equals(nd2.getMatkhau())) {
 				System.out.println("sai mk hihi");
 				return "index";
 			}
 			System.out.println(nd2.getHoten());
+<<<<<<< HEAD
 			
 			
 			//kiem tra them vao cookie
 			if(rememberMe){
+=======
+
+			// kiem tra them vao cookie
+			if (rememberMe) {
+>>>>>>> 3928a159232d22fc6d8e6cc3962341b88d567f96
 				Cookie cktdn = new Cookie("cktdn", nd.getTendangnhap());
 				cktdn.setPath("/");
 				response.addCookie(cktdn);
 				httpSession.setAttribute("tdn", cktdn.getValue());
+<<<<<<< HEAD
 				
 				System.out.println("tru tru "+cktdn.getValue());
 			}else{
+=======
+				System.out.println("tru tru " + cktdn.getValue());
+			} else {
+>>>>>>> 3928a159232d22fc6d8e6cc3962341b88d567f96
 				httpSession.setAttribute("tdn", nd2.getHoten());
 				
 			}
@@ -95,26 +113,24 @@ public class LoginController {
 		}
 		return "redirect:/trang-chu.html";
 	}
-	
-	//phuong thuc dang xuat tai khoan. Xoa session va cookie
+
+	// phuong thuc dang xuat tai khoan. Xoa session va cookie
 	@RequestMapping("logout")
-	public String logout(HttpSession httpSession,
-			HttpServletResponse response){
-		//xoa cookie va session
+	public String logout(HttpSession httpSession, HttpServletResponse response) {
+		// xoa cookie va session
 		Cookie cktdn = new Cookie("cktdn", "");
 		cktdn.setMaxAge(0);
 		response.addCookie(cktdn);
 		httpSession.removeAttribute("tdn");
 		return "redirect:/trang-chu.html";
 	}
-	
-	//Kiem tra dang nhap, ket hop voi ajax
-	@RequestMapping(value="kt-dang-nhap",method = RequestMethod.GET)
-	public @ResponseBody void ktTrungTendangnhap(@RequestParam("tendangnhap") String tendangnhap,
-			@RequestParam("matkhau") String mk,
-			HttpSession httpSession,
-			HttpServletResponse response,
-			HttpServletRequest request) throws IOException{
+
+	// Kiem tra dang nhap, ket hop voi ajax
+	@RequestMapping(value = "kt-dang-nhap", method = RequestMethod.GET)
+	public @ResponseBody String ktTrungTendangnhap(@RequestParam("tendangnhap") String tendangnhap,
+			@RequestParam("matkhau") String mk, HttpSession httpSession, HttpServletResponse response,
+			HttpServletRequest request) {
+
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e1) {
@@ -131,88 +147,92 @@ public class LoginController {
 		
 		NguoiDung nd2 = null;
 		try {
-			//Lay user theo tendangnhap
+			// Lay user theo tendangnhap
 			nd2 = userDAO.getByUsername(tendangnhap);
-			
-			//decode password
+
+			// decode password
 			EnDeCryption enDe = new EnDeCryption("sadasdasdsawqewq");
 			String mkmh = enDe.encoding(mk);
 			System.out.println(mkmh);
-			if(!mkmh.equals(nd2.getMatkhau())){
+			if (!mkmh.equals(nd2.getMatkhau())) {
 				System.out.println("sai mk hihi");
-				response.getWriter().print("Được không ?");
 			}
-			if(nd2.getTrangthai() != 1){
-				response.getWriter().print("khoa");
+			if (nd2.getTrangthai() != 1) {
+				return "khoa";
+
 			}
 			System.out.println(nd2.getHoten());
 		} catch (NullPointerException e) {
 			System.out.println(e.toString());
 		}
-		//Kiem tra tai khoan ton tai
-		if(nd2!=null){
-			response.getWriter().print("true");
-		}else{
-			response.getWriter().print("false");
+		// Kiem tra tai khoan ton tai
+		if (nd2 != null) {
+			return "true";
+		} else {
+			return "false";
 		}
 	}
-	
-	//phuong thuc dang xuat tai khoan. Xoa session va cookie
-		@RequestMapping("lay-token")
-		public @ResponseBody String getIdToken(HttpSession httpSession,
-				HttpServletRequest request,
-				HttpServletResponse response,
-				@RequestParam(value="idtoken", required=false) String tokenid) throws GeneralSecurityException, IOException{
-			if(httpSession.getAttribute("tdn") != null){
-				return "signedin1";
-			}
+
+	// phuong thuc dang xuat tai khoan. Xoa session va cookie
+	@RequestMapping("lay-token")
+	public @ResponseBody void getIdToken(HttpSession httpSession, HttpServletRequest request,
+			HttpServletResponse response, @RequestParam(value = "idtoken", required = false) String tokenid)
+			throws GeneralSecurityException, IOException {
+		if (httpSession.getAttribute("tdn") != null) {
+			response.getWriter().print("signedin1");
+		} else {
 			HttpTransport transport = new NetHttpTransport();
 			JsonFactory jsonFactory = new JacksonFactory();
 			GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
-				    .setAudience(Collections.singletonList("400500533070-k8b9qaer0ndtklj1tblkrgqv2037bjd4.apps.googleusercontent.com"))
-				    // Or, if multiple clients access the backend:
-				    //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
-				    .build();
+					.setAudience(Collections
+							.singletonList("400500533070-k8b9qaer0ndtklj1tblkrgqv2037bjd4.apps.googleusercontent.com"))
+					// Or, if multiple clients access the backend:
+					// .setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2,
+					// CLIENT_ID_3))
+					.build();
 
-				// (Receive idTokenString by HTTPS POST)
+			// (Receive idTokenString by HTTPS POST)
 
-				GoogleIdToken idToken = verifier.verify(tokenid);
-				if (idToken != null) {
-				  Payload payload = idToken.getPayload();
+			GoogleIdToken idToken = verifier.verify(tokenid);
+			if (idToken != null) {
+				Payload payload = idToken.getPayload();
 
-				  // Print user identifier
-				  String userId = payload.getSubject();
-				  System.out.println("User ID: " + userId);
+				// Print user identifier
+				String userId = payload.getSubject();
+				System.out.println("User ID: " + userId);
 
-				  // Get profile information from payload
-				  String email = payload.getEmail();
-				  boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
-				  String name = (String) payload.get("name");
-				  String pictureUrl = (String) payload.get("picture");
-				  String locale = (String) payload.get("locale");
-				  String familyName = (String) payload.get("family_name");
-				  String givenName = (String) payload.get("given_name");
-				  System.out.println(emailVerified);
-				  // Use or store profile information
-				  // ...
-				  Session session = factory.getCurrentSession();
-				  NguoiDung nd = userDAO.getByIdGoogle(userId);
-				  System.out.println("thu service nha");
-				  Quyen quyen = (Quyen) session.get(Quyen.class, 2);
-				  System.out.println("null k "+nd);
-				  //Kiem tra de dang ky tai khoan voi mxh
-				  if(nd == null){
-					  nd = new NguoiDung(name, null, null, email, "", "", 1, new Date(), quyen);
-					  nd.setIdgoogle(userId);
-					  //Goi ham them vao CSDL
-					  userDAO.createUser(nd);
-					  System.out.println("them them");
-				  }
-				  httpSession.setAttribute("tdn", nd.getHoten());
-				} else {
-				  System.out.println("Invalid ID token.");
-				}			
-			return "signedin2";
+				// Get profile information from payload
+				String email = payload.getEmail();
+				boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
+				String name = (String) payload.get("name");
+				String pictureUrl = (String) payload.get("picture");
+				String locale = (String) payload.get("locale");
+				String familyName = (String) payload.get("family_name");
+				String givenName = (String) payload.get("given_name");
+				System.out.println(emailVerified);
+				// Use or store profile information
+				// ...
+				Session session = factory.getCurrentSession();
+				NguoiDung nd = userDAO.getByIdGoogle(userId);
+				System.out.println("thu service nha");
+				Quyen quyen = (Quyen) session.get(Quyen.class, 2);
+				System.out.println("null k " + nd);
+				// Kiem tra de dang ky tai khoan voi mxh
+				if (nd == null) {
+					nd = new NguoiDung(name, null, null, email, "", "", 1, new Date(), quyen);
+					nd.setIdgoogle(userId);
+					// Goi ham them vao CSDL
+					userDAO.createUser(nd);
+					System.out.println("them them");
+				}
+				httpSession.setAttribute("tdn", nd.getHoten());
+			} else {
+				System.out.println("Invalid ID token.");
+			}
+			response.getWriter().print("signedin2");
+			/*response.sendRedirect("trang-chu.html");*/
 		}
+		/* return "signedin2"; */
+	}
 
 }
