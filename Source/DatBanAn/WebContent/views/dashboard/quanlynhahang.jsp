@@ -6,22 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Dashboard</title>
-<jsp:include page="/include/headtag.jsp"></jsp:include>
+<jsp:include page="/include-dashboard/headtag.jsp"></jsp:include>
 </head>
 <body>
-	<jsp:include page="/include/header.jsp"></jsp:include>
-
 	<div class="wrapper">
 		<!----------------------------- Sidebar ----------------------------------->
-
+		<jsp:include page="/include-dashboard/sidebar.jsp"></jsp:include>
 
 		<!-- Menu top, content -->
 		<div id="content">
 			<!---------------------------- header-top------------------------------->
+			<jsp:include page="/include-dashboard/header.jsp"></jsp:include>
 
 			<!-- main content -->
 			<div class="main-content">
 				<!------------- Breadcrumb, nut bam cac thu -------------->
+				<jsp:include page="/include-dashboard/header-trang.jsp"></jsp:include>
 
 				<!--------------- Table, form cac thu ---------------->
 				<div class="content-nhe">
@@ -61,8 +61,8 @@
 								<c:set var="dem" value="${status.index+1}"></c:set>
 								<fmt:formatDate var="nt" value="${t.ngaytao}"
 									pattern="dd-MM-yyyy" />
-								<%-- <fmt:Date var="gmc" value="${t.giomocua}" pattern="" />
-								<fmt:Date var="gdc" value="${t.giodongcua}" pattern="" /> --%>
+							 <fmt:Date var="gmc" value="${t.giomocua}" pattern="" />
+							<fmt:Date var="gdc" value="${t.giodongcua}" pattern="" /> 
 
 								<tr>
 									<td>${dem}</td>
@@ -81,9 +81,10 @@
 									<td>${t.gioithieu}</td>
 									<td>${t.aboutus}</td>
 									<td>${t.mota}</td>
+								
 									<td>${nt}</td>
-									<%-- <td>${gmc}</td>
-									<td>${gdc}</td> --%>
+									 <td>${gmc}</td>
+									<td>${gdc}</td>
 
 									<td style="text-align: center"><a
 										href="trang/edit/${t.id}.html" style="color: green;">Sửa</a> <a

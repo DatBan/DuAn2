@@ -23,3 +23,5 @@
 <script src="js/ScriptDangKy.js"></script>
 <script src="js/Scriptdoimk.js"></script>
 <script src="js/custom-script.js"></script>
+<script src="js/binhluan.js"></script>
+

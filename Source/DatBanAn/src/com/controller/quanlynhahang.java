@@ -65,7 +65,7 @@ public class quanlynhahang {
 		public String themTrang(ModelMap model) {
 			model.addAttribute("tenbreadcrumb","them nha hang moi");
 			
-			return "dashboard/quanlynhahang";
+			return "dashboard/themnhahang";
 		}
 		@RequestMapping(value="themnhahang",method = RequestMethod.POST)
 		public String themmoiNhaHang(ModelMap model,
@@ -134,7 +134,7 @@ public class quanlynhahang {
 					session.close();
 				}
 				model.addAttribute("message", "Thêm  thành công !");
-				return "";			
+				return "redirect:/quanlynhahang/index.html";			
 		}
 		//tao   nha hang
 		@RequestMapping(value="edit/{id}")

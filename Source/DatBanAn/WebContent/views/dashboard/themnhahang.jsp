@@ -8,23 +8,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Dashboard</title>
-<jsp:include page="/include/headtag.jsp"></jsp:include>
-<jsp:include page="/include/form-timkiem.jsp"></jsp:include>
+<jsp:include page="/include-dashboard/headtag.jsp"></jsp:include>
 </head>
 <body>
-	<jsp:include page="/include/header.jsp"></jsp:include>
-
 	<div class="wrapper">
 		<!----------------------------- Sidebar ----------------------------------->
-
+		<jsp:include page="/include-dashboard/sidebar.jsp"></jsp:include>
 
 		<!-- Menu top, content -->
 		<div id="content">
 			<!---------------------------- header-top------------------------------->
+			<jsp:include page="/include-dashboard/header.jsp"></jsp:include>
 
 			<!-- main content -->
 			<div class="main-content">
 				<!------------- Breadcrumb, nut bam cac thu -------------->
+				<jsp:include page="/include-dashboard/header-trang.jsp"></jsp:include>
 
 				<!--------------- Table, form cac thu ---------------->
 			<div class="content-nhe">
@@ -199,7 +198,7 @@
 						<div class="col-md-10">
 							<label class="control-label  labeld" for="noidung">Về chúng tôi:<span style="color: red;">*</span>
 							</label>
-							<textarea name="area1" id="area1"  placeholder="" class="form-control"
+							<textarea name="aboutus" id="area1"  placeholder="" class="form-control"
 								style="margin: 0px; min-height: 300px;" ></textarea>
 						</div>
 					</div>
@@ -210,7 +209,7 @@
 						<div class="col-md-10">
 							<label class="control-label  labeld" for="content">Giới thiệu:<span style="color: red;">*</span>
 							</label>
-							<textarea name="area2" id="area2"  placeholder="" class="form-control" 
+							<textarea name="gioithieu" id="area2"  placeholder="" class="form-control" 
 								style="margin: 0px; min-height: 300px;"></textarea>
 						</div>
 					</div>
@@ -221,7 +220,7 @@
 						<div class="col-md-10">
 							<label class="control-label  labeld" for="content">Mô tả:<span style="color: red;">*</span>
 							</label>
-							<textarea name="area3" id="area3"  placeholder="" class="form-control" 
+							<textarea name="mota" id="area3"  placeholder="" class="form-control" 
 								style="margin: 0px; min-height: 300px;"></textarea>
 						</div>
 					</div>

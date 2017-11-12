@@ -80,12 +80,17 @@
 		<div class="container">
 			<form>
 				<div class="form-group">
-					<label for="comment">Nguyễn văn tèo</label>
-					</br>
-					<textarea style="height: 77px;width: 91%;" class="form-control" rows="5" id="comment"></textarea>
+					Bình Luận:<br /> <label for="comment">Nguyễn văn tèo</label> </br>
+					<textarea name="noidung" style="width: 300px; height: 100px"
+						required>
+					</textarea>
+					<br /> Enter Email:<br /> <input type="text" name="email" required /><br />
+					<br />
 				</div>
-				<button style="height: 40px;" class="btn btn-primary" type="submit">Bình luận</button>
+				<input type="button" value="Post Comment" onclick="postComment()"> 
+					luận</input>
 			</form>
+			<span id="mylocation"></span> 
 		</div>
 	</div>
 
