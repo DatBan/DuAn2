@@ -52,6 +52,15 @@
 				</ul>
 			</li>
 			<li class="child-menu">
+				<a href="#ss5" data-toggle="collapse" aria-expanded="false">
+						<i class="glyphicon glyphicon-home"></i> Menu đồ ăn
+				</a>
+				<ul class="collapse list-unstyled" id="ss5">
+					<li><a href="nhahang/monan/index.html"><i class="fa fa-circle-o"></i> Quản lý món ăn</a></li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
+				</ul>
+			</li>
+			<li class="child-menu">
 				<a href="#ss" data-toggle="collapse" aria-expanded="false"> 
 					<i class="glyphicon glyphicon-home"></i>
 					Quản lý người dùng

@@ -21,7 +21,7 @@
 			<!-- main content -->
 			<div class="main-content">
 				<!------------- Breadcrumb, nut bam cac thu -------------->
-				<jsp:include page="/include-dashboard/header-bv.jsp"></jsp:include>
+				<jsp:include page="/include-dashboard/header-doan.jsp"></jsp:include>
 
 				<!--------------- Table, form cac thu ---------------->
 				<div class="content-nhe">
@@ -33,49 +33,34 @@
 						<thead>
 							<tr>
 								<th>STT</th>
-								<th>Tiêu đề</th>
+								<th>Tên món ăn</th>
 								<th>Name</th>
-								<th>Loại ẩm thực</th>
-								<th>Hình</th>
-								<th>Trạng thái</th>
-								<th>Ngày tạo</th>
-								<th>Ngày sửa</th>
+								<th>Hình ảnh</th>
+								<th>Giá</th>
+								<th>Số lần đặt</th>
+								<th>Loại đồ ăn</th>								
 								<th>Thao tác</th>
 
 							</tr>
 						</thead>
 
 						<tbody>
-							<c:forEach var="bv" items="${baiviet}" varStatus="status">
-								<c:set var="dem" value="${status.index+1}"></c:set>
-								<fmt:formatDate var="nt" value="${bv.ngaytao}"
-									pattern="dd-MM-yyyy" />
-								<fmt:formatDate var="ns" value="${bv.ngaysua}"
-									pattern="dd-MM-yyyy" />
+							<c:forEach var="monan" items="${monan}" varStatus="status">
+								<c:set var="dem" value="${status.index+1}"></c:set>								
 								<tr>
 									<td>${dem}</td>
-									<td>${bv.tieude}</td>
-									<td>${bv.name}</td>
-									<td>${bv.loaibv.tenloai}</td>
+									<td>${monan.tenmonan}</td>
+									<td>${monan.name}</td>									
 									<td><img class="img-responsive"
-										src="upload/baiviet/${bv.hinh}" style="width:60px;height:60px;" /></td>
-									<c:if test="${bv.trangthai==1}">
-										<td>Đã duyệt</td>
-									</c:if>
-									<c:if test="${bv.trangthai==0}">
-										<td>Đang chờ duyệt</td>
-									</c:if>
-									<c:if test="${bv.trangthai==2}">
-										<td>Admin đã xoá</td>
-									</c:if>
-									<td>${nt}</td>
-									<td>${ns}</td>
-
-
-									<td style="text-align: center"> <a href="baiviet/edit/${bv.id}.html"
+										src="upload/monan/${monan.hinhanh}" style="width:60px;height:60px;" /></td>
+									
+									<td>${monan.gia}</td>
+									<td>${monan.solandat}</td>
+									<td>${monan.loai.tenloaidoan}</td>			
+									<td style="text-align: center"> <a href="nhahang/monan/edit/${monan.id}.html"
 										style="color: green; padding-left: 30px;">Sửa</a> <a
-										href="baiviet/delete/${bv.id}.html"
-										onclick="return confirm ('Bạn có thực sự muốn xoá bài viết này')"
+										href="nhahang/monan/delete/${monan.id}.html"
+										onclick="return confirm ('Bạn có thực sự muốn xoá đồ ăn này')"
 										style="color: red; padding-left: 30px;">Xoá</a></td>
 								</tr>
 							</c:forEach>

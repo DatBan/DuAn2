@@ -172,7 +172,7 @@
 									value="Sửa bài viết">
 							</div>
 							<div class="col-md-3">
-								<a href="trang/index.html" class="btn btn-warning btn-block"
+								<a href="baiviet/index.html" class="btn btn-warning btn-block"
 									type="button">Huỷ</a>
 							</div>
 							<div class="col-md-3"></div>

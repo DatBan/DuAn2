@@ -115,10 +115,11 @@ public class ArticleUserController {
 			hinh.transferTo(new File(photoPath));
 			hinhanh = hinh.getOriginalFilename();
 
-			Thread.sleep(5000);
+			
 			BaiViet baiviet = new BaiViet(td, n, noidung, content, hinhanh, sl, mota, 0, ngaytao, loaibv, nd);
 			session.save(baiviet);
 			t.commit();
+			Thread.sleep(5000);
 			return "redirect:/baiviet/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -293,6 +294,6 @@ public class ArticleUserController {
 		} finally {
 			session.close();
 		}
-		return "user/quanlytrang";
+		return "redirect:/baiviet/edit/" + id + ".html";
 	}
 }

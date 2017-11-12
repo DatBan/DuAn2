@@ -25,6 +25,15 @@ public class MonAn {
 		super();
 	}
 
+	public MonAn(String tenmonan, String name, String hinhanh, double gia,LoaiDoAn loai) {
+		super();
+		this.tenmonan = tenmonan;
+		this.name = name;
+		this.hinhanh = hinhanh;
+		this.gia = gia;		
+		this.loai = loai;
+	}
+
 	public MonAn(String tenmonan, String name, String hinhanh, double gia, int solandat, NhaHang nhahang,
 			LoaiDoAn loai) {
 		super();

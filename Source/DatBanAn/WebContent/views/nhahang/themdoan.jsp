@@ -28,33 +28,20 @@
 
 						<span style="margin-top: 30px; color: red;">${message}</span>
 					</div>
-					<script type="text/javascript"
-						src="http://js.nicedit.com/nicEdit-latest.js"></script>
-					<script type="text/javascript">
-						//<![CDATA[
-						bkLib.onDomLoaded(function() {
-							new nicEditor({
-								maxHeight : 300
-							}).panelInstance('area1');
-							new nicEditor({
-								maxHeight : 300
-							}).panelInstance('area2');
-						});
-						//]]>
-					</script>
-					<form name=thembaiviet id="thembaiviet"
-						action="baiviet/thembaiviet.html" method="post" enctype="multipart/form-data">
+					
+					<form name=themdoan id="themdoan"
+						action="nhahang/monan/themdoan.html" method="post" enctype="multipart/form-data">
 
 						<div class="row rthemtrangmoi">
-							<input style="display: none" name="idnd" type="text"
-								value="${sessionScope.id}">
+							<input style="display: none" name="idnhahang" type="text"
+								value="${sessionScope.idnhahang}">
 							<div class="form-group fullname-custom">
 								<div class=" col-md-1"></div>
 								<div class="col-md-10">
-									<label class="control-label  labeld" for="td">Tiêu
-										đề:<span style="color: red;">*</span>
-									</label> <input type="text" name="tieude" id="tieude"
-										placeholder="VD: Tên món ăn hoặc tên nhà hàng" class="form-control">
+									<label class="control-label  labeld" for="td">Tên đồ ăn
+										:<span style="color: red;">*</span>
+									</label> <input type="text" name="tendoan" id="tendoan"
+										placeholder="VD: Súp" class="form-control">
 								</div>
 							</div>
 						</div>
@@ -66,36 +53,37 @@
 									<label class="control-label  labeld" for="title">Name:<span
 										style="color: red;">*</span>
 									</label> <input type="text" name="name" id="name"
-										placeholder="VD : Name of food or restaurant" class="form-control">
+										placeholder="VD : Soup " class="form-control">
 								</div>
 							</div>
 						</div>
+						
 						<div class="row rthemtrangmoi">
 							<div class="form-group fullname-custom">
 								<div class=" col-md-1"></div>
 
 								<div class="col-md-10">
-									<label class="control-label  labeld" for="slug">Slug:<span
-										style="color: red;">*</span>
-									</label> <input type="text" name="slug" id="slug"
-										placeholder="Slug theo tiêu đề" class="form-control" readonly>
-								</div>
-							</div>
-						</div>
-						<div class="row rthemtrangmoi">
-							<div class="form-group fullname-custom">
-								<div class=" col-md-1"></div>
-
-								<div class="col-md-10">
-									<label class="control-label  labeld" for="slug">Loại bài viết:<span
+									<label class="control-label  labeld" for="slug">Loại đồ ăn:<span
 										style="color: red;">*</span>
 									</label>
 									
-									<select class="from-control" name="idloai" style="margin-left: 10px;">
-										<c:forEach var="loai" items="${loaibv}">
-											<option value="${loai.id}">${loai.tenloai}</option>
+									<select class="from-control" name="idloaidoan" style="margin-left: 10px;">
+										<c:forEach var="loai" items="${loaidoan}">
+											<option value="${loai.id}">${loai.tenloaidoan}</option>
 										</c:forEach>
 									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row rthemtrangmoi">
+							<div class="form-group fullname-custom">
+								<div class=" col-md-1"></div>
+
+								<div class="col-md-10">
+									<label class="control-label  labeld" for="slug">Giá:<span
+										style="color: red;">*</span>
+									</label> <input type="text" name="gia" id="gia"
+										placeholder="VD: 200000" class="form-control" >
 								</div>
 							</div>
 						</div>
@@ -114,41 +102,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row rthemtrangmoi">
-							<div class="form-group fullname-custom">
-								<div class=" col-md-1"></div>
-								<div class="col-md-10">
-									<label class="control-label  labeld" for="noidung">Nội
-										dung:<span style="color: red;">*</span>
-									</label>
-									<textarea name="area1" id="area1" placeholder=""
-										class="form-control" style="margin: 0px; min-height: 300px;"></textarea>
-								</div>
-							</div>
-						</div>
-						<div class="row rthemtrangmoi">
-							<div class="form-group fullname-custom">
-								<div class=" col-md-1"></div>
-								<div class="col-md-10">
-									<label class="control-label  labeld" for="content">Content:<span
-										style="color: red;">*</span>
-									</label>
-									<textarea name="area2" id="area2" placeholder=""
-										class="form-control" style="margin: 0px; min-height: 300px;"></textarea>
-								</div>
-							</div>
-						</div>
-						<div class="row rthemtrangmoi">
-							<div class="form-group fullname-custom">
-								<div class=" col-md-1"></div>
-
-								<div class="col-md-10">
-									<label class="control-label  labeld" for="slug">Mô tả:
-									</label> <input type="text" name="mota" id="mota"
-										placeholder="Mô tả bài viết" class="form-control">
-								</div>
-							</div>
-						</div>
+						
 
 
 
@@ -159,7 +113,7 @@
 									value="Thêm mới">
 							</div>
 							<div class="col-md-3">
-								<a href="baiviet/index.html" class="btn btn-warning btn-block"
+								<a href="nhahang/monan/index.html" class="btn btn-warning btn-block"
 									type="button">Huỷ</a>
 							</div>
 							<div class="col-md-3"></div>

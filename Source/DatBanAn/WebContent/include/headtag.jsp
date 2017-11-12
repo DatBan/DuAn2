@@ -25,12 +25,12 @@
 <script src="js/jquery.validate.js"></script>
 <script src="js/additional-methods.min.js"></script>
 <script src="js/ScriptDangKy.js"></script>
-<<<<<<< HEAD
+
 <script src="js/custom-script.js"></script>
 <script src="js/ScriptDatBan.js"></script>
-=======
+
 <script src="js/custom-script.js" charset="utf-8" type="text/javascript"></script>
->>>>>>> 3928a159232d22fc6d8e6cc3962341b88d567f96
+
  <script>
     function start() {
       gapi.load('auth2', function() {

@@ -173,7 +173,7 @@ public class PageController {
 		}finally {
 			session.close();
 		}
-		return "dashboard/edittrang";
+		return "redirect:/Dashboard/Trang/edit/"+id+".html";
 	}
 	//kiểm tra trùng trang
 	@RequestMapping(value="kt-trung-tieude",method = RequestMethod.GET)
