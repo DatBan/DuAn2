@@ -52,19 +52,17 @@ public class LoginController {
 
 	// Dang nhap vao he thong
 	@RequestMapping("login")
-<<<<<<< HEAD
+
 	public String login(ModelMap model, 
 			@ModelAttribute("nguoidung") NguoiDung nd,
 			@RequestParam(value="remember", defaultValue="false", required=false) boolean rememberMe,
 			HttpSession httpSession,
 			HttpServletResponse response) {
 		Session session = factory.openSession();
-=======
-	public String login(ModelMap model, @ModelAttribute("nguoidung") NguoiDung nd,
-			@RequestParam(value = "remember", defaultValue = "false", required = false) boolean rememberMe,
-			HttpSession httpSession, HttpServletResponse response) {
 
->>>>>>> 3928a159232d22fc6d8e6cc3962341b88d567f96
+	
+
+
 		System.out.println(nd.getTendangnhap());
 		response.setContentType("text/html");
 
@@ -82,31 +80,27 @@ public class LoginController {
 				return "index";
 			}
 			System.out.println(nd2.getHoten());
-<<<<<<< HEAD
+
 			
 			
 			//kiem tra them vao cookie
 			if(rememberMe){
-=======
 
 			// kiem tra them vao cookie
 			if (rememberMe) {
->>>>>>> 3928a159232d22fc6d8e6cc3962341b88d567f96
+
 				Cookie cktdn = new Cookie("cktdn", nd.getTendangnhap());
 				cktdn.setPath("/");
 				response.addCookie(cktdn);
 				httpSession.setAttribute("tdn", cktdn.getValue());
-<<<<<<< HEAD
+
 				
 				System.out.println("tru tru "+cktdn.getValue());
-			}else{
-=======
-				System.out.println("tru tru " + cktdn.getValue());
 			} else {
->>>>>>> 3928a159232d22fc6d8e6cc3962341b88d567f96
+
 				httpSession.setAttribute("tdn", nd2.getHoten());
 				
-			}
+			}}
 		} catch (NullPointerException e) {
 			System.out.println(e.toString());
 			return "index";
