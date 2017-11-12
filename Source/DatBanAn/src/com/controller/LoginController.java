@@ -57,7 +57,7 @@ public class LoginController {
 			@RequestParam(value="remember", defaultValue="false", required=false) boolean rememberMe,
 			HttpSession httpSession,
 			HttpServletResponse response) {
-		
+		Session session = factory.openSession();
 		System.out.println(nd.getTendangnhap());
 		response.setContentType("text/html");
 		
@@ -76,15 +76,18 @@ public class LoginController {
 			}
 			System.out.println(nd2.getHoten());
 			
+			
 			//kiem tra them vao cookie
 			if(rememberMe){
 				Cookie cktdn = new Cookie("cktdn", nd.getTendangnhap());
 				cktdn.setPath("/");
 				response.addCookie(cktdn);
 				httpSession.setAttribute("tdn", cktdn.getValue());
+				
 				System.out.println("tru tru "+cktdn.getValue());
 			}else{
 				httpSession.setAttribute("tdn", nd2.getHoten());
+				
 			}
 		} catch (NullPointerException e) {
 			System.out.println(e.toString());

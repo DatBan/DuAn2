@@ -49,6 +49,42 @@ public class HoaDon {
 		super();
 	}
 
+	public HoaDon(String hoten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
+			int trangthai, boolean nhanemail, Date thoigian, Date ngaytao, KhuyenMai khuyenmai, NhaHang nhahang,
+			NguoiDung nguoiDung) {
+		super();
+		this.hoten = hoten;
+		this.email = email;
+		this.dienthoai = dienthoai;
+		this.nhandip = nhandip;
+		this.ghichu = ghichu;
+		this.songuoi = songuoi;
+		this.trangthai = trangthai;
+		this.nhanemail = nhanemail;
+		this.thoigian = thoigian;
+		this.ngaytao = ngaytao;
+		this.khuyenmai = khuyenmai;
+		this.nhahang = nhahang;
+		this.nguoiDung = nguoiDung;
+	}
+
+	public HoaDon(String hoten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
+			int trangthai, boolean nhanemail, Date thoigian, Date ngaytao, KhuyenMai khuyenmai, NhaHang nhahang) {
+		super();
+		this.hoten = hoten;
+		this.email = email;
+		this.dienthoai = dienthoai;
+		this.nhandip = nhandip;
+		this.ghichu = ghichu;
+		this.songuoi = songuoi;
+		this.trangthai = trangthai;
+		this.nhanemail = nhanemail;
+		this.thoigian = thoigian;
+		this.ngaytao = ngaytao;
+		this.khuyenmai = khuyenmai;
+		this.nhahang = nhahang;
+	}
+
 	public HoaDon(String hoten, String email, String dienthoai, String nhandip, String ghichu, double tongtien,
 			int songuoi, int trangthai, boolean nhanemail, Date thoigian, Date ngaytao, KhuyenMai khuyenmai,
 			NhaHang nhahang, NguoiDung nguoiDung, BanAn banan) {

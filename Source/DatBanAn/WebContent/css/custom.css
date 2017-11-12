@@ -578,13 +578,62 @@ a:hover{
 	content: "\f107";
     font: normal normal normal 14px/1 FontAwesome;
 } */
+.menu-top{
+	margin-bottom: -15px;
+}
+.menu-chinh{
+	margin-bottom: -10px;
+}
+/*								Dat Ban*/
+.cdatban{
+	background-color:white;
+}
+.formdatban{
+	border: 1px solid #dcdada;
+	min-height: 400px;
+}
+.coldatban{
+	min-height: 500px;
+}
+	
 
-
-
-
-
-
-
+.rdatban{
+	margin-top:20px;
+}
+.rdcnhdb{
+	margin-bottom:20px;
+}
+.dbtennhahang{
+	color:#e33e20;
+}
+.cdbthongtin{
+	background-color:#f7f7f7;
+}
+.dbttkm{
+	margin-bottom: 20px;
+}
+.pdatbanttkm{
+    margin-top: 10px;
+}
+.cotkrdn{
+	margin-top: 10px;
+}
+.rdbho{
+	margin-top:20px;
+}
+.chontg{
+	height: 25px;
+    width: 80%;
+}
+.optionheight{
+	height: 25px;
+	width: 80%;
+}
+.xndatcho{
+	width: 76%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 
 

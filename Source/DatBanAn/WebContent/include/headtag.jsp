@@ -25,6 +25,7 @@
 <script src="js/additional-methods.min.js"></script>
 <script src="js/ScriptDangKy.js"></script>
 <script src="js/custom-script.js"></script>
+<script src="js/ScriptDatBan.js"></script>
  <script>
     function start() {
       gapi.load('auth2', function() {
