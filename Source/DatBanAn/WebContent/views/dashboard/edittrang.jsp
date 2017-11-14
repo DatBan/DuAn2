@@ -60,7 +60,7 @@
 									<label class="control-label  labeld" for="title">Title:<span
 										style="color: red;">*</span>
 									</label> <input type="text" name="title" id="title"
-										value="${trang.title}" placeholder="VD : Contact"
+										value="${trang.title}" placeholder="Example : Contact"
 										class="form-control">
 								</div>
 							</div>

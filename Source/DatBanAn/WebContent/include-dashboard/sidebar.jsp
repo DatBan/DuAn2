@@ -61,6 +61,15 @@
 				</ul>
 			</li>
 			<li class="child-menu">
+				<a href="#ss6" data-toggle="collapse" aria-expanded="false">
+						<i class="glyphicon glyphicon-home"></i> Tiện ích
+				</a>
+				<ul class="collapse list-unstyled" id="ss6">
+					<li><a href="nhahang/tienich/index.html"><i class="fa fa-circle-o"></i> Quản lý tiện ích</a></li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
+				</ul>
+			</li>
+			<li class="child-menu">
 				<a href="#ss" data-toggle="collapse" aria-expanded="false"> 
 					<i class="glyphicon glyphicon-home"></i>
 					Quản lý người dùng

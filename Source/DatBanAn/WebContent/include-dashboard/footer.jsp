@@ -45,3 +45,5 @@
 <script src="js/ScriptTrang.js"></script>
 <script src="js/ScriptBaiViet.js"></script>
 <script src="js/ScriptMonAn.js"></script>
+<script src="js/ScriptTienIch.js"></script>
+

@@ -96,7 +96,8 @@ public class OpenTableController {
 		try {
 			session.save(hoadon);
 			t.commit();
-			re.addFlashAttribute("message", "Đặt chỗ thành công! Vui lòng chờ nhà hàng xác nhận");
+//			re.addFlashAttribute("message", "Đặt chỗ thành công! Vui lòng chờ nhà hàng xác nhận");
+			model.addAttribute("hoadon",hoadon);
 		} catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();
@@ -105,6 +106,6 @@ public class OpenTableController {
 			session.close();
 		}
 
-		return "redirect:/datban/index/" + idnhahang + ".html";
+		return "user/thongtindatban";
 	}
 }

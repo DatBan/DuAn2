@@ -54,7 +54,7 @@
 									<label class="control-label  labeld" for="title">Name:<span
 										style="color: red;">*</span>
 									</label> <input type="text" name="name" id="name" value="${monan.name}"
-										placeholder="VD : Soup " class="form-control">
+										placeholder="Example : Soup " class="form-control">
 								</div>
 							</div>
 						</div>

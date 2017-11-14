@@ -29,8 +29,8 @@
 						<span style="margin-top: 30px; color: red;">${message}</span>
 					</div>
 					
-					<form name=themdoan id="themdoan"
-						action="nhahang/monan/themdoan.html" method="post" enctype="multipart/form-data">
+					<form name=themtienich id="themtienich"
+						action="nhahang/tienich/themtienich.html" method="post" enctype="multipart/form-data">
 
 						<div class="row rthemtrangmoi">
 							<input style="display: none" name="idnhahang" type="text"
@@ -38,10 +38,10 @@
 							<div class="form-group fullname-custom">
 								<div class=" col-md-1"></div>
 								<div class="col-md-10">
-									<label class="control-label  labeld" for="td">Tên đồ ăn
+									<label class="control-label  labeld" for="td">Tên tiện ích
 										:<span style="color: red;">*</span>
-									</label> <input type="text" name="tendoan" id="tendoan"
-										placeholder="VD: Súp" class="form-control">
+									</label> <input type="text" name="tentienich" id="tentienich"
+										placeholder="VD: Wifi" class="form-control">
 								</div>
 							</div>
 						</div>
@@ -53,46 +53,19 @@
 									<label class="control-label  labeld" for="title">Name:<span
 										style="color: red;">*</span>
 									</label> <input type="text" name="name" id="name"
-										placeholder="Example : Soup " class="form-control">
+										placeholder="Example : Wifi " class="form-control">
 								</div>
 							</div>
 						</div>
 						
-						<div class="row rthemtrangmoi">
-							<div class="form-group fullname-custom">
-								<div class=" col-md-1"></div>
-
-								<div class="col-md-10">
-									<label class="control-label  labeld" for="slug">Loại đồ ăn:<span
-										style="color: red;">*</span>
-									</label>
-									
-									<select class="from-control" name="idloaidoan" style="margin-left: 10px;">
-										<c:forEach var="loai" items="${loaidoan}">
-											<option value="${loai.id}">${loai.tenloaidoan}</option>
-										</c:forEach>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="row rthemtrangmoi">
-							<div class="form-group fullname-custom">
-								<div class=" col-md-1"></div>
-
-								<div class="col-md-10">
-									<label class="control-label  labeld" for="slug">Giá:<span
-										style="color: red;">*</span>
-									</label> <input type="text" name="gia" id="gia"
-										placeholder="VD: 200000" class="form-control" >
-								</div>
-							</div>
-						</div>
+						
+						
 						<div class="row rthemtrangmoi">
 							<div class="form-group fullname-custom">
 								<div class=" col-md-1"></div>
 								<div class="col-md-10">
 									<label class="control-label  labeld " style="float: left;" for="hinh">Chọn
-										ảnh:<span style="color: red;">*</span>
+										icon:<span style="color: red;">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<input type="file" name="hinh" id="hinh"
@@ -113,7 +86,7 @@
 									value="Thêm mới">
 							</div>
 							<div class="col-md-3">
-								<a href="nhahang/monan/index.html" class="btn btn-warning btn-block"
+								<a href="nhahang/tienich/index.html" class="btn btn-warning btn-block"
 									type="button">Huỷ</a>
 							</div>
 							<div class="col-md-3"></div>
