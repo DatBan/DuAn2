@@ -58,6 +58,7 @@ public class NguoiDungDAOImpl implements NguoiDungDAO {
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.toString());
+			e.printStackTrace();
 			t.rollback();
 		} finally {
 			session.close();
@@ -118,6 +119,16 @@ public class NguoiDungDAOImpl implements NguoiDungDAO {
 	public void deleteUser(NguoiDung nd) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public NguoiDung getByEmail(String email) {
+		Session session = factory.getCurrentSession();
+		Query query = session.createQuery("FROM NguoiDung nd WHERE nd.email=:email");
+		query.setParameter("email", email);
+		
+		NguoiDung nd = (NguoiDung) query.uniqueResult();
+		return nd;
 	}
 	
 
