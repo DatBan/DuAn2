@@ -1,6 +1,5 @@
 package com.entity;
 
-
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -37,25 +36,25 @@ public class NhaHang {
 	private String slug;
 	private int trangthai;
 	private String mota;
-	
+
 	@Formula("(SELECT ROUND((SUM(c.diemdanhgia)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
-	private double sumRating;
-	
+	private Double sumRating;
+
 	@Formula("(SELECT ROUND((SUM(c.doan)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
-	private double sumDoAn;
-	
+	private Double sumDoAn;
+
 	@Formula("(SELECT ROUND((SUM(c.khongian)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
-	private double sumKhongGian;
-	
+	private Double sumKhongGian;
+
 	@Formula("(SELECT ROUND((SUM(c.phucvu)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
-	private double sumPhucVu;
-	
+	private Double sumPhucVu;
+
 	@Formula("(SELECT ROUND((SUM(c.giaca)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
-	private double sumGiaCa;
-	
+	private Double sumGiaCa;
+
 	@Formula("(SELECT COUNT(*) FROM DanhGia c WHERE c.idnhahang = id)")
 	private int countRating;
-	
+
 	@Temporal(TemporalType.TIME)
 	private Date giomocua;
 	@Temporal(TemporalType.TIME)
@@ -273,57 +272,53 @@ public class NhaHang {
 		this.ngaytao = ngaytao;
 	}
 
-	public double getSumRating() {
-		return sumRating;
+	public int getCountRating() {
+		return countRating;
 	}
 
-	public void setSumRating(int sumRating) {
+	public Double getSumRating() {
+		System.out.println(sumRating+" 1 1");
+		return sumRating == null ? 0 : sumRating;
+	}
+
+	public void setSumRating(Double sumRating) {
 		this.sumRating = sumRating;
 	}
 
-	public int getCountRating() {
-		return countRating;
+	public Double getSumDoAn() {
+		return sumDoAn == null ? 0 : sumDoAn;
+	}
+
+	public void setSumDoAn(Double sumDoAn) {
+		this.sumDoAn = sumDoAn;
+	}
+
+	public Double getSumKhongGian() {
+		return sumKhongGian == null ? 0 : sumKhongGian;
+	}
+
+	public void setSumKhongGian(Double sumKhongGian) {
+		this.sumKhongGian = sumKhongGian;
+	}
+
+	public Double getSumPhucVu() {
+		return sumPhucVu == null ? 0 : sumPhucVu;
+	}
+
+	public void setSumPhucVu(Double sumPhucVu) {
+		this.sumPhucVu = sumPhucVu;
+	}
+
+	public Double getSumGiaCa() {
+		return sumGiaCa == null ? 0 : sumGiaCa;
+	}
+
+	public void setSumGiaCa(Double sumGiaCa) {
+		this.sumGiaCa = sumGiaCa;
 	}
 
 	public void setCountRating(int countRating) {
 		this.countRating = countRating;
 	}
-
-	public double getSumDoAn() {
-		return sumDoAn;
-	}
-
-	public double getSumKhongGian() {
-		return sumKhongGian;
-	}
-
-	public double getSumPhucVu() {
-		return sumPhucVu;
-	}
-
-	public double getSumGiaCa() {
-		return sumGiaCa;
-	}
-
-	public void setSumRating(double sumRating) {
-		this.sumRating = sumRating;
-	}
-
-	public void setSumDoAn(double sumDoAn) {
-		this.sumDoAn = sumDoAn;
-	}
-
-	public void setSumKhongGian(double sumKhongGian) {
-		this.sumKhongGian = sumKhongGian;
-	}
-
-	public void setSumPhucVu(double sumPhucVu) {
-		this.sumPhucVu = sumPhucVu;
-	}
-
-	public void setSumGiaCa(double sumGiaCa) {
-		this.sumGiaCa = sumGiaCa;
-	}
-
 
 }
