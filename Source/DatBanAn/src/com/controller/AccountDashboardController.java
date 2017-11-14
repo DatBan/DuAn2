@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dao.QuyenDAO;
-import com.dao.UserDAO;
+import com.dao.NguoiDungDAO;
 import com.entity.NguoiDung;
 import com.entity.Quyen;
 
@@ -26,7 +26,7 @@ import com.entity.Quyen;
 @RequestMapping("dashboard/user-management")
 public class AccountDashboardController {
 	@Autowired
-	private UserDAO userDAO;
+	private NguoiDungDAO userDAO;
 
 	@Autowired
 	private QuyenDAO quyenDAO;

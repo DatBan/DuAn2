@@ -78,7 +78,7 @@ $(document).ready(function() {
 			$("#nut-dn").attr('disabled','disabled');
 			$("#nut-dn").html('<i class="fa-li fa fa-spinner fa-spin" style="position: initial;"></i> Đang kiểm tra...');
 			$.ajax({
-				type: "GET",
+				type: "POST",
 				url: "kt-dang-nhap.html",
 				data: {
 					matkhau: function(){
@@ -88,20 +88,20 @@ $(document).ready(function() {
 					tendangnhap: function(){
 						var tdn = $("#tendangnhap").val();
 							return tdn;
+					},
+					remember: function(){
+						var rmb = $("#remember").is(":checked");
+							return rmb;
 					}
 				},
 				success: function(result){
-					alert(result);
-					console.log(result);
-					/*alert(result);*/
 					if(result == 'true'){
 						$("#tb-loi-dn").html('');
-						form.submit();
+						location.reload();
 					}else if(result == 'khoa'){
 						$("#tb-loi-dn").html('Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị để biết thêm chi tiết!');
 					}else{
 						$("#tb-loi-dn").html('Tài khoản hoặc mật khẩu sai. Vui lòng thử lại!');
-						/*alert('Tài khoản hoặc mật khẩu sai');*/
 					}
 				}
 			}).always(function(){
@@ -277,7 +277,7 @@ $(document).ready(function() {
 					$("#tieudedg").val('');
 					$("#noidungdg").val('');
 					cmt_moi.push(result.id);
-					alert(cmt_moi);
+					/*alert(cmt_moi);*/
 					var hienthi_cmt ="<div class='row'>"+
 					"<div class='col-md-12 nddg'>" +
 						"<div class='col-md-3' title='"+result.diemdanhgia+"/5'>" +
@@ -337,20 +337,16 @@ $(document).ready(function() {
 					"</div>" +
 					"</div>" +
 				"</div>"+
-				"<div class='row'>"+
-					"<div class='col-md-12'>"+
-						"<img src='images/linekm.png' style='width: 1137px; height: 1px; opacity: 0.18;' />"+
-					"</div>"+
-				"</div>" +
+				"<hr/>"+
 				"<script>" +
-				"$(document).ready(function(){" +
-				"var diemddg = "+result.diemdanhgia+";"+
-					"$('#tdiem"+result.id+"').barrating('show',{"+
-						"theme: 'fontawesome-stars-o',"+
-						"initialRating:diemddg"+
-					"}).barrating('readonly', true);" +
-				"});" +
-				"var day = moment($('.gio"+result.id+"').val());"+
+					"$(document).ready(function(){" +
+					"var diemddg = "+result.diemdanhgia+";"+
+						"$('#tdiem"+result.id+"').barrating('show',{"+
+							"theme: 'fontawesome-stars-o',"+
+							"initialRating:diemddg"+
+						"}).barrating('readonly', true);" +
+					"});" +
+					"var day = moment($('.gio"+result.id+"').val());"+
 					"$('.ngaytao"+result.id+"').html(day.fromNow());" +
 				"</script>" ;
 					$("#Modaldanhgia").modal('hide');
@@ -379,6 +375,7 @@ $(document).ready(function() {
 			},
 		}
 	});
+		var sapxep = "new";
 		var target = $("div.danhgia").offset();
 		var sotrang = 0;
 		if(target != undefined){
@@ -389,12 +386,12 @@ $(document).ready(function() {
 			    // Do something
 			    /*console.log(scroll);*/
 					 if (scroll >= target) {
-						 $(".xemthemdg").html('<i class="fa-li fa fa-spinner fa-spin" style="position: initial;"></i> Đang tải');
+						 $("#xem-them-dg").html('<i class="fa-li fa fa-spinner fa-spin" style="position: initial;"></i> Đang tải');
 							sotrang++;
 						 	$.ajax({
 								type: "GET",
 								url: "list-danh-gia.html",
-								data: {trang: sotrang, 'idmoi[]': cmt_moi},
+								data: {trang: sotrang, 'idmoi[]': cmt_moi, sapxep: sapxep},
 								dataType: "json",
 								success: function(result){
 									setTimeout(function(){
@@ -405,13 +402,16 @@ $(document).ready(function() {
 													"<span class='text-center' style='color:gray;'>" +
 														"<b>Chưa có đánh giá nào về nhà hàng này</b>" +
 													"</span>");
+										}else{
+											$(".timdg").css("display", "block");
+											$("#btn-filter-danhgia").before("<hr style='border-color: #ddd;'/>");
 										}
 										if(result.chuoi == 'out'){
 											$("#xem-them-dg").css("display", "none");
 										}
-										$(".xemthemdg").html('Xem thêm');
+										$("#xem-them-dg").html('Xem thêm');
 										$("#danhsach-dg").append(result.trave);
-									}, 1000);
+									}, 500);
 								},
 								error: function(error){
 									console.log("LOI "+error);
@@ -419,16 +419,16 @@ $(document).ready(function() {
 							});
 							 clearInterval(interval);
 					 }
-			}, 1000);
+			}, 500);
 		}
 	$("#xem-them-dg").bind("click",function(){
-		$(".xemthemdg").html('<i class="fa-li fa fa-spinner fa-spin" style="position: initial;"></i> Đang tải');
+		$(this).html('<i class="fa-li fa fa-spinner fa-spin" style="position: initial;"></i> Đang tải');
 		sotrang++;
 		$.ajax({
 			type: "GET",
 			url: "list-danh-gia.html",/*
 			dataType: "json",*/
-			data: {trang: sotrang, 'idmoi[]': cmt_moi},
+			data: {trang: sotrang, 'idmoi[]': cmt_moi, sapxep: sapxep},
 			dataType: "json",
 			success: function(result){
 				console.log(result);
@@ -436,9 +436,47 @@ $(document).ready(function() {
 					if(result.chuoi == 'out'){
 						$("#xem-them-dg").css("display", "none");
 					}
-					$(".xemthemdg").html('Xem thêm');
+					$("#xem-them-dg").html('Xem thêm');
 					$("#danhsach-dg").append(result.trave);
-				}, 1000);
+				}, 500);
+			},
+			error: function(error){
+				console.log("LOI "+error);
+			}
+		});
+	});
+	
+	$(".sap-xep").bind("change",function(){
+		sotrang = 1 ;
+		$("#xem-them-dg").html('<i class="fa-li fa fa-spinner fa-spin" style="position: initial;"></i> Đang tải');
+		$("#danhsach-dg").html('');
+		$("#xem-them-dg").css("display", "block");
+		
+		if($(this).val() == 'oldest'){
+			sapxep = "old";
+		}else if($(this).val() == 'popular'){
+			sapxep = "popular";
+		}else{
+			sapxep = "new";
+		}
+		/*$(".sap-xep").removeClass("active");
+		$(this).addClass('active');*/
+		cmt_moi = [0];
+		$.ajax({
+			type: "GET",
+			url: "list-danh-gia.html",
+			dataType: "json",
+			data: {trang: 0, 'idmoi[]': cmt_moi, sapxep: sapxep},
+			dataType: "json",
+			success: function(result){
+				console.log(result);
+				setTimeout(function(){
+					if(result.chuoi == 'out'){
+						$("#xem-them-dg").css("display", "none");
+					}
+					$("#xem-them-dg").html('Xem thêm');
+					$("#danhsach-dg").append(result.trave);
+				}, 500);
 			},
 			error: function(error){
 				console.log("LOI "+error);

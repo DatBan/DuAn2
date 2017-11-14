@@ -24,9 +24,8 @@
 								<form:password path="matkhau" class="form-control" />
 							</div>
 							<div class="checkbox">
-								<label><input type="checkbox" name="remember"
-									value="true"> Ghi nhớ mật khẩu</label> <label
-									class="pull-right"><a href="#">Quên mật khẩu?</a></label>
+								<label><input type="checkbox" id="remember"> Ghi nhớ mật khẩu</label> 
+								<label class="pull-right"><a href="#">Quên mật khẩu?</a></label>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary btn-block" id="nut-dn">Đăng
@@ -40,21 +39,13 @@
 						</div>
 						<div class="form-group">
 							<div id="my-signin2"></div>
-							<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
-							<a href="#" onclick="signOut();">Sign out</a>
-							<!-- <a href="#" class="btn btn-default btn-block"> <i
-								class="fa fa-google-plus-square"
-								style="font-size: large; color: #c23321;"></i> Đăng nhập với
-								Google
-							</a> -->
 						</div>
 						<div class="form-group">
 							<a href="RegisterForm.html" class="btn btn-default btn-block">
 								Đăng ký </a>
 						</div>
 						<div class="form-group">
-							<button type="button" class="btn btn-default btn-block"
-								data-dismiss="modal">Đóng</button>
+							<button type="button" class="btn btn-default btn-block" data-dismiss="modal">Đóng</button>
 						</div>
 					</div>
 				</div>
@@ -64,13 +55,15 @@
 	</div>
 </div>
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
+<script>
+(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
   js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=140114096632222';
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+</script>
 <script>
 $(document).ready(function(){
 	// This is called with the results from from FB.getLoginStatus().
@@ -141,15 +134,14 @@ $(document).ready(function(){
     });
   }
 });
-
+</script>
+<script>
 	function signOut() {
 	    var auth2 = gapi.auth2.getAuthInstance();
 	    auth2.signOut().then(function () {
 	      console.log('User signed out.');
 	    });
-	  } 
-</script>
-<script>
+	  }
     function onSuccess(googleUser) {
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
       var profile = googleUser.getBasicProfile();
@@ -159,33 +151,21 @@ $(document).ready(function(){
 	  console.log('Name: ' + profile.getName());
 	  console.log('Image URL: ' + profile.getImageUrl());
 	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present. */
-	  $("#myModal").modal('hide');
-	$.ajax({
-		type: "POST",
-		url: "${pageContext.servletContext.contextPath}/lay-token.html",
-		data: {idtoken: id_token},
-		success: function(result){
-			console.log(result);
-			if(result == 'signedin2'){
-				location.reload();
-			}/* 
-			location.reload(); */
-		},
-		error: function(error){
-			console.log("Loi "+error);
-		}
-	});
-	/* var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'lay-token.html', true);
-	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	xhr.onload = function() {
-		$("#myModal").hide();
-		if(xhr.responseText == 'signedin2'){
-			window.location.href= 'trang-chu.html';
-		}
-	  console.log('Signed in as: ' + xhr.responseText + ' zz ' +xhr.redirect);
-	};
-	xhr.send('idtoken=' + id_token); */
+		$.ajax({
+			type: "POST",
+			url: "${pageContext.servletContext.contextPath}/lay-token.html",
+			data: {idtoken: id_token},
+			success: function(result){
+				console.log(result);
+				if(result == 'signedin2'){
+					$("#myModal").modal('hide');
+					location.reload();
+				}
+			},
+			error: function(error){
+				console.log("Loi "+error);
+			}
+		});
     }
     function onFailure(error) {
       console.log(error);
@@ -193,9 +173,9 @@ $(document).ready(function(){
     function renderButton() {
       gapi.signin2.render('my-signin2', {
         'scope': 'profile email',
-        'width': 240,
+        'width': "auto",
         'height': 50,
-        'longtitle': true,
+        'longtitle': false,
         'theme': 'dark',
         'onsuccess': onSuccess,
         'onfailure': onFailure

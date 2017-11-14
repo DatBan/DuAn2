@@ -63,17 +63,16 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<c:choose>
-							<c:when test="${sessionScope.tdn == null}">
-								<li><a href="javascript:;" class="linkdangnhap"
-									style="padding-top: 6px; padding-left: 10px; padding-bottom: 6px; padding-right: 10px; margin-top: 9px; color: #3698ec; font-size: 15px; border: none; margin-right: 10px;"
-									data-toggle="modal" data-target="#myModal"> <b>Đăng
-											nhập</b>
-								</a></li>
+							<c:when test="${sessionScope.nd == null}">
+								<li>
+									<a href="javascript:;" class="linkdangnhap" data-toggle="modal" data-target="#myModal"> 
+										<b>Đăng nhập</b>
+									</a>
+								</li>
 							</c:when>
 							<c:otherwise>
 								<li class="dropdown"><a href="#" data-toggle="dropdown">Welcome,
-										${sessionScope.tdn} <span
-										class="glyphicon glyphicon-menu-down"></span>
+										${sessionScope.nd.hoten} <span class="glyphicon glyphicon-menu-down"></span>
 								</a>
 									<ul class="dropdown-menu">
 										<li>

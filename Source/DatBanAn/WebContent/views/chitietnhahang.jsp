@@ -18,88 +18,8 @@
 	</div>
 	
 	<div class="container ctnh">
-<<<<<<< HEAD
-		<div class="row ">
-			<div class="col-md-6">
-				<img class="imgctnh" src="images/ctnh.png" />
-			</div>
-			<div class="col-md-6">
-				<div class="row dckhuvuc">
-					<div class="col-md-12">
-						<span class="dckv"><b>Hồ Chí Minh</b></span> <img
-							src="images/muitendc.png" /> <span class="dckv"><b>Quận
-								1</b></span>
-					</div>
-				</div>
-				<div class="row rtenctnh">
-					<div class="col-md-12">
-						<span class="tenctnh"><b>Sushi Dining AOI - Món Nhật</b></span>
-					</div>
-				</div>
-				<div class="row rdcctnh">
-					<div class="col-md-12">
-						<span class="dcctnh">53 - 55 Bà Huyện Thanh Quan, P.6, Quận
-							1, TP.HCM</span>
-					</div>
-				</div>
-				
-				<div class="row rdatcho">
-					<div class="col-md-12">
-					
-						<a href="datban/index/1.html" type="button" class="btn btn-warning btndatchongay">
-							<b>Đặt Chỗ Ngay</b>
-						</a>
-					</div>
-				</div>
-				<div class="row saodanhgia">
-					<div class="col-md-6">
-						<img src="images/saoday.png" /> <img src="images/saoday.png" />
-						<img src="images/saoday.png" /> <img src="images/saoday.png" />
-						<img src="images/saorong.png" />
-					</div>
-					<div class="col-md-2">
-						<span class="diemdg"><b>8.2</b></span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-1">
-						<img src="images/dhctnh.png" />
-					</div>
-					<div class="col-md-11">
-						<p class="dangmocua" style="float: left;">
-							<b>Đang mở cửa : </b>
-						</p>
-						<span style="float: left;"><b>10:00 AM - 22:00 PM</b></span>
-					</div>
-				</div>
-				<div class="row giatbctnh">
-					<div class="col-md-1">
-						<img src="images/giactnh.png" />
-					</div>
-					<div class="col-md-11">
-						<p class="giatb" style="float: left;">
-							<b>Giá trung bình : </b>
-						</p>
-						<span style="float: left;"><b>200.000</b></span><b>đ - </b><span><b>400.000</b></span><span><b>đ</b></span>
-					</div>
-				</div>
-				<div class="row lhctnh">
-					<div class="col-md-1">
-						<img src="images/dtctnh.png" />
-					</div>
-					<div class="col-md-11">
-						<p class="lh" style="float: left;">
-							<b>Liên hệ : </b>
-						</p>
-						<span style="float: left;"><b>0978654545</b></span>
-					</div>
-				</div>
-			</div>
-		</div>
-=======
 		<!-- Phan anh va thong tin nha hang -->
 		<jsp:include page="homepage/chitietnhahang/image-info.jsp"></jsp:include>
->>>>>>> 3928a159232d22fc6d8e6cc3962341b88d567f96
 
 	</div>
 	<div class="container conctkm">

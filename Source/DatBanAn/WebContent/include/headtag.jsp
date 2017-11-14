@@ -28,17 +28,3 @@
 
 <script src="js/custom-script.js"></script>
 <script src="js/ScriptDatBan.js"></script>
-
-<script src="js/custom-script.js" charset="utf-8" type="text/javascript"></script>
-
- <script>
-    function start() {
-      gapi.load('auth2', function() {
-        auth2 = gapi.auth2.init({
-          client_id: '400500533070-k8b9qaer0ndtklj1tblkrgqv2037bjd4.apps.googleusercontent.com',
-          // Scopes to request in addition to 'profile' and 'email'
-          //scope: 'additional_scope'
-        });
-      });
-    }
-  </script>

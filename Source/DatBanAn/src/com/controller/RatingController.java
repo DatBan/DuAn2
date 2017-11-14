@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -44,7 +45,8 @@ public class RatingController {
 			@RequestParam("giaca") int giaca,
 			@RequestParam("phucvu") int phucvu,
 			HttpServletResponse response,
-			HttpServletRequest request) throws InterruptedException, IOException {
+			HttpServletRequest request,
+			HttpSession httpSession) throws InterruptedException, IOException {
 
 		Thread.sleep(1000);
 		/*try {
@@ -59,29 +61,41 @@ public class RatingController {
 		System.out.println(tieude);
 		double diemdanhgia = (double) (doan + khonggian + giaca + phucvu) / 4;
 		Session session = factory.getCurrentSession();
+		
+		NguoiDung nd2 = (NguoiDung) httpSession.getAttribute("nd");
+		
 		NhaHang nh = (NhaHang) session.get(NhaHang.class, 1);
-		NguoiDung nd = (NguoiDung) session.get(NguoiDung.class, 2);
+		/*NguoiDung nd = (NguoiDung) session.get(NguoiDung.class, 2);*/
 		
 		System.out.println(doan+ " " + khonggian + " "+giaca + " " +phucvu+" = "+diemdanhgia);
 		 
 		DanhGia dg = new DanhGia(tieude, noidung, doan, khonggian, giaca, phucvu, diemdanhgia, false, new Date(), nh,
-				nd);
+				nd2);
 		 this.danhGiaDAO.createDanhGia(dg); 
 
 		Gson gson = new Gson();
 		String trave = gson.toJson(dg);
 		response.getWriter().print(trave);
-		/*String trave = tieude+" chữ đờ việt";
-		return trave;*/
 	}
 	
 	@RequestMapping("list-danh-gia")
 	@ResponseBody
 	public void loadDanhGia(@RequestParam("trang") int trang,
 			@RequestParam("idmoi[]") List<Integer> idmoi,
+			@RequestParam(value="sapxep", defaultValue="new", required=false) String sapXep,
 			HttpServletResponse response) throws IOException{
 		int pageCount = 0, sumRecords = 0, perPage = 10, idNhaHang = 1, idnho = 0;
-		String rong = "sai";
+		String rong = "sai", sorted = "DESC", thuoctinh = "dg.id";
+		
+		if(sapXep.equals("old")){
+			System.out.println("old");
+			sorted = "ASC";
+		}else if(sapXep.equals("popular")){
+			System.out.println("popular");
+			thuoctinh = "soluonglike";
+			sorted = "DESC";
+		}
+		System.out.println(sorted + " " + thuoctinh + " " + sapXep);
 		try{
 			idnho = this.danhGiaDAO.getMaxByIdNhaHang(idNhaHang).getId();
 		}catch(NullPointerException e){
@@ -94,10 +108,10 @@ public class RatingController {
 		}
 		List<DanhGia> sumList = this.danhGiaDAO.getListDanhGiaByIdNhaHang(idNhaHang);
 		sumRecords = sumList.size();
-		List<DanhGia> listDG = this.danhGiaDAO.getListDanhGiaByIdNhaHang(idNhaHang, trang, idnho);
+		List<DanhGia> listDG = this.danhGiaDAO.getListDanhGiaByIdNhaHang(idNhaHang, trang, idnho, sorted, thuoctinh);
 		pageCount = sumRecords / perPage + (sumRecords % perPage > 0 ? 1 : 0);
 		
-		System.out.println(pageCount+" " + trang);
+		/*System.out.println(pageCount+" " + trang);*/
 		DanhGia dg = null;
 		String strListDG = "";
 		
@@ -116,7 +130,9 @@ public class RatingController {
 						"</select>"+
 					"</div>"+
 					"<div class='col-md-9'>"+
-						"<img src='images/userdg.png' /><input type='hidden' class='gio"+dg.getId()+"' value='"+dg.getNgaytao()+"' /> <span>"+dg.getNguoidanhgia().getHoten()+"</span>: <span class='ngaytao"+dg.getId()+"'>3 "+
+						"<img src='images/userdg.png' />"
+						+ "<input type='hidden' class='gio"+dg.getId()+"' value='"+dg.getNgaytao()+"' /> "
+						+ "<span>"+dg.getNguoidanhgia().getHoten()+"</span>: <span class='ngaytao"+dg.getId()+"'>3 "+
 							"phút trước</span>"+
 					"</div>"+
 				"</div>"+
@@ -162,12 +178,8 @@ public class RatingController {
 					"</div>"+
 				"</div>"+
 			"</div>"+
-			"<div class='row'>"+
-				"<div class='col-md-12'>"+
-					"<img src='images/linekm.png' style='width: 1137px; height: 1px; opacity: 0.18;' />"+
-				"</div>"+
-			"</div>"
-			+ "<script>" +
+			"<hr/>"+
+			"<script>" +
 				"$(document).ready(function(){" +
 					"var diemddg = "+dg.getDiemdanhgia()+";"+
 					"$('#tdiem"+dg.getId()+"').barrating('show',{"+
@@ -177,7 +189,7 @@ public class RatingController {
 				"});"+
 				"var day = moment($('.gio"+dg.getId()+"').val());"+
 					"$('.ngaytao"+dg.getId()+"').html(day.fromNow());" +
-				"</script>" ;
+			"</script>" ;
 		}
 		Gson gson = new Gson();
 		String trave = gson.toJson(strListDG);

@@ -38,20 +38,22 @@ public class DanhGiaDAOImpl implements DanhGiaDAO {
 	}
 
 	@Override
-	public List<DanhGia> getListDanhGiaByIdNhaHang(int idNhaHang, int trang, int idnho) {
+	public List<DanhGia> getListDanhGiaByIdNhaHang(int idNhaHang, int trang, int idnho, String sapXep, String paramSX) {
 		Session session = factory.getCurrentSession();
-		int pageCount = 0, sumRecords = 0, perPage = 10;
-		String hql = "FROM DanhGia dg WHERE dg.nhahang.id=:idnhahang AND dg.id <=:idnho ORDER BY id desc";
+		int /*pageCount = 0, sumRecords = 0,*/ perPage = 10;
+		String hql = "FROM DanhGia dg WHERE dg.nhahang.id=:idnhahang AND dg.id <=:idnho ORDER BY "+paramSX+" "+sapXep;
 		Query query = session.createQuery(hql);
+		
 		query.setParameter("idnhahang", idNhaHang);
 		query.setParameter("idnho", idnho);
+		
 		query.setFirstResult(perPage * (trang - 1));
 		query.setMaxResults(perPage);
 		
 		@SuppressWarnings("unchecked")
 		List<DanhGia> list = query.list();
-		sumRecords = list.size();
-		pageCount = sumRecords / perPage + (sumRecords % perPage > 0 ? 1 : 0);
+		/*sumRecords = list.size();
+		pageCount = sumRecords / perPage + (sumRecords % perPage > 0 ? 1 : 0);*/
 		return list;
 	}
 

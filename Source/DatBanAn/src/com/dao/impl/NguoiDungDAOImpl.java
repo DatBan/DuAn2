@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dao.UserDAO;
+import com.dao.NguoiDungDAO;
 import com.entity.NguoiDung;
 
 @Service
 @Transactional
-public class UserDAOImpl implements UserDAO {
+public class NguoiDungDAOImpl implements NguoiDungDAO {
 	@Autowired
 	private SessionFactory factory;
 

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dao.UserDAO;
+import com.dao.NguoiDungDAO;
 import com.entity.NguoiDung;
 import com.entity.Quyen;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
@@ -36,9 +36,10 @@ import com.services.EnDeCryption;
 
 @Controller
 @Transactional
+@RequestMapping("/")
 public class LoginController {
 	@Autowired
-	private UserDAO userDAO;
+	private NguoiDungDAO userDAO;
 
 	@Autowired
 	SessionFactory factory;
@@ -51,17 +52,13 @@ public class LoginController {
 	}
 
 	// Dang nhap vao he thong
-	@RequestMapping("login")
-
+	/*@RequestMapping("login")
 	public String login(ModelMap model, 
 			@ModelAttribute("nguoidung") NguoiDung nd,
 			@RequestParam(value="remember", defaultValue="false", required=false) boolean rememberMe,
 			HttpSession httpSession,
 			HttpServletResponse response) {
 		Session session = factory.openSession();
-
-	
-
 
 		System.out.println(nd.getTendangnhap());
 		response.setContentType("text/html");
@@ -80,33 +77,27 @@ public class LoginController {
 				return "index";
 			}
 			System.out.println(nd2.getHoten());
-
 			
-			
-			//kiem tra them vao cookie
-			if(rememberMe){
-
 			// kiem tra them vao cookie
 			if (rememberMe) {
 
 				Cookie cktdn = new Cookie("cktdn", nd.getTendangnhap());
 				cktdn.setPath("/");
+				cktdn.setMaxAge(60*60*24*365);
 				response.addCookie(cktdn);
-				httpSession.setAttribute("tdn", cktdn.getValue());
-
+				NguoiDung ndc = this.userDAO.getByUsername(cktdn.getValue());
+				httpSession.setAttribute("nd", ndc);
 				
 				System.out.println("tru tru "+cktdn.getValue());
 			} else {
-
-				httpSession.setAttribute("tdn", nd2.getHoten());
-				
-			}}
+				httpSession.setAttribute("nd", nd2);
+			}
 		} catch (NullPointerException e) {
 			System.out.println(e.toString());
 			return "index";
 		}
 		return "redirect:/trang-chu.html";
-	}
+	}*/
 
 	// phuong thuc dang xuat tai khoan. Xoa session va cookie
 	@RequestMapping("logout")
@@ -115,18 +106,21 @@ public class LoginController {
 		Cookie cktdn = new Cookie("cktdn", "");
 		cktdn.setMaxAge(0);
 		response.addCookie(cktdn);
-		httpSession.removeAttribute("tdn");
+		httpSession.removeAttribute("nd");
 		return "redirect:/trang-chu.html";
 	}
 
 	// Kiem tra dang nhap, ket hop voi ajax
-	@RequestMapping(value = "kt-dang-nhap", method = RequestMethod.GET)
+	@RequestMapping(value = "kt-dang-nhap", method = RequestMethod.POST)
 	public @ResponseBody String ktTrungTendangnhap(@RequestParam("tendangnhap") String tendangnhap,
-			@RequestParam("matkhau") String mk, HttpSession httpSession, HttpServletResponse response,
+			@RequestParam("matkhau") String mk, 
+			@RequestParam(value="remember", defaultValue="false", required=false) boolean rememberMe,
+			HttpSession httpSession, 
+			HttpServletResponse response,
 			HttpServletRequest request) {
 
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(500);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -147,20 +141,34 @@ public class LoginController {
 			// decode password
 			EnDeCryption enDe = new EnDeCryption("sadasdasdsawqewq");
 			String mkmh = enDe.encoding(mk);
-			System.out.println(mkmh);
 			if (!mkmh.equals(nd2.getMatkhau())) {
 				System.out.println("sai mk hihi");
+				return "false";
 			}
 			if (nd2.getTrangthai() != 1) {
 				return "khoa";
-
 			}
-			System.out.println(nd2.getHoten());
 		} catch (NullPointerException e) {
 			System.out.println(e.toString());
 		}
 		// Kiem tra tai khoan ton tai
 		if (nd2 != null) {
+			if (rememberMe) {
+				System.out.println("um");
+				/*NguoiDung ndc = this.userDAO.getByUsername(tendangnhap);*/
+				
+				Cookie cktdn = new Cookie("cktdn", tendangnhap);
+				cktdn.setMaxAge(60*60*24*365);
+				/*Cookie ckten = new Cookie("ckten", ndc.getTendangnhap());
+				ckten.setMaxAge(60*60*365);*/
+				
+				response.addCookie(cktdn);
+				/*response.addCookie(ckten);*/
+				httpSession.setAttribute("nd", nd2);
+				
+			} else {
+				httpSession.setAttribute("nd", nd2);
+			}
 			return "true";
 		} else {
 			return "false";
@@ -172,7 +180,7 @@ public class LoginController {
 	public @ResponseBody void getIdToken(HttpSession httpSession, HttpServletRequest request,
 			HttpServletResponse response, @RequestParam(value = "idtoken", required = false) String tokenid)
 			throws GeneralSecurityException, IOException {
-		if (httpSession.getAttribute("tdn") != null) {
+		if (httpSession.getAttribute("nd") != null) {
 			response.getWriter().print("signedin1");
 		} else {
 			HttpTransport transport = new NetHttpTransport();
@@ -219,7 +227,7 @@ public class LoginController {
 					userDAO.createUser(nd);
 					System.out.println("them them");
 				}
-				httpSession.setAttribute("tdn", nd.getHoten());
+				httpSession.setAttribute("nd", nd);
 			} else {
 				System.out.println("Invalid ID token.");
 			}

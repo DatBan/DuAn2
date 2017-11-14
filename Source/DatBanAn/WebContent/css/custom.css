@@ -102,10 +102,18 @@ a:focus, a:hover {
 .linkh.a{
 	text-decoration: none;
 }
-.linkdangnhap{
-	color:#6c97ce;
+ul.nav li > a.linkdangnhap{
 	font-size:15px;
 	text-decoration: none;
+	padding-top: 6px; 
+	padding-left: 10px; 
+	padding-bottom: 6px; 
+	padding-right: 10px; 
+	margin-top: 9px; 
+	color: #3698ec; 
+	font-size: 15px; 
+	border: none; 
+	margin-right: 10px;
 }
 .menu-chinh .navbar a.navbar-brand{
 	padding: 0px;
@@ -495,6 +503,7 @@ a:hover{
 .timdg{
 	float:right;
 	font-size:24px;
+	display: none;
 }
 .nddg{
 	margin-top: 5px;

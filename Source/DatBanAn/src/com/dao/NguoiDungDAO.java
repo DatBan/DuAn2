@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.entity.NguoiDung;
 
-public interface UserDAO {
+public interface NguoiDungDAO {
 	public NguoiDung getByUsername(String username);
 	public NguoiDung getByIdFacebook(String idfb);
 	public NguoiDung getByIdGoogle(String idgg);

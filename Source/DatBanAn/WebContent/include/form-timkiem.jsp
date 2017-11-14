@@ -1,9 +1,14 @@
 <%@ page pageEncoding="utf-8"%>
+<style>
+  .ui-autocomplete-loading {
+    background: white url("css/images/ui-anim_basic_16x16.gif") right center no-repeat;
+  }
+  </style>
 <div class="row timkiemnhc timkiemctnh">
 	<form class="form-inline" action="tim-kiem.html" method="get">
 		<div class="input-group">
 			<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span> 
-			<input type="text" class="form-control" placeholder="Tên nhà hàng, món ăn, địa điểm">
+			<input type="text" class="form-control" id="keyword" placeholder="Tên nhà hàng, món ăn, địa điểm">
 		</div>
 		<div class="form-group">
 			<input type="text" class="form-control" id="ngaythang1" name="ohlala" placeholder="Chọn ngày tháng" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF">
@@ -53,3 +58,114 @@
 		});
 	/* }); */
 </script>
+<script>
+$(document).ready(function(){
+$( function() {
+    var projects = [
+      {
+        value: "jquery",
+        label: "jQuery",
+        desc: "the write less, do more, JavaScript library",
+        icon: "jquery_32x32.png"
+      },
+      {
+        value: "jquery-ui",
+        label: "jQuery UI",
+        desc: "the official user interface library for jQuery",
+        icon: "jqueryui_32x32.png"
+      },
+      
+      {
+        value: "jquery-ui",
+        label: "jQuery UI",
+        desc: "the official user interface library for jQuery",
+        icon: "jqueryui_32x32.png"
+      },
+      
+      {
+        value: "jquery-ui",
+        label: "jQuery UI",
+        desc: "the official user interface library for jQuery",
+        icon: "jqueryui_32x32.png"
+      },
+      
+      {
+        value: "jquery-ui",
+        label: "jQuery UI",
+        desc: "the official user interface library for jQuery",
+        icon: "jqueryui_32x32.png"
+      },
+      
+      {
+        value: "jquery-ui",
+        label: "jQuery UI",
+        desc: "the official user interface library for jQuery",
+        icon: "jqueryui_32x32.png"
+      },
+      
+      {
+        value: "jquery-ui",
+        label: "jQuery UI",
+        desc: "the official user interface library for jQuery",
+        icon: "jqueryui_32x32.png"
+      },
+      {
+        value: "sizzlejs",
+        label: "Sizzle JS",
+        desc: "a pure-JavaScript CSS selector engine",
+        icon: "sizzlejs_32x32.png"
+      }
+    ];
+ 
+    $( "#keyword" ).autocomplete({
+      minLength: 2,
+      source: function( request, response ) {
+          $.ajax( {
+            url: "search-ajax.html",
+            dataType: "json",
+            data: {
+              search: request.term
+            },
+            beforeSend: function(){
+    			$("#keyword").css("background","white url('css/images/ui-anim_basic_16x16.gif') right center no-repeat");
+    		},
+            success: function( data ) {
+            	$("#keyword").css("background","white");
+            	console.log(data);
+              response( $.map(data, function (item) {
+            	  console.log(item.id);
+                  return {
+                      label: item.tennhahang,
+                      value: item.name,
+                      desc: item.name
+                  };
+              }));
+          },
+          error: function(error){
+        	  console.log(error);
+          }
+        });
+      },
+      focus: function( event, ui ) {
+        $( "#keyword" ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( "#keyword" ).val( ui.item.label );
+        /* $( "#project-id" ).val( ui.item.value );
+        $( "#project-description" ).html( ui.item.desc );
+        $( "#project-icon" ).attr( "src", "images/" + ui.item.icon ); */
+ 
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<div>" + item.label + "<br>" + item.desc + "</div>" )
+        .appendTo( ul );
+    };
+  } );
+
+
+});
+  </script>

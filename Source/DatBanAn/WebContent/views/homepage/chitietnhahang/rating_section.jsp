@@ -67,7 +67,7 @@
 				</div>
 				<div class="col-md-7">
 					<c:set var="vbreak" value="#Modaldanhgia"></c:set>
-					<c:if test="${sessionScope.tdn == null}">
+					<c:if test="${sessionScope.nd == null}">
 						<c:set var="vbreak" value="#myModal"></c:set>
 					</c:if>
 					<button type="button" data-toggle="modal" class="btn btn-warning btnthemdg" data-target="${vbreak}">
@@ -96,34 +96,17 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<img src="images/linekm.png"
-				style="width: 1137px; height: 1px; opacity: 0.18;" />
-		</div>
-	</div>
+	<hr style="border-color: #ddd;"/>
 	<div class="row">
 		<div class="col-md-2 dropdown timdg">
-
-			<button class="btn btn-default dropdown-toggle icondt" type="button"
-				id="menu1" data-toggle="dropdown">
-				Mới nhất <span><img class="img-response "
-					src="images/muiten.png" /></span>
-			</button>
-			<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-				<li role="presentation"><a role="menuitem" tabindex="-1"
-					href="#">Cao nhất</a></li>
-				<li role="presentation"><a role="menuitem" tabindex="-1"
-					href="#">Thấp nhất</a></li>
-
-			</ul>
+			<select class="form-control sap-xep">
+				<option value="newest">Mới nhất</option>
+				<option value="oldest">Cũ nhất</option>
+				<option value="popular">Phổ biến nhất</option>
+			</select>
 		</div>
 	</div>
 	<div class="row" id="btn-filter-danhgia">
-		<div class="col-md-12">
-			<img src="images/linekm.png"
-				style="width: 1137px; height: 1px; opacity: 0.18;" />
-		</div>
 	</div>
 	<!-- Danh sach danh gia -->
 	<div id="danhsach-dg"></div>
