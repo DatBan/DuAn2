@@ -60,7 +60,7 @@ public class FoodController {
 		model.addAttribute("tenbreadcrumb", "THÊM BÀI ĐỒ ĂN");
 		return "nhahang/themdoan";
 	}
-	// Thêm trang mới
+	// Thêm đồ ăn
 
 		@Autowired
 		ServletContext context;
@@ -241,7 +241,7 @@ public class FoodController {
 				return "true";
 			}
 		}
-		//Kiểm tra trùng tên đồ ăn
+		//Kiểm tra trùng name đồ ăn
 				@RequestMapping(value = "kt-trung-name", method = RequestMethod.GET)
 				public @ResponseBody String ktTrungName(@RequestParam("name") String name,@RequestParam("idmonan") int id,
 						HttpServletResponse response, HttpServletRequest request){

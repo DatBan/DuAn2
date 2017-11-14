@@ -66,7 +66,7 @@
 									<label class="control-label  labeld" for="title">Name:<span
 										style="color: red;">*</span>
 									</label> <input type="text" name="name" id="name"
-										placeholder="VD : Name of food or restaurant" class="form-control">
+										placeholder="Example : Name of food or restaurant" class="form-control">
 								</div>
 							</div>
 						</div>

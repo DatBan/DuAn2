@@ -59,7 +59,7 @@
 						<div class="col-md-10">
 							<label class="control-label  labeld" for="title">Title:<span style="color: red;">*</span>
 							</label> <input type="text" name="title" id="title"
-								placeholder="VD : Contact" class="form-control">
+								placeholder="Example : Contact" class="form-control">
 						</div>
 					</div>
 				</div>
