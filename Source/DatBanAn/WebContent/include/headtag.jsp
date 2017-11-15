@@ -7,6 +7,7 @@
 <!-- Link toi file css -->
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" >
 <link href="css/font-awesome.css" rel="stylesheet" type="text/css" >
+<link href="css/bootstrap-social.css" rel="stylesheet" type="text/css" >
 <link href="css/fontawesome-stars-o.css" rel="stylesheet" type="text/css" >
 <link rel="stylesheet" href="css/jquery-ui.css">
 <!-- tuy chinh -->
