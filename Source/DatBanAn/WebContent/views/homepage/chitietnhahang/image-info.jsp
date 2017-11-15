@@ -24,9 +24,9 @@
 				</div>
 				<div class="row rdatcho">
 					<div class="col-md-12">
-						<button class="btn btn-warning btndatchongay">
+						<a href="datban/index/1.html" type="button" class="btn btn-warning btndatchongay">
 							<b>Đặt Chỗ Ngay</b>
-						</button>
+						</a>
 					</div>
 				</div>
 				<div class="row saodanhgia">

@@ -42,6 +42,12 @@ public class OpenTableController {
 
 		return "homepage/datban";
 	}
+	//Trang thông tin đặt bàn
+	@RequestMapping(value = "thongtindatban")
+	public String thongtindatban(ModelMap model) {
+		
+		return "user/thongtindatban";
+	}
 	//Đặt bàn
 	@RequestMapping(value = "xacnhandatban", method = RequestMethod.POST)
 	public String xacnhandat(ModelMap model, RedirectAttributes re, 
@@ -96,8 +102,9 @@ public class OpenTableController {
 		try {
 			session.save(hoadon);
 			t.commit();
-//			re.addFlashAttribute("message", "Đặt chỗ thành công! Vui lòng chờ nhà hàng xác nhận");
-			model.addAttribute("hoadon",hoadon);
+			
+			httpSession.setAttribute("hoadon",hoadon);
+			httpSession.setAttribute("nhahang",nhahang);
 		} catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();
@@ -106,6 +113,6 @@ public class OpenTableController {
 			session.close();
 		}
 
-		return "user/thongtindatban";
+		return "redirect:/datban/thongtindatban.html";
 	}
 }

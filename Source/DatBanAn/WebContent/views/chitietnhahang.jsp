@@ -39,9 +39,9 @@
 						đơn có tổng tiền trên 800 nghìn đồng </b></span>
 			</div>
 			<div class="col-md-2">
-				<button class="btn btn-success btndatngay">
+				<a href="datban/index/1.html" type="button" class="btn btn-success btndatngay">
 					<b>Đặt Ngay</b>
-				</button>
+				</a>
 			</div>
 		</div>
 	</div>
