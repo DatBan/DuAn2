@@ -48,55 +48,105 @@
 						href="#">April, 2012</a></li>
 				</ul>
 			</div>
-			<div class="bloder-content">
+			<div class="container">
+		<div class="col-md-1"></div>
+		<div class="row col-md-10 ">
+		
+			<form:form modelAttribute="baiviet">
+				<div class="tin">
+					<a href="#"><img class="img-responsive"
+						style="width: 948px; height: 277px; margin-left: -14px; margin-bottom: 20px;"
+						class="col-md-4" alt="" src="files/${baiviet.hinh}"></a> <a
+						href="#">
 
-				<div class="blog-box1">
-					<h3
-						style="font-size: 25px; font-family: Arial, Helvetica, sans-serif; color: blue;">Bánh
-						đúc nóng thơm ngon</h3>
-					</br>
-					<div class="blog-box-image">
-						<img src="images/pre.jpg" title="priview" />
-					</div>
-					<div class="blog-box-content">
+						<h2 style="color: #475b6f">${baiviet.tenbaiviet}</h2>
+					</a> <a href="#"><p>${baiviet.noidung}</p></a><br />
 
-						<p>Có dịp đi công việc ngang qua khu này nên ghé ăn thử. Bé
-							chủ quán khá trẻ mà không hiểu sao bảng hiệu lại ghi "Bà già" nhỉ
-							:)) Bé quảng cáo món Cháo em nấu ngon lắm, chị ăn thử nên mình
-							quyết định ăn cháo và mua bánh đúc mang về. Cháo nấu nhuyễn và
-							khá thơm, nguyên liệu sạch. Nêm nếm rất vừa miệng. Miếng sườn sụn
-							ninh vừa chín tới. Nói chung ăn ngon. Bánh đúc thì ăn tàm tạm
-							thôi, không biết là do mang về để lâu không còn nóng nữa. Có thể
-							ăn ngay ở quán sẽ ngon hơn"</p>
+					<p style="color: #CCCCCC">
+						Ngày viết:
+						<fmt:formatDate value="${baiviet.ngayviet}" pattern="dd/MM/yyyy" />
+					</p>
 
-					</div>
+
+
+
 				</div>
+			</form:form>
+			<div class="container col-md-12">
+				<style type="text/css">
+					*[id$=errors] {
+						color: red;
+						font-style: italic;
+					}
+					</style>
+				<form:form action="comments.htm" method="post" modelAttribute="loi">
+				
+				<input type="hidden" name="iduser" value="${sessionScope.user.iduser}"/>
+					<input type="hidden" name="idbaiviet" value="${baiviet.idbaiviet}" />
+					<form:errors path="noidung" />
+					<textarea name="noidung" class="comment"
+						placeholder="Write comments..."
+						style="-moz-box-sizing: border-box; width: 100%; height: 80px;"></textarea>
+						
+					<button type="submit" class="btn btn-info">Bình luận</button>
+					
+				</form:form>
+				<br>
 
-				<div class="clear"></div>
+				<!-- Left-aligned media object -->
+				<c:forEach var="bl" items="${baiviet.binhluan}" varStatus="status">
+				
+					<c:if test="${bl.binhluancha == null}">
+					<input type="hidden" name="iduser" value="${sessionScope.user.iduser}"/>
+						<div class="media">
+							<div class="media-left">
+								<img src="files/${bl.nguoidung.hinh}" class="media-object"
+									style="width: 45px">
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading">
+									${bl.nguoidung.hoten} <small><i></i></small>
+								</h4>
+								<p>${bl.noidung}</p>
+								
+
+								<c:forEach var="blc" items="${ListBLC}">
+									<c:if test="${blc.binhluancha.idbinhluan == bl.idbinhluan}">
+									<input type="hidden" name="iduser" value="${sessionScope.user.iduser}"/>
+										<!-- con -->
+										<div class="media">
+											<div class="media-left">
+												<img src="files/${blc.user.hinh}" class="media-object"
+													style="width: 45px">
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading">
+													${blc.nguoidung.hoten} <small><i></i></small>
+												</h4>
+												<p>${blc.noidung}</p>
+
+											</div>
+										</div>
+									</c:if>
+								</c:forEach>
+								<form action="traloi.htm" method="post">
+								<input type="hidden" name="iduser" value="${sessionScope.nguoidung.id}"/>
+									<input type="hidden" name="idbaiviet" value="${baiviet.idbaiviet}" />
+									<input type="hidden" name="idbinhluan" value="${bl.idbinhluan}" />
+									<input type="text" name="traloi">
+									<button class="btn">Trả lời</button>
+									<form:errors path="noidung" />
+								</form>
+						</div>
+					</c:if>
+				</c:forEach>
+				<hr>
 			</div>
-
-
 		</div>
-		<div class="container">
-			<form>
-				<div class="form-group">
-					Bình Luận:<br /> <label for="comment">Nguyễn văn tèo</label> </br>
-					<textarea name="noidung" style="width: 300px; height: 100px"
-						required>
-					</textarea>
-					<br /> Enter Email:<br /> <input type="text" name="email" required /><br />
-					<br />
-				</div>
-				<input type="button" value="Post Comment" onclick="postComment()"> 
-					luận</input>
-			</form>
-			<span id="mylocation"></span> 
-		</div>
+
 	</div>
 
-
-
-
+	<jsp:include page="/include/footer.jsp"></jsp:include>
 
 </body>
 </html>
