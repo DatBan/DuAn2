@@ -132,7 +132,7 @@ public class RatingController {
 					"<div class='col-md-9'>"+
 						"<img src='images/userdg.png' />"
 						+ "<input type='hidden' class='gio"+dg.getId()+"' value='"+dg.getNgaytao()+"' /> "
-						+ "<span>"+dg.getNguoidanhgia().getHoten()+"</span>: <span class='ngaytao"+dg.getId()+"'>3 "+
+						+ "<span>"+dg.getNguoidanhgia().getHo()+dg.getNguoidanhgia().getTen()+"</span>: <span class='ngaytao"+dg.getId()+"'>3 "+
 							"phút trước</span>"+
 					"</div>"+
 				"</div>"+

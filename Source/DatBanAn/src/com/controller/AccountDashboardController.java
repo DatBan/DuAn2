@@ -86,7 +86,8 @@ public class AccountDashboardController {
 
 			nd.setDiachi(ndv.getDiachi());
 			nd.setEmail(ndv.getEmail());
-			nd.setHoten(ndv.getHoten());
+			nd.setHo(ndv.getHo());
+			nd.setTen(ndv.getTen());
 			nd.setSdt(ndv.getSdt());
 			if (!ndv.getMatkhau().equals("")) {
 				nd.setMatkhau(ndv.getMatkhau());

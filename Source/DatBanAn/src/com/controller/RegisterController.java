@@ -36,16 +36,17 @@ import net.sf.ehcache.hibernate.HibernateUtil;
 public class RegisterController {
 	@Autowired
 	SessionFactory factory;
-	/* PhÆ°Æ¡ng thá»©c GET Ä�á»ƒ Táº¡o Giao Diá»‡n khi click button Ä�Äƒng kÃ� */
+	/* Phương thức get đêt tạo giao diện */
 	@RequestMapping(value="RegisterForm",method = RequestMethod.GET)
 	public String RegisterForm() {
 		return "register";
 	}
-	/* PhÆ°Æ¡ng thá»©c POST Ä�á»ƒ Táº¡o TÃ i Khoáº£n khi click button Ä�Äƒng kÃ� */
+	/* Phương thức post để đăng ký */
 	
 	@RequestMapping(value="RegisterForm", method = RequestMethod.POST)
 	public String RegisterForm(ModelMap model,
-			@RequestParam("hoten") String hoten,
+			@RequestParam("ho") String ho,
+			@RequestParam("ten") String ten,
 			@RequestParam("tendangnhap") String tendangnhap,
 			@RequestParam("matkhau")String matkhau,
 			@RequestParam("email")String email,
@@ -56,11 +57,12 @@ public class RegisterController {
 		Session session = factory.openSession();
 		Quyen quyen= (Quyen) session.get(Quyen.class, 3);
 		
-		String ht= hoten.trim();
+		String ho1= ho.trim();
+		String ten1= ten.trim();
 		Date ngaytao = new Date();
 		EnDeCryption mh = new EnDeCryption("sadasdasdsawqewq");
 		String mkmh= mh.encoding(matkhau);
-		NguoiDung nguoidung= new NguoiDung(ht, tendangnhap, mkmh, email, sdt, diachi, 1, ngaytao, quyen);
+		NguoiDung nguoidung= new NguoiDung(ho1,ten1,tendangnhap, mkmh, email, sdt, diachi, 1, ngaytao, quyen);
 		Transaction t = session.beginTransaction();
 		try {
 			session.save(nguoidung);
@@ -75,13 +77,13 @@ public class RegisterController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();
-			model.addAttribute("message", "Ä�Äƒng kÃ½ tháº¥t báº¡i !");
+			model.addAttribute("message", "Đăng ký thất bại");
 		}finally {
 			session.close();
 		}
 		return "register";
 	}
-	//Check trÃ¹ng tÃªn Ä‘Äƒng nháº­p
+	//Check trùng tên đăng nhập
 	@RequestMapping(value="kt-trung-tendangnhap",method = RequestMethod.GET)
 	public @ResponseBody String ktTrungTendangnhap(@RequestParam("tendangnhap") String tendangnhap,
 			HttpServletResponse response,
@@ -106,7 +108,7 @@ public class RegisterController {
 			return "true";
 		}
 	}
-	//Check trÃ¹ng email
+	//Check trùng email
 		@RequestMapping(value="kt-trung-email",method = RequestMethod.GET)
 		public @ResponseBody String ktTrungEmail(@RequestParam("email") String email,
 				@RequestParam(value="tdn", defaultValue="null",required=false) String tdn,
