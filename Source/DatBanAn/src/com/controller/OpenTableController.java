@@ -6,9 +6,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -67,7 +69,7 @@ public class OpenTableController {
 		Session session = factory.openSession();
 		String ho1 = ho.trim();
 		String ten1 = ten.trim();
-		String hoten = ho1 + " " + ten1;
+		
 		String email1 = email.trim();
 		String sdt1 = sdt.trim();
 		String ghichu1 = ghichu.trim();
@@ -97,7 +99,7 @@ public class OpenTableController {
 		Transaction t = session.beginTransaction();
 		
 		
-		HoaDon hoadon = new HoaDon(hoten, email1, sdt1, nhandip, ghichu1, songuoi, 0, check, date, ngaytao, khuyenmai,
+		HoaDon hoadon = new HoaDon(ho1,ten1, email1, sdt1, nhandip, ghichu1, songuoi, 0, check, date, ngaytao, khuyenmai,
 				nhahang,nguoidung);
 		try {
 			session.save(hoadon);
@@ -115,4 +117,6 @@ public class OpenTableController {
 
 		return "redirect:/datban/thongtindatban.html";
 	}
+	
+	
 }

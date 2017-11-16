@@ -21,7 +21,7 @@
 			<!-- main content -->
 			<div class="main-content">
 				<!------------- Breadcrumb, nut bam cac thu -------------->
-				<jsp:include page="/include-dashboard/header-doan.jsp"></jsp:include>
+				<jsp:include page="/include-dashboard/header-khuyenmai.jsp"></jsp:include>
 
 				<!--------------- Table, form cac thu ---------------->
 				<div class="content-nhe">
@@ -33,35 +33,40 @@
 						<thead>
 							<tr>
 								<th>STT</th>
-								<th>Tên món ăn</th>
+								<th>Chủ đề</th>
 								<th>Name</th>
-								<th>Hình ảnh</th>
-								<th>Giá</th>
-								<th>Số lần đặt</th>
-								<th>Loại đồ ăn</th>								
+								<th>Thông tin</th>
+								<th>Ngày bắt đầu</th>
+								<th>Ngày kết thúc</th>
+								<th>Trạng thái</th>
 								<th>Thao tác</th>
-
 							</tr>
 						</thead>
 
 						<tbody>
-							<c:forEach var="monan" items="${monan}" varStatus="status">
-								<c:set var="dem" value="${status.index+1}"></c:set>								
+							<c:forEach var="t" items="${khuyenmai}" varStatus="status">
+								<c:set var="dem" value="${status.index+1}"></c:set>
+								<fmt:formatDate var="bd" value="${t.ngaybatdau}"
+									pattern="dd-MM-yyyy" />
+								<fmt:formatDate var="kt" value="${t.ngayketthuc}"
+									pattern="dd-MM-yyyy" />
 								<tr>
 									<td>${dem}</td>
-									<td>${monan.tenmonan}</td>
-									<td>${monan.name}</td>									
-									<td><img class="img-responsive"
-										src="upload/monan/${monan.hinhanh}" style="width:60px;height:60px;" /></td>
-									<fmt:formatNumber var="gia"	type="number" pattern="###,###,###,###" value="${monan.gia}"></fmt:formatNumber>
-									<td>${gia} VNĐ</td>
-									<td>${monan.solandat}</td>
-									<td>${monan.loai.tenloaidoan}</td>			
-									<td style="text-align: center"> <a href="nhahang/monan/edit/${monan.id}.html"
-										style="color: green; padding-left: 30px;">Sửa</a> <a
-										href="nhahang/monan/delete/${monan.id}.html"
-										onclick="return confirm ('Bạn có thực sự muốn xoá đồ ăn này')"
-										style="color: red; padding-left: 30px;">Xoá</a></td>
+									<td>${t.chude}</td>
+									<td>${t.name}</td>
+									<td>${t.thongtin}</td>
+
+									<td>${bd}</td>
+									<td>${kt}</td>
+									<c:if test="${t.trangthai==true}">
+										<td>Đang diễn ra</td>
+									</c:if>
+									<c:if test="${t.trangthai==false}">
+										<td>Đã kết thúc</td>
+									</c:if>
+									<td style="text-align: center"><a
+										href="nhahang/khuyenmai/edit/${t.id}.html"
+										style="color: green; ">Sửa</a> </td>
 								</tr>
 							</c:forEach>
 						</tbody>

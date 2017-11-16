@@ -57,7 +57,7 @@ public class FoodController {
 		@SuppressWarnings("unchecked")
 		List<LoaiDoAn> list = query.list();
 		model.addAttribute("loaidoan",list);
-		model.addAttribute("tenbreadcrumb", "THÊM BÀI ĐỒ ĂN");
+		model.addAttribute("tenbreadcrumb", "THÊM ĐỒ ĂN");
 		return "nhahang/themdoan";
 	}
 	// Thêm đồ ăn

@@ -74,7 +74,8 @@ $(document).ready(function() {
 					}
 				},
 				rangelength:[2,50],
-				checkDau:true
+				checkDau:true,
+				checkCharactor:true
 			},
 			gia:{
 				required: true,
@@ -100,7 +101,8 @@ $(document).ready(function() {
 				required: "Vui lòng nhập name đồ ăn",
 				remote : "Name đồ ăn đã tồn tại",	
 				rangelength:"Name đồ ăn phải từ 2 tới 50 ký tự",
-				checkDau:"Name đồ ăn phải là tiếng anh"
+				checkDau:"Name đồ ăn phải là tiếng anh",
+				checkCharactor:"Name ẩm thực không được có ký tự đặc biệt"
 			},
 			gia:{
 				required: "Vui lòng nhập giá",

@@ -21,7 +21,7 @@
 			<!-- main content -->
 			<div class="main-content">
 				<!------------- Breadcrumb, nut bam cac thu -------------->
-				<jsp:include page="/include-dashboard/header-doan.jsp"></jsp:include>
+				<jsp:include page="/include-dashboard/header-ban.jsp"></jsp:include>
 
 				<!--------------- Table, form cac thu ---------------->
 				<div class="content-nhe">
@@ -33,34 +33,34 @@
 						<thead>
 							<tr>
 								<th>STT</th>
-								<th>Tên món ăn</th>
-								<th>Name</th>
-								<th>Hình ảnh</th>
-								<th>Giá</th>
-								<th>Số lần đặt</th>
-								<th>Loại đồ ăn</th>								
+								<th>Số bàn</th>
+								<th>Số người</th>
+								<th>Trạng thái</th>
+								
 								<th>Thao tác</th>
-
 							</tr>
 						</thead>
 
 						<tbody>
-							<c:forEach var="monan" items="${monan}" varStatus="status">
-								<c:set var="dem" value="${status.index+1}"></c:set>								
+							<c:forEach var="t" items="${ban}" varStatus="status">
+								<c:set var="dem" value="${status.index+1}"></c:set>
+
 								<tr>
 									<td>${dem}</td>
-									<td>${monan.tenmonan}</td>
-									<td>${monan.name}</td>									
-									<td><img class="img-responsive"
-										src="upload/monan/${monan.hinhanh}" style="width:60px;height:60px;" /></td>
-									<fmt:formatNumber var="gia"	type="number" pattern="###,###,###,###" value="${monan.gia}"></fmt:formatNumber>
-									<td>${gia} VNĐ</td>
-									<td>${monan.solandat}</td>
-									<td>${monan.loai.tenloaidoan}</td>			
-									<td style="text-align: center"> <a href="nhahang/monan/edit/${monan.id}.html"
-										style="color: green; padding-left: 30px;">Sửa</a> <a
-										href="nhahang/monan/delete/${monan.id}.html"
-										onclick="return confirm ('Bạn có thực sự muốn xoá đồ ăn này')"
+									<td>${t.soban}</td>
+									<td>${t.songuoi}</td>
+									
+									<c:if test="${t.trangthai==true}">
+										<td>Đã đặt</td>
+									</c:if>
+									<c:if test="${t.trangthai==false}">
+										<td>Trống</td>
+									</c:if>
+									<td style="text-align: center"><a
+										href="nhahang/ban/edit/${t.id}.html"
+										style="color: green; ">Sửa</a> <a
+										href="nhahang/ban/delete/${t.id}.html"
+										onclick="return confirm ('Bạn có thực sự muốn xoá bàn này')"
 										style="color: red; padding-left: 30px;">Xoá</a></td>
 								</tr>
 							</c:forEach>

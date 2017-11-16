@@ -44,28 +44,25 @@
 			</li>
 			<li class="child-menu">
 				<a href="#ss4" data-toggle="collapse" aria-expanded="false">
-						<i class="glyphicon glyphicon-home"></i> Bài Viết Của Tôi
+						<i class="glyphicon glyphicon-home"></i> Nhà hàng của tôi
 				</a>
 				<ul class="collapse list-unstyled" id="ss4">
 					<li><a href="baiviet/index.html"><i class="fa fa-circle-o"></i> Quản lý bài viết</a></li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
-				</ul>
-			</li>
-			<li class="child-menu">
-				<a href="#ss5" data-toggle="collapse" aria-expanded="false">
-						<i class="glyphicon glyphicon-home"></i> Menu đồ ăn
-				</a>
-				<ul class="collapse list-unstyled" id="ss5">
 					<li><a href="nhahang/monan/index.html"><i class="fa fa-circle-o"></i> Quản lý món ăn</a></li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
+					<li><a href="nhahang/tienich/index.html"><i class="fa fa-circle-o"></i> Quản lý tiện ích</a></li>
+					<li><a href="nhahang/khuyenmai/index.html"><i class="fa fa-circle-o"></i> Quản lý khuyến mãi</a></li>
+					<li><a href="nhahang/quanlydatban/index.html"><i class="fa fa-circle-o"></i> Quản lý đặt bàn</a></li>
+					<li><a href="nhahang/ban/index.html"><i class="fa fa-circle-o"></i> Quản lý bàn ăn</a></li>
 				</ul>
 			</li>
+			
+			
 			<li class="child-menu">
-				<a href="#ss6" data-toggle="collapse" aria-expanded="false">
-						<i class="glyphicon glyphicon-home"></i> Tiện ích
+				<a href="#ss7" data-toggle="collapse" aria-expanded="false">
+						<i class="glyphicon glyphicon-home"></i> Ẩm thực
 				</a>
-				<ul class="collapse list-unstyled" id="ss6">
-					<li><a href="nhahang/tienich/index.html"><i class="fa fa-circle-o"></i> Quản lý tiện ích</a></li>
+				<ul class="collapse list-unstyled" id="ss7">
+					<li><a href="dashboard/amthuc/index.html"><i class="fa fa-circle-o"></i> Quản lý loại ẩm thực</a></li>
 					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
 				</ul>
 			</li>

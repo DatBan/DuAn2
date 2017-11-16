@@ -30,12 +30,14 @@ $(document).ready(function() {
 		rules : {
 			ho : {
 				required:true,
-				maxlength:20,
+				minlength:2,
+				maxlength:25,
 				notNumber: true
 			},
 			ten : {
 				required:true,
-				maxlength:20,
+				minlength:2,
+				maxlength:25,
 				notNumber: true
 			},
 			email : {
@@ -68,11 +70,13 @@ $(document).ready(function() {
 		messages : {
 			ho : {
 				required:"Vui lòng nhập họ",
+				minlength:"Họ không hợp lệ",
 				maxlength:"Họ quá dài vui lòng thử lại",
 				notNumber: "Họ không được có số và ký tự đặc biệt"
 			},
 			ten : {
 				required:"Vui lòng nhập tên",
+				minlength:"Tên không hợp lệ",
 				maxlength:"Tên quá dài vui lòng thử lại",
 				notNumber: "Tên không được có số và ký tự đặc biệt"
 			},

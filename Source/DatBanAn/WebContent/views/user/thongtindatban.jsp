@@ -42,7 +42,7 @@
 							<span><b>Họ tên: </b></span>
 						</div>
 						<div class="col-md-5">
-							<span><b>${hoadon.hoten}</b></span>
+							<span><b>${hoadon.ho} ${hoadon.ten}</b></span>
 						</div>
 						<div class="col-md-1"></div>
 					</div>

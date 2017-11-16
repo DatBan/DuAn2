@@ -64,7 +64,8 @@ $(document).ready(function() {
 					}
 				},
 				rangelength:[2,100],
-				checkDau:true
+				checkDau:true,
+				checkCharactor:true
 			},
 			hinh:{
 				required: true,
@@ -84,7 +85,8 @@ $(document).ready(function() {
 				required: "Vui lòng nhập name tiện ích",
 				remote : "Name tiện ích đã tồn tại",	
 				rangelength:"Name tiện ích phải từ 2 tới 100 ký tự",
-				checkDau:"Name phải là tiếng anh"
+				checkDau:"Name phải là tiếng anh",
+				checkCharactor:"Name ẩm thực không được có ký tự đặc biệt"
 			},
 			hinh:{
 				required: "Vui lòng chọn icon cho tiện ích",

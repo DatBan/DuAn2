@@ -19,7 +19,8 @@ public class HoaDon {
 	@Id
 	@GeneratedValue
 	private int id;
-	private String hoten;
+	private String ho;
+	private String ten;
 	private String email;
 	private String dienthoai;
 	private String nhandip;
@@ -49,11 +50,12 @@ public class HoaDon {
 		super();
 	}
 
-	public HoaDon(String hoten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
+	public HoaDon(String ho,String ten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
 			int trangthai, boolean nhanemail, Date thoigian, Date ngaytao, KhuyenMai khuyenmai, NhaHang nhahang,
 			NguoiDung nguoiDung) {
 		super();
-		this.hoten = hoten;
+		this.ho = ho;
+		this.ten = ten;
 		this.email = email;
 		this.dienthoai = dienthoai;
 		this.nhandip = nhandip;
@@ -68,10 +70,11 @@ public class HoaDon {
 		this.nguoiDung = nguoiDung;
 	}
 
-	public HoaDon(String hoten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
+	public HoaDon(String ho,String ten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
 			int trangthai, boolean nhanemail, Date thoigian, Date ngaytao, KhuyenMai khuyenmai, NhaHang nhahang) {
 		super();
-		this.hoten = hoten;
+		this.ho = ho;
+		this.ten = ten;
 		this.email = email;
 		this.dienthoai = dienthoai;
 		this.nhandip = nhandip;
@@ -85,11 +88,12 @@ public class HoaDon {
 		this.nhahang = nhahang;
 	}
 
-	public HoaDon(String hoten, String email, String dienthoai, String nhandip, String ghichu, double tongtien,
+	public HoaDon(String ho,String ten, String email, String dienthoai, String nhandip, String ghichu, double tongtien,
 			int songuoi, int trangthai, boolean nhanemail, Date thoigian, Date ngaytao, KhuyenMai khuyenmai,
 			NhaHang nhahang, NguoiDung nguoiDung, BanAn banan) {
 		super();
-		this.hoten = hoten;
+		this.ho = ho;
+		this.ten = ten;
 		this.email = email;
 		this.dienthoai = dienthoai;
 		this.nhandip = nhandip;
@@ -114,12 +118,22 @@ public class HoaDon {
 		this.id = id;
 	}
 
-	public String getHoten() {
-		return hoten;
+
+
+	public String getHo() {
+		return ho;
 	}
 
-	public void setHoten(String hoten) {
-		this.hoten = hoten;
+	public void setHo(String ho) {
+		this.ho = ho;
+	}
+
+	public String getTen() {
+		return ten;
+	}
+
+	public void setTen(String ten) {
+		this.ten = ten;
 	}
 
 	public String getEmail() {
