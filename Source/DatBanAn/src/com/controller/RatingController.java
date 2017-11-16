@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -59,7 +60,7 @@ public class RatingController {
 		/*response.setHeader("Content-Type", "text/plain;charset=utf-8");*/
 		
 		System.out.println(tieude);
-		double diemdanhgia = (double) (doan + khonggian + giaca + phucvu) / 4;
+		double diemdanhgia = (doan + khonggian + giaca + phucvu) / 4;
 		Session session = factory.getCurrentSession();
 		
 		NguoiDung nd2 = (NguoiDung) httpSession.getAttribute("nd");
@@ -69,7 +70,7 @@ public class RatingController {
 		
 		System.out.println(doan+ " " + khonggian + " "+giaca + " " +phucvu+" = "+diemdanhgia);
 		 
-		DanhGia dg = new DanhGia(tieude, noidung, doan, khonggian, giaca, phucvu, diemdanhgia, false, new Date(), nh,
+		DanhGia dg = new DanhGia(tieude, noidung, doan, khonggian, giaca, phucvu, diemdanhgia, true, new Date(), nh,
 				nd2);
 		 this.danhGiaDAO.createDanhGia(dg); 
 
@@ -111,7 +112,7 @@ public class RatingController {
 		List<DanhGia> listDG = this.danhGiaDAO.getListDanhGiaByIdNhaHang(idNhaHang, trang, idnho, sorted, thuoctinh);
 		pageCount = sumRecords / perPage + (sumRecords % perPage > 0 ? 1 : 0);
 		
-		/*System.out.println(pageCount+" " + trang);*/
+		System.out.println(pageCount+" " + trang);
 		DanhGia dg = null;
 		String strListDG = "";
 		
@@ -132,7 +133,7 @@ public class RatingController {
 					"<div class='col-md-9'>"+
 						"<img src='images/userdg.png' />"
 						+ "<input type='hidden' class='gio"+dg.getId()+"' value='"+dg.getNgaytao()+"' /> "
-						+ "<span>"+dg.getNguoidanhgia().getHo()+dg.getNguoidanhgia().getTen()+"</span>: <span class='ngaytao"+dg.getId()+"'>3 "+
+						+ "<span>"+dg.getNguoidanhgia().getHoTen()+"</span>: <span class='ngaytao"+dg.getId()+"'>3 "+
 							"phút trước</span>"+
 					"</div>"+
 				"</div>"+
@@ -194,10 +195,11 @@ public class RatingController {
 		Gson gson = new Gson();
 		String trave = gson.toJson(strListDG);
 		String trangthai = "in";
-		if(pageCount == trang){
+		System.out.println(trave);
+		if(pageCount <= trang){
 			trangthai = "out";
 		}
 		String chuoi = gson.toJson(trangthai);
-		response.getWriter().print("{\"trave\":"+trave+",\"chuoi\":"+chuoi+", \"rong\":"+gson.toJson(rong)+"}");
+		response.getWriter().print("{\"trave\":"+trave+",\"chuoi\":"+chuoi+", \"rong\":"+gson.toJson(rong)+", \"pagecount\":\""+pageCount+"\"}");
 	}
 }

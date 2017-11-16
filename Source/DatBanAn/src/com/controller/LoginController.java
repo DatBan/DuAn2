@@ -153,17 +153,11 @@ public class LoginController {
 		if (nd2 != null) {
 			if (rememberMe) {
 				System.out.println("um");
-				/* NguoiDung ndc = this.userDAO.getByUsername(tendangnhap); */
 
 				Cookie cktdn = new Cookie("cktdn", tendangnhap);
 				cktdn.setMaxAge(60 * 60 * 24 * 365);
-				/*
-				 * Cookie ckten = new Cookie("ckten", ndc.getTendangnhap());
-				 * ckten.setMaxAge(60*60*365);
-				 */
 
 				response.addCookie(cktdn);
-				/* response.addCookie(ckten); */
 				httpSession.setAttribute("nd", nd2);
 
 			} else {
@@ -206,7 +200,8 @@ public class LoginController {
 				// Get profile information from payload
 				String email = payload.getEmail();
 				boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
-				String name = (String) payload.get("name");
+				String first_name = (String) payload.get("name");
+				String last_name = (String) payload.get("name");
 				String pictureUrl = (String) payload.get("picture");
 				String locale = (String) payload.get("locale");
 				String familyName = (String) payload.get("family_name");
@@ -225,7 +220,7 @@ public class LoginController {
 					if (ktEmail != null) {
 						email = null;
 					}
-					nd = new NguoiDung(name, null, null, email, "", "", 1, new Date(), quyen);
+					nd = new NguoiDung(givenName, familyName, null, null, email, "", "", 1, new Date(), quyen);
 					nd.setIdgoogle(userId);
 					// Goi ham them vao CSDL
 					userDAO.createUser(nd);
@@ -261,7 +256,8 @@ public class LoginController {
 			 */
 			User me = fbClient.fetchObject("me", User.class,
 					Parameter.with("fields", "picture,first_name,last_name,gender,name,email"));
-			String hoten = me.getName();
+			String first_name = me.getFirstName();
+			String last_name = me.getLastName();
 			String email = me.getEmail();
 			String idfacebook = me.getId();
 			NguoiDung ktEmail = this.userDAO.getByEmail(me.getEmail());
@@ -276,7 +272,7 @@ public class LoginController {
 			Quyen quyen = (Quyen) session.get(Quyen.class, 2);
 			if (nd == null) {
 				try {
-					nd = new NguoiDung(hoten, null, null, email, "", "", 1, new Date(), quyen);
+					nd = new NguoiDung(first_name, last_name, null, null, email, "", "", 1, new Date(), quyen);
 					nd.setIdfacebook(idfacebook);
 					this.userDAO.createUser(nd);
 				} catch (ConstraintViolationException e) {

@@ -450,7 +450,7 @@ a:hover{
 	line-hight:2;
 }
 .colsodg{
-	padding-left: 132px;
+	/* padding-left: 132px; */
     margin-top: 12px;
 }
 .mucdodg{
@@ -461,7 +461,7 @@ a:hover{
 .mucdodg1{
 	width:150px;
 	height:20px;
-	background-color:yellow;
+	background-color:gold;
 }
 .rmucdg{
 	margin-top:15px;
@@ -652,6 +652,12 @@ a:hover{
 .br-theme-fontawesome-stars-o .br-widget a.br-selected:after, 
 .br-theme-fontawesome-stars-o .br-widget a.br-fractional:after{
 	color: gold;
+}
+.barChart__bar{
+	background: whitesmoke; 
+}
+.barChart__barFill{
+	background: gold;
 }
 
 

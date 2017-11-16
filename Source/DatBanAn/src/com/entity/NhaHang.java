@@ -52,8 +52,23 @@ public class NhaHang {
 	@Formula("(SELECT ROUND((SUM(c.giaca)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
 	private Double sumGiaCa;
 
-	@Formula("(SELECT COUNT(*) FROM DanhGia c WHERE c.idnhahang = id)")
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id)")
 	private int countRating;
+	
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '5')") 
+	private int count5;
+	
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '4')") 
+		private int count4;
+	
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '3')") 
+		private int count3;
+	
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '2')") 
+		private int count2;
+	
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '1')") 
+		private int count1;
 
 	@Temporal(TemporalType.TIME)
 	private Date giomocua;
@@ -319,6 +334,46 @@ public class NhaHang {
 
 	public void setCountRating(int countRating) {
 		this.countRating = countRating;
+	}
+
+	public int getCount5() {
+		return count5;
+	}
+
+	public void setCount5(int count5) {
+		this.count5 = count5;
+	}
+
+	public int getCount4() {
+		return count4;
+	}
+
+	public void setCount4(int count4) {
+		this.count4 = count4;
+	}
+
+	public int getCount3() {
+		return count3;
+	}
+
+	public void setCount3(int count3) {
+		this.count3 = count3;
+	}
+
+	public int getCount2() {
+		return count2;
+	}
+
+	public void setCount2(int count2) {
+		this.count2 = count2;
+	}
+
+	public int getCount1() {
+		return count1;
+	}
+
+	public void setCount1(int count1) {
+		this.count1 = count1;
 	}
 
 }

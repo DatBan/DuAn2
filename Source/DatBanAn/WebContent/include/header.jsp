@@ -72,7 +72,7 @@
 							</c:when>
 							<c:otherwise>
 								<li class="dropdown"><a href="#" data-toggle="dropdown">Welcome,
-										${sessionScope.nd.ho} ${sessionScope.nd.ten} <span class="glyphicon glyphicon-menu-down"></span>
+										${sessionScope.nd.hoTen} <span class="glyphicon glyphicon-menu-down"></span>
 								</a>
 									<ul class="dropdown-menu">
 										<li>

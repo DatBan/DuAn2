@@ -1,7 +1,5 @@
 package com.entity;
 
-
-
 import java.util.Date;
 
 import javax.persistence.*;
@@ -36,10 +34,10 @@ public class NguoiDung {
 		super();
 	}
 
-	public NguoiDung(String ho,String ten, String tendangnhap, String matkhau, String email, String sdt, String diachi,
-			int trangthai,Date ngaytao, Quyen quyennd) {
+	public NguoiDung(String ho, String ten, String tendangnhap, String matkhau, String email, String sdt, String diachi,
+			int trangthai, Date ngaytao, Quyen quyennd) {
 		super();
-		
+
 		this.ho = ho;
 		this.ten = ten;
 		this.tendangnhap = tendangnhap;
@@ -52,7 +50,7 @@ public class NguoiDung {
 		this.quyennd = quyennd;
 	}
 
-	public NguoiDung(String ho,String ten, String tendangnhap, String matkhau, String email, String sdt, int trangthai,
+	public NguoiDung(String ho, String ten, String tendangnhap, String matkhau, String email, String sdt, int trangthai,
 			Date ngaytao, Quyen quyennd) {
 		super();
 		this.ho = ho;
@@ -74,8 +72,6 @@ public class NguoiDung {
 		this.id = id;
 	}
 
-	
-
 	public String getHo() {
 		return ho;
 	}
@@ -94,6 +90,10 @@ public class NguoiDung {
 
 	public String getTendangnhap() {
 		return tendangnhap;
+	}
+	
+	public String getHoTen() {
+		return ho +" " + ten;
 	}
 
 	public void setTendangnhap(String tendangnhap) {
