@@ -33,9 +33,9 @@ import com.entity.LoaiBaiViet;
 import com.entity.NguoiDung;
 
 @Transactional
-@RequestMapping("nguoidung/baiviet/")
+@RequestMapping("nhahang/baiviet/")
 @Controller
-public class ArticleUserController {
+public class ArticleRestaurant {
 	@Autowired
 	SessionFactory factory;
 
@@ -47,14 +47,14 @@ public class ArticleUserController {
 		Session session = factory.getCurrentSession();
 		NguoiDung nguoidung = (NguoiDung) httpSession.getAttribute("nd");
 		int idnd=nguoidung.getId();
-		String hql = "FROM BaiViet where idnguoiviet =:idnguoiviet and trangthai=0 or trangthai=1 ORDER BY ngaytao DESC";	
+		String hql = "FROM BaiViet where idnguoiviet =:idnguoiviet and trangthai=0 or trangthai=1 ORDER BY ngaytao DESC";		
 		Query query = session.createQuery(hql);
 		query.setParameter("idnguoiviet", idnd);
 		@SuppressWarnings("unchecked")
 		List<BaiViet> list = query.list();
 		model.addAttribute("baiviet", list);
 		model.addAttribute("tenbreadcrumb", "QUẢN LÝ BÀI VIẾT");
-		return "user/quanlybaiviet";
+		return "nhahang/quanlybaiviet";
 	}
 
 	// Phương thức GET để tạo giao diện khi click button Thêm
@@ -69,7 +69,7 @@ public class ArticleUserController {
 		model.addAttribute("loaibv", list);
 
 		model.addAttribute("tenbreadcrumb", "THÊM BÀI VIẾT MỚI");
-		return "user/thembaiviet";
+		return "nhahang/thembaiviet";
 	}
 	// Thêm bài viết
 
@@ -103,7 +103,7 @@ public class ArticleUserController {
 		if (noidung.length() < 200 || content.length() < 200) {
 			model.addAttribute("message", "Nội dung hoặc content không hợp lệ");
 
-			return "user/thembaiviet";
+			return "nhahang/thembaiviet";
 
 		}
 		String photoPath = context.getRealPath("/upload/baiviet/" + hinh.getOriginalFilename());
@@ -122,7 +122,7 @@ public class ArticleUserController {
 			session.save(baiviet);
 			t.commit();
 			Thread.sleep(5000);
-			return "redirect:/nguoidung/baiviet/index.html";
+			return "redirect:/nhahang/baiviet/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.toString());
@@ -133,7 +133,7 @@ public class ArticleUserController {
 			session.close();
 		}
 
-		return "user/thembaiviet";
+		return "nhahang/thembaiviet";
 	}
 
 	// Xoá bài viết
@@ -141,6 +141,7 @@ public class ArticleUserController {
 	public String deleteBaiviet(ModelMap model, @PathVariable("id") Integer id) {
 		Session session = factory.openSession();
 		BaiViet bv = (BaiViet) session.get(BaiViet.class, id);
+		
 		bv.setTrangthai(3);
 
 		Transaction t = session.beginTransaction();
@@ -156,7 +157,7 @@ public class ArticleUserController {
 		} finally {
 			session.close();
 		}
-		return "redirect:/nguoidung/baiviet/index.html";
+		return "redirect:/nhahang/baiviet/index.html";
 	}
 
 	// Kiểm tra trùng tên bài viết
@@ -224,7 +225,7 @@ public class ArticleUserController {
 		model.addAttribute("loaibv", list);
 		model.addAttribute("bv", baiviet);
 		model.addAttribute("tenbreadcrumb", "SỬA Bài viết");
-		return "user/editbaiviet";
+		return "nhahang/editbaiviet";
 	}
 	
 	// Sửa bài viết
@@ -261,7 +262,7 @@ public class ArticleUserController {
 		if (noidung.length() < 200 || content.length() < 200) {
 			re.addFlashAttribute("message", "Nội dung hoặc content không hợp lệ");
 			System.out.println(content.length());
-			return "redirect:/nguoidung/baiviet/edit/" + id + ".html";
+			return "redirect:/nhahang/baiviet/edit/" + id + ".html";
 		}
 		String hinhanh = bv.getHinh();
 		if (!hinh.isEmpty()) {
@@ -278,7 +279,7 @@ public class ArticleUserController {
 			session.update(bv);
 			t.commit();
 			model.addAttribute("message", "Chỉnh sửa thành công !");
-			return "redirect:/nguoidung/baiviet/index.html";
+			return "redirect:/nhahang/baiviet/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();
@@ -286,6 +287,6 @@ public class ArticleUserController {
 		} finally {
 			session.close();
 		}
-		return "redirect:/nguoidung/baiviet/edit/" + id + ".html";
+		return "redirect:nhahang/baiviet/edit/" + id + ".html";
 	}
 }

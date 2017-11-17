@@ -79,7 +79,7 @@ $(document).ready(function() {
 				notNumber: true,
 				remote : {
 					type : "GET",
-					url : "baiviet/kt-trung-tieude.html",
+					url : "nhahang/baiviet/kt-trung-tieude.html",
 					data: {
 						idbv: function(){
 							var id = $("#idbv").val();
@@ -100,7 +100,7 @@ $(document).ready(function() {
 				checkDau: true,
 				remote : {
 					type : "GET",
-					url : "baiviet/kt-trung-name.html",
+					url : "nhahang/baiviet/kt-trung-name.html",
 					data: {
 						idbv: function(){
 							var id = $("#idbv").val();
@@ -159,7 +159,7 @@ $(document).ready(function() {
 				notNumber: true,
 				remote : {
 					type : "GET",
-					url : "baiviet/kt-trung-tieude.html",
+					url : "nhahang/baiviet/kt-trung-tieude.html",
 					data: {
 						idbv: function(){
 							var id = $("#idbv").val();
@@ -180,7 +180,7 @@ $(document).ready(function() {
 				checkDau: true,
 				remote : {
 					type : "GET",
-					url : "baiviet/kt-trung-name.html",
+					url : "nhahang/baiviet/kt-trung-name.html",
 					data: {
 						idbv: function(){
 							var id = $("#idbv").val();

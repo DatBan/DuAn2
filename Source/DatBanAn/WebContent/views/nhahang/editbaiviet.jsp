@@ -42,19 +42,22 @@
 						});
 						//]]>
 					</script>
-					<form name=thembaiviet id="thembaiviet"
-						action="nguoidung/baiviet/thembaiviet.html" method="post" enctype="multipart/form-data">
-
+					<form name=editbaiviet id="editbaiviet"
+						action="nhahang/baiviet/suabv.html" method="post"
+						enctype="multipart/form-data">
+						<input style="display: none" name="idbv" type="text"
+							value="${bv.id}" id="idbv">
 						<div class="row rthemtrangmoi">
-							<input style="display: none" name="idnd" type="text"
-								value="${sessionScope.id}">
+
 							<div class="form-group fullname-custom">
 								<div class=" col-md-1"></div>
 								<div class="col-md-10">
-									<label class="control-label  labeld" for="td">Tiêu
-										đề:<span style="color: red;">*</span>
+									<label class="control-label  labeld" for="td">Tiêu đề:<span
+										style="color: red;">*</span>
 									</label> <input type="text" name="tieude" id="tieude"
-										placeholder="VD: Tên món ăn hoặc tên nhà hàng" class="form-control">
+										value="${bv.tieude}"
+										placeholder="VD: Tên món ăn hoặc tên nhà hàng"
+										class="form-control">
 								</div>
 							</div>
 						</div>
@@ -65,8 +68,9 @@
 								<div class="col-md-10">
 									<label class="control-label  labeld" for="title">Name:<span
 										style="color: red;">*</span>
-									</label> <input type="text" name="name" id="name"
-										placeholder="Example : Name of food or restaurant" class="form-control">
+									</label> <input type="text" name="name" id="name" value="${bv.name}"
+										placeholder="Example : Name of food or restaurant"
+										class="form-control">
 								</div>
 							</div>
 						</div>
@@ -77,7 +81,7 @@
 								<div class="col-md-10">
 									<label class="control-label  labeld" for="slug">Slug:<span
 										style="color: red;">*</span>
-									</label> <input type="text" name="slug" id="slug"
+									</label> <input type="text" name="slug" id="slug" value="${bv.slug}"
 										placeholder="Slug theo tiêu đề" class="form-control" readonly>
 								</div>
 							</div>
@@ -87,13 +91,20 @@
 								<div class=" col-md-1"></div>
 
 								<div class="col-md-10">
-									<label class="control-label  labeld" for="slug">Loại bài viết:<span
-										style="color: red;">*</span>
-									</label>
-									
-									<select class="from-control" name="idloai" style="margin-left: 10px;">
+									<label class="control-label  labeld" for="slug">Loại
+										bài viết:<span style="color: red;">*</span>
+									</label> <select class="from-control" name="idloai"
+										style="margin-left: 10px;">
 										<c:forEach var="loai" items="${loaibv}">
-											<option value="${loai.id}">${loai.tenloai}</option>
+											<c:choose>
+												<c:when test="${bv.loaibv.id == loai.id}">
+													<option value="${loai.id}" selected>
+														${loai.tenloai}</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${loai.id}">${loai.tenloai}</option>
+												</c:otherwise>
+											</c:choose>
 										</c:forEach>
 									</select>
 								</div>
@@ -103,13 +114,15 @@
 							<div class="form-group fullname-custom">
 								<div class=" col-md-1"></div>
 								<div class="col-md-10">
-									<label class="control-label  labeld " style="float: left;" for="hinh">Chọn
-										ảnh:<span style="color: red;">*</span>
+									<label class="control-label  labeld " style="float: left;"
+										for="hinh">Chọn ảnh:<span style="color: red;">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<input type="file" name="hinh" id="hinh"
-											class="form-control col-md-7 col-xs-12"  style="border: none;"/>
-										<img src="" id="viewhinh" class="img-responsive hinh" />
+											class="form-control col-md-7 col-xs-12" style="border: none;" />
+										<img
+											src="${pageContext.servletContext.contextPath }/upload/baiviet/${bv.hinh}"
+											id="viewhinh" class="img-responsive hinh" />
 									</div>
 								</div>
 							</div>
@@ -122,7 +135,7 @@
 										dung:<span style="color: red;">*</span>
 									</label>
 									<textarea name="area1" id="area1" placeholder=""
-										class="form-control" style="margin: 0px; min-height: 300px;"></textarea>
+										class="form-control" style="margin: 0px; min-height: 300px;">${bv.noidung}</textarea>
 								</div>
 							</div>
 						</div>
@@ -134,7 +147,7 @@
 										style="color: red;">*</span>
 									</label>
 									<textarea name="area2" id="area2" placeholder=""
-										class="form-control" style="margin: 0px; min-height: 300px;"></textarea>
+										class="form-control" style="margin: 0px; min-height: 300px;">${bv.noidung}</textarea>
 								</div>
 							</div>
 						</div>
@@ -144,7 +157,7 @@
 
 								<div class="col-md-10">
 									<label class="control-label  labeld" for="slug">Mô tả:
-									</label> <input type="text" name="mota" id="mota"
+									</label> <input type="text" name="mota" id="mota" value="${bv.mota}"
 										placeholder="Mô tả bài viết" class="form-control">
 								</div>
 							</div>
@@ -156,10 +169,10 @@
 							<div class="col-md-3"></div>
 							<div class="col-md-3">
 								<input class="btn btn-success btn-block" type="submit"
-									value="Thêm mới">
+									value="Sửa bài viết">
 							</div>
 							<div class="col-md-3">
-								<a href="nguoidung/baiviet/index.html" class="btn btn-warning btn-block"
+								<a href="nhahang/baiviet/index.html" class="btn btn-warning btn-block"
 									type="button">Huỷ</a>
 							</div>
 							<div class="col-md-3"></div>

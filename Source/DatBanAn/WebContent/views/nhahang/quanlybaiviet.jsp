@@ -21,7 +21,7 @@
 			<!-- main content -->
 			<div class="main-content">
 				<!------------- Breadcrumb, nut bam cac thu -------------->
-				<jsp:include page="/include-dashboard/header-bv-user.jsp"></jsp:include>
+				<jsp:include page="/include-dashboard/header-bv-nhahang.jsp"></jsp:include>
 
 				<!--------------- Table, form cac thu ---------------->
 				<div class="content-nhe">
@@ -65,16 +65,19 @@
 									<c:if test="${bv.trangthai==0}">
 										<td>Đang chờ duyệt</td>
 									</c:if>
-									<c:if test="${bv.trangthai==2}">
-										<td>Admin đã xoá</td>
+									<c:if test="${bv.trangthai==3}">
+										<td>Bạn đã xoá</td>
+									</c:if>
+									<c:if test="${bv.trangthai==4}">
+										<td>Admin dã xoá</td>
 									</c:if>
 									<td>${nt}</td>
 									<td>${ns}</td>
 
 
-									<td style="text-align: center"> <a href="nguoidung/baiviet/edit/${bv.id}.html"
+									<td style="text-align: center"> <a href="nhahang/baiviet/edit/${bv.id}.html"
 										style="color: green; padding-left: 30px;">Sửa</a> <a
-										href="nguoidung/baiviet/delete/${bv.id}.html"
+										href="nhahang/baiviet/delete/${bv.id}.html"
 										onclick="return confirm ('Bạn có thực sự muốn xoá bài viết này')"
 										style="color: red; padding-left: 30px;">Xoá</a></td>
 								</tr>
