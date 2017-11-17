@@ -76,7 +76,7 @@
 											<td>${dem}</td>
 											<td>${bv.tieude}</td>
 
-											<td>${bv.nguoiviet.hoten}</td>
+											<td>${bv.nguoiviet.hoTen}</td>
 											<td>${bv.loaibv.tenloai}</td>
 											<td><img class="img-responsive"
 												src="upload/baiviet/${bv.hinh}"

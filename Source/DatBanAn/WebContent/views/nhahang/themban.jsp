@@ -66,7 +66,7 @@
 									value="Thêm mới">
 							</div>
 							<div class="col-md-3">
-								<a href="nhahang/khuyenmai/index.html"
+								<a href="nhahang/ban/index.html"
 									class="btn btn-warning btn-block" type="button">Huỷ</a>
 							</div>
 							<div class="col-md-3"></div>

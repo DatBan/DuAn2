@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,12 +19,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dao.NhanDipDao;
 import com.entity.HoaDon;
 import com.entity.KhuyenMai;
 import com.entity.NguoiDung;
@@ -33,6 +36,8 @@ import com.entity.NhaHang;
 @Controller
 @RequestMapping("datban")
 public class OpenTableController {
+	@Autowired
+	private NhanDipDao nhanDipDAO;
 	@Autowired
 	SessionFactory factory;
 	//Tạo form đặt bàn
@@ -64,7 +69,7 @@ public class OpenTableController {
 			@RequestParam("email") String email, 
 			@RequestParam("sdt") String sdt, 
 			@RequestParam("ghichu") String ghichu,
-			@RequestParam(value="check",required=false) boolean check,
+			@RequestParam(value="check",required=false, defaultValue="false") boolean check,
 			HttpSession httpSession) {
 		Session session = factory.openSession();
 		String ho1 = ho.trim();
@@ -75,13 +80,13 @@ public class OpenTableController {
 		String ghichu1 = ghichu.trim();
 		
 		Date date = new Date();
-		
-		SimpleDateFormat   df = new SimpleDateFormat ("dd/MM/yyyy hh:mm:ss");
-		String tgg =ngaythang +" "+ thoigian;
-		System.out.println(tgg);
+		System.out.println(ngaythang);
+		SimpleDateFormat   df = new SimpleDateFormat ("dd/MM/yyyy");
+		/*String tgg =ngaythang;
+		System.out.println(tgg);*/
 		
 		try {
-			 date = df.parse(tgg);
+			 date = df.parse(ngaythang);
 			 System.out.println(date);
 			 /*String da = df.format(date);*/
 			
@@ -94,29 +99,34 @@ public class OpenTableController {
 		
 		NhaHang nhahang = (com.entity.NhaHang) session.get(NhaHang.class, 1);
 		KhuyenMai khuyenmai = (KhuyenMai) session.get(KhuyenMai.class, 1);
-		NguoiDung nguoidung = (NguoiDung) session.get(NguoiDung.class, 1);
+		NguoiDung nguoidung = (NguoiDung) httpSession.getAttribute("nd");
+		
 		Date ngaytao = new Date();
 		Transaction t = session.beginTransaction();
 		
 		
-		HoaDon hoadon = new HoaDon(ho1,ten1, email1, sdt1, nhandip, ghichu1, songuoi, 0, check, date, ngaytao, khuyenmai,
-				nhahang,nguoidung);
+		HoaDon hoadon = new HoaDon(ho1, ten1, email1, sdt1, nhandip, ghichu1, songuoi, 0, check, thoigian, date, new Date(), khuyenmai, nhahang, nguoidung);
+		
 		try {
 			session.save(hoadon);
-			t.commit();
-			
+			t.commit();			
 			httpSession.setAttribute("hoadon",hoadon);
 			httpSession.setAttribute("nhahang",nhahang);
+			
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			t.rollback();
 			re.addFlashAttribute("message", "Đặt chỗ thất bại!");
+			return "redirect:/datban/index/"+1+".html";
 		} finally {
 			session.close();
 		}
 
 		return "redirect:/datban/thongtindatban.html";
 	}
-	
-	
+	@ModelAttribute("list-nhandip")
+	public Map<String, String> getListNhanDip(){
+		return nhanDipDAO.getListNhanDip();
+	}
 }

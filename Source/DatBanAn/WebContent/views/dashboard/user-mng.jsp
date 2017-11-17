@@ -57,7 +57,7 @@
 								        	<c:forEach var="nd" items="${nguoidunglist}" varStatus="status">
 									            <tr>
 									            	<td>${status.index + 1}</td>
-									                <td>${nd.hoten}</td>
+									                <td>${nd.hoTen}</td>
 									                <td>${nd.tendangnhap}</td>
 									                <td>${nd.sdt}</td>
 									                <td>${nd.email}</td>

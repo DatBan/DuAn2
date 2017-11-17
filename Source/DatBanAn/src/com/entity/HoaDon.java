@@ -29,8 +29,9 @@ public class HoaDon {
 	private int songuoi;
 	private int trangthai;
 	private boolean nhanemail;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date thoigian;
+	private String thoigian;
+	@Temporal(TemporalType.DATE)
+	private Date ngaythang;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date ngaytao;
 	@ManyToOne
@@ -51,7 +52,7 @@ public class HoaDon {
 	}
 
 	public HoaDon(String ho,String ten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
-			int trangthai, boolean nhanemail, Date thoigian, Date ngaytao, KhuyenMai khuyenmai, NhaHang nhahang,
+			int trangthai, boolean nhanemail, String thoigian, Date ngaythang, Date ngaytao, KhuyenMai khuyenmai, NhaHang nhahang,
 			NguoiDung nguoiDung) {
 		super();
 		this.ho = ho;
@@ -64,6 +65,7 @@ public class HoaDon {
 		this.trangthai = trangthai;
 		this.nhanemail = nhanemail;
 		this.thoigian = thoigian;
+		this.ngaythang = ngaythang;    
 		this.ngaytao = ngaytao;
 		this.khuyenmai = khuyenmai;
 		this.nhahang = nhahang;
@@ -71,7 +73,7 @@ public class HoaDon {
 	}
 
 	public HoaDon(String ho,String ten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
-			int trangthai, boolean nhanemail, Date thoigian, Date ngaytao, KhuyenMai khuyenmai, NhaHang nhahang) {
+			int trangthai, boolean nhanemail, String thoigian,Date ngaythang, Date ngaytao, KhuyenMai khuyenmai, NhaHang nhahang) {
 		super();
 		this.ho = ho;
 		this.ten = ten;
@@ -83,13 +85,14 @@ public class HoaDon {
 		this.trangthai = trangthai;
 		this.nhanemail = nhanemail;
 		this.thoigian = thoigian;
+		this.ngaythang = ngaythang;   
 		this.ngaytao = ngaytao;
 		this.khuyenmai = khuyenmai;
 		this.nhahang = nhahang;
 	}
 
 	public HoaDon(String ho,String ten, String email, String dienthoai, String nhandip, String ghichu, double tongtien,
-			int songuoi, int trangthai, boolean nhanemail, Date thoigian, Date ngaytao, KhuyenMai khuyenmai,
+			int songuoi, int trangthai, boolean nhanemail, String thoigian,Date ngaythang, Date ngaytao, KhuyenMai khuyenmai,
 			NhaHang nhahang, NguoiDung nguoiDung, BanAn banan) {
 		super();
 		this.ho = ho;
@@ -103,6 +106,7 @@ public class HoaDon {
 		this.trangthai = trangthai;
 		this.nhanemail = nhanemail;
 		this.thoigian = thoigian;
+		this.ngaythang = ngaythang;   
 		this.ngaytao = ngaytao;
 		this.khuyenmai = khuyenmai;
 		this.nhahang = nhahang;
@@ -142,6 +146,9 @@ public class HoaDon {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getHoTen() {
+		return ho +" " + ten;
 	}
 
 	public String getDienthoai() {
@@ -200,11 +207,11 @@ public class HoaDon {
 		this.nhanemail = nhanemail;
 	}
 
-	public Date getThoigian() {
+	public String getThoigian() {
 		return thoigian;
 	}
 
-	public void setThoigian(Date thoigian) {
+	public void setThoigian(String thoigian) {
 		this.thoigian = thoigian;
 	}
 
@@ -246,6 +253,14 @@ public class HoaDon {
 
 	public void setBanan(BanAn banan) {
 		this.banan = banan;
+	}
+
+	public Date getNgaythang() {
+		return ngaythang;
+	}
+
+	public void setNgaythang(Date ngaythang) {
+		this.ngaythang = ngaythang;
 	}
 
 }

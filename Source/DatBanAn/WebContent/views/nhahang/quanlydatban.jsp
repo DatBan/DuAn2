@@ -37,6 +37,7 @@
 								<th>Nhân dịp</th>
 								<th>Số người</th>
 								<th>Thời gian</th>
+								<th>Điện thoại</th>
 								<th>Trạng thái</th>
 								<th>Thao tác</th>
 							</tr>
@@ -46,25 +47,24 @@
 							<c:forEach var="t" items="${hoadon}" varStatus="status">
 								<c:set var="dem" value="${status.index+1}"></c:set>
 								
-								<fmt:formatDate var="tg" value="${t.thoigian}"
-									pattern="dd-MM-yyyy hh:mm:ss" />
+								<fmt:formatDate var="tg" value="${t.ngaythang}"
+									pattern="dd-MM-yyyy" />
 								<tr>
 									<td>${dem}</td>
 									<td>${t.id}</td>
 									<td>${t.nhandip}</td>
 									<td>${t.songuoi}</td>
-
-									<td>${tg}</td>
+									
+									<td> ${tg} ${t.thoigian}</td>
+									<td>${t.dienthoai}</td>
 									<c:if test="${t.trangthai==0}">
-										<td>Chưa duyệt</td>
+										<td style="text-align: center"><a href="nhahang/quanlydatban/duyet.html?idhd=${t.id}" style="color: green; ">Duyệt</a></td>
 									</c:if>
-									<c:if test="${t.trangthai==1}">
-										<td>Đã duyệt</td>
-									</c:if>
+									
 									<td style="text-align: center"><a
-										href="nhahang/khuyenmai/edit/${t.id}.html"
+										href="nhahang/quanlydatban/edit/${t.id}.html"
 										style="color: green; ">Sửa</a> <a
-										href="nhahang/khuyenmai/delete/${monan.id}.html"
+										href="nhahang/quanlydatban/delete/${monan.id}.html"
 										onclick="return confirm ('Bạn có thực sự muốn xoá đơn này')"
 										style="color: red; padding-left: 30px;">Xoá</a></td>
 								</tr>

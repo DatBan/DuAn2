@@ -1,6 +1,7 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,18 +40,20 @@
 							<div class="form-group fullname-custom">
 								<div class=" col-md-1"></div>
 								<div class="col-md-5">
+									<fmt:formatDate var="nbd" value="${khuyenmai.ngaybatdau}" pattern="dd/MM/yyyy"/>
 									<label class="control-label  labeld" for="mota">Chọn ngày
 										bắt đầu: <span style="color: red;">*</span>
 									</label> <input type="text" name="ngaybatdau" id="ngaythang1"
-										value="${khuyenmai.ngaybatdau}" placeholder="Chọn ngày"
+										value="${nbd}" placeholder="Chọn ngày"
 										readonly="readonly"
 										style="cursor: pointer; background-color: #FFFFFF">
 								</div>
 								<div class="col-md-5">
+									<fmt:formatDate var="nkt" value="${khuyenmai.ngayketthuc}" pattern="dd/MM/yyyy"/>
 									<label class="control-label  labeld" for="mota">Ngày
 										kết thúc : <span style="color: red;">*</span>
 									</label> <input type="text" name="ngayketthuc" id="ngaythang2"
-										value="${khuyenmai.ngayketthuc}" placeholder="Chọn ngày"
+										value="${nkt}" placeholder="Chọn ngày"
 										readonly="readonly"
 										style="cursor: pointer; background-color: #FFFFFF">
 								</div>
@@ -157,13 +160,13 @@
 					$("#ngaythang1").datepicker({
 						dateFormat : "dd/mm/yy",
 						gotoCurrent : true,
-						minDate : 0
-					}).datepicker("setDate", new Date());
+						minDate : $("#ngaythang1").val()
+					}).datepicker("setDate", $("#ngaythang1").val());
 					$("#ngaythang2").datepicker({
 						dateFormat : "dd/mm/yy",
 						gotoCurrent : true,
-						minDate : 0
-					}).datepicker("setDate", new Date());
+						minDate : $("#ngaythang1").val()
+					}).datepicker("setDate", $("#ngaythang2").val());
 				});
 			</script>
 		</div>

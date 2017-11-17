@@ -68,7 +68,7 @@ public class ArticleUserController {
 		model.addAttribute("tenbreadcrumb", "THÊM BÀI VIẾT MỚI");
 		return "user/thembaiviet";
 	}
-	// Thêm trang mới
+	// Thêm bài viết
 
 	@Autowired
 	ServletContext context;
@@ -86,7 +86,8 @@ public class ArticleUserController {
 		String td = tieude.trim();
 		String n = name.trim();
 		String sl = slug.trim();
-		NguoiDung nd = (NguoiDung) session.get(NguoiDung.class, 2);
+		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+
 		LoaiBaiViet loaibv = (LoaiBaiViet) session.get(LoaiBaiViet.class, idloai);
 		Date ngaytao = new Date();
 
@@ -113,9 +114,7 @@ public class ArticleUserController {
 		String hinhanh;
 		try {
 			hinh.transferTo(new File(photoPath));
-			hinhanh = hinh.getOriginalFilename();
-
-			
+			hinhanh = hinh.getOriginalFilename();			
 			BaiViet baiviet = new BaiViet(td, n, noidung, content, hinhanh, sl, mota, 0, ngaytao, loaibv, nd);
 			session.save(baiviet);
 			t.commit();
@@ -123,9 +122,10 @@ public class ArticleUserController {
 			return "redirect:/baiviet/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
-			t.rollback();
 			System.out.println(e.toString());
 			model.addAttribute("message", "Thêm bài viết thất bại!");
+			e.printStackTrace();
+			t.rollback();
 		} finally {
 			session.close();
 		}

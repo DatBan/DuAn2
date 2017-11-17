@@ -42,7 +42,7 @@
 											Họ tên <span class="required">*</span>
 										</label>
 										<div class="col-md-7 col-sm-6 col-xs-12">
-											<form:input path="hoten" cssClass="form-control"/>								
+											<form:input path="hoTen" cssClass="form-control"/>								
 										</div>
 									</div>
 									

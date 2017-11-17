@@ -42,7 +42,7 @@
 							<span><b>Họ tên: </b></span>
 						</div>
 						<div class="col-md-5">
-							<span><b>${hoadon.ho} ${hoadon.ten}</b></span>
+							<span>${hoadon.ho} ${hoadon.ten}</span>
 						</div>
 						<div class="col-md-1"></div>
 					</div>
@@ -52,7 +52,7 @@
 							<span><b>Số điện thoại: </b></span>
 						</div>
 						<div class="col-md-5">
-							<span><b>${hoadon.dienthoai}</b></span>
+							<span>${hoadon.dienthoai}</span>
 						</div>
 						<div class="col-md-1"></div>
 					</div>	
@@ -62,7 +62,7 @@
 							<span><b>Email: </b></span>
 						</div>
 						<div class="col-md-5">
-							<span><b>${hoadon.email}</b></span>
+							<span>${hoadon.email}</span>
 						</div>
 						<div class="col-md-1"></div>
 					</div>
@@ -72,17 +72,17 @@
 							<span><b>Nhân dịp: </b></span>
 						</div>
 						<div class="col-md-5">
-							<span><b>${hoadon.nhandip}</b></span>
+							<span>${hoadon.nhandip}</span>
 						</div>
 						<div class="col-md-1"></div>
 					</div>
 					<div class="row rdbho">
 						<div class="col-md-1"></div>
 						<div class="col-md-5">
-							<span><b>Số người: </b></span>
+							<span>Số người: </span>
 						</div>
 						<div class="col-md-5">
-							<span><b>${hoadon.songuoi}</b></span>
+							<span>${hoadon.songuoi}</span>
 						</div>
 						<div class="col-md-1"></div>
 					</div>
@@ -92,9 +92,20 @@
 							<span><b>Đặt ngày: </b></span>
 						</div>
 						<div class="col-md-5">
-							<fmt:formatDate var="thoigian" value="${hoadon.thoigian}"
+							<fmt:formatDate var="ngaythang" value="${hoadon.ngaythang}"
 									pattern="dd-MM-yyyy" />
-							<span><b>${thoigian}</b></span>
+							<span>${ngaythang}</span>
+						</div>
+						<div class="col-md-1"></div>
+					</div>
+					<div class="row rdbho">
+						<div class="col-md-1"></div>
+						<div class="col-md-5">							
+							<span><b>Thời gian: </b></span>
+						</div>
+						<div class="col-md-5">
+							
+							<span>${hoadon.thoigian}</span>
 						</div>
 						<div class="col-md-1"></div>
 					</div>
@@ -104,7 +115,7 @@
 							<span><b>Mọi thông tin xin liên hệ nhà hàng qua số điện thoại: </b></span>
 						</div>
 						<div class="col-md-5">
-							<span style="color: red"><b>${nhahang.sdt}</b></span>
+							<span style="color: red">${nhahang.sdt}</span>
 						</div>
 						<div class="col-md-1"></div>
 					</div>

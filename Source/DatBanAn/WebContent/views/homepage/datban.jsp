@@ -32,7 +32,7 @@
 				</div>
 				<div class="row formdatban col-md-11">
 					<form name="datban" id="datban" action="datban/xacnhandatban.html"
-						method="post" class="form-inline">
+						method="post" class="">
 						<input style="display: none" name="idnhahang" type="text"
 							value="${nhahang.id}"> <input style="display: none"
 							name="idnguoidung" type="text" value="${sessionScope.id}">
@@ -52,35 +52,35 @@
 						<div class="row rdbho">
 							<div class="col-md-1"></div>
 							<div class="col-md-5">
-								<input type="text" name="ho" placeholder="Họ"  />
+								<input class="form-control" type="text" name="ho" placeholder="Họ"  />
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="ten" placeholder="Tên"/>
+								<input class="form-control" type="text" name="ten" placeholder="Tên"/>
 							</div>
 							<div class="col-md-1"></div>
 						</div>
 						<div class="row rdbho">
 							<div class="col-md-1"></div>
 							<div class="col-md-5">
-								<input type="text" name="ngaythang" id="ngaythang1"
+								<input class="form-control" type="text" name="ngaythang" id="ngaythang1"
 									placeholder="Chọn ngày" readonly="readonly"
 									style="cursor: pointer;  background-color: #FFFFFF">
 							</div>
 							<div class="col-md-5">
-								<input type="time" class="timepicker chontg" id="thoigian">
+								<input class="form-control" type="time" class="timepicker chontg" id="thoigian">
 							</div>
 							<div class="col-md-1"></div>
 						</div>
 						<div class="row rdbho">
 							<div class="col-md-1"></div>
 							<div class="col-md-5">
-								<select name="songuoi" class="optionheight so-nguoi">
+								<select  name="songuoi" class="optionheight so-nguoi form-control">
 									<!-- <option value="1">1 người</option>
 									<option value="2">2 người</option> -->
 								</select>
 							</div>
 							<div class="col-md-5">
-								<select name="nhandip" class="optionheight nhan-dip">
+								<select name="nhandip" class="optionheight nhan-dip form-control">
 									<option value="Kỷ niệm">Kỷ niệm</option>
 									<option value="Sinh Nhật">Sinh Nhật</option>
 									<option value="Khác">Khác</option>
@@ -91,17 +91,17 @@
 						<div class="row rdbho">
 							<div class="col-md-1"></div>
 							<div class="col-md-5">
-								<input type="text" name="sdt" placeholder="Số điện thoại" value="${nguoidung.sdt}"/>
+								<input class="form-control" type="text" name="sdt" placeholder="Số điện thoại" value="${nguoidung.sdt}"/>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="email" placeholder="Email" value="${nguoidung.email}"/>
+								<input class="form-control" type="text" name="email" placeholder="Email" value="${nguoidung.email}"/>
 							</div>
 							<div class="col-md-1"></div>
 						</div>
 						<div class="row rdbho">
 							<div class="col-md-1"></div>
 							<div class="col-md-10">
-								<textarea name="ghichu" id="ghichu" placeholder="Ghi chú"
+								<textarea  name="ghichu" id="ghichu" placeholder="Ghi chú"
 									class="form-control"
 									style="min-height: 120px; max-height: 120px; min-width: 91%; max-width: 91%;"></textarea>
 							</div>
@@ -194,7 +194,7 @@
 				'placeholder' : 'halo halo'
 			});
 			
-			$("#thoigian-qcTimepicker").attr({"class": "chontg", "name": "thoigian"});
+			$("#thoigian-qcTimepicker").attr({"class": "chontg form-control", "name": "thoigian"});
 			$("#ngaythang1").datepicker({
 				dateFormat : "dd/mm/yy",
 				gotoCurrent : true,
