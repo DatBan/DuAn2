@@ -140,7 +140,7 @@ $("#suatienich").validate({
 				checkDau:true
 			},
 			hinh:{
-				required: true,
+				
 				extension: "jpg|png|gif|jpeg",
 				filesize: 2097152
 			}

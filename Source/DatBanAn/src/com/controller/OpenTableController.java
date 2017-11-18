@@ -29,6 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.dao.NhanDipDao;
 import com.entity.HoaDon;
 import com.entity.KhuyenMai;
+import com.entity.MonAn;
 import com.entity.NguoiDung;
 import com.entity.NhaHang;
 
@@ -73,8 +74,7 @@ public class OpenTableController {
 			HttpSession httpSession) {
 		Session session = factory.openSession();
 		String ho1 = ho.trim();
-		String ten1 = ten.trim();
-		
+		String ten1 = ten.trim();		
 		String email1 = email.trim();
 		String sdt1 = sdt.trim();
 		String ghichu1 = ghichu.trim();
@@ -97,7 +97,7 @@ public class OpenTableController {
 		}		
 		
 		
-		NhaHang nhahang = (com.entity.NhaHang) session.get(NhaHang.class, 1);
+		NhaHang nhahang = (com.entity.NhaHang) session.get(NhaHang.class, idnhahang);
 		KhuyenMai khuyenmai = (KhuyenMai) session.get(KhuyenMai.class, 1);
 		NguoiDung nguoidung = (NguoiDung) httpSession.getAttribute("nd");
 		
@@ -118,7 +118,7 @@ public class OpenTableController {
 			e.printStackTrace();
 			t.rollback();
 			re.addFlashAttribute("message", "Đặt chỗ thất bại!");
-			return "redirect:/datban/index/"+1+".html";
+			return "redirect:/datban/index/"+idnhahang+".html";
 		} finally {
 			session.close();
 		}
@@ -129,4 +129,29 @@ public class OpenTableController {
 	public Map<String, String> getListNhanDip(){
 		return nhanDipDAO.getListNhanDip();
 	}
+	//Thông tin
+	@RequestMapping(value = "thongtin")
+	public String thongtin(ModelMap model) {
+		
+		return "user/thongtin";
+	}
+	//Thông tin ban an
+		@RequestMapping(value = "thongtinbanan")
+		public String thongtinbanan(ModelMap model,
+				@RequestParam("email") String email,
+				@RequestParam("idhoadon") int idhoadon) {
+			Session session = factory.getCurrentSession();
+			
+			HoaDon hd = (HoaDon) session.get(HoaDon.class, idhoadon);
+			NhaHang nhahang = hd.getNhahang();
+			int idnhahang = nhahang.getId();
+			String hql = "FROM MonAn where idnhahang =:idnhahang";
+			Query query = session.createQuery(hql);			
+			query.setParameter("idnhahang", idnhahang);
+			@SuppressWarnings("unchecked")
+			List<MonAn> list = query.list();
+			model.addAttribute("monan", list);
+			model.addAttribute("hoadon", hd);
+			return "user/thongtinbanan";
+		}
 }

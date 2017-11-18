@@ -21,7 +21,7 @@
 			<!-- main content -->
 			<div class="main-content">
 				<!------------- Breadcrumb, nut bam cac thu -------------->
-				<jsp:include page="/include-dashboard/header-hoadon-new.jsp"></jsp:include>
+				<jsp:include page="/include-dashboard/header-hoadon.jsp"></jsp:include>
 
 				<!--------------- Table, form cac thu ---------------->
 				<div class="content-nhe">
@@ -31,12 +31,11 @@
 						<thead>
 							<tr>
 								<th>STT</th>
-								
 								<th>Họ tên</th>
-								<th>Nhân dịp</th>
-								<th>Số người</th>
+								<th>Bàn số</th>
+								
 								<th>Thời gian</th>
-								<th>Điện thoại</th>
+								
 								<th>Trạng thái</th>
 								<th>Thao tác</th>
 							</tr>
@@ -50,21 +49,25 @@
 									pattern="dd-MM-yyyy" />
 								<tr>
 									<td>${dem}</td>
-									
 									<td>${t.ho} ${t.ten}</td>
-									<td>${t.nhandip}</td>
-									<td>${t.songuoi}</td>
+									<c:if test="${t.banan.soban!=null}">
 									
-									<td> ${tg} ${t.thoigian}</td>
-									<td>${t.dienthoai}</td>
-									<c:if test="${t.trangthai==0}">
-										<td style="text-align: center"><a href="nhahang/quanlydatban/duyet.html?idhd=${t.id}" style="color: green; ">Duyệt</a></td>
+									<td>${t.banan.soban}</td>
+									</c:if>
+									<c:if test="${t.banan.soban==null}">
+									<td><a href="nhahang/hoadon/chonban.html?idhd=${t.id}" style="color: green; ">Chọn bàn</a></td>
+									</c:if>
+									<td>${t.thoigian}</td>
+									
+									<c:if test="${t.trangthai==2}">
+										<td style="text-align: center"><a href="nhahang/quanlydatban/duyet2.html?idhd=${t.id}" onclick="return confirm ('Khách hàng đã nhận bàn?')" style="color: green; ">Thanh toán</a></td>
 									</c:if>
 									
+									
 									<td style="text-align: center"><a
-										href="nhahang/quanlydatban/edit/${t.id}.html"
+										href="nhahang/hoadon/edit/${t.id}.html"
 										style="color: green; ">Sửa</a> <a
-										href="nhahang/quanlydatban/delete/${t.id}.html"
+										href="nhahang/hoadon/delete/${t.id}.html"
 										onclick="return confirm ('Bạn có thực sự muốn xoá đơn này')"
 										style="color: red; padding-left: 30px;">Xoá</a></td>
 								</tr>

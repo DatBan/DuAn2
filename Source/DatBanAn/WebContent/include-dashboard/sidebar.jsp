@@ -51,8 +51,17 @@
 					<li><a href="nhahang/monan/index.html"><i class="fa fa-circle-o"></i> Quản lý món ăn</a></li>
 					<li><a href="nhahang/tienich/index.html"><i class="fa fa-circle-o"></i> Quản lý tiện ích</a></li>
 					<li><a href="nhahang/khuyenmai/index.html"><i class="fa fa-circle-o"></i> Quản lý khuyến mãi</a></li>
-					<li><a href="nhahang/quanlydatban/index.html"><i class="fa fa-circle-o"></i> Quản lý đặt bàn</a></li>
 					<li><a href="nhahang/ban/index.html"><i class="fa fa-circle-o"></i> Quản lý bàn ăn</a></li>
+				</ul>
+			</li>
+			<li class="child-menu">
+				<a href="#ss6" data-toggle="collapse" aria-expanded="false">
+						<i class="glyphicon glyphicon-home"></i> Quản lý đặt bàn
+				</a>
+				<ul class="collapse list-unstyled" id="ss6">					
+					<li><a href="nhahang/quanlydatban/index.html"><i class="fa fa-circle-o"></i> Đơn đặt bàn mới</a></li>
+					<li><a href="nhahang/quanlydatban/index1.html"><i class="fa fa-circle-o"></i> Đơn đã xác nhận</a></li>
+					<li><a href="nhahang/hoadon/index.html"><i class="fa fa-circle-o"></i> Quản lý hoá đơn</a></li>
 				</ul>
 			</li>
 			<li class="child-menu">

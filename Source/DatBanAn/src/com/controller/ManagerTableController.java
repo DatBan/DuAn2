@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.entity.BanAn;
 import com.entity.KhuyenMai;
+import com.entity.NguoiDung;
 import com.entity.NhaHang;
 
 @Transactional
@@ -38,10 +39,14 @@ public class ManagerTableController {
 
 	// Đổ dữ liệu ra trang quản lý
 	@RequestMapping(value = "index")
-	public String quanLyBan(ModelMap model) {
+	public String quanLyBan(ModelMap model,HttpSession httpSession) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM BanAn";
+		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+		NhaHang nhahang = nd.getNhahang();
+		int id = nhahang.getId();
+		String hql = "FROM BanAn where idnhahang =:idnhahang";
 		Query query = session.createQuery(hql);
+		query.setParameter("idnhahang", id);
 		@SuppressWarnings("unchecked")
 		List<BanAn> list = query.list();
 		model.addAttribute("ban", list);
@@ -55,7 +60,7 @@ public class ManagerTableController {
 		model.addAttribute("tenbreadcrumb", "THÊM BÀN");
 		return "nhahang/themban";
 	}
-	// Thêm khuyến mãi
+	// Thêm bàn
 
 	@Autowired
 	ServletContext context;
@@ -64,7 +69,8 @@ public class ManagerTableController {
 	public String themBan(ModelMap model, @RequestParam("soban") int soban, @RequestParam("songuoi") int songuoi,
 			HttpSession httpSession) {
 		Session session = factory.openSession();
-		NhaHang nhahang = (NhaHang) session.get(NhaHang.class, 1);
+		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+		NhaHang nhahang = nd.getNhahang();
 		Transaction t = session.beginTransaction();
 
 		try {
@@ -122,7 +128,7 @@ public class ManagerTableController {
 	// Kiểm tra trùng số bàn
 	@RequestMapping(value = "kt-trung-soban", method = RequestMethod.GET)
 	public @ResponseBody String ktTrungChude(@RequestParam("soban") int soban, @RequestParam("idban") int id,
-			HttpServletResponse response, HttpServletRequest request) {
+			HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (Exception e) {
@@ -130,10 +136,13 @@ public class ManagerTableController {
 		}
 		response.setCharacterEncoding("UTF-8");
 		Session session = factory.getCurrentSession();
-
-		String hql = "FROM BanAn where soban =:soban";
+		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+		NhaHang nhahang = nd.getNhahang();
+		int idnhahang = nhahang.getId();
+		String hql = "FROM BanAn where soban =:soban and idnhahang =:idnhahang";
 		Query query = session.createQuery(hql);
 		query.setParameter("soban", soban);
+		query.setParameter("idnhahang", idnhahang);
 		BanAn sb = (BanAn) query.uniqueResult();
 		if (sb != null) {
 			if (sb.getId() == id) {

@@ -79,7 +79,7 @@
 					<div class="row rdbho">
 						<div class="col-md-1"></div>
 						<div class="col-md-5">
-							<span>Số người: </span>
+							<span><b>Số người:</b> </span>
 						</div>
 						<div class="col-md-5">
 							<span>${hoadon.songuoi}</span>

@@ -33,20 +33,20 @@
 					<form name="themkhuyenmai" id="themkhuyenmai"
 						action="nhahang/khuyenmai/themkhuyenmai.html" method="post"
 						enctype="multipart/form-data">
-						<div class="row rthemtrangmoi text-center">
+						<div class="row rthemtrangmoi ">
 							<div class="form-group fullname-custom">
 								<div class=" col-md-1"></div>
 								<div class="col-md-5">
 									<label class="control-label  labeld" for="mota">Ngày
 										bắt đầu: <span style="color: red;">*</span>
-									</label> <input type="text" name="ngaybatdau" id="ngaythang1"
+									</label> <input class="form-control" type="text" name="ngaybatdau" id="ngaythang1"
 										placeholder="Chọn ngày" readonly="readonly"
 										style="cursor: pointer; background-color: #FFFFFF">
 								</div>
 								<div class="col-md-5">
 									<label class="control-label  labeld" for="mota">Ngày
 										kết thúc : <span style="color: red;">*</span>
-									</label> <input type="text" name="ngayketthuc" id="ngaythang2"
+									</label> <input class="form-control" type="text" name="ngayketthuc" id="ngaythang2"
 										placeholder="Chọn ngày" readonly="readonly"
 										style="cursor: pointer; background-color: #FFFFFF">
 								</div>

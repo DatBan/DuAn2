@@ -32,7 +32,7 @@
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab" href="#home">Thông
 								tin</a></li>
-						<!-- <li><a data-toggle="tab" href="#menu1">Bàn</a></li> -->
+						<li><a data-toggle="tab" href="#menu1">Bàn</a></li>
 						<!-- <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
 						<li><a data-toggle="tab" href="#menu3">Menu 3</a></li> -->
 					</ul>
@@ -40,7 +40,7 @@
 						<div id="home" class="tab-pane fade in active">
 
 							<form name="datban" id="datban"
-								action="nhahang/quanlydatban/suadondatban.html" method="post"
+								action="nhahang/quanlydatban/suadondatban1.html" method="post"
 								enctype="multipart/form-data">
 								
 								<div class="row rthemtrangmoi">
@@ -158,7 +158,19 @@
 
 							</form>
 						</div>
-						
+						<div id="menu1" class="tab-pane fade">
+							
+							<div class="row ds-banan">
+								<div class="col-md-2 border text-center hienthiban">
+									<a href="nhahang/quanlydatban/duyet1.html?idhd=${hoadon.id}"><div
+											class="soban">${hoadon.banan.soban}</div></a>
+									<div class="trangthai">${hoadon.thoigian}</div>
+									<div class="songuoi">${hoadon.banan.songuoi}</div>
+								</div>
+								<div class="col-md-1"></div>
+							</div>
+							
+						</div>
 					</div>
 					<div class="line"></div>
 				</div>

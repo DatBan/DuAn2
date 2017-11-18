@@ -7,7 +7,7 @@
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#"><b>Thông tin bàn ăn</b></a></li>
+					<li class="active"><a href="datban/thongtin.html"><b>Thông tin bàn ăn</b></a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><p class="navbar-text">
