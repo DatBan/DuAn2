@@ -6,10 +6,26 @@
   </style>
 <div class="row timkiemnhc timkiemctnh">
 	<form class="form-inline" action="tim-kiem.html" method="get">
-		<div class="input-group">
-			<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span> 
-			<input type="text" class="form-control" id="keyword" placeholder="Tên nhà hàng, món ăn, địa điểm">
-		</div>
+		<div class="form-group">
+			<!-- <div class="typeahead__container">
+		        <div class="typeahead__field">
+		 
+		            <span class="typeahead__query"> -->
+		            <div class="input-group">
+		            	<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+		                <input class="form-control js-typeahead" id="keyword" name="q" type="search" value="${q}" placeholder="Tên quán ăn hoặc món ăn" autocomplete="off">
+								
+					</div>
+		           <!--  </span>
+		            <span class="typeahead__button">
+		                <button type="submit">
+		                    <span class="typeahead__search-icon"></span>
+		                </button>
+		            </span>
+		 
+		        </div>
+		    </div> -->
+	    </div>
 		<div class="form-group">
 			<input type="text" class="form-control" id="ngaythang1" name="ohlala" placeholder="Chọn ngày tháng" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF">
 		</div>
@@ -58,9 +74,9 @@
 		});
 	/* }); */
 </script>
-<script>
+<!-- <script>
 $(document).ready(function(){
-$( function() {
+  /* $( function() {
     var projects = [
       {
         value: "jquery",
@@ -97,7 +113,7 @@ $( function() {
       },
       
       {
-        value: "jquery-ui",
+        value: "https://www.google.com",
         label: "jQuery UI",
         desc: "the official user interface library for jQuery",
         icon: "jqueryui_32x32.png"
@@ -131,8 +147,8 @@ $( function() {
     		},
             success: function( data ) {
             	$("#keyword").css("background","white");
-            	console.log(data);
               response( $.map(data, function (item) {
+            	  console.log(data.length + " hi");
             	  console.log(item.id);
                   return {
                       label: item.tennhahang,
@@ -145,6 +161,10 @@ $( function() {
         	  console.log(error);
           }
         });
+      }, 
+      open: function(event, ui) {
+    	  alert('a aa a a a');
+          $('.ui-autocomplete').append('<li><a href="javascript:alert(\'redirecting...\')">See All Result</a></li>'); //See all results
       },
       focus: function( event, ui ) {
         $( "#keyword" ).val( ui.item.label );
@@ -152,20 +172,19 @@ $( function() {
       },
       select: function( event, ui ) {
         $( "#keyword" ).val( ui.item.label );
-        /* $( "#project-id" ).val( ui.item.value );
+         $( "#project-id" ).val( ui.item.value );
         $( "#project-description" ).html( ui.item.desc );
-        $( "#project-icon" ).attr( "src", "images/" + ui.item.icon ); */
+        $( "#project-icon" ).attr( "src", "images/" + ui.item.icon );
  
-        return false;
+          return false;
       }
-    })
-    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
       return $( "<li>" )
         .append( "<div>" + item.label + "<br>" + item.desc + "</div>" )
         .appendTo( ul );
-    };
-  } );
+    }; 
+  }); */
 
 
 });
-  </script>
+  </script> -->

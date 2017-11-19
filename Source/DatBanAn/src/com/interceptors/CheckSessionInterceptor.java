@@ -33,7 +33,6 @@ public class CheckSessionInterceptor extends HandlerInterceptorAdapter {
 					if(!c.getValue().equals("")){
 						httpSession.setAttribute("nd", nguoidungDAO.getByUsername(c.getValue()));
 					}
-					System.out.println(c.getName() + " " + c.getValue() + " " + c.getMaxAge());
 				}else if(c.getName().equals("ckfb") && httpSession.getAttribute("nd") == null){
 					if(!c.getValue().equals("")) {
 						httpSession.setAttribute("nd", nguoidungDAO.getByIdFacebook(c.getValue()));
@@ -43,9 +42,6 @@ public class CheckSessionInterceptor extends HandlerInterceptorAdapter {
 						httpSession.setAttribute("nd", nguoidungDAO.getByIdGoogle(c.getValue()));
 					}
 				}
-				System.out.println(c.getName() + " " + c.getValue() + " " + c.getMaxAge());
-				System.out.println("Gan session");
-				System.out.println("co cookie");
 			}
 		}
 		return true;

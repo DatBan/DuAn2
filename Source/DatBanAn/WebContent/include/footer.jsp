@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <div class="container footer">
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<div class="row logoft"><img src="images/logo.png"/></div>
 			<div class="row sdtft  "><P style="margin-left: 21px;"><b>HotLine:<span>1900 1009 </span> </b></p></div>
 			
@@ -24,7 +24,7 @@
 				<span ><b>@2017 G7 Booking - Đặt chỗ & Ưu đãi - A Foody  Corporation </b></span>
 			</div>
 		</div>
-		<div class="col-md-4 text-center">
+		<div class="col-md-3 text-center">
 			<div class="row ketnoict">
 				<span class="ketnoi"><b>Kết nối với chúng tôi</b></span>
 			</div>

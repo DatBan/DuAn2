@@ -27,9 +27,6 @@ body{
      color: #e54d3f; 
      background-color: white; 
 }
-a:focus, a:hover {
-    
-}
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
     color: black;
@@ -164,9 +161,7 @@ div.menu-top ul.navbar-right>li{
 	position: relative;
 	margin-top:10px;
 	background-color:#fff;
-	height: 140px;
-	
-	
+	/* height: 140px; */	
 }
 .dbmp{
 	font-size:25px;
@@ -175,7 +170,7 @@ div.menu-top ul.navbar-right>li{
 	
 }
 .timkiemnhc{
-	margin-top: 20px;
+	/* margin-top: 20px; */
 	text-align: center;
 }
 .otimk{
@@ -263,7 +258,8 @@ div.menu-top ul.navbar-right>li{
 	line-height: 2;
 }
 .hinhgiamgia{
-	padding-left:9px;
+	width: 100%;
+    padding: 9px;
 }
 .tennhgiamgia{
 	color:#e33e20;
@@ -565,7 +561,7 @@ a:hover{
 	padding-top: 22px;
 }
 .timkiemctnh{
-	margin-top: 52px;
+	padding: 45px;
 }
 .rregisters{
         margin-top: 25px;

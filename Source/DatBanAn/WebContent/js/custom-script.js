@@ -213,7 +213,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$(function() {
+	/*$(function() {
 		//Jquery barating
 	      $('#do-an, #gia-ca, #phuc-vu, #khong-gian').barrating('show',{
 	        theme: 'fontawesome-stars-o',
@@ -231,7 +231,7 @@ $(document).ready(function() {
 	  	        }
 	  	      }
 	      });
-	   });
+	   });*/
 	
 	//Check validate dang nhap
 	$("#danh-gia").validate({
@@ -391,7 +391,7 @@ $(document).ready(function() {
 								data: {trang: sotrang, 'idmoi[]': cmt_moi, sapxep: sapxep},
 								dataType: "json",
 								success: function(result){
-									console.log(result);
+									/*console.log(result);*/
 									setTimeout(function(){
 										if(result.rong == 'dung' || result.trave == ""){
 											$("#xem-them-dg").css("display", "none");
