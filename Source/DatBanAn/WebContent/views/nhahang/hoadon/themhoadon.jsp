@@ -40,25 +40,34 @@
 						<div id="home" class="tab-pane fade in active">
 
 							<form name="datban" id="datban"
-								action="nhahang/quanlydatban/suadondatban.html" method="post"
+								action="nhahang/quanlydatban/suadondatban1.html" method="post"
 								enctype="multipart/form-data">
-								
+
 								<div class="row rthemtrangmoi">
 
 									<div class="form-group fullname-custom">
-										<div class=" col-md-1"></div>
-										<div class="col-md-5">
-											<label class="control-label  labeld" for="td">Mã hoá
-												đơn :<span style="color: red;"></span>
-											</label> <input type="text" name="idhoadon" id="idhoadon" value="${hoadon.id}"
-												placeholder="VD: 1" class="form-control" readonly="readonly">
+										<div class=" col-md-3"></div>
+										<div class="col-md-6">
+											<label class="control-label  labeld" for="td">Thời
+												gian :<span style="color: red;">*</span>
+											</label> <input value="" class="form-control" type="time"
+												class="timepicker chontg" id="thoigian">
 										</div>
-										<div class="col-md-5">
+										
+
+									</div>
+								</div>
+								<div class="row rthemtrangmoi">
+
+									<div class="form-group fullname-custom">
+										<div class=" col-md-3"></div>
+										
+										<div class="col-md-6">
 											<label class="control-label  labeld" for="td">Số
 												người :<span style="color: red;">*</span>
-											</label> <select name="songuoi"  
-												class="optionheight so-nguoi form-control">	
-												<option value="${hoadon.songuoi}" selected="selected">${hoadon.songuoi}</option>											
+											</label> <select name="songuoi"
+												class="optionheight so-nguoi form-control">
+
 											</select>
 										</div>
 
@@ -67,86 +76,28 @@
 								<div class="row rthemtrangmoi">
 
 									<div class="form-group fullname-custom">
-										<div class=" col-md-1"></div>
-										<div class="col-md-5">
-
-											<fmt:formatDate var="nt" value="${hoadon.ngaythang}"
-												pattern="dd/MM/yyyy" />
-											<label class="control-label  labeld" for="mota">Ngày
-												tháng: <span style="color: red;">*</span>
-											</label> <input class="form-control" type="text" name="ngaythang"
-												id="ngaythang1" value="${nt}" placeholder="Chọn ngày"
-												readonly="readonly"
-												style="cursor: pointer; background-color: #FFFFFF">
-										</div>
-										<div class="col-md-5">
-											<label class="control-label  labeld" for="td">Thời
-												gian :<span style="color: red;">*</span>
-											</label> <input value="${hoadon.thoigian}" class="form-control" type="time"
-												class="timepicker chontg" id="thoigian" >
+										<div class=" col-md-3"></div>
+										
+										<div class="col-md-6">
+											<a href="" type="button" class="btn btn-default" style="width:100%">Chọn bàn</a>
 										</div>
 
 									</div>
 								</div>
-								<div class="row rthemtrangmoi">
 
-									<div class="form-group fullname-custom">
-										<div class=" col-md-1"></div>
-										<div class="col-md-5">
-											<label class="control-label  labeld" for="td">Họ :<span
-												style="color: red;">*</span>
-											</label> <input type="text" name="ho" id="ho" value="${hoadon.ho}"
-												placeholder="" class="form-control">
-										</div>
-										<div class="col-md-5">
-											<label class="control-label  labeld" for="td">Tên :<span
-												style="color: red;">*</span>
-											</label> <input type="text" name="ten" id="ten" value="${hoadon.ten}"
-												placeholder="" class="form-control">
-										</div>
-									</div>
-								</div>
-								<div class="row rthemtrangmoi">
-
-									<div class="form-group fullname-custom">
-										<div class=" col-md-1"></div>
-										<div class="col-md-5">
-											<label class="control-label  labeld" for="td">Email :<span
-												style="color: red;">*</span>
-											</label> <input type="text" name="email" id="email" value="${hoadon.email}"
-												placeholder="" class="form-control">
-										</div>
-										<div class="col-md-5">
-											<label class="control-label  labeld" for="td">Số điện
-												thoại :<span style="color: red;">*</span>
-											</label> <input type="text" name="sdt" id="sdt" value="${hoadon.dienthoai}"
-												placeholder="" class="form-control">
-										</div>
-									</div>
-								</div>
+							
+								
+								
 
 
 
 
-
-								<div class="row rdbho">
-									<div class="col-md-1"></div>
-									<div class="col-md-10">
-										<label class="control-label  labeld" for="td">Chi chú
-											:<span style="color: red;"></span>
-										</label>
-										<textarea name="ghichu" id="ghichu" placeholder="Ghi chú"
-											class="form-control"
-											style="min-height: 120px; max-height: 120px; min-width: 100%; max-width: 100%;">${hoadon.ghichu}</textarea>
-									</div>
-
-									<div class="col-md-1"></div>
-								</div>
+								
 								<div class="row rthemtrangmoi">
 									<div class="col-md-3"></div>
 									<div class="col-md-3">
 										<input class="btn btn-success btn-block" type="submit"
-											value="Sửa">
+											value="Thêm hoá đơn">
 									</div>
 									<div class="col-md-3">
 										<a href="nhahang/khuyenmai/index.html"
@@ -158,7 +109,16 @@
 
 							</form>
 						</div>
-						
+						<!-- <div id="menu1" class="tab-pane fade">
+
+							<div class="row ds-banan">
+								<div class="col-md-2 border text-center hienthiban">
+									<a href="">Chọn bàn</a>
+								</div>
+								<div class="col-md-1"></div>
+							</div>
+
+						</div> -->
 					</div>
 					<div class="line"></div>
 				</div>
@@ -176,7 +136,7 @@
 						opt.value = i;
 						$('.so-nguoi').append(opt);
 					}
-					
+
 				});
 				$(function() {
 					$('#thoigian').qcTimepicker({
@@ -194,7 +154,7 @@
 					$("#ngaythang1").datepicker({
 						dateFormat : "dd/mm/yy",
 						gotoCurrent : true,
-						minDate :$("#ngaythang1").val()
+						minDate : $("#ngaythang1").val()
 					}).datepicker("setDate", $("#ngaythang1").val());
 				});
 				/* }); */

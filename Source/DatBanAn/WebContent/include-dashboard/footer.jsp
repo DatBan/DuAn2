@@ -17,6 +17,7 @@
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>
 <!-- File jquery kiem tra loi -->
+<script src="js/qcTimepicker.js"></script>
 <script src="js/jquery.validate.js"></script>
 <script src="js/additional-methods.min.js"></script>
 
@@ -60,3 +61,4 @@
 <script src="js/ScriptAmThuc.js"></script>
 <script src="js/ScriptKhuyenMai.js"></script>
 <script src="js/ScriptBan.js"></script>
+<script src="js/ScriptDatBan.js"></script>

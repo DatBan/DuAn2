@@ -21,7 +21,7 @@
 			<!-- main content -->
 			<div class="main-content">
 				<!------------- Breadcrumb, nut bam cac thu -------------->
-				<jsp:include page="/include-dashboard/header-bv.jsp"></jsp:include>
+				<jsp:include page="/include-dashboard/header-bv-admin.jsp"></jsp:include>
 
 				<!--------------- Table, form cac thu ---------------->
 				<div class="content-nhe">
@@ -56,7 +56,6 @@
 										<th>Hình</th>
 										<th>Trạng thái</th>
 										<th>Ngày tạo</th>
-										<th>Ngày sửa</th>
 										<th>Thao tác</th>
 
 									</tr>
@@ -86,15 +85,18 @@
 											</c:if>
 											<c:if test="${bv.trangthai==0}">
 												<td><a href="Dashboard/BaiViet/duyet/${bv.id}.html"
-													style="color: Green;" onclick="return confirm ('Bạn có thực sự muốn duyệt bài viết này')">Duyệt</a></td>
+													style="color: Green;"
+													onclick="return confirm ('Bạn có thực sự muốn duyệt bài viết này')">Duyệt</a></td>
 											</c:if>
 											<td>${nt}</td>
-											<td>${ns}</td>
+
 
 
 											<td style="text-align: center"><a
 												href="Dashboard/BaiViet/xem/${bv.id}.html"
-												style="color: green; padding-left: 30px;" target="_blank">Xem</a> <a
+												style="color: green; " target="_blank">Xem</a><a
+												href="Dashboard/BaiViet/edit/${bv.id}.html"
+												style="color: green; padding-left: 30px;">Sửa</a> <a
 												href="Dashboard/BaiViet/deletee/${bv.id}.html"
 												onclick="return confirm ('Bạn có thực sự muốn xoá bài viết này')"
 												style="color: red; padding-left: 30px;">Xoá</a></td>

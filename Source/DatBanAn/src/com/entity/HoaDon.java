@@ -50,6 +50,13 @@ public class HoaDon {
 	public HoaDon() {
 		super();
 	}
+	
+	public HoaDon(int trangthai, Date ngaytao, NhaHang nhahang) {
+		super();
+		this.trangthai = trangthai;
+		this.ngaytao = ngaytao;
+		this.nhahang = nhahang;
+	}
 
 	public HoaDon(String ho,String ten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
 			int trangthai, boolean nhanemail, String thoigian, Date ngaythang, Date ngaytao, KhuyenMai khuyenmai, NhaHang nhahang,

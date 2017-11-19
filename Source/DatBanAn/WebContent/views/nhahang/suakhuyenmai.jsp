@@ -43,7 +43,7 @@
 									<fmt:formatDate var="nbd" value="${khuyenmai.ngaybatdau}" pattern="dd/MM/yyyy"/>
 									<label class="control-label  labeld" for="mota">Chọn ngày
 										bắt đầu: <span style="color: red;">*</span>
-									</label> <input type="text" name="ngaybatdau" id="ngaythang1"
+									</label> <input class="form-control" type="text" name="ngaybatdau" id="ngaythang1"
 										value="${nbd}" placeholder="Chọn ngày"
 										readonly="readonly"
 										style="cursor: pointer; background-color: #FFFFFF">
@@ -52,7 +52,7 @@
 									<fmt:formatDate var="nkt" value="${khuyenmai.ngayketthuc}" pattern="dd/MM/yyyy"/>
 									<label class="control-label  labeld" for="mota">Ngày
 										kết thúc : <span style="color: red;">*</span>
-									</label> <input type="text" name="ngayketthuc" id="ngaythang2"
+									</label> <input class="form-control" type="text" name="ngayketthuc" id="ngaythang2"
 										value="${nkt}" placeholder="Chọn ngày"
 										readonly="readonly"
 										style="cursor: pointer; background-color: #FFFFFF">
@@ -66,8 +66,8 @@
 								<div class="col-md-10">
 								<label class="control-label  labeld" for="mota">Chọn trạng thái:<span style="color: red;">*</span>
 									</label>
-									<select class="from-control" name="trangthai"
-										style="margin-left: 24px;">
+									<select  name="trangthai" class="optionheight nhan-dip form-control"
+										>
 										<c:choose>
 											<c:when test="${khuyenmai.trangthai == true}">
 												<option value="true" selected>Bắt đầu khuyến mãi</option>

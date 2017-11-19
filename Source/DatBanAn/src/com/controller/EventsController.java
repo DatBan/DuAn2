@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.entity.KhuyenMai;
 import com.entity.LoaiAmThuc;
+import com.entity.NguoiDung;
 import com.entity.NhaHang;
 
 @Transactional
@@ -38,10 +39,15 @@ public class EventsController {
 
 	// Đổ dữ liệu ra trang quản lý
 	@RequestMapping(value = "index")
-	public String quanLyKhuyenMai(ModelMap model) {
+	public String quanLyKhuyenMai(ModelMap model,HttpSession httpSession) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM KhuyenMai";
+		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+		NhaHang nhahang = nd.getNhahang();
+		int id = nhahang.getId();
+		String hql = "FROM KhuyenMai where idnhahang =:idnhahang";
+		
 		Query query = session.createQuery(hql);
+		query.setParameter("idnhahang", id);
 		@SuppressWarnings("unchecked")
 		List<KhuyenMai> list = query.list();
 		model.addAttribute("khuyenmai", list);
@@ -69,8 +75,9 @@ public class EventsController {
 		String chude1 = chude.trim();
 		String name1 = name.trim();
 		String thongtin1 = thongtin.trim();	
+		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+		NhaHang nhahang = nd.getNhahang();
 		
-		NhaHang nhahang= (NhaHang) session.get(NhaHang.class, 1);
 		Date ngaybd = new Date();
 		Date ngaykt = new Date();
 		SimpleDateFormat   df = new SimpleDateFormat ("dd/MM/yyyy");
@@ -171,7 +178,7 @@ public class EventsController {
 			// Kiểm tra trùng chủ đề 
 			@RequestMapping(value = "kt-trung-chude", method = RequestMethod.GET)
 			public @ResponseBody String ktTrungChude(@RequestParam("chude") String chude, @RequestParam("idkhuyenmai") int id,
-					HttpServletResponse response, HttpServletRequest request) {
+					HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {
 				try {
 					request.setCharacterEncoding("UTF-8");
 				} catch (Exception e) {
@@ -179,10 +186,13 @@ public class EventsController {
 				}
 				response.setCharacterEncoding("UTF-8");
 				Session session = factory.getCurrentSession();
-				
-				String hql = "FROM KhuyenMai where chude =:chude";
+				NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+				NhaHang nhahang = nd.getNhahang();
+				int idnhahang = nhahang.getId();
+				String hql = "FROM KhuyenMai where chude =:chude and idnhahang =:idnhahang";
 				Query query = session.createQuery(hql);
 				query.setParameter("chude", chude);
+				query.setParameter("idnhahang", idnhahang);
 				KhuyenMai km = (KhuyenMai) query.uniqueResult();
 				if (km != null) {
 					if (km.getId() == id) {
@@ -197,7 +207,7 @@ public class EventsController {
 			// Kiểm tra trùng name 
 			@RequestMapping(value = "kt-trung-name", method = RequestMethod.GET)
 			public @ResponseBody String ktTrungName(@RequestParam("name") String name, @RequestParam("idkhuyenmai") int id,
-					HttpServletResponse response, HttpServletRequest request) {
+					HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {
 				try {
 					request.setCharacterEncoding("UTF-8");
 				} catch (Exception e) {
@@ -205,10 +215,13 @@ public class EventsController {
 				}
 				response.setCharacterEncoding("UTF-8");
 				Session session = factory.getCurrentSession();
-				
-				String hql = "FROM KhuyenMai where name =:name";
+				NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+				NhaHang nhahang = nd.getNhahang();
+				int idnhahang = nhahang.getId();
+				String hql = "FROM KhuyenMai where name =:name and idnhahang =:idnhahang";
 				Query query = session.createQuery(hql);
 				query.setParameter("name", name);
+				query.setParameter("idnhahang", idnhahang);
 				KhuyenMai km = (KhuyenMai) query.uniqueResult();
 				if (km != null) {
 					if (km.getId() == id) {

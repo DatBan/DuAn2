@@ -32,15 +32,15 @@
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab" href="#home">Thông
 								tin</a></li>
-						<!-- <li><a data-toggle="tab" href="#menu1">Bàn</a></li> -->
+						<li><a data-toggle="tab" href="#menu1">Bàn</a></li>
 						<!-- <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
 						<li><a data-toggle="tab" href="#menu3">Menu 3</a></li> -->
 					</ul>
 					<div class="tab-content">
 						<div id="home" class="tab-pane fade in active">
 
-							<form name="datban" id="datban"
-								action="nhahang/quanlydatban/suadondatban.html" method="post"
+							<form name="suadon" id="suadon"
+								action="nhahang/hoadon/suahoadon.html" method="post"
 								enctype="multipart/form-data">
 								
 								<div class="row rthemtrangmoi">
@@ -55,7 +55,7 @@
 										</div>
 										<div class="col-md-5">
 											<label class="control-label  labeld" for="td">Số
-												người :<span style="color: red;">*</span>
+												người :<span style="color: red;"></span>
 											</label> <select name="songuoi"  
 												class="optionheight so-nguoi form-control">	
 												<option value="${hoadon.songuoi}" selected="selected">${hoadon.songuoi}</option>											
@@ -73,7 +73,7 @@
 											<fmt:formatDate var="nt" value="${hoadon.ngaythang}"
 												pattern="dd/MM/yyyy" />
 											<label class="control-label  labeld" for="mota">Ngày
-												tháng: <span style="color: red;">*</span>
+												tháng: <span style="color: red;"></span>
 											</label> <input class="form-control" type="text" name="ngaythang"
 												id="ngaythang1" value="${nt}" placeholder="Chọn ngày"
 												readonly="readonly"
@@ -81,7 +81,7 @@
 										</div>
 										<div class="col-md-5">
 											<label class="control-label  labeld" for="td">Thời
-												gian :<span style="color: red;">*</span>
+												gian :<span style="color: red;"></span>
 											</label> <input value="${hoadon.thoigian}" class="form-control" type="time"
 												class="timepicker chontg" id="thoigian" >
 										</div>
@@ -94,13 +94,13 @@
 										<div class=" col-md-1"></div>
 										<div class="col-md-5">
 											<label class="control-label  labeld" for="td">Họ :<span
-												style="color: red;">*</span>
+												style="color: red;"></span>
 											</label> <input type="text" name="ho" id="ho" value="${hoadon.ho}"
 												placeholder="" class="form-control">
 										</div>
 										<div class="col-md-5">
 											<label class="control-label  labeld" for="td">Tên :<span
-												style="color: red;">*</span>
+												style="color: red;"></span>
 											</label> <input type="text" name="ten" id="ten" value="${hoadon.ten}"
 												placeholder="" class="form-control">
 										</div>
@@ -112,13 +112,13 @@
 										<div class=" col-md-1"></div>
 										<div class="col-md-5">
 											<label class="control-label  labeld" for="td">Email :<span
-												style="color: red;">*</span>
+												style="color: red;"></span>
 											</label> <input type="text" name="email" id="email" value="${hoadon.email}"
 												placeholder="" class="form-control">
 										</div>
 										<div class="col-md-5">
 											<label class="control-label  labeld" for="td">Số điện
-												thoại :<span style="color: red;">*</span>
+												thoại :<span style="color: red;"></span>
 											</label> <input type="text" name="sdt" id="sdt" value="${hoadon.dienthoai}"
 												placeholder="" class="form-control">
 										</div>
@@ -149,7 +149,7 @@
 											value="Sửa">
 									</div>
 									<div class="col-md-3">
-										<a href="nhahang/khuyenmai/index.html"
+										<a href="nhahang/hoadon/index.html"
 											class="btn btn-warning btn-block" type="button">Huỷ</a>
 									</div>
 									<div class="col-md-3"></div>
@@ -158,7 +158,34 @@
 
 							</form>
 						</div>
+						<c:if test="${hoadon.banan.soban!=null}">
+						<div id="menu1" class="tab-pane fade">
+							
+							<div class="row ds-banan">
+								<div class="col-md-2 border text-center hienthiban">
+									<a href="nhahang/quanlydatban/duyet1.html?idhd=${hoadon.id}"><div
+											class="soban">${hoadon.banan.soban}</div></a>
+									<div class="trangthai">${hoadon.thoigian}</div>
+									<div class="songuoi">${hoadon.banan.songuoi}</div>
+								</div>
+								<div class="col-md-1"></div>
+							</div>
+							
+						</div>
+						</c:if>
 						
+						<c:if test="${hoadon.banan.soban==null}">
+						<div id="menu1" class="tab-pane fade">
+							
+							<div class="row ds-banan">
+								<div class="col-md-2" style=" margin-top: 50px;margin-left: 80px;">
+									<a href="nhahang/hoadon/chonban1.html?idhd=${hoadon.id}" type="button" class="btn btn-default" style="color: green; ">Chọn bàn</a>
+								</div>
+								<div class="col-md-1"></div>
+							</div>
+							
+						</div>
+						</c:if>
 					</div>
 					<div class="line"></div>
 				</div>

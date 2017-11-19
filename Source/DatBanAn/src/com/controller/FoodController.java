@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.entity.BinhLuan;
 import com.entity.LoaiDoAn;
 import com.entity.MonAn;
+import com.entity.NguoiDung;
 import com.entity.NhaHang;
 
 @Transactional
@@ -37,10 +38,15 @@ public class FoodController {
 	SessionFactory factory;
 	//Đổ dữ liệu ra trang quản lý
 	@RequestMapping(value="index")
-	public String quanlydoan(ModelMap model){
+	public String quanlydoan(ModelMap model,HttpSession httpSession){
 		Session session = factory.getCurrentSession();
-		String hql ="FROM MonAn";
+		
+		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+		NhaHang nhahang = nd.getNhahang();
+		int id = nhahang.getId();
+		String hql ="FROM MonAn where idnhahang =:idnhahang";
 		Query query = session.createQuery(hql);
+		query.setParameter("idnhahang", id);
 		@SuppressWarnings("unchecked")
 		List<MonAn> list = query.list();
 		model.addAttribute("monan",list);
@@ -81,7 +87,8 @@ public class FoodController {
 			String name1 = name.trim();
 			
 			LoaiDoAn loaidoan = (LoaiDoAn) session.get(LoaiDoAn.class, idloaidoan);
-			
+			NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+			NhaHang nhahang = nd.getNhahang();
 			// Đổ lại dữ liệu ra combobox nếu như thêm thất bại
 			String hql = "FROM LoaiDoAn";
 			Query query = session.createQuery(hql);
@@ -95,7 +102,7 @@ public class FoodController {
 			try {
 				hinh.transferTo(new File(photoPath));
 				hinhanh = hinh.getOriginalFilename();
-				MonAn mon = new MonAn(tendoan1,name1,hinhanh,gia,loaidoan);
+				MonAn mon = new MonAn(tendoan1,name1,hinhanh,gia,nhahang,loaidoan);
 				session.save(mon);
 				t.commit();
 				Thread.sleep(5000);
@@ -219,7 +226,7 @@ public class FoodController {
 		//Kiểm tra trùng tên đồ ăn
 		@RequestMapping(value = "kt-trung-tendoan", method = RequestMethod.GET)
 		public @ResponseBody String ktTrungTenDoAn(@RequestParam("tendoan") String tendoan,@RequestParam("idmonan") int id,
-				HttpServletResponse response, HttpServletRequest request){
+				HttpServletResponse response, HttpServletRequest request,HttpSession httpSession){
 			try {
 				request.setCharacterEncoding("UTF-8");
 			} catch (Exception e) {
@@ -227,10 +234,14 @@ public class FoodController {
 			}
 			response.setCharacterEncoding("UTF-8");
 			Session session = factory.getCurrentSession();
+			NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+			NhaHang nhahang = nd.getNhahang();
+			int idnhahang = nhahang.getId();
 			//Where thêm id nhà hàng để kiểm tra trùng tên đồ ăn riêng nhà hàng đó
-			String hql ="FROM MonAn where tenmonan =:tenmonan";
+			String hql ="FROM MonAn where tenmonan =:tenmonan and idnhahang =:idnhahang";
 			Query query = session.createQuery(hql);
 			query.setParameter("tenmonan", tendoan);
+			query.setParameter("idnhahang", idnhahang);
 			MonAn monan = (MonAn) query.uniqueResult();
 			if (monan != null) {
 				if (monan.getId() == id) {
@@ -244,7 +255,7 @@ public class FoodController {
 		//Kiểm tra trùng name đồ ăn
 				@RequestMapping(value = "kt-trung-name", method = RequestMethod.GET)
 				public @ResponseBody String ktTrungName(@RequestParam("name") String name,@RequestParam("idmonan") int id,
-						HttpServletResponse response, HttpServletRequest request){
+						HttpServletResponse response, HttpServletRequest request,HttpSession httpSession){
 					try {
 						request.setCharacterEncoding("UTF-8");
 					} catch (Exception e) {
@@ -252,10 +263,14 @@ public class FoodController {
 					}
 					response.setCharacterEncoding("UTF-8");
 					Session session = factory.getCurrentSession();
+					NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+					NhaHang nhahang = nd.getNhahang();
+					int idnhahang = nhahang.getId();
 					//Where thêm id nhà hàng để kiểm tra trùng name đồ ăn riêng nhà hàng đó
-					String hql ="FROM MonAn where name =:name";
+					String hql ="FROM MonAn where name =:name and idnhahang =:idnhahang";
 					Query query = session.createQuery(hql);
 					query.setParameter("name", name);
+					query.setParameter("idnhahang", idnhahang);
 					MonAn monan = (MonAn) query.uniqueResult();
 					if (monan != null) {
 						if (monan.getId() == id) {

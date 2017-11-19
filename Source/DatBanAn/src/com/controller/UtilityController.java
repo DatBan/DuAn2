@@ -25,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.entity.MonAn;
+import com.entity.NguoiDung;
+import com.entity.NhaHang;
 import com.entity.TienIch;
 
 @Transactional
@@ -36,10 +38,14 @@ public class UtilityController {
 
 	// Đổ dữ liệu ra trang quản lý
 	@RequestMapping(value = "index")
-	public String quanlytienich(ModelMap model) {
+	public String quanlytienich(ModelMap model,HttpSession httpSession) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM TienIch";
+		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+		NhaHang nhahang = nd.getNhahang();
+		int id = nhahang.getId();
+		String hql = "FROM TienIch where idnhahang =:idnhahang";
 		Query query = session.createQuery(hql);
+		query.setParameter("idnhahang", id);
 		@SuppressWarnings("unchecked")
 		List<TienIch> list = query.list();
 		model.addAttribute("tienich", list);
@@ -66,7 +72,8 @@ public class UtilityController {
 		Session session = factory.openSession();
 		// Lấy id nhà hàng để thêm vào đồ ăn
 		// NhaHang nhahang = (NhaHang) session.get(NhaHang.class, idnhahang);
-
+		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+		NhaHang nhahang = nd.getNhahang();
 		String tentienich1 = tentienich.trim();
 		String name1 = name.trim();
 		String photoPath = context.getRealPath("/upload/tienich/" + hinh.getOriginalFilename());
@@ -75,7 +82,7 @@ public class UtilityController {
 		try {
 			hinh.transferTo(new File(photoPath));
 			hinhanh = hinh.getOriginalFilename();
-			TienIch tienich = new TienIch(tentienich1, name1, hinhanh);
+			TienIch tienich = new TienIch(tentienich1, name1, hinhanh,nhahang);
 			session.save(tienich);
 			t.commit();
 			Thread.sleep(5000);
@@ -171,7 +178,7 @@ public class UtilityController {
 	// Kiểm tra trùng tên tiện ích
 	@RequestMapping(value = "kt-trung-tentienich", method = RequestMethod.GET)
 	public @ResponseBody String ktTrungTenTienIch(@RequestParam("tentienich") String tentienich, @RequestParam("idtienich") int id,
-			HttpServletResponse response, HttpServletRequest request) {
+			HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (Exception e) {
@@ -179,10 +186,14 @@ public class UtilityController {
 		}
 		response.setCharacterEncoding("UTF-8");
 		Session session = factory.getCurrentSession();
+		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+		NhaHang nhahang = nd.getNhahang();
+		int idnhahang = nhahang.getId();
 		// Where thêm id nhà hàng để kiểm tra trùng tên đồ ăn riêng nhà hàng đó
-		String hql = "FROM TienIch where tentienich =:tentienich";
+		String hql = "FROM TienIch where tentienich =:tentienich and idnhahang =:idnhahang";
 		Query query = session.createQuery(hql);
 		query.setParameter("tentienich", tentienich);
+		query.setParameter("idnhahang", idnhahang);
 		TienIch tienich = (TienIch) query.uniqueResult();
 		if (tienich != null) {
 			if (tienich.getId() == id) {
@@ -197,7 +208,7 @@ public class UtilityController {
 	// Kiểm tra trùng name tiện ích
 	@RequestMapping(value = "kt-trung-name", method = RequestMethod.GET)
 	public @ResponseBody String ktTrungName(@RequestParam("name") String name, @RequestParam("idtienich") int id,
-			HttpServletResponse response, HttpServletRequest request) {
+			HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (Exception e) {
@@ -205,10 +216,14 @@ public class UtilityController {
 		}
 		response.setCharacterEncoding("UTF-8");
 		Session session = factory.getCurrentSession();
+		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+		NhaHang nhahang = nd.getNhahang();
+		int idnhahang = nhahang.getId();
 		// Where thêm id nhà hàng để kiểm tra trùng name đồ ăn riêng nhà hàng đó
-		String hql = "FROM TienIch where name =:name";
+		String hql = "FROM TienIch where name =:name and idnhahang =:idnhahang";
 		Query query = session.createQuery(hql);
 		query.setParameter("name", name);
+		query.setParameter("idnhahang", idnhahang);
 		TienIch tienich = (TienIch) query.uniqueResult();
 		if (tienich != null) {
 			if (tienich.getId() == id) {

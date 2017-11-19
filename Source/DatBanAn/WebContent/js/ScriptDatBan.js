@@ -97,4 +97,68 @@ $(document).ready(function() {
 			}
 		}
 	});
+	//Sửa hoá đơn
+	$("#suadon").validate({
+		
+		onchange : true,
+		rules : {
+			ho : {
+				
+				minlength:2,
+				maxlength:25,
+				notNumber: true
+			},
+			ten : {
+				
+				minlength:2,
+				maxlength:25,
+				notNumber: true
+			},
+			email : {
+				
+				rangelength:[7,150],
+				nowhitespace : true,
+				email:true,
+			},
+			sdt : {
+				
+				rangelength:[9,11],
+				digits : true,
+				
+			},
+			ghichu :{
+				maxlength: 200
+			}
+
+		},
+		messages : {
+			ho : {
+				
+				minlength:"Họ không hợp lệ",
+				maxlength:"Họ quá dài vui lòng thử lại",
+				notNumber: "Họ không được có số và ký tự đặc biệt"
+			},
+			ten : {
+				
+				minlength:"Tên không hợp lệ",
+				maxlength:"Tên quá dài vui lòng thử lại",
+				notNumber: "Tên không được có số và ký tự đặc biệt"
+			},
+			email : {
+				
+				rangelength:"Email không hợp lệ",
+				nowhitespace : "Email không được có khoảng cách",
+				email:"Email không hợp lệ",
+			},
+			sdt : {
+				
+				rangelength:"Số điện thoại không hợp lệ",
+				digits : "Số điện thoại phải là số và không có khoảng trắng",
+				
+			},
+			ghichu :{
+				maxlength: "Ghi chú quá dài vui lòng thử lại"
+			}
+		}
+	});
 });

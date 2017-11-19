@@ -21,7 +21,7 @@
 			<!-- main content -->
 			<div class="main-content">
 				<!------------- Breadcrumb, nut bam cac thu -------------->
-				<jsp:include page="/include-dashboard/header-bv.jsp"></jsp:include>
+				<jsp:include page="/include-dashboard/header-bv-user.jsp"></jsp:include>
 
 				<!--------------- Table, form cac thu ---------------->
 				<div class="content-nhe">
@@ -72,9 +72,9 @@
 									<td>${ns}</td>
 
 
-									<td style="text-align: center"> <a href="baiviet/edit/${bv.id}.html"
+									<td style="text-align: center"> <a href="nguoidung/baiviet/edit/${bv.id}.html"
 										style="color: green; padding-left: 30px;">Sửa</a> <a
-										href="baiviet/delete/${bv.id}.html"
+										href="nguoidung/baiviet/delete/${bv.id}.html"
 										onclick="return confirm ('Bạn có thực sự muốn xoá bài viết này')"
 										style="color: red; padding-left: 30px;">Xoá</a></td>
 								</tr>

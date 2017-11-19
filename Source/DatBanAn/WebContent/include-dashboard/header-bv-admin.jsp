@@ -7,7 +7,7 @@
 	</ul>
 	<!--Nut bam -->
 	<div class="col-sm-6 btn-thao-tac">
-		<a href="baiviet/them.html" type="button" class="btn btn-info">
+		<a href="Dashboard/BaiViet/them.html" type="button" class="btn btn-info">
 			<i class="glyphicon glyphicon-plus"></i> Thêm mới
 		</a>
 		<button type="button" class="btn btn-default">

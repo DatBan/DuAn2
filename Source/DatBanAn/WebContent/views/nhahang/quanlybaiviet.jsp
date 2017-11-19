@@ -21,51 +21,64 @@
 			<!-- main content -->
 			<div class="main-content">
 				<!------------- Breadcrumb, nut bam cac thu -------------->
-				<jsp:include page="/include-dashboard/header-hoadon-new.jsp"></jsp:include>
+				<jsp:include page="/include-dashboard/header-bv-nhahang.jsp"></jsp:include>
 
 				<!--------------- Table, form cac thu ---------------->
 				<div class="content-nhe">
-					
+					<div class="row tieudethemtrang">
+						<span style="margin-top: 30px; color: red;">${message}</span>
+					</div>
 					<table id="example" class="table table-striped table-bordered">
 
 						<thead>
 							<tr>
 								<th>STT</th>
-								
-								<th>Họ tên</th>
-								<th>Nhân dịp</th>
-								<th>Số người</th>
-								<th>Thời gian</th>
-								<th>Điện thoại</th>
+								<th>Tiêu đề</th>
+								<th>Name</th>
+								<th>Loại ẩm thực</th>
+								<th>Hình</th>
 								<th>Trạng thái</th>
+								<th>Ngày tạo</th>
+								<th>Ngày sửa</th>
 								<th>Thao tác</th>
+
 							</tr>
 						</thead>
 
 						<tbody>
-							<c:forEach var="t" items="${hoadon}" varStatus="status">
+							<c:forEach var="bv" items="${baiviet}" varStatus="status">
 								<c:set var="dem" value="${status.index+1}"></c:set>
-								
-								<fmt:formatDate var="tg" value="${t.ngaythang}"
+								<fmt:formatDate var="nt" value="${bv.ngaytao}"
+									pattern="dd-MM-yyyy" />
+								<fmt:formatDate var="ns" value="${bv.ngaysua}"
 									pattern="dd-MM-yyyy" />
 								<tr>
 									<td>${dem}</td>
-									
-									<td>${t.ho} ${t.ten}</td>
-									<td>${t.nhandip}</td>
-									<td>${t.songuoi}</td>
-									
-									<td> ${tg} ${t.thoigian}</td>
-									<td>${t.dienthoai}</td>
-									<c:if test="${t.trangthai==0}">
-										<td style="text-align: center"><a href="nhahang/quanlydatban/duyet.html?idhd=${t.id}" style="color: green; ">Duyệt</a></td>
+									<td>${bv.tieude}</td>
+									<td>${bv.name}</td>
+									<td>${bv.loaibv.tenloai}</td>
+									<td><img class="img-responsive"
+										src="upload/baiviet/${bv.hinh}" style="width:60px;height:60px;" /></td>
+									<c:if test="${bv.trangthai==1}">
+										<td>Đã duyệt</td>
 									</c:if>
-									
-									<td style="text-align: center"><a
-										href="nhahang/quanlydatban/edit/${t.id}.html"
-										style="color: green; ">Sửa</a> <a
-										href="nhahang/quanlydatban/delete/${t.id}.html"
-										onclick="return confirm ('Bạn có thực sự muốn xoá đơn này')"
+									<c:if test="${bv.trangthai==0}">
+										<td>Đang chờ duyệt</td>
+									</c:if>
+									<c:if test="${bv.trangthai==3}">
+										<td>Bạn đã xoá</td>
+									</c:if>
+									<c:if test="${bv.trangthai==4}">
+										<td>Admin dã xoá</td>
+									</c:if>
+									<td>${nt}</td>
+									<td>${ns}</td>
+
+
+									<td style="text-align: center"> <a href="nhahang/baiviet/edit/${bv.id}.html"
+										style="color: green; padding-left: 30px;">Sửa</a> <a
+										href="nhahang/baiviet/delete/${bv.id}.html"
+										onclick="return confirm ('Bạn có thực sự muốn xoá bài viết này')"
 										style="color: red; padding-left: 30px;">Xoá</a></td>
 								</tr>
 							</c:forEach>

@@ -29,7 +29,9 @@ public class NguoiDung {
 	@ManyToOne
 	@JoinColumn(name = "idquyen")
 	private Quyen quyennd;
-
+	@ManyToOne
+	@JoinColumn(name = "idnhahang")
+	private NhaHang nhahang;
 	public NguoiDung() {
 		super();
 	}
@@ -62,6 +64,16 @@ public class NguoiDung {
 		this.trangthai = trangthai;
 		this.ngaytao = ngaytao;
 		this.quyennd = quyennd;
+	}
+
+	
+
+	public NhaHang getNhahang() {
+		return nhahang;
+	}
+
+	public void setNhahang(NhaHang nhahang) {
+		this.nhahang = nhahang;
 	}
 
 	public int getId() {

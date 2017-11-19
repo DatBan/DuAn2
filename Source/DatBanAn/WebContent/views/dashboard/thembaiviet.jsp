@@ -43,7 +43,7 @@
 						//]]>
 					</script>
 					<form name=thembaiviet id="thembaiviet"
-						action="nguoidung/baiviet/thembaiviet.html" method="post" enctype="multipart/form-data">
+						action="Dashboard/BaiViet/thembaiviet.html" method="post" enctype="multipart/form-data">
 
 						<div class="row rthemtrangmoi">
 							<input style="display: none" name="idnd" type="text"
@@ -159,7 +159,7 @@
 									value="Thêm mới">
 							</div>
 							<div class="col-md-3">
-								<a href="nguoidung/baiviet/index.html" class="btn btn-warning btn-block"
+								<a href="Dashboard/BaiViet/index.html" class="btn btn-warning btn-block"
 									type="button">Huỷ</a>
 							</div>
 							<div class="col-md-3"></div>
