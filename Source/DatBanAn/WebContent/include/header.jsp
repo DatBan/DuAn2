@@ -1,6 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <div class="container con">
 	<!-- Menu top top top -->
@@ -8,7 +7,7 @@
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#"><b>Thông tin bàn ăn</b></a></li>
+					<li class="active"><a href="datban/thongtin.html"><b>Thông tin bàn ăn</b></a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><p class="navbar-text">
@@ -55,32 +54,37 @@
 						</div>
 					</form>
 					<ul class="nav navbar-nav">
-						<li><a href="#"><b>Khuyến mãi</b></a></li>
+						<li><a href="khuyenmai.html"><b>Khuyến mãi</b></a></li>
 						<li><a href="#"><b>Bài viết</b></a></li>
 						<li><a href="#"><b>Trợ giúp</b></a></li>
 						<c:forEach var="t" items="${trang}">
-						<li><a href="#">${t.tieude}</a></li>
+							<li><a href="#">${t.tieude}</a></li>
 						</c:forEach>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<c:choose>
-							<c:when test="${sessionScope.tdn == null}">
-								<li><a href="javascript:;" class="linkdangnhap"
-									style="padding-top: 6px; padding-left: 10px; padding-bottom: 6px; padding-right: 10px; margin-top: 9px; color: #3698ec; font-size: 15px; border: none; margin-right: 10px;"
-									data-toggle="modal" data-target="#myModal"> <b>Đăng
-											nhập</b>
-								</a></li>
+							<c:when test="${sessionScope.nd == null}">
+								<li>
+									<a href="javascript:;" class="linkdangnhap" data-toggle="modal" data-target="#myModal"> 
+										<b>Đăng nhập</b>
+									</a>
+								</li>
 							</c:when>
 							<c:otherwise>
 								<li class="dropdown"><a href="#" data-toggle="dropdown">Welcome,
-										${sessionScope.tdn} <span
-										class="glyphicon glyphicon-menu-down"></span>
+										${sessionScope.nd.hoTen} <span class="glyphicon glyphicon-menu-down"></span>
 								</a>
 									<ul class="dropdown-menu">
-										<li><a href="#"><i class="glyphicon glyphicon-user"></i>
-												Thông tin tài khoản</a></li>
+										<li>
+											<a href="dashboard/index.html"><i class="glyphicon glyphicon-user"></i>
+												Trang quản trị</a>
+										</li>
+										<li>
+											<a href="#"><i class="glyphicon glyphicon-user"></i>
+												Thông tin tài khoản</a>
+										</li>
 										<li class="divider"></li>
-										<li><a href="logout.html"><i class="fa fa-sign-out"></i>Thoát</a></li>
+										<li><a href="logout.html" onclick="signOut();"><i class="fa fa-sign-out"></i>Thoát</a></li>
 									</ul></li>
 							</c:otherwise>
 						</c:choose>

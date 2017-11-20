@@ -37,10 +37,15 @@ $(document).ready(function() {
 	
 		onchange : true,
 		rules : {
-			hoten : {
+			ho : {
 				required :true,
-				rangelength : [ 4, 50 ],
-				wordCount : [ '2' ],
+				rangelength : [ 2, 25 ],
+				notNumber: true
+				
+			},
+			ten : {
+				required :true,
+				rangelength : [ 2, 25 ],
 				notNumber: true
 				
 			},
@@ -110,11 +115,15 @@ $(document).ready(function() {
 
 		},
 		messages : {
-			hoten : {
-				required : "Vui lòng nhập đầy đủ họ tên",
-				rangelength : "Họ tên không hợp lệ",
-				wordCount : "Họ tên phải có khoảng cách",
-				notNumber:"Họ tên không được có số và ký tự đặc biệt"
+			ho : {
+				required : "Vui lòng nhập họ",
+				rangelength : "Họ chỉ từ 2 tới 25 ký tự",				
+				notNumber:"Họ không được có số và ký tự đặc biệt"
+			},
+			ten : {
+				required : "Vui lòng nhập tên",
+				rangelength : "Tên chỉ từ 2 tới 25 ký tự",				
+				notNumber:"Tên không được có số và ký tự đặc biệt"
 			},
 			tendangnhap : {
 				required : "Vui lòng nhập tên đăng nhập",

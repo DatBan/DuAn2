@@ -36,16 +36,17 @@ import net.sf.ehcache.hibernate.HibernateUtil;
 public class RegisterController {
 	@Autowired
 	SessionFactory factory;
-	/* Phương thức GET Để Tạo Giao Diện khi click button Đăng kÝ */
+	/* Phương thức get đêt tạo giao diện */
 	@RequestMapping(value="RegisterForm",method = RequestMethod.GET)
 	public String RegisterForm() {
 		return "register";
 	}
-	/* Phương thức POST Để Tạo Tài Khoản khi click button Đăng kÝ */
+	/* Phương thức post để đăng ký */
 	
 	@RequestMapping(value="RegisterForm", method = RequestMethod.POST)
 	public String RegisterForm(ModelMap model,
-			@RequestParam("hoten") String hoten,
+			@RequestParam("ho") String ho,
+			@RequestParam("ten") String ten,
 			@RequestParam("tendangnhap") String tendangnhap,
 			@RequestParam("matkhau")String matkhau,
 			@RequestParam("email")String email,
@@ -56,26 +57,26 @@ public class RegisterController {
 		Session session = factory.openSession();
 		Quyen quyen= (Quyen) session.get(Quyen.class, 3);
 		
-		String ht= hoten.trim();
+		String ho1= ho.trim();
+		String ten1= ten.trim();
 		Date ngaytao = new Date();
 		EnDeCryption mh = new EnDeCryption("sadasdasdsawqewq");
 		String mkmh= mh.encoding(matkhau);
-		NguoiDung nguoidung= new NguoiDung(ht, tendangnhap, mkmh, email, sdt, diachi, 1, ngaytao, quyen);
+		NguoiDung nguoidung= new NguoiDung(ho1,ten1,tendangnhap, mkmh, email, sdt, diachi, 1, ngaytao, quyen);
 		Transaction t = session.beginTransaction();
 		try {
 			session.save(nguoidung);
 			t.commit();
-			httpSession.setAttribute("nguoidung", nguoidung);
+			httpSession.setAttribute("nd", nguoidung);
 			
 			Cookie cktdn = new Cookie("cktdn", nguoidung.getTendangnhap());
-			cktdn.setPath("/");
 			response.addCookie(cktdn);
 			httpSession.setAttribute("tdn", cktdn.getValue());
 			return"redirect:trang-chu.html";
 		} catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();
-			model.addAttribute("message", "Đăng ký thất bại !");
+			model.addAttribute("message", "Đăng ký thất bại");
 		}finally {
 			session.close();
 		}
@@ -109,6 +110,7 @@ public class RegisterController {
 	//Check trùng email
 		@RequestMapping(value="kt-trung-email",method = RequestMethod.GET)
 		public @ResponseBody String ktTrungEmail(@RequestParam("email") String email,
+				@RequestParam(value="tdn", defaultValue="null",required=false) String tdn,
 				HttpServletResponse response,
 				HttpServletRequest request){
 			try {
@@ -125,7 +127,16 @@ public class RegisterController {
 			
 			NguoiDung nd= (NguoiDung) query.uniqueResult();
 			
+			
 			if(nd!=null){
+				try{
+					if(nd.getTendangnhap() != null && nd.getTendangnhap().equals(tdn)){
+						return "true";
+					}
+				}catch(Exception e){
+					System.out.println("ERROR! "+e.toString());
+					return "true";
+				}
 				return "false";
 			}else{
 				return "true";

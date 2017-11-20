@@ -27,82 +27,83 @@
 							
 							<!--------------- Table, form cac thu ---------------->
 							<div class="content-nhe">
-	                			<form:form class="form-label-left clearfix" method="post" action="dashboard/edit-user.html?id=${nguoidung.id}" modelAttribute="nguoidung">
-	                				<div class="item form-group col-md-6">
+	                			<form:form id="edit-user-db" class="form-label-left clearfix" method="post" action="dashboard/user-management.html?edit&id=${nguoidung.id}" modelAttribute="nguoidung">
+	                				<div class="item form-group col-md-6 clearfix">
 										<label class="control-label col-md-4 col-sm-3 col-xs-12" for="number">
 											Tên đăng nhập <span class="required">*</span>
 										</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<form:input path="tendangnhap" cssClass="form-control" disabled="true"/>								
+										<div class="col-md-7 col-sm-6 col-xs-12">
+											<form:input path="tendangnhap" id="tdn" cssClass="form-control" disabled="true"/>								
 										</div>
 									</div>
 									
-									<div class="item form-group col-md-6">
+									<div class="item form-group col-md-6 clearfix">
 										<label class="control-label col-md-4 col-sm-3 col-xs-12" for="number">
 											Họ tên <span class="required">*</span>
 										</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<form:input path="hoten" cssClass="form-control"/>								
+										<div class="col-md-7 col-sm-6 col-xs-12">
+											<form:input path="hoTen" cssClass="form-control"/>								
 										</div>
 									</div>
 									
-									<div class="item form-group col-md-6">
+									<div class="item form-group col-md-6 clearfix">
 										<label class="control-label col-md-4 col-sm-3 col-xs-12" for="number">
 											Mật khẩu <span class="required">*</span>
 										</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<form:input path="matkhau" cssClass="form-control"/>								
+										<div class="col-md-7 col-sm-6 col-xs-12">
+											<input type="text" name="matkhau" class="form-control" placeholder="Để trống nếu không thay đổi"/>								
 										</div>
 									</div>
 									
-									<div class="item form-group col-md-6">
+									<div class="item form-group col-md-6 clearfix">
 										<label class="control-label col-md-4 col-sm-3 col-xs-12" for="number">
 											Email <span class="required">*</span>
 										</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
+										<div class="col-md-7 col-sm-6 col-xs-12">
 											<form:input path="email" cssClass="form-control"/>								
 										</div>
 									</div>
 									
-									<div class="item form-group col-md-6">
+									<div class="item form-group col-md-6 clearfix">
 										<label class="control-label col-md-4 col-sm-3 col-xs-12" for="number">
 											Điện thoại <span class="required">*</span>
 										</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
+										<div class="col-md-7 col-sm-6 col-xs-12">
 											<form:input path="sdt" cssClass="form-control"/>								
 										</div>
 									</div>
 									
-									<div class="item form-group col-md-6">
+									<div class="item form-group col-md-6 clearfix">
 										<label class="control-label col-md-4 col-sm-3 col-xs-12" for="number">
 											Địa chỉ <span class="required">*</span>
 										</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
+										<div class="col-md-7 col-sm-6 col-xs-12">
 											<form:textarea path="diachi" cssClass="form-control" rows="1"/>								
 										</div>
 									</div>
 									
-									<div class="item form-group col-md-6">
+									<div class="item form-group col-md-6 clearfix">
 										<label class="control-label col-md-4 col-sm-3 col-xs-12" for="number">
 											Vai trò <span class="required">*</span>
 										</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
+										<div class="col-md-7 col-sm-6 col-xs-12">
 											<form:select path="quyennd.id" cssClass="form-control"	items="${listquyen}" itemLabel="tenquyen" itemValue="id">
 											</form:select>							
 										</div>
+										<form:hidden path="tendangnhap" cssClass="form-control" disabled="true"/>
 									</div>
-									
-									<div class="item form-group col-md-6">
+									<div class="item form-group col-md-6 clearfix">
 										<label class="control-label col-md-4 col-sm-3 col-xs-12" for="number">
 											Ngày tạo <span class="required">*</span>
 										</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
+										<div class="col-md-7 col-sm-6 col-xs-12">
 										<input type="text" disabled class="form-control"
 											placeholder='<fmt:formatDate value="${nguoidung.ngaytao}" pattern="dd/MM/yyyy HH:mm:ss"/>'>										</div>
 									</div>
 									
-									<div class="item form-group col-md-6">
+									<div class="item form-group col-md-12 clearfix">
 										<form:button class="btn btn-primary">Cập nhật</form:button>
+										<input type="reset" class="btn btn-default" value="Reset"/>
 									</div>
 	                			</form:form>
 	                			<div class="line"></div>

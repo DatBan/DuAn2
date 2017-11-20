@@ -1,7 +1,5 @@
 package com.entity;
 
-
-
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -22,10 +20,10 @@ public class DanhGia {
 	private String tieude;
 	private String noidung;
 	private int doan;
-	private int khonggian;
+	private int khongian;
 	private int giaca;
 	private int phucvu;
-	private int diemdanhgia;
+	private double diemdanhgia;
 	private boolean trangthai;
 	private int soluonglike;
 	private int baocao;
@@ -42,13 +40,13 @@ public class DanhGia {
 		super();
 	}
 
-	public DanhGia(String tieude, String noidung, int doan, int khonggian, int giaca, int phucvu, int diemdanhgia,
+	public DanhGia(String tieude, String noidung, int doan, int khonggian, int giaca, int phucvu, double diemdanhgia,
 			boolean trangthai, Date ngaytao, NhaHang nhahang, NguoiDung nguoidanhgia) {
 		super();
 		this.tieude = tieude;
 		this.noidung = noidung;
 		this.doan = doan;
-		this.khonggian = khonggian;
+		this.khongian = khonggian;
 		this.giaca = giaca;
 		this.phucvu = phucvu;
 		this.diemdanhgia = diemdanhgia;
@@ -62,108 +60,108 @@ public class DanhGia {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getTieude() {
 		return tieude;
-	}
-
-	public void setTieude(String tieude) {
-		this.tieude = tieude;
 	}
 
 	public String getNoidung() {
 		return noidung;
 	}
 
-	public void setNoidung(String noidung) {
-		this.noidung = noidung;
-	}
-
 	public int getDoan() {
 		return doan;
 	}
 
-	public void setDoan(int doan) {
-		this.doan = doan;
-	}
-
 	public int getKhonggian() {
-		return khonggian;
-	}
-
-	public void setKhonggian(int khonggian) {
-		this.khonggian = khonggian;
+		return khongian;
 	}
 
 	public int getGiaca() {
 		return giaca;
 	}
 
-	public void setGiaca(int giaca) {
-		this.giaca = giaca;
-	}
-
 	public int getPhucvu() {
 		return phucvu;
 	}
 
-	public void setPhucvu(int phucvu) {
-		this.phucvu = phucvu;
-	}
-
-	public int getDiemdanhgia() {
+	public double getDiemdanhgia() {
 		return diemdanhgia;
-	}
-
-	public void setDiemdanhgia(int diemdanhgia) {
-		this.diemdanhgia = diemdanhgia;
 	}
 
 	public boolean isTrangthai() {
 		return trangthai;
 	}
 
-	public void setTrangthai(boolean trangthai) {
-		this.trangthai = trangthai;
-	}
-
 	public int getSoluonglike() {
 		return soluonglike;
-	}
-
-	public void setSoluonglike(int soluonglike) {
-		this.soluonglike = soluonglike;
 	}
 
 	public int getBaocao() {
 		return baocao;
 	}
 
-	public void setBaocao(int baocao) {
-		this.baocao = baocao;
-	}
-
 	public Date getNgaytao() {
 		return ngaytao;
-	}
-
-	public void setNgaytao(Date ngaytao) {
-		this.ngaytao = ngaytao;
 	}
 
 	public NhaHang getNhahang() {
 		return nhahang;
 	}
 
-	public void setNhahang(NhaHang nhahang) {
-		this.nhahang = nhahang;
-	}
-
 	public NguoiDung getNguoidanhgia() {
 		return nguoidanhgia;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setTieude(String tieude) {
+		this.tieude = tieude;
+	}
+
+	public void setNoidung(String noidung) {
+		this.noidung = noidung;
+	}
+
+	public void setDoan(int doan) {
+		this.doan = doan;
+	}
+
+	public void setKhonggian(int khonggian) {
+		this.khongian = khonggian;
+	}
+
+	public void setGiaca(int giaca) {
+		this.giaca = giaca;
+	}
+
+	public void setPhucvu(int phucvu) {
+		this.phucvu = phucvu;
+	}
+
+	public void setDiemdanhgia(double diemdanhgia) {
+		this.diemdanhgia = diemdanhgia;
+	}
+
+	public void setTrangthai(boolean trangthai) {
+		this.trangthai = trangthai;
+	}
+
+	public void setSoluonglike(int soluonglike) {
+		this.soluonglike = soluonglike;
+	}
+
+	public void setBaocao(int baocao) {
+		this.baocao = baocao;
+	}
+
+	public void setNgaytao(Date ngaytao) {
+		this.ngaytao = ngaytao;
+	}
+
+	public void setNhahang(NhaHang nhahang) {
+		this.nhahang = nhahang;
 	}
 
 	public void setNguoidanhgia(NguoiDung nguoidanhgia) {

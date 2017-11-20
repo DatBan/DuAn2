@@ -37,10 +37,11 @@
 						//]]>
 					</script>
 			<form name=themtrangmoi id="themtrangmoi"
-				action="trang/themtrangmoi.html" method="post">
+				action="Dashboard/Trang/themtrangmoi.html" method="post">
 				
 				<div class="row rthemtrangmoi">
 					<input style="display:none"  name ="idnd"type="text" value="${sessionScope.id}">
+					
 					<div class="form-group fullname-custom">
 						<div class=" col-md-1"></div>
 						<div class="col-md-10">
@@ -58,7 +59,7 @@
 						<div class="col-md-10">
 							<label class="control-label  labeld" for="title">Title:<span style="color: red;">*</span>
 							</label> <input type="text" name="title" id="title"
-								placeholder="VD : Contact" class="form-control">
+								placeholder="Example : Contact" class="form-control">
 						</div>
 					</div>
 				</div>
@@ -69,8 +70,8 @@
 						<div class="col-md-10">
 							<label class="control-label  labeld" for="slug">Slug:<span
 								style="color: red;">*</span>
-							</label> <input type="text" name="slug" id="slug" placeholder="Nhập Slug"
-								class="form-control">
+							</label> <input type="text" name="slug" id="slug" placeholder="Slug theo tiêu đề"
+								class="form-control" readonly>
 						</div>
 					</div>
 				</div>
@@ -81,7 +82,7 @@
 							<label class="control-label  labeld" for="noidung">Nội
 								dung:<span style="color: red;">*</span>
 							</label>
-							<textarea name="area1" id="area1"  placeholder="" class="form-control"
+							<textarea name="area1" id="area1"  placeholder="Nội dung phải trên 200 ký tự" class="form-control"
 								style="margin: 0px; min-height: 300px;" ></textarea>
 						</div>
 					</div>
@@ -92,7 +93,7 @@
 						<div class="col-md-10">
 							<label class="control-label  labeld" for="content">Content:<span style="color: red;">*</span>
 							</label>
-							<textarea name="area2" id="area2"  placeholder="" class="form-control" 
+							<textarea name="area2" id="area2"  placeholder="Content phải trên 200 ký tự" class="form-control" 
 								style="margin: 0px; min-height: 300px;"></textarea>
 						</div>
 					</div>

@@ -32,13 +32,14 @@
 					<script type="text/javascript">
 						//<![CDATA[
 						bkLib.onDomLoaded(function() {
-							nicEditors.allTextAreas()
+							new nicEditor({maxHeight : 300}).panelInstance('area1');
+							new nicEditor({maxHeight : 300}).panelInstance('area2');
 						});
 						//]]>
 					</script>
 					<form name=themtrangmoi id="themtrangmoi"
-						action="trang/suatrang.html" method="post">
-						<input style="display:none"  name ="idtrang"type="text" value="${trang.id}">
+						action="Dashboard/Trang/suatrang.html" method="post">
+						<input style="display:none"  name ="idtrang"type="text" value="${trang.id}" id="idtrang">
 						<div class="row rthemtrangmoi">
 
 							<div class="form-group fullname-custom">
@@ -59,7 +60,7 @@
 									<label class="control-label  labeld" for="title">Title:<span
 										style="color: red;">*</span>
 									</label> <input type="text" name="title" id="title"
-										value="${trang.title}" placeholder="VD : Contact"
+										value="${trang.title}" placeholder="Example : Contact"
 										class="form-control">
 								</div>
 							</div>
@@ -84,8 +85,8 @@
 									<label class="control-label  labeld" for="noidung">Nội
 										dung:<span style="color: red;">*</span>
 									</label>
-									<textarea name="noidung" id="noidung" class="form-control"
-										style="margin: 0px; min-height: 92px;"required>${trang.noidung}</textarea>
+									<textarea name="area1" id="area1" class="form-control" placeholder="Nội dung phải trên 200 ký tự"
+										style="margin: 0px; min-height: 300px;"required>${trang.noidung}</textarea>
 								</div>
 							</div>
 						</div>
@@ -96,9 +97,9 @@
 									<label class="control-label  labeld" for="content">Content:<span
 										style="color: red;">*</span>
 									</label>
-									<textarea name="content" id="content" placeholder=""
+									<textarea name="area2" id="area2" placeholder="Content phải trên 200 ký tự"
 										class="form-control"
-										style="margin: 0px; min-height: 92px; " required>${trang.content}</textarea>
+										style="margin: 0px; min-height: 300px; " required>${trang.content}</textarea>
 								</div>
 							</div>
 						</div>

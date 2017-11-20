@@ -2,6 +2,7 @@
 body{
 	margin: 0;
 	background-color:#f7f7f7;
+	font-family: 'Poppins', sans-serif;
 }
 /* 														Header*/
 .con{
@@ -25,9 +26,6 @@ body{
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
      color: #e54d3f; 
      background-color: white; 
-}
-a:focus, a:hover {
-    
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
@@ -101,10 +99,18 @@ a:focus, a:hover {
 .linkh.a{
 	text-decoration: none;
 }
-.linkdangnhap{
-	color:#6c97ce;
+ul.nav li > a.linkdangnhap{
 	font-size:15px;
 	text-decoration: none;
+	padding-top: 6px; 
+	padding-left: 10px; 
+	padding-bottom: 6px; 
+	padding-right: 10px; 
+	margin-top: 9px; 
+	color: #3698ec; 
+	font-size: 15px; 
+	border: none; 
+	margin-right: 10px;
 }
 .menu-chinh .navbar a.navbar-brand{
 	padding: 0px;
@@ -155,9 +161,7 @@ div.menu-top ul.navbar-right>li{
 	position: relative;
 	margin-top:10px;
 	background-color:#fff;
-	height: 140px;
-	
-	
+	/* height: 140px; */	
 }
 .dbmp{
 	font-size:25px;
@@ -166,7 +170,7 @@ div.menu-top ul.navbar-right>li{
 	
 }
 .timkiemnhc{
-	margin-top: 20px;
+	/* margin-top: 20px; */
 	text-align: center;
 }
 .otimk{
@@ -213,7 +217,7 @@ div.menu-top ul.navbar-right>li{
 	    
 }
 .sdtft{
-	font-size:28px;
+	font-size:16px;
 	color:#e44433;
     margin-top: 32px; 
 }
@@ -223,12 +227,12 @@ div.menu-top ul.navbar-right>li{
 }
 .linkft{
 	padding-right:20px;
-	font-size:20px;
+	font-size:15px;
 	text-decoration: none; 
 	
 } 
 .bq{
-	margin-top: 20px;
+	margin-top: 0px;
 }
 .dcft{
 	margin-top: 15px;  
@@ -237,7 +241,7 @@ div.menu-top ul.navbar-right>li{
 	margin-top: 12px;	 
 }
 .ketnoi{
-	font-size:28px;
+	font-size:15px;
 }
 .iconft{
 	padding-left: 25px; 
@@ -254,7 +258,8 @@ div.menu-top ul.navbar-right>li{
 	line-height: 2;
 }
 .hinhgiamgia{
-	padding-left:9px;
+	width: 100%;
+    padding: 9px;
 }
 .tennhgiamgia{
 	color:#e33e20;
@@ -273,6 +278,7 @@ a:hover{
 }
 .xemthemgiamgia{
 	color:#5272b5;
+	font-size: 15px;
 }
 .linkxemthemgiamgia{
 	padding-top: 20px;
@@ -320,11 +326,11 @@ a:hover{
 	margin-top: 10px;
 }
 .tenctnh{
-	font-size:30px;
+	font-size:24px;
 }
 .btndatchongay{
 	color:white;
-	font-size:30px;
+	font-size:15px;
 }
 .rdatcho{
 	margin-top: 20px;
@@ -357,7 +363,7 @@ a:hover{
 }
 .btndatngay{
 	color:white;
-	font-size:24px;
+	font-size:15px;
 }
 .ndkmctnh{
 	color:green;
@@ -379,9 +385,6 @@ a:hover{
 	color:#e3421f;
 	font-size:24px;
 }
-.tieudegtctnh{
-	font-size:24px;
-}
 .rndgtctnh{
     margin-bottom: 20px;	
 }
@@ -397,13 +400,14 @@ a:hover{
 	font-size:24px;
 }
 .giamonan{
-	font-size: 24px;
+	font-size: 15px;
 }
 .tenmonan{
     margin-top: 12px;    	
 }
 .gmonan{
     margin-top: 12px;	
+    text-align: right;
 }
 .ndmonan{
     padding-left: 30px;
@@ -442,7 +446,7 @@ a:hover{
 	line-hight:2;
 }
 .colsodg{
-	padding-left: 132px;
+	/* padding-left: 132px; */
     margin-top: 12px;
 }
 .mucdodg{
@@ -453,7 +457,7 @@ a:hover{
 .mucdodg1{
 	width:150px;
 	height:20px;
-	background-color:yellow;
+	background-color:gold;
 }
 .rmucdg{
 	margin-top:15px;
@@ -462,13 +466,13 @@ a:hover{
 	font-size:32px;
 }
 .tddiemdg{
-	font-size:30px;
+	font-size:15px;
 }
 .rsaodg{
 	margin-top: 10px;
 }
 .btnthemdg{
-	font-size:30px;
+	font-size:15px;
 }
 .ttdg{
 	font-size:24px;
@@ -495,6 +499,7 @@ a:hover{
 .timdg{
 	float:right;
 	font-size:24px;
+	display: none;
 }
 .nddg{
 	margin-top: 5px;
@@ -511,7 +516,7 @@ a:hover{
 }
 .xemthemdg{
 	color:#536fb2;
-	font-size:18px;
+	font-size:15px;
 }
 .rxtdg{
 	margin-bottom: 8px;
@@ -535,7 +540,7 @@ a:hover{
 	margin-top:10px;
 }
 .tenuudiem{
-	font-size:20px;
+	font-size:15px;
 	
 }
 .ud{
@@ -556,7 +561,7 @@ a:hover{
 	padding-top: 22px;
 }
 .timkiemctnh{
-	margin-top: 52px;
+	padding: 45px;
 }
 .rregisters{
         margin-top: 25px;
@@ -574,7 +579,76 @@ a:hover{
 	font-weight:normal;
 	float: left;
 }
+/* .form-group:after{
+	content: "\f107";
+    font: normal normal normal 14px/1 FontAwesome;
+} */
 
+.menu-top{
+	margin-bottom: -15px;
+}
+.menu-chinh{
+	margin-bottom: -10px;
+}
+/*								Dat Ban*/
+.cdatban{
+	background-color:white;
+}
+.formdatban{
+	border: 1px solid #dcdada;
+	min-height: 400px;
+}
+.coldatban{
+	min-height: 500px;
+}
+	
+
+.rdatban{
+	margin-top:20px;
+}
+.rdcnhdb{
+	margin-bottom:20px;
+}
+.dbtennhahang{
+	color:#e33e20;
+}
+.cdbthongtin{
+	background-color:#f7f7f7;
+}
+.dbttkm{
+	margin-bottom: 20px;
+}
+.pdatbanttkm{
+    margin-top: 10px;
+}
+.cotkrdn{
+	margin-top: 10px;
+}
+.rdbho{
+	margin-top:20px;
+}
+
+
+.xndatcho{
+	width: 76%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tieudegtctnh{
+	font-size:20px;
+}
+.br-theme-fontawesome-stars-o .br-widget a.br-active:after,
+.br-theme-fontawesome-stars-o .br-widget a.br-selected:after, 
+.br-theme-fontawesome-stars-o .br-widget a.br-fractional:after{
+	color: gold;
+}
+.barChart__bar{
+	background: whitesmoke; 
+}
+.barChart__barFill{
+	background: gold;
+}
 
 
 

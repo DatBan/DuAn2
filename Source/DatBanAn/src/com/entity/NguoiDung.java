@@ -1,7 +1,5 @@
 package com.entity;
 
-
-
 import java.util.Date;
 
 import javax.persistence.*;
@@ -16,7 +14,8 @@ public class NguoiDung {
 	@Id
 	@GeneratedValue
 	private int id;
-	private String hoten;
+	private String ho;
+	private String ten;
 	private String tendangnhap;
 	private String matkhau;
 	private String email;
@@ -30,16 +29,19 @@ public class NguoiDung {
 	@ManyToOne
 	@JoinColumn(name = "idquyen")
 	private Quyen quyennd;
-
+	@ManyToOne
+	@JoinColumn(name = "idnhahang")
+	private NhaHang nhahang;
 	public NguoiDung() {
 		super();
 	}
 
-	public NguoiDung(String hoten, String tendangnhap, String matkhau, String email, String sdt, String diachi,
-			int trangthai,Date ngaytao, Quyen quyennd) {
+	public NguoiDung(String ho, String ten, String tendangnhap, String matkhau, String email, String sdt, String diachi,
+			int trangthai, Date ngaytao, Quyen quyennd) {
 		super();
-		
-		this.hoten = hoten;
+
+		this.ho = ho;
+		this.ten = ten;
 		this.tendangnhap = tendangnhap;
 		this.matkhau = matkhau;
 		this.email = email;
@@ -50,10 +52,11 @@ public class NguoiDung {
 		this.quyennd = quyennd;
 	}
 
-	public NguoiDung(String hoten, String tendangnhap, String matkhau, String email, String sdt, int trangthai,
+	public NguoiDung(String ho, String ten, String tendangnhap, String matkhau, String email, String sdt, int trangthai,
 			Date ngaytao, Quyen quyennd) {
 		super();
-		this.hoten = hoten;
+		this.ho = ho;
+		this.ten = ten;
 		this.tendangnhap = tendangnhap;
 		this.matkhau = matkhau;
 		this.email = email;
@@ -61,6 +64,16 @@ public class NguoiDung {
 		this.trangthai = trangthai;
 		this.ngaytao = ngaytao;
 		this.quyennd = quyennd;
+	}
+
+	
+
+	public NhaHang getNhahang() {
+		return nhahang;
+	}
+
+	public void setNhahang(NhaHang nhahang) {
+		this.nhahang = nhahang;
 	}
 
 	public int getId() {
@@ -71,16 +84,28 @@ public class NguoiDung {
 		this.id = id;
 	}
 
-	public String getHoten() {
-		return hoten;
+	public String getHo() {
+		return ho;
 	}
 
-	public void setHoten(String hoten) {
-		this.hoten = hoten;
+	public void setHo(String ho) {
+		this.ho = ho;
+	}
+
+	public String getTen() {
+		return ten;
+	}
+
+	public void setTen(String ten) {
+		this.ten = ten;
 	}
 
 	public String getTendangnhap() {
 		return tendangnhap;
+	}
+	
+	public String getHoTen() {
+		return ho +" " + ten;
 	}
 
 	public void setTendangnhap(String tendangnhap) {

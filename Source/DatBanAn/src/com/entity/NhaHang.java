@@ -1,6 +1,5 @@
 package com.entity;
 
-
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -11,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Formula;
 
 @Entity
 @Table
@@ -35,6 +36,40 @@ public class NhaHang {
 	private String slug;
 	private int trangthai;
 	private String mota;
+
+	@Formula("(SELECT ROUND((SUM(c.diemdanhgia)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
+	private Double sumRating;
+
+	@Formula("(SELECT ROUND((SUM(c.doan)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
+	private Double sumDoAn;
+
+	@Formula("(SELECT ROUND((SUM(c.khongian)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
+	private Double sumKhongGian;
+
+	@Formula("(SELECT ROUND((SUM(c.phucvu)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
+	private Double sumPhucVu;
+
+	@Formula("(SELECT ROUND((SUM(c.giaca)/COUNT(*)),1) FROM danhgia c WHERE c.idnhahang = id)")
+	private Double sumGiaCa;
+
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id)")
+	private int countRating;
+	
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '5')") 
+	private int count5;
+	
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '4')") 
+		private int count4;
+	
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '3')") 
+		private int count3;
+	
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '2')") 
+		private int count2;
+	
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '1')") 
+		private int count1;
+
 	@Temporal(TemporalType.TIME)
 	private Date giomocua;
 	@Temporal(TemporalType.TIME)
@@ -250,6 +285,95 @@ public class NhaHang {
 
 	public void setNgaytao(Date ngaytao) {
 		this.ngaytao = ngaytao;
+	}
+
+	public int getCountRating() {
+		return countRating;
+	}
+
+	public Double getSumRating() {
+		System.out.println(sumRating+" 1 1");
+		return sumRating == null ? 0 : sumRating;
+	}
+
+	public void setSumRating(Double sumRating) {
+		this.sumRating = sumRating;
+	}
+
+	public Double getSumDoAn() {
+		return sumDoAn == null ? 0 : sumDoAn;
+	}
+
+	public void setSumDoAn(Double sumDoAn) {
+		this.sumDoAn = sumDoAn;
+	}
+
+	public Double getSumKhongGian() {
+		return sumKhongGian == null ? 0 : sumKhongGian;
+	}
+
+	public void setSumKhongGian(Double sumKhongGian) {
+		this.sumKhongGian = sumKhongGian;
+	}
+
+	public Double getSumPhucVu() {
+		return sumPhucVu == null ? 0 : sumPhucVu;
+	}
+
+	public void setSumPhucVu(Double sumPhucVu) {
+		this.sumPhucVu = sumPhucVu;
+	}
+
+	public Double getSumGiaCa() {
+		return sumGiaCa == null ? 0 : sumGiaCa;
+	}
+
+	public void setSumGiaCa(Double sumGiaCa) {
+		this.sumGiaCa = sumGiaCa;
+	}
+
+	public void setCountRating(int countRating) {
+		this.countRating = countRating;
+	}
+
+	public int getCount5() {
+		return count5;
+	}
+
+	public void setCount5(int count5) {
+		this.count5 = count5;
+	}
+
+	public int getCount4() {
+		return count4;
+	}
+
+	public void setCount4(int count4) {
+		this.count4 = count4;
+	}
+
+	public int getCount3() {
+		return count3;
+	}
+
+	public void setCount3(int count3) {
+		this.count3 = count3;
+	}
+
+	public int getCount2() {
+		return count2;
+	}
+
+	public void setCount2(int count2) {
+		this.count2 = count2;
+	}
+
+	public int getCount1() {
+		return count1;
+	}
+
+	public void setCount1(int count1) {
+		this.count1 = count1;
 	}
 
 }
