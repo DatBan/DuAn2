@@ -54,6 +54,17 @@ public class BinhLuan {
 		this.monanbl = monanbl;
 		this.traloi = traloi;
 	}
+	
+	
+
+	
+
+	public BinhLuan(NguoiDung nguoibl, BaiViet baivietbl, BinhLuan traloi) {
+		super();
+		this.nguoibl = nguoibl;
+		this.baivietbl = baivietbl;
+		this.traloi = traloi;
+	}
 
 	public int getIdbinhluan() {
 		return idbinhluan;

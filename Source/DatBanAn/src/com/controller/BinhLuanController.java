@@ -49,7 +49,7 @@ public class BinhLuanController {
 			session.close();
 		}
 
-		return "redirect:/baiviet/chitiet/" + id + ".htm";
+		return "redirect:/baiviet/chitietbaiviet/" + id + ".htm";
 
 	}
 
@@ -63,7 +63,7 @@ public class BinhLuanController {
 		BinhLuan bl = (BinhLuan) session.get(BinhLuan.class, id);
 		Transaction t = null;
 		try {
-			BinhLuan binhluan = new BinhLuan(nguoidung, baiviet, noidung, bl);
+			BinhLuan binhluan = new BinhLuan(nguoidung,baiviet,bl);
 			session.save(binhluan);
 			/* t.commit(); */
 		} catch (Exception e) {
