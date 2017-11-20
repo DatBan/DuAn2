@@ -67,10 +67,9 @@ public class RegisterController {
 		try {
 			session.save(nguoidung);
 			t.commit();
-			httpSession.setAttribute("nguoidung", nguoidung);
+			httpSession.setAttribute("nd", nguoidung);
 			
 			Cookie cktdn = new Cookie("cktdn", nguoidung.getTendangnhap());
-			cktdn.setPath("/");
 			response.addCookie(cktdn);
 			httpSession.setAttribute("tdn", cktdn.getValue());
 			return"redirect:trang-chu.html";
@@ -131,9 +130,9 @@ public class RegisterController {
 			
 			if(nd!=null){
 				try{
-				if(nd.getTendangnhap().equals(tdn)){
-					return "true";
-				}
+					if(nd.getTendangnhap() != null && nd.getTendangnhap().equals(tdn)){
+						return "true";
+					}
 				}catch(Exception e){
 					System.out.println("ERROR! "+e.toString());
 					return "true";

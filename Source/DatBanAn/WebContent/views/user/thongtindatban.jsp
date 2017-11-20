@@ -39,6 +39,16 @@
 					<div class="row rdbho">
 						<div class="col-md-1"></div>
 						<div class="col-md-5">
+							<span><b>Mã hoá đơn: </b></span>
+						</div>
+						<div class="col-md-5">
+							<span style="color: red">${hoadon.id} </span>
+						</div>
+						<div class="col-md-1"></div>
+					</div>
+					<div class="row rdbho">
+						<div class="col-md-1"></div>
+						<div class="col-md-5">
 							<span><b>Họ tên: </b></span>
 						</div>
 						<div class="col-md-5">

@@ -18,13 +18,13 @@ public class changepass {
 
 	@Autowired
 	SessionFactory factory;
-	
+
 	@RequestMapping(value = "updateuserpwdg", method = RequestMethod.POST)
 	public String UpdateUserPwd(ModelMap model,
 
-			@RequestParam("userid") int id, @RequestParam("pwdold") String pwdold,
-			@RequestParam("pwdnew") String matkhau, @RequestParam("pwdnewr") String pwdnewr
-	
+	@RequestParam("userid") int id, @RequestParam("pwdold") String pwdold, @RequestParam("pwdnew") String matkhau,
+			@RequestParam("pwdnewr") String pwdnewr
+
 	) {
 		Session session = factory.openSession();
 		NguoiDung user = (NguoiDung) session.get(NguoiDung.class, id);
@@ -44,7 +44,7 @@ public class changepass {
 				session.update(user);
 				t.commit();
 				model.addAttribute("message", "chinh thanh cong !");
-				
+
 			}
 		} catch (Exception e) {
 			t.rollback();

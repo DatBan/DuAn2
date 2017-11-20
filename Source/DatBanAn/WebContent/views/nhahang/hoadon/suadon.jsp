@@ -163,7 +163,7 @@
 							
 							<div class="row ds-banan">
 								<div class="col-md-2 border text-center hienthiban">
-									<a href="nhahang/quanlydatban/duyet1.html?idhd=${hoadon.id}"><div
+									<a href="nhahang/hoadon/chonban1.html?idhd=${hoadon.id}"><div
 											class="soban">${hoadon.banan.soban}</div></a>
 									<div class="trangthai">${hoadon.thoigian}</div>
 									<div class="songuoi">${hoadon.banan.songuoi}</div>

@@ -1,4 +1,5 @@
 <%@ page pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <div class="row ">
 			<div class="col-md-6">
@@ -22,6 +23,7 @@
 						<span class="dcctnh">${ctnhahang.diachi}</span>
 					</div>
 				</div>
+				 <c:forEach var="km" items="${km}">
 				<div class="row rdatcho">
 					<div class="col-md-12">
 						<a href="datban/index/1.html" type="button" class="btn btn-warning btndatchongay">
@@ -29,6 +31,7 @@
 						</a>
 					</div>
 				</div>
+				</c:forEach>
 				<div class="row saodanhgia">
 					<div class="col-md-3" title="${ctnhahang.sumRating} điểm">
 						<select class="diemdg">

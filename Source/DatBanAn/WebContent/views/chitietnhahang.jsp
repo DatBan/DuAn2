@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,29 +23,34 @@
 		<jsp:include page="homepage/chitietnhahang/image-info.jsp"></jsp:include>
 
 	</div>
+	
+	<c:if test="${km !=null }">
 	<div class="container conctkm">
 		<div class="row">
 			<div class="col-md-12">
 				<span class="ctkm tieudegtctnh"><b>Chương trình khuyễn mãi</b></span>
 			</div>
 		</div>
+		<c:forEach var="km" items="${km}">	
 		<div class="row text-center">
 			<div class="col-md-12">
 				<img src="images/linekm.png" style="width: 1136px;" />
 			</div>
 		</div>
+			
 		<div class="row rkmctnh">
 			<div class="col-md-10">
-				<span class="ndkmctnh"><b>Cả ngày - Giảm 20% cho các hoá
-						đơn có tổng tiền trên 800 nghìn đồng </b></span>
+				<span class="ndkmctnh"><b>${km.thongtin}</b></span>
 			</div>
 			<div class="col-md-2">
-				<a href="datban/index/1.html" type="button" class="btn btn-success btndatngay">
+				<a href="datban/index/1.html?idkm=${km.id}" type="button" class="btn btn-success btndatngay">
 					<b>Đặt Ngay</b>
 				</a>
 			</div>
 		</div>
+		</c:forEach>	
 	</div>
+	</c:if>
 	<div class="container gioithieuctnh">
 		<div class="row rgtctnh">
 			<div class="col-md-2">

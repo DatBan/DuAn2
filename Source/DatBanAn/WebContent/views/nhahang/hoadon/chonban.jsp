@@ -36,12 +36,11 @@
 							<c:forEach var="b" items="${ban}">								
 								
 							<div class="col-md-2 border text-center">
-								<a href="nhahang/hoadon/chonban1.html?idhd=${idhd}&idb=${b.id}"><div class="soban">${b.soban}</div></a>
+								<a href="nhahang/quanlydatban/chonban1.html?idhd=${idhd}&idb=${b.id}"><div class="soban">${b.soban}</div></a>
 								<div class="trangthai">Trống</div>
 								<div class="songuoi">${b.songuoi}</div>
 							</div>
-							<div class="col-md-1">						
-							</div>
+							
 								<div class="col-md-1"></div>
 							</c:forEach>
 						</div>

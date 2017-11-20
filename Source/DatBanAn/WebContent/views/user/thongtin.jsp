@@ -19,8 +19,8 @@
 					<div class="text-center">
 						<div class="login-body">
 							<div class="col-md-12">
-							<form name="thongtinbanan" id="thongtinbanan"
-									action="datban/thongtinbanan.html" method="post">
+							<form name="nhapthongtinban" id="nhapthongtinban"
+									action="datban/thongtinbanan.html" method="get">
 
 								<div class="row rregister">
 									<div class="form-group fullname-custom">
@@ -29,7 +29,7 @@
 										<div class="col-md-6">
 											<label class="control-label  labeld" for="email">Email:<span
 												style="color: red;">*</span></label> <input type="email"
-												name="email" placeholder="Địa chỉ Email của bạn"
+												name="email" id="email" placeholder="Địa chỉ Email của bạn"
 												class="form-control">
 										</div>
 									</div>
@@ -41,7 +41,7 @@
 										<div class="col-md-6">
 											<label class="control-label  labeld" for="sdt">Mã hoá
 												đơn:<span style="color: red;">*</span>
-											</label> <input type="text" name="idhoadon"
+											</label> <input type="text" name="idhoadon" id="idhoadon"
 												placeholder="Mã hoá đơn của bạn" class="form-control">
 										</div>
 									</div>

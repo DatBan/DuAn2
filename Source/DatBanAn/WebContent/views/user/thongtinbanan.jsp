@@ -18,7 +18,9 @@
 				<div class="login-page" style="margin-top: 50px">
 					<div class="text-center">
 						<div class="login-body">
-							<div class="col-md-12">
+						<c:choose>
+							<c:when test="${loi == null}">
+								<div class="col-md-12">
 
 								<ul class="nav nav-tabs">
 									<li class="active"><a data-toggle="tab" href="#home">Thông
@@ -257,6 +259,7 @@
 										</div>
 									</div>
 									<div id="menu2" class="tab-pane fade">
+										<c:if test="${hoadon.banan!=null}">
 										<div class="col-md-8">
 											<div class="col-md-5"></div>
 											<div class="col-md-2 border text-center"
@@ -270,10 +273,23 @@
 													style="border-top: 1px solid black; border-right: 1px solid black; border-left: 1px solid black;">${hoadon.banan.songuoi}
 													Người</div>
 											</div>
-											<div class="col-md-1"></div>
-
+											<div class="col-md-1"></div>							
 
 										</div>
+										</c:if>
+										<c:if test="${hoadon.banan==null}">
+										<div class="col-md-8">
+											<div class="col-md-3"></div>
+											<div class="col-md-6 border text-center"
+												style="border: 1px solid black; margin-bottom: 60px; margin-top: 30px;">
+												
+												<div style="height: 50px; line-height: 50px;">Vui lòng chờ nhà hàng xác nhận!</div>
+												
+											</div>
+											<div class="col-md-1"></div>							
+
+										</div>
+										</c:if>
 										<div class="col-md-4" style="margin-top: 20px;">
 											<div class="row dbttkm cdbthongtin">
 												<div class="col-md-12">
@@ -330,6 +346,13 @@
 								</div>
 
 							</div>
+							</c:when>
+							<c:otherwise>
+									<span class="text-danger">Hoá đơn không tồn tại</span><br/>
+									<a class="btn btn-info" href="#">Quay ve trang chu</a>
+							</c:otherwise>	
+						</c:choose>
+							
 						</div>
 					</div>
 				</div>

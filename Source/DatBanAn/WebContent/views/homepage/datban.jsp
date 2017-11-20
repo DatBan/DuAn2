@@ -33,6 +33,8 @@
 				<div class="row formdatban col-md-11">
 					<form name="datban" id="datban" action="datban/xacnhandatban.html"
 						method="post" class="">
+						<input style="display: none" name="idkm" type="text"
+							value="${khuyenmai.id}">
 						<input style="display: none" name="idnhahang" type="text"
 							value="${nhahang.id}"> <input style="display: none"
 							name="idnguoidung" type="text" value="${sessionScope.id}">
@@ -52,10 +54,10 @@
 						<div class="row rdbho">
 							<div class="col-md-1"></div>
 							<div class="col-md-5">
-								<input class="form-control" type="text" name="ho" placeholder="Họ"  />
+								<input class="form-control" type="text" name="ho" placeholder="Họ" value="${sessionScope.nd.ho}"  />
 							</div>
 							<div class="col-md-5">
-								<input class="form-control" type="text" name="ten" placeholder="Tên"/>
+								<input class="form-control" type="text" name="ten" placeholder="Tên" value="${sessionScope.nd.ten}"/>
 							</div>
 							<div class="col-md-1"></div>
 						</div>
@@ -91,10 +93,10 @@
 						<div class="row rdbho">
 							<div class="col-md-1"></div>
 							<div class="col-md-5">
-								<input class="form-control" type="text" name="sdt" placeholder="Số điện thoại" value="${nguoidung.sdt}"/>
+								<input class="form-control" type="text" name="sdt" placeholder="Số điện thoại" value="${sessionScope.nd.sdt}"/>
 							</div>
 							<div class="col-md-5">
-								<input class="form-control" type="text" name="email" placeholder="Email" value="${nguoidung.email}"/>
+								<input class="form-control" type="text" name="email" placeholder="Email" value="${sessionScope.nd.email}"/>
 							</div>
 							<div class="col-md-1"></div>
 						</div>
@@ -103,7 +105,7 @@
 							<div class="col-md-10">
 								<textarea  name="ghichu" id="ghichu" placeholder="Ghi chú"
 									class="form-control"
-									style="min-height: 120px; max-height: 120px; min-width: 91%; max-width: 91%;"></textarea>
+									style="min-height: 120px; max-height: 120px; min-width: 100%; max-width: 100%;"></textarea>
 							</div>
 
 							<div class="col-md-1"></div>

@@ -54,11 +54,11 @@
 						</div>
 					</form>
 					<ul class="nav navbar-nav">
-						<li><a href="#"><b>Khuyến mãi</b></a></li>
+						<li><a href="khuyenmai.html"><b>Khuyến mãi</b></a></li>
 						<li><a href="#"><b>Bài viết</b></a></li>
 						<li><a href="#"><b>Trợ giúp</b></a></li>
 						<c:forEach var="t" items="${trang}">
-						<li><a href="#">${t.tieude}</a></li>
+							<li><a href="#">${t.tieude}</a></li>
 						</c:forEach>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">

@@ -40,7 +40,23 @@
 								<span style="margin-top: 30px; color: red; ">${message}</span>
 								<form name="registerform" id="registerform"
 									action="RegisterForm.html" method="post">
+									
 									<div class="row rregister">
+										
+										
+										<div class="form-group fullname-custom">
+											<div class=" col-md-3"></div>
+											<div class="col-md-6">
+											<div class="col-md-12 alert-danger">
+												<p class="text-danger pull-left"><span style="color: red;">* </span>Là các trường bắt buộc</p>
+											</div>		
+											</div>
+											
+										</div>
+									</div>
+									<div class="row rregister">
+										
+										
 										<div class="form-group fullname-custom">
 											<div class=" col-md-3"></div>
 											<div class="col-md-3">

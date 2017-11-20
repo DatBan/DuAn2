@@ -97,6 +97,69 @@ $(document).ready(function() {
 			}
 		}
 	});
+	//Xem thông tin bàn
+	$("#nhapthongtinban").validate({
+		onchange :true,
+		rules :{
+			email :{
+				required :{
+		              depends : function() {
+		                  $(this).val($.trim($(this).val()));
+		                  return true;
+		                }
+		              },
+		              remote : {
+							type : "GET",
+							url : "datban/kt-email.html",
+							
+		              },
+				rangelength :[7,150],
+				nowhitespace : true,
+				email :true,
+				
+			},
+			idhoadon :{
+				required :{
+		              depends : function() {
+		                  $(this).val($.trim($(this).val()));
+		                  return true;
+		                }
+		              },
+		              remote : {
+							type : "GET",
+							url : "datban/kt-hoadon.html",
+							data: {
+								email: function(){
+									var id = $("#email").val();
+									if(id != null){
+										return id;
+									}else{
+										return 0;
+									}
+								}
+							}
+		              }, 
+				digits : true,
+				maxlength :11
+			}
+		},
+		messages:{
+			email :{
+				required :"Vui lòng nhập email của bạn",
+				remote :"Xin lỗi không có hoá đơn nào có email như vậy",
+				rangelength :"Email không hợp lệ",
+				nowhitespace : "Email không được có khoảng trắng",
+				email:"Email không hợp lệ",
+				
+			},
+			idhoadon :{
+				required :"Vui lòng nhập mã hoá đơn của bạn",
+				remote :"Mã hoá đơn và email không tồn tại bạn vui lòng kiểm tra lại email",
+				digits : "Mã hoá đơn phải là số và không có khoảng trắng",
+				maxlength :"Mã hoá đơn không hợp lệ"
+			}
+		}
+	});
 	//Sửa hoá đơn
 	$("#suadon").validate({
 		

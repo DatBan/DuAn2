@@ -199,10 +199,11 @@ public class InvoiceController {
 					HoaDon hd = (HoaDon) session.get(HoaDon.class, idhd);
 					BanAn ban = (BanAn) session.get(BanAn.class, idb);
 					hd.setBanan(ban);
-					
+					ban.setTrangthai(true);
 					Transaction t = session.beginTransaction();
 					try {
 						session.update(hd);
+						session.update(ban);
 						t.commit();
 						
 
@@ -222,11 +223,13 @@ public class InvoiceController {
 
 					HoaDon hd = (HoaDon) session.get(HoaDon.class, idhd);
 					BanAn ban = (BanAn) session.get(BanAn.class, idb);
+					hd.getBanan().setTrangthai(false);
 					hd.setBanan(ban);
-					
+					ban.setTrangthai(true);
 					Transaction t = session.beginTransaction();
 					try {
 						session.update(hd);
+						session.update(ban);
 						t.commit();
 						
 
@@ -246,9 +249,13 @@ public class InvoiceController {
 					
 					HoaDon hd = (HoaDon) session.get(HoaDon.class, id);
 					hd.setTrangthai(4);
+					
+					BanAn ban = hd.getBanan();					
+					ban.setTrangthai(false);
 					Transaction t = session.beginTransaction();
 					try {
 						session.update(hd);
+						session.update(ban);
 						t.commit();
 						model.addAttribute("message", "Xoá thành công");
 						
