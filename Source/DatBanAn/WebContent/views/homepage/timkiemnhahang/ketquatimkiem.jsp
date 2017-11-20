@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<jsp:include page="/include/headtag.jsp"></jsp:include>
+	<meta content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<jsp:include page="/include/headtag.jsp"></jsp:include>
 </head>
 <body>
 	<jsp:include page="/include/header.jsp"></jsp:include>
@@ -96,12 +96,7 @@
 
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<img src="images/linekm.png"
-					style="width: 1137px; height: 1px; opacity: 0.18;" />
-			</div>
-		</div>
+		<hr/>
 		<div class="row">
 			<div class=col-md-3>
 
@@ -176,12 +171,7 @@
 
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<img src="images/linekm.png"
-					style="width: 1137px; height: 1px; opacity: 0.18;" />
-			</div>
-		</div>
+		<hr/>
 		<div class="row">
 			<div class=col-md-3>
 
@@ -256,12 +246,7 @@
 
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<img src="images/linekm.png"
-					style="width: 1137px; height: 1px; opacity: 0.18;" />
-			</div>
-		</div>
+		<hr/>
 		<div class="row">
 
 			<div class="col-md-12 text-center linkxemthemgiamgia">
@@ -271,7 +256,7 @@
 		</div>
 
 	</div>
-	<div class="container bodydexuat">
+	<!-- <div class="container bodydexuat">
 		<div class="row">
 			<div class="col-md-4">
 
@@ -359,15 +344,7 @@
 			</div>
 
 		</div>
-	</div>
-
-
-
-
-
-
-
-
+	</div> -->
 
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>

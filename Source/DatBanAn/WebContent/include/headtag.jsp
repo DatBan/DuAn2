@@ -22,7 +22,8 @@
 <!-- File jquery kiem tra loi -->
 <script src="js/moment.js"></script>
 <script src="js/jquery.barChart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/locale/vi.js"></script>
+
+<script src="js/moment_vi.js"></script>
 <script src="js/jquery.barrating.min.js"></script>
 <script src="js/qcTimepicker.js"></script>
 <script src="js/jquery.validate.js"></script>

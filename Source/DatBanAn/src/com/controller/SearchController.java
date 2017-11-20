@@ -21,15 +21,15 @@ public class SearchController {
 	private NhaHangDAO nhahangDAO;
 	
 	@RequestMapping("tim-kiem")
-	public String index(@RequestParam("thoigian") String lele,
-			@RequestParam("ohlala") String ohlala){
-		System.out.println(lele);
-		System.out.println(ohlala);
-		return "index";
+	public String index(/*@RequestParam("thoigian") String lele,
+			@RequestParam("ohlala") String ohlala*/){
+		/*System.out.println(lele);
+		System.out.println(ohlala);*/
+		return "homepage/timkiemnhahang/ketquatimkiem";
 	}
 	
 	@RequestMapping("search-ajax")
-	public @ResponseBody void ajax_timkiem(@RequestParam("search") String search,
+	public @ResponseBody void ajax_timkiem(@RequestParam(value="search", required=false, defaultValue="") String search,
 			HttpServletResponse response) throws IOException, InterruptedException{
 		Thread.sleep(500);
 		List<NhaHang> list = nhahangDAO.getListByTenNhaHang(search);
@@ -40,6 +40,7 @@ public class SearchController {
 		for (int i = 0; i < list.size(); i++) {
 			strTrave += list.get(i).getId()+":"+list.get(i).getTennhahang()+",";
 		}*/
+		/*System.out.println(trave);*/
 		response.getWriter().print(trave);
 //		return trave; 
 	}
