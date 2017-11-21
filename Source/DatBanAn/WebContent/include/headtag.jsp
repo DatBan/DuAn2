@@ -13,6 +13,7 @@
 <link href="css/jquery.barCharts.css" rel="stylesheet" type="text/css" >
 <!-- tuy chinh -->
 <link href="css/custom.css" rel="stylesheet" type="text/css" >
+<link href="css/custom1.css" rel="stylesheet" type="text/css" >
 
 
 <!-- Link toi file jquery -->
@@ -29,6 +30,13 @@
 <script src="js/jquery.validate.js"></script>
 <script src="js/additional-methods.min.js"></script>
 <script src="js/ScriptDangKy.js"></script>
+<<<<<<< HEAD
+<script src="js/Scriptdoimk.js"></script>
+<script src="js/custom-script.js"></script>
+<script src="js/binhluan.js"></script>
+
+=======
 
 <script src="js/custom-script.js"></script>
 <script src="js/ScriptDatBan.js"></script>
+>>>>>>> b47634f34176ed55b81562e5ba9cf350a09d6b22

@@ -1,5 +1,10 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
+encoding//src/captcha/xacnhan.java=UTF-8
+encoding//src/com/controller/quanlynhahang.java=UTF-8
+=======
 encoding//src/com/controller/AccountDashboardController.java=UTF-8
 encoding//src/com/controller/HomePageController.java=UTF-8
 encoding//src/com/controller/RatingController.java=UTF-8
 encoding//src/com/controller/RegisterController.java=UTF-8
+>>>>>>> b47634f34176ed55b81562e5ba9cf350a09d6b22

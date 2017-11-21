@@ -37,4 +37,7 @@
 	<welcome-file-list>
 		<welcome-file>trang-chu.html</welcome-file>
 	</welcome-file-list>
+	
+
+
 </web-app>

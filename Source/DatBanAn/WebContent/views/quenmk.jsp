@@ -1,8 +1,7 @@
 <%@ page import="com.controller.Mail"%>
 <%@ page import="javax.mail.MessagingException"%>
 <%@ page pageEncoding="UTF-8"%>
-<%@ page import="net.tanesha.recaptcha.ReCaptcha"%>
-<%@ page import="net.tanesha.recaptcha.ReCaptchaFactory"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -15,22 +14,29 @@
 </head>
 <body>
 	<jsp:include page="/include/header.jsp"></jsp:include>
-	<form:form action="Mail.htm" method="post">
+	<form name="quenmkform" id="registerform"
+									action="QuenmkForm.html" method="post">
 		<div class="container clearfix">
 
 			<form class="container" id="needs-validation" novalidate>
 				<div class="row">
 					<div class="col-md-4 mb-3">
-						<label for="validationCustom01">Tên đăng nhập</label> <input
-							type="text" id="tdn" class="form-control"
-							aria-required="true" placeholder="Nhập tên đăng nhập" required>
+						<label for="tendangnhap">Tên đăng nhập</label> 
+						</br>
+						<input
+							type="text" id="tdn"  class="form-control"
+							aria-required="true" placeholder="Nhập tên đăng nhập" >
 					</div>
+					
 				</div>
+				</br>
 				<div class="row">
 					<div class="col-md-4 mb-3">
-						<label>Email</label> <input type="text"
+						<label for="email">Email</label> 
+						</br>
+						<input type="text"
 							class="form-control required email" id="email"
-							placeholder="Nhập Email" required>
+							placeholder="Nhập Email" >
 						<div class="invalid-feedback"></div>
 					</div>
 
@@ -59,7 +65,7 @@
 
 
 
-	</form:form>
+	</form>
 
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
