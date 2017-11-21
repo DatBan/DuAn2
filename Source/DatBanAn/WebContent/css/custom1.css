@@ -122,7 +122,7 @@ body{
 	
 }
 .timkiemnhc{
-	margin-top: 20px;
+	/* margin-top: 20px; */
 	text-align: center;
 }
 .otimk{
@@ -511,9 +511,9 @@ a:hover{
 .timtheodc{
 	padding-top: 22px;
 }
-.timkiemctnh{
+/* .timkiemctnh{
 	margin-top: 52px;
-}
+} */
 .rregisters{
         margin-top: 25px;
 }

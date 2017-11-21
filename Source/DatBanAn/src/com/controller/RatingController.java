@@ -195,7 +195,7 @@ public class RatingController {
 		Gson gson = new Gson();
 		String trave = gson.toJson(strListDG);
 		String trangthai = "in";
-		System.out.println(trave);
+		/*System.out.println(trave);*/
 		if(pageCount <= trang){
 			trangthai = "out";
 		}

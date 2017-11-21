@@ -13,8 +13,8 @@
 		            <span class="typeahead__query"> -->
 		            <div class="input-group">
 		            	<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-		                <input class="form-control js-typeahead" id="keyword" name="q" type="search" value="${q}" placeholder="Tên quán ăn hoặc món ăn" autocomplete="off">
-								
+		                <%-- <input class="form-control js-typeahead" id="keyword" name="q" type="search" value="${q}" placeholder="Tên quán ăn hoặc món ăn" autocomplete="off"> --%>
+						<input id="placeholder" placeholder="Tên quán ăn hoặc món ăn" name="search" autocomplete="off"/>
 					</div>
 		           <!--  </span>
 		            <span class="typeahead__button">
@@ -27,7 +27,7 @@
 		    </div> -->
 	    </div>
 		<div class="form-group">
-			<input type="text" class="form-control" id="ngaythang1" name="ohlala" placeholder="Chọn ngày tháng" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF">
+			<input type="text" class="form-control" id="ngaythang1" name="date" placeholder="Chọn ngày tháng" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF">
 		</div>
 		<div class="form-group">
 			<input type="time" class="timepicker form-control" id="demo">
@@ -47,6 +47,86 @@
 <script>
 	/* $(document).ready(function(){ */
 		$(document).ready(function(){
+			var options = {
+
+					  url: function(phrase) {
+					    return "search-ajax.html";
+					  },
+					  
+					  categories: [
+						{
+						        listLocation: "showmore",
+						        maxNumberOfElements: 1,
+						        header: ""
+						},
+						{
+					        listLocation: "monan",
+					        maxNumberOfElements: 4,
+					        header: "Món ăn"
+					    }, 
+					    {
+					        listLocation: "nhahang",
+					        maxNumberOfElements: 4,
+					        header: "<i class='fa fa-phone'></i> Nhà hàng"
+					    }],
+
+					  getValue: function(element) {
+						  console.log(element);
+						  if(element.tennhahang != undefined){
+							  return element.tennhahang;
+						  }
+						  
+					    return element.tenmonan;
+					  },
+					  template: {
+						  type: "custom",
+							method: function(value, item) {
+								if(item.showmore != null){
+									return "Tìm kiếm thêm với từ khóa \""+value+"\"";
+								}
+								return "<img src=\"\" />" + value;
+							}
+					    },
+
+					  ajaxSettings: {
+					    dataType: "json",
+					    method: "POST",
+					    data: {
+					      dataType: "json"
+					    },
+					    beforeSend: function(){
+			    			$("#placeholder").css("background","white url('css/images/ui-anim_basic_16x16.gif') right center no-repeat");
+			    		},
+			    		complete: function(){
+			    			/* $("#eac-container-placeholder > ul").append($("<li/>",{
+			    				"class": "ss"
+			    			}).append($("<div/>", {
+			    				"class": "eac-item",
+			    				"text": "halo"
+			    			}))); */
+			    			$("#placeholder").css("background","white");
+			    		}
+					  },
+					  list: {
+					        maxNumberOfElements: 8,
+					        match: {
+					            enabled: true
+					        },
+					        sort: {
+					            enabled: true
+					        }
+					    },
+
+					  preparePostData: function(data) {
+					    data.search = $("#placeholder").val();
+					    return data;
+					  },
+					  theme: "square",
+					  requestDelay: 400
+				};
+
+			$("#placeholder").easyAutocomplete(options);
+				
 			var so_nguoi = document.getElementsByClassName('so-nguoi');
 			$('.so-nguoi').empty();
 			for(var i = 1; i < 100; i++){

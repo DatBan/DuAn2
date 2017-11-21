@@ -111,3 +111,24 @@
 <div id="dialog" title="Thông báo">
   <p>Cảm ơn bạn đã đánh giá!</p>
 </div>
+<script>
+$(document).ready(function(){
+	//Jquery barating
+    $('#do-an, #gia-ca, #phuc-vu, #khong-gian').barrating('show',{
+      theme: 'fontawesome-stars-o',
+      initialRating: 3
+    }).barrating('set', '3');
+    //Jquery dialog
+    $( "#dialog" ).dialog({
+    	autoOpen: false,
+    	draggable: false,
+    	resizable: false,
+    	modal: true,
+		buttons: {
+	        Đóng: function() {
+	          $( this ).dialog( "close" );
+	        }
+	      }
+    });
+});
+</script>
