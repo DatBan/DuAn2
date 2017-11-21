@@ -78,6 +78,26 @@ public class HoaDon {
 		this.nhahang = nhahang;
 		this.nguoiDung = nguoiDung;
 	}
+	public HoaDon(String ho,String ten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
+			int trangthai, boolean nhanemail, String thoigian, Date ngaythang, Date ngaytao, NhaHang nhahang,
+			NguoiDung nguoiDung) {
+		super();
+		this.ho = ho;
+		this.ten = ten;
+		this.email = email;
+		this.dienthoai = dienthoai;
+		this.nhandip = nhandip;
+		this.ghichu = ghichu;
+		this.songuoi = songuoi;
+		this.trangthai = trangthai;
+		this.nhanemail = nhanemail;
+		this.thoigian = thoigian;
+		this.ngaythang = ngaythang;    
+		this.ngaytao = ngaytao;
+		
+		this.nhahang = nhahang;
+		this.nguoiDung = nguoiDung;
+	}
 
 	public HoaDon(String ho,String ten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
 			int trangthai, boolean nhanemail, String thoigian,Date ngaythang, Date ngaytao, KhuyenMai khuyenmai, NhaHang nhahang) {

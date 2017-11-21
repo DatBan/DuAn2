@@ -23,7 +23,7 @@
 		</div>
 	</div>
 	<div class="container bodygiamgia">
-	<c:if test="${nh!=null}">
+	<c:if test="${km!=null}">
 		<div class="row">
 			<div class="col-md-3">
 				<img src="images/icongiamgia.png" style="margin-top: -22px;" /> <span
@@ -31,38 +31,37 @@
 			</div>
 		</div>
 		
-		<c:forEach var="nh" items="${nh}">
+		
 		<div class="row">
-			<div class=col-md-3>
-
-				<div class="row">
-					<a class="linknhgiamgia" href="chitietnhahang.html"><img
-						class="hinhgiamgia" src="images/baochau.png" /></a>
-				</div>
-				<div class="row text-center giantoptennh">
-					<a href="#"><span class="tennhgiamgia">${nh.tennhahang}</span></a>
-				</div>
-				<div class="row text-center">
-					<div class="col-md-1"></div>
-					<div class="col-md-10">
-						<a href="#"><span class="diachinhgiamgia">${nh.diachi}</span></a>
+			<c:forEach var="km" items="${km}">
+				<div class=col-md-3>
+					<div class="row">
+						<a class="linknhgiamgia" href="chitietnhahang.html"><img
+							class="hinhgiamgia" src="images/baochau.png" /></a>
 					</div>
-					<div class="col-md-1"></div>
-				</div>
-				<c:forEach var="km" items="${km}">
-				<div class="row text-center">
-					<div class="col-md-1"></div>
-					<div class="col-md-10">
-						<a href="#"><span class="ndgiamgia">${km.thongtin}</span></a>
+					<div class="row text-center giantoptennh">
+						<a href="${km.nhahang.id}"><span class="tennhgiamgia">${km.nhahang.tennhahang}</span></a>
 					</div>
-					<div class="col-md-1"></div>
-
+					<div class="row text-center">
+						<div class="col-md-1"></div>
+						<div class="col-md-10">
+							<a href="#"><span class="diachinhgiamgia">${km.nhahang.diachi}</span></a>
+						</div>
+						<div class="col-md-1"></div>
+					</div>
+					
+					<div class="row text-center">
+						<div class="col-md-1"></div>
+						<div class="col-md-10">
+							<a href="${km.id}"><span class="ndgiamgia">${km.thongtin}</span></a>
+						</div>
+						<div class="col-md-1"></div>
+	
+					</div>
 				</div>
-				</c:forEach>
-			</div>
-						
+			</c:forEach>		
 		</div>
-		</c:forEach>
+		
 		<div class="row">
 
 			<div class="col-md-12 text-center linkxemthemgiamgia">
@@ -72,7 +71,7 @@
 		</div>
 		
 		</c:if>
-		<c:if test="${nh==null}">
+		<c:if test="${km==null}">
 			<div class="row">
 			<div class="col-md-12 text-center linkxemthemgiamgia">
 				<span class="xemthemgiamgia">Hiện tại không có khuyến mãi nào</span>

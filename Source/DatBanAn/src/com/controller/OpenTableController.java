@@ -57,6 +57,16 @@ public class OpenTableController {
 
 		return "homepage/datban";
 	}
+	// Tạo form đặt bàn khi khhông có khuyến mãi
+	@RequestMapping(value = "index1/{id}", method = RequestMethod.GET)
+	public String FormDatBan(ModelMap model, @PathVariable("id") int id) {
+		Session session = factory.getCurrentSession();
+		NhaHang nhahang = (NhaHang) session.get(NhaHang.class, id);
+		
+		model.addAttribute("nhahang", nhahang);
+
+		return "homepage/datbankhongkhuyenmai";
+	}
 
 	// Trang thông tin đặt bàn
 	@RequestMapping(value = "thongtindatban")
@@ -137,6 +147,76 @@ public class OpenTableController {
 		}
 		return "redirect:/datban/thongtindatban.html";
 	}
+	// Đặt bàn khi không có khuyến mãi
+		
+
+		@RequestMapping(value = "xacnhandatbankokm", method = RequestMethod.POST)
+		public String xacnhandatban1(ModelMap model, RedirectAttributes re, @RequestParam("idnhahang") int idnhahang, @RequestParam("ho") String ho, @RequestParam("ten") String ten,
+				@RequestParam("ngaythang") String ngaythang, @RequestParam("thoigian") String thoigian,
+				@RequestParam("songuoi") int songuoi, @RequestParam("nhandip") String nhandip,
+				@RequestParam("email") String email, @RequestParam("sdt") String sdt, @RequestParam("ghichu") String ghichu,
+				@RequestParam(value = "check", required = false, defaultValue = "false") boolean check,
+				HttpSession httpSession) {
+			Session session = factory.openSession();
+			String ho1 = ho.trim();
+			String ten1 = ten.trim();
+			String email1 = email.trim();
+			String sdt1 = sdt.trim();
+			String ghichu1 = ghichu.trim();
+
+			Date date = new Date();
+			System.out.println(ngaythang);
+			SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+			
+			 
+			 
+
+			try {
+				date = df.parse(ngaythang);
+				System.out.println(date);
+				 
+
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				System.out.println(e1.toString());
+				e1.printStackTrace();
+			}
+
+			NhaHang nhahang = (com.entity.NhaHang) session.get(NhaHang.class, idnhahang);
+			
+			NguoiDung nguoidung = (NguoiDung) httpSession.getAttribute("nd");
+
+			Date ngaytao = new Date();
+			Transaction t = session.beginTransaction();
+
+			HoaDon hoadon = new HoaDon(ho1, ten1, email1, sdt1, nhandip, ghichu1, songuoi, 0, check, thoigian, date,
+					new Date(),  nhahang, nguoidung);
+
+			try {
+				session.save(hoadon);
+				t.commit();
+				httpSession.setAttribute("hoadon", hoadon);
+				httpSession.setAttribute("nhahang", nhahang);
+
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				t.rollback();
+				re.addFlashAttribute("message", "Đặt chỗ thất bại!");
+				return "redirect:/datban/index/" + idnhahang + ".html";
+			} finally {
+				session.close();
+			}
+			try {
+				mailer.send(email, "Thông tin bàn ăn của bạn",
+						"<div>Xin chào " + ten1
+								+ " <div>Để xem thông tin bàn cũng như để gọi món vui lòng bấm vào link dưới đây!<br/><div ><a href='http://localhost:9999/DatBanAn/datban/thongtinbanan.html?email="
+								+ email + "&idhoadon=" + hoadon.getId() + "'>Thông tin bàn ăn</a></div></div></div>");
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			return "redirect:/datban/thongtindatban.html";
+		}
 
 	@ModelAttribute("list-nhandip")
 	public Map<String, String> getListNhanDip() {

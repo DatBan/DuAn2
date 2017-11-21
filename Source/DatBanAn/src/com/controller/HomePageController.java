@@ -46,9 +46,9 @@ public class HomePageController {
 		
 		NhaHang nh = this.nhahangDAO.getById(1);
 		
-		String hql ="FROM KhuyenMai where trangthai =:trangthai and idnhahang =:idnhahang";
+		String hql ="FROM KhuyenMai km where trangthai='1' and idnhahang =:idnhahang ";
 		Query query = session.createQuery(hql);
-		query.setParameter("trangthai", true);
+		
 		query.setParameter("idnhahang", 1);
 		@SuppressWarnings("unchecked")
 		List<KhuyenMai> list = query.list();
@@ -64,45 +64,20 @@ public class HomePageController {
 		model.addAttribute("nguoidung", new NguoiDung());
 		return"ketquatimkiem";
 	}
-	@SuppressWarnings({ "unchecked", "null" })
+	
 	@RequestMapping("khuyenmai")
 	public String khuyenmai(ModelMap model){
 		/*List<DanhGia> listDG = this.danhgiaDAO.getListDanhGiaByIdNhaHang(1, 2);*/
 		Session session = factory.openSession();		
+		String hql ="FROM KhuyenMai km WHERE km.trangthai='1' GROUP BY km.nhahang.id";
+		Query query = session.createQuery(hql);		
+
 		
-		String hql ="FROM KhuyenMai where trangthai =:trangthai";
-		Query query = session.createQuery(hql);
-		query.setParameter("trangthai", true);
+		@SuppressWarnings("unchecked")
+		List<KhuyenMai> listkhuyenmai = query.list();		
 		
-		
-		List<KhuyenMai> list = query.list();
-		List<KhuyenMai> listkhuyenmai = null;
-		List<NhaHang> listnhahang =null;
-		for(int i=0;i<list.size();i++){
-			KhuyenMai km = list.get(i);			
-			NhaHang nhahang= km.getNhahang();
-			listnhahang.add(nhahang);
-			/*int idnh= nhahang.getId();
-			System.out.println(idnh);
-			String hqll ="FROM NhaHang where id =:id";
-			Query queryy = session.createQuery(hqll);
-			queryy.setParameter("id", idnh);*/
-						
-			
-		}
-		for(int i=0;i<listnhahang.size();i++){
-			NhaHang nh = listnhahang.get(i);			
-			int idnhahang= nh.getId();
-			String hqlll ="FROM KhuyenMai where idnhahang =:idnhahang";
-			Query queryyy = session.createQuery(hqlll);
-			queryyy.setParameter("idnhahang", idnhahang);
-			listkhuyenmai =queryyy.list();
-			System.out.println("ID nhà hàng là: "+idnhahang);
-		}
-		model.addAttribute("nh", listnhahang);
 		model.addAttribute("km", listkhuyenmai);
 		
-		/*model.addAttribute("listDG", listDG);*/
 		
 		return"khuyenmai";
 	}

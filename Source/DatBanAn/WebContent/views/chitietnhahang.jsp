@@ -24,7 +24,7 @@
 
 	</div>
 	
-	<c:if test="${km !=null }">
+	<c:if test="${km != null }">
 	<div class="container conctkm">
 		<div class="row">
 			<div class="col-md-12">
@@ -43,7 +43,7 @@
 				<span class="ndkmctnh"><b>${km.thongtin}</b></span>
 			</div>
 			<div class="col-md-2">
-				<a href="datban/index/1.html?idkm=${km.id}" type="button" class="btn btn-success btndatngay">
+				<a href="datban/index/${km.nhahang.id}.html?idkm=${km.id}" type="button" class="btn btn-success btndatngay">
 					<b>Đặt Ngay</b>
 				</a>
 			</div>
