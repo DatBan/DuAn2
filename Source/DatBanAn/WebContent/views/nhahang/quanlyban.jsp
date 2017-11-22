@@ -50,11 +50,11 @@
 									<td>${t.soban}</td>
 									<td>${t.songuoi}</td>
 									
-									<c:if test="${t.trangthai==true}">
-										<td>Đã đặt</td>
+									<c:if test="${t.trangthai==1}">
+										<td style="color: #2a5be6; ">Đã đặt</td>
 									</c:if>
-									<c:if test="${t.trangthai==false}">
-										<td>Trống</td>
+									<c:if test="${t.trangthai==0}">
+										<td style="color: green; ">Trống</td>
 									</c:if>
 									<td style="text-align: center"><a
 										href="nhahang/ban/edit/${t.id}.html"

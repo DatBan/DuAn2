@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<c:choose>
-		<c:when test="${km != null}">
+		<c:when test="${!empty km}">
 			<c:forEach var="km" items="${km}" end="0">
 				<div class="row rdatcho">
 					<div class="col-md-12">
@@ -48,13 +48,7 @@
 			
 		</c:otherwise>
 		</c:choose>
-		<div class="row rdatcho">
-				<div class="col-md-12">
-					<a href="datban/index1/${ctnhahang.id}.html" type="button"
-						class="btn btn-warning btndatchongay"> <b>Đặt Chỗ Ngay</b>
-					</a>
-				</div>
-			</div>
+		
 		<div class="row saodanhgia">
 			<div class="col-md-3" title="${ctnhahang.sumRating} điểm">
 				<select class="diemdg">

@@ -199,7 +199,7 @@ public class InvoiceController {
 					HoaDon hd = (HoaDon) session.get(HoaDon.class, idhd);
 					BanAn ban = (BanAn) session.get(BanAn.class, idb);
 					hd.setBanan(ban);
-					ban.setTrangthai(true);
+					ban.setTrangthai(1);
 					Transaction t = session.beginTransaction();
 					try {
 						session.update(hd);
@@ -223,9 +223,9 @@ public class InvoiceController {
 
 					HoaDon hd = (HoaDon) session.get(HoaDon.class, idhd);
 					BanAn ban = (BanAn) session.get(BanAn.class, idb);
-					hd.getBanan().setTrangthai(false);
+					hd.getBanan().setTrangthai(0);
 					hd.setBanan(ban);
-					ban.setTrangthai(true);
+					ban.setTrangthai(1);
 					Transaction t = session.beginTransaction();
 					try {
 						session.update(hd);
@@ -251,7 +251,7 @@ public class InvoiceController {
 					hd.setTrangthai(4);
 					
 					BanAn ban = hd.getBanan();					
-					ban.setTrangthai(false);
+					ban.setTrangthai(0);
 					Transaction t = session.beginTransaction();
 					try {
 						session.update(hd);

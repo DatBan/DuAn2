@@ -24,7 +24,7 @@
 
 	</div>
 	
-	<c:if test="${km != null }">
+	<c:if test="${!empty km}">
 	<div class="container conctkm">
 		<div class="row">
 			<div class="col-md-12">

@@ -54,6 +54,7 @@ public class HomePageController {
 		List<KhuyenMai> list = query.list();
 		model.addAttribute("km", list);
 		model.addAttribute("ctnhahang", nh);
+		System.out.println("khuyeenx mai cua nha hang"+list);
 		/*model.addAttribute("listDG", listDG);*/
 		model.addAttribute("nguoidung", new NguoiDung());
 		return"chitietnhahang";

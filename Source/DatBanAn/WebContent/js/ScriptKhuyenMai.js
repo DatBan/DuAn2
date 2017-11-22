@@ -78,7 +78,7 @@ $(document).ready(function() {
 		},
 		messages : {
 			chude:{
-				required: "Vui lòng nhập tên loại ẩm thực",
+				required: "Vui lòng nhập chủ đề khuyến mãi",
 				remote :"Tên chủ đề đã tồn tại",	
 				minlength:"Chủ đề quá ngắn",
 				maxlength:"Chủ đề không quá 100 ký tự",

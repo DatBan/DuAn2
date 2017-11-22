@@ -44,7 +44,7 @@ public class FoodController {
 		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 		NhaHang nhahang = nd.getNhahang();
 		int id = nhahang.getId();
-		String hql ="FROM MonAn where idnhahang =:idnhahang";
+		String hql ="FROM MonAn where idnhahang =:idnhahang and trangthai=1";
 		Query query = session.createQuery(hql);
 		query.setParameter("idnhahang", id);
 		@SuppressWarnings("unchecked")
@@ -123,24 +123,13 @@ public class FoodController {
 			Session session = factory.openSession();
 			MonAn monan = (MonAn) session.get(MonAn.class, id);
 			
-			//Xoá bình luận món ăn
-			String hql = "FROM BinhLuan where idmonan =:idmonan";
-			Query query = session.createQuery(hql);
-			query.setParameter("idmonan", id);
-			@SuppressWarnings("unchecked")
-			List<BinhLuan> list = query.list();
+			monan.setTrangthai(2);
 
 			Transaction t = session.beginTransaction();
 			try {
-				int idbl;
-				if (list.size() > 0) {
-					for (int i = 0; i < list.size(); i++) {
-						idbl = list.get(i).getIdbinhluan();
-						BinhLuan bl = (BinhLuan) session.get(BinhLuan.class, idbl);
-						session.delete(bl);
-					}
-				}
-				session.delete(monan);
+				
+				
+				session.update(monan);
 				t.commit();
 				model.addAttribute("message", "Xoá thành công");
 

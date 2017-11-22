@@ -12,7 +12,7 @@ public class LoaiAmThuc {
 	private String name;
 	private String mota;
 	private String description;
-
+	private int trangthai;
 	public LoaiAmThuc() {
 		super();
 	}
@@ -23,6 +23,16 @@ public class LoaiAmThuc {
 		this.name = name;
 		this.mota = mota;
 		this.description = description;
+	}
+
+	
+
+	public int getTrangthai() {
+		return trangthai;
+	}
+
+	public void setTrangthai(int trangthai) {
+		this.trangthai = trangthai;
 	}
 
 	public int getId() {
