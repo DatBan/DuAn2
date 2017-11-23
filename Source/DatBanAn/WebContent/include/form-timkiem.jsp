@@ -40,7 +40,7 @@
 			var options = {
 
 					  url: function(phrase) {
-					    return "search-ajax.html";
+					    return "search-autocomplete-ajax.html";
 					  },
 					  
 					  categories: [

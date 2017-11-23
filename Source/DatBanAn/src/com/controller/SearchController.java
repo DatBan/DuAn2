@@ -188,7 +188,7 @@ public class SearchController {
 		/*return "homepage/timkiemnhahang/ketquatimkiem";*/
 	}
 
-	@RequestMapping(value = "search-ajax", method = RequestMethod.POST)
+	@RequestMapping(value = "search-autocomplete-ajax", method = RequestMethod.POST)
 	public @ResponseBody void ajax_timkiem(
 			@RequestParam(value = "search", required = false, defaultValue = "") String search,
 			HttpServletResponse response) throws IOException, InterruptedException {

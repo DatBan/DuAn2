@@ -25,6 +25,8 @@
 		/* console.log('id token: ' + id_token); */
           /* document.getElementById('name').innerText = "Signed in: " +
               googleUser.getBasicProfile().getName(); */
+          $(".test-dropback").fadeIn('slow').attr("id", "loading-dropback");
+          /* $(".test-dropback").fadeIn('slow').css("display", "block"); */
           $.ajax({
   			type: "POST",
   			url: "${pageContext.servletContext.contextPath}/google-login.html",
@@ -40,6 +42,7 @@
   				console.log("Loi "+error);
   			}
   		});
+  		return false;
         }, function(error) {
           console.log(JSON.stringify(error, undefined, 2));
         });
@@ -71,7 +74,7 @@ function statusChangeCallback(response) {
     // Logged into your app and Facebook.
     var access_TK = '';
 		  access_TK = response.authResponse.accessToken;
-		
+		  $(".test-dropback").fadeIn('slow').attr("id", "loading-dropback");
 		$.ajax({
 			type: "GET",
 			url: "${pageContext.servletContext.contextPath}/facebook-login.html",
@@ -86,6 +89,7 @@ function statusChangeCallback(response) {
 				console.log("Loi "+error);
 			}
 		});
+		return false;
     testAPI();
   } else {
     // The person is not logged into your app or we are unable to tell.
@@ -216,58 +220,6 @@ function checkLoginState() {
 	</div>
 </div>
 <script>startApp();</script>
-<!-- 
-<script>
-	function signOut() {
-	    var auth2 = gapi.auth2.getAuthInstance();
-	    auth2.signOut().then(function () {
-	      console.log('User signed out.');
-	    });
-	    
-	    FB.logout(function(response) {
-			  // user is now logged out
-			  statusChangeCallback(response);
-			  console.log("hu'");
-			});
-	  }
-    function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-      var profile = googleUser.getBasicProfile();
-	  var id_token = googleUser.getAuthResponse().id_token;
-	 /*  console.log('id token: ' + id_token);
-	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	  console.log('Name: ' + profile.getName());
-	  console.log('Image URL: ' + profile.getImageUrl());
-	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present. */
-		$.ajax({
-			type: "POST",
-			url: "${pageContext.servletContext.contextPath}/google-login.html",
-			data: {idtoken: id_token},
-			success: function(result){
-				console.log(result);
-				if(result == 'signedin2'){
-					$("#myModal").modal('hide');
-					location.reload();
-				}
-			},
-			error: function(error){
-				console.log("Loi "+error);
-			}
-		});
-    }
-    function onFailure(error) {
-      console.log(error);
-    }
-    function renderButton() {
-      gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        'width': "auto",
-        'height': 50, 
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-      });
-    } 
-  </script>
-<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> -->
+<div class="test-dropback">
+	<i class="fa fa-spinner fa-spin" style="left: 50%; position: absolute; top: 9999; color: #e88c48; font-size: 100px; top: 50%;"></i>
+</div>

@@ -652,6 +652,21 @@ a:hover{
 .easy-autocomplete-container ul{
 	text-align: left;
 }
+div.test-dropback{
+	display: none;
+}
+div#loading-dropback{
+	top: 0;
+	display:block;
+    background-color: white;
+    filter: alpha;
+    position: fixed;
+    z-index: 9999;
+    text-align: center;
+    height: 100%;
+    min-width: 100%;
+    filter: opacity(0.6);
+}
 
 
 

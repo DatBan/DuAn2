@@ -264,10 +264,7 @@ public class LoginController {
 			if (ktEmail != null) {
 				email = null;
 			}
-			System.out.println(me);
-			System.out.println(me.getName());
-			System.out.println(me.getId());
-			System.out.println(me.getEmail());
+
 			NguoiDung nd = userDAO.getByIdFacebook(idfacebook);
 			Quyen quyen = (Quyen) session.get(Quyen.class, 2);
 			if (nd == null) {

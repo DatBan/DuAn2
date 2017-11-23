@@ -76,7 +76,7 @@ public class NhaHang {
 
 	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '1')")
 	private int count1;
-	
+
 	@Formula("(SELECT COUNT(*) FROM hoadon c WHERE c.idnhahang = id)")
 	private int countinvoice;
 
@@ -86,15 +86,18 @@ public class NhaHang {
 	private Date giodongcua;
 	@Temporal(TemporalType.TIME)
 	private Date ngaytao;
+
 	@ManyToOne
 	@JoinColumn(name = "idloaiamthuc")
 	private LoaiAmThuc loaiamthuc;
 
-	/*@OneToMany(mappedBy = "nhahang", fetch = FetchType.EAGER)
-	private List<HoaDon> listhoadon;
-
-	@OneToMany(mappedBy = "nhahang", fetch = FetchType.EAGER)
-	private List<BanAn> listbanan;*/
+	/*
+	 * @OneToMany(mappedBy = "nhahang", fetch = FetchType.EAGER) private
+	 * List<HoaDon> listhoadon;
+	 * 
+	 * @OneToMany(mappedBy = "nhahang", fetch = FetchType.EAGER) private
+	 * List<BanAn> listbanan;
+	 */
 
 	public NhaHang() {
 		super();
@@ -403,21 +406,4 @@ public class NhaHang {
 	public void setCountinvoice(int countinvoice) {
 		this.countinvoice = countinvoice;
 	}
-
-	/*public List<BanAn> getListbanan() {
-		return listbanan;
-	}
-
-	public void setListbanan(List<BanAn> listbanan) {
-		this.listbanan = listbanan;
-	}
-
-	public List<HoaDon> getListhoadon() {
-		return listhoadon;
-	}
-
-	public void setListhoadon(List<HoaDon> listhoadon) {
-		this.listhoadon = listhoadon;
-	}*/
-
 }
