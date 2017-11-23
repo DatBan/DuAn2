@@ -38,7 +38,7 @@ public class CulinaryController {
 	@RequestMapping(value = "index")
 	public String quanLyAmThuc(ModelMap model) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM LoaiAmThuc";
+		String hql = "FROM LoaiAmThuc where trangthai=1";
 		Query query = session.createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<LoaiAmThuc> list = query.list();
@@ -94,11 +94,11 @@ public class CulinaryController {
 		public String deleteAmThuc(ModelMap model, @PathVariable("id") Integer id) {
 			Session session = factory.openSession();
 			LoaiAmThuc amthuc = (LoaiAmThuc) session.get(LoaiAmThuc.class, id);
-
+			amthuc.setTrangthai(2);
 			Transaction t = session.beginTransaction();
 			try {
 
-				session.delete(amthuc);
+				session.update(amthuc);
 				t.commit();
 				model.addAttribute("message", "Xoá thành công");
 

@@ -29,6 +29,7 @@ import com.entity.BanAn;
 import com.entity.KhuyenMai;
 import com.entity.NguoiDung;
 import com.entity.NhaHang;
+import com.entity.TienIch;
 
 @Transactional
 @RequestMapping("nhahang/ban/")
@@ -44,7 +45,7 @@ public class ManagerTableController {
 		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 		NhaHang nhahang = nd.getNhahang();
 		int id = nhahang.getId();
-		String hql = "FROM BanAn where idnhahang =:idnhahang";
+		String hql = "FROM BanAn where idnhahang =:idnhahang and trangthai=0 or trangthai=1";
 		Query query = session.createQuery(hql);
 		query.setParameter("idnhahang", id);
 		@SuppressWarnings("unchecked")
@@ -75,7 +76,7 @@ public class ManagerTableController {
 
 		try {
 
-			BanAn ban = new BanAn(soban, songuoi, false, nhahang);
+			BanAn ban = new BanAn(soban, songuoi, 0, nhahang);
 			session.save(ban);
 			t.commit();
 
@@ -90,7 +91,33 @@ public class ManagerTableController {
 		}
 		return "nhahang/themban";
 	}
+	// Xoá bàn
+		@RequestMapping(value = "delete/{id}")
+		public String deleteTienIch(ModelMap model,RedirectAttributes re, @PathVariable("id") Integer id) {
+			Session session = factory.openSession();
+			BanAn ban = (BanAn) session.get(BanAn.class, id);
+			if(ban.getTrangthai()==1){
+				re.addFlashAttribute("message", "Bàn đang được sử dụng không thể xoá!");
+				return "redirect:/nhahang/ban/index.html";
+			}else{
+				ban.setTrangthai(2);
+			}
+			
+			Transaction t = session.beginTransaction();
+			try {
 
+				session.update(ban);
+				t.commit();
+				model.addAttribute("message", "Xoá thành công");
+
+			} catch (Exception e) {
+				t.rollback();
+				model.addAttribute("message", "Xóa thất bại !" + e.getMessage());
+			} finally {
+				session.close();
+			}
+			return "redirect:/nhahang/ban/index.html";
+		}
 	// Tạo giao diện edit
 	@RequestMapping(value = "edit/{id}")
 	public String editForm(ModelMap model, @PathVariable("id") Integer id) {

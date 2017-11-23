@@ -20,7 +20,7 @@ public class MonAn {
 	@ManyToOne
 	@JoinColumn(name = "idloaidoan")
 	private LoaiDoAn loai;
-
+	private int trangthai;
 	public MonAn() {
 		super();
 	}
@@ -50,6 +50,18 @@ public class MonAn {
 		this.nhahang = nhahang;
 		this.loai = loai;
 	}
+
+	public int getTrangthai() {
+		return trangthai;
+	}
+
+
+
+	public void setTrangthai(int trangthai) {
+		this.trangthai = trangthai;
+	}
+
+
 
 	public int getId() {
 		return id;

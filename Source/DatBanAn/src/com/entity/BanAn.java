@@ -20,7 +20,7 @@ public class BanAn {
 	private int id;
 	private int soban;
 	private int songuoi;
-	private boolean trangthai;
+	private int trangthai;
 	@ManyToOne
 	@JoinColumn(name = "idnhahang")
 	private NhaHang nhahang;
@@ -32,7 +32,7 @@ public class BanAn {
 		super();
 	}
 
-	public BanAn(int soban, int songuoi, boolean trangthai, NhaHang nhahang) {
+	public BanAn(int soban, int songuoi, int trangthai, NhaHang nhahang) {
 		super();
 		this.soban = soban;
 		this.songuoi = songuoi;
@@ -64,11 +64,13 @@ public class BanAn {
 		this.songuoi = songuoi;
 	}
 
-	public boolean isTrangthai() {
+	
+
+	public int getTrangthai() {
 		return trangthai;
 	}
 
-	public void setTrangthai(boolean trangthai) {
+	public void setTrangthai(int trangthai) {
 		this.trangthai = trangthai;
 	}
 

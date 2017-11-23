@@ -70,7 +70,7 @@ $(document).ready(function() {
 			hinh:{
 				required: true,
 				extension: "jpg|png|gif|jpeg",
-				filesize: 2097152
+				filesize: 1097152
 			}
 
 		},
@@ -142,7 +142,7 @@ $("#suatienich").validate({
 			hinh:{
 				
 				extension: "jpg|png|gif|jpeg",
-				filesize: 2097152
+				filesize: 1097152
 			}
 
 		},
