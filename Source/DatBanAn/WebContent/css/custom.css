@@ -254,7 +254,7 @@ div.menu-top ul.navbar-right>li{
 }
 .giamgia{
 	color:#e33e20;
-	font-size:25px;
+	font-size:18px;
 	line-height: 2;
 }
 .hinhgiamgia{
@@ -649,7 +649,9 @@ a:hover{
 .barChart__barFill{
 	background: gold;
 }
-
+.easy-autocomplete-container ul{
+	text-align: left;
+}
 
 
 

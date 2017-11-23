@@ -5,35 +5,22 @@
   }
   </style>
 <div class="row timkiemnhc timkiemctnh">
-	<form class="form-inline" action="tim-kiem.html" method="get">
+	<form class="form-inline" action="tim-kiem.html" method="get" id="tim-kiem-nh">
 		<div class="form-group">
-			<!-- <div class="typeahead__container">
-		        <div class="typeahead__field">
-		 
-		            <span class="typeahead__query"> -->
-		            <div class="input-group">
-		            	<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+			<div class="input-group">
+		    	<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
 		                <%-- <input class="form-control js-typeahead" id="keyword" name="q" type="search" value="${q}" placeholder="Tên quán ăn hoặc món ăn" autocomplete="off"> --%>
-						<input id="placeholder" placeholder="Tên quán ăn hoặc món ăn" name="search" autocomplete="off"/>
-					</div>
-		           <!--  </span>
-		            <span class="typeahead__button">
-		                <button type="submit">
-		                    <span class="typeahead__search-icon"></span>
-		                </button>
-		            </span>
-		 
-		        </div>
-		    </div> -->
+				<input id="keyword" placeholder="Tên quán ăn hoặc món ăn" name="search" autocomplete="off" value="${tukhoa}"/>
+			</div>
 	    </div>
 		<div class="form-group">
-			<input type="text" class="form-control" id="ngaythang1" name="date" placeholder="Chọn ngày tháng" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF">
+			<input type="text" class="form-control" id="ngaythang1" name="ngaythang" placeholder="Chọn ngày tháng" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF">
 		</div>
 		<div class="form-group">
 			<input type="time" class="timepicker form-control" id="demo">
 		</div>
 		<div class="form-group">
-			<select class="form-control so-nguoi">
+			<select class="form-control so-nguoi" name="songuoi" id="songuoi">
 				<option>1 người</option>
 				<option>2 người</option>
 			</select>
@@ -44,6 +31,9 @@
 	</form>
 	<div class="col-md-2 "></div>
 </div>
+<input type="hidden" id="h-tukhoa" value="${tukhoa}"/>
+<input type="hidden" id="h-ngaythang" value="${ngaythang}"/>
+<input type="hidden" id="h-songuoi" value="${songuoi}"/>
 <script>
 	/* $(document).ready(function(){ */
 		$(document).ready(function(){
@@ -62,12 +52,12 @@
 						{
 					        listLocation: "monan",
 					        maxNumberOfElements: 4,
-					        header: "Món ăn"
+					        header: "<i class='fa fa fa-cutlery'></i> Món ăn"
 					    }, 
 					    {
 					        listLocation: "nhahang",
 					        maxNumberOfElements: 4,
-					        header: "<i class='fa fa-phone'></i> Nhà hàng"
+					        header: "<i class='fa fa-building-o'></i> Nhà hàng"
 					    }],
 
 					  getValue: function(element) {
@@ -95,7 +85,7 @@
 					      dataType: "json"
 					    },
 					    beforeSend: function(){
-			    			$("#placeholder").css("background","white url('css/images/ui-anim_basic_16x16.gif') right center no-repeat");
+			    			$("#keyword").css("background","white url('css/images/ui-anim_basic_16x16.gif') right center no-repeat");
 			    		},
 			    		complete: function(){
 			    			/* $("#eac-container-placeholder > ul").append($("<li/>",{
@@ -104,7 +94,7 @@
 			    				"class": "eac-item",
 			    				"text": "halo"
 			    			}))); */
-			    			$("#placeholder").css("background","white");
+			    			$("#keyword").css("background","white");
 			    		}
 					  },
 					  list: {
@@ -118,14 +108,14 @@
 					    },
 
 					  preparePostData: function(data) {
-					    data.search = $("#placeholder").val();
+					    data.search = $("#keyword").val();
 					    return data;
 					  },
 					  theme: "square",
 					  requestDelay: 400
 				};
 
-			$("#placeholder").easyAutocomplete(options);
+			$("#keyword").easyAutocomplete(options);
 				
 			var so_nguoi = document.getElementsByClassName('so-nguoi');
 			$('.so-nguoi').empty();

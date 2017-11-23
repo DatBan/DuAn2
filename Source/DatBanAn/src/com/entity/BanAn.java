@@ -1,10 +1,15 @@
 package com.entity;
 
+import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +24,9 @@ public class BanAn {
 	@ManyToOne
 	@JoinColumn(name = "idnhahang")
 	private NhaHang nhahang;
+	
+	@OneToMany(mappedBy = "banan", fetch = FetchType.EAGER)
+	private Collection<HoaDon> listhd;
 
 	public BanAn() {
 		super();
@@ -70,6 +78,14 @@ public class BanAn {
 
 	public void setNhahang(NhaHang nhahang) {
 		this.nhahang = nhahang;
+	}
+
+	public Collection<HoaDon> getListhd() {
+		return listhd;
+	}
+
+	public void setListhd(Collection<HoaDon> listhd) {
+		this.listhd = listhd;
 	}
 
 }

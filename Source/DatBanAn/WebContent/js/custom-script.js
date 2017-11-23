@@ -443,6 +443,83 @@ $(document).ready(function() {
 			}
 		});
 	});
+	//Xem them tim kiem
+	var sotrang = 1;
+	$("#xem-them-tk").bind("click",function(){
+		var search = $("#h-tukhoa").val();
+		var ngaythang = $("#h-ngaythang").val();
+		var songuoi = $("#h-songuoi").val();
+		$(this).html('<i class="fa-li fa fa-spinner fa-spin" style="position: initial;"></i> Đang tải');
+		sotrang++;
+		
+		$.ajax({
+			type: "POST",
+			url: "tim-kiem-ajax.html",/*
+			dataType: "json",*/
+			data: {trang: sotrang, sapxep: sapxep, search: search, ngaythang: ngaythang, songuoi: songuoi},
+			dataType: "json",
+			success: function(result){
+				console.log(result);
+				setTimeout(function(){
+					var trave = result.trave;
+					if(result.chuoi == 'out'){
+						$("#xem-them-tk").css("display", "none");
+					}
+					$("#xem-them-tk").html('Xem thêm');
+					$(trave).appendTo('#list-timkiem').hide().fadeIn('slow');
+					/*$("#list-timkiem").append(trave);
+					$(trave).fadeIn('slow');*/
+				}, 500);
+			},
+			error: function(error){
+				console.log("LOI "+error);
+			}
+		});
+		return false;
+	});
+	
+	$(".sap-xep-tk").bind("change",function(){
+		sotrang = 1 ;
+		var search = $("#h-tukhoa").val();
+		var ngaythang = $("#h-ngaythang").val();
+		var songuoi = $("#h-songuoi").val();
+		$("#xem-them-tk").html('<i class="fa-li fa fa-spinner fa-spin" style="position: initial;"></i> Đang tải');
+		$("#list-timkiem").html('');
+		$("#xem-them-tk").css("display", "block");
+		
+		if($(this).val() == 'oldest'){
+			sapxep = "old";
+		}else if($(this).val() == 'popular'){
+			sapxep = "popular";
+		}else{
+			sapxep = "new";
+		}
+		/*$(".sap-xep").removeClass("active");
+		$(this).addClass('active');*/
+		$.ajax({
+			type: "POST",
+			url: "tim-kiem-ajax.html",/*
+			dataType: "json",*/
+			data: {trang: sotrang, sapxep: sapxep, search: search, ngaythang: ngaythang, songuoi: songuoi},
+			dataType: "json",
+			success: function(result){
+				console.log(result);
+				setTimeout(function(){
+					var trave = result.trave;
+					if(result.chuoi == 'out'){
+						$("#xem-them-tk").css("display", "none");
+					}
+					$("#xem-them-tk").html('Xem thêm');
+					$(trave).appendTo('#list-timkiem').hide().fadeIn('slow');
+					/*$("#list-timkiem").append(trave);
+					$(trave).fadeIn('slow');*/
+				}, 500);
+			},
+			error: function(error){
+				console.log("LOI "+error);
+			}
+		});
+	});
 	
 	$(".sap-xep").bind("change",function(){
 		sotrang = 1 ;

@@ -1,12 +1,19 @@
 package com.entity;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -54,21 +61,24 @@ public class NhaHang {
 
 	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id)")
 	private int countRating;
-	
-	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '5')") 
+
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '5')")
 	private int count5;
+
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '4')")
+	private int count4;
+
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '3')")
+	private int count3;
+
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '2')")
+	private int count2;
+
+	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '1')")
+	private int count1;
 	
-	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '4')") 
-		private int count4;
-	
-	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '3')") 
-		private int count3;
-	
-	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '2')") 
-		private int count2;
-	
-	@Formula("(SELECT COUNT(*) FROM danhgia c WHERE c.idnhahang = id AND c.diemdanhgia = '1')") 
-		private int count1;
+	@Formula("(SELECT COUNT(*) FROM hoadon c WHERE c.idnhahang = id)")
+	private int countinvoice;
 
 	@Temporal(TemporalType.TIME)
 	private Date giomocua;
@@ -79,6 +89,12 @@ public class NhaHang {
 	@ManyToOne
 	@JoinColumn(name = "idloaiamthuc")
 	private LoaiAmThuc loaiamthuc;
+
+	/*@OneToMany(mappedBy = "nhahang", fetch = FetchType.EAGER)
+	private List<HoaDon> listhoadon;
+
+	@OneToMany(mappedBy = "nhahang", fetch = FetchType.EAGER)
+	private List<BanAn> listbanan;*/
 
 	public NhaHang() {
 		super();
@@ -113,6 +129,10 @@ public class NhaHang {
 
 	public int getId() {
 		return id;
+	}
+
+	public String getDiachifull() {
+		return diachi + ", " + phuongxa + ", " + quanhuyen + ", " + tinhthanh;
 	}
 
 	public void setId(int id) {
@@ -292,7 +312,7 @@ public class NhaHang {
 	}
 
 	public Double getSumRating() {
-		System.out.println(sumRating+" 1 1");
+		System.out.println(sumRating + " 1 1");
 		return sumRating == null ? 0 : sumRating;
 	}
 
@@ -375,5 +395,29 @@ public class NhaHang {
 	public void setCount1(int count1) {
 		this.count1 = count1;
 	}
+
+	public int getCountinvoice() {
+		return countinvoice;
+	}
+
+	public void setCountinvoice(int countinvoice) {
+		this.countinvoice = countinvoice;
+	}
+
+	/*public List<BanAn> getListbanan() {
+		return listbanan;
+	}
+
+	public void setListbanan(List<BanAn> listbanan) {
+		this.listbanan = listbanan;
+	}
+
+	public List<HoaDon> getListhoadon() {
+		return listhoadon;
+	}
+
+	public void setListhoadon(List<HoaDon> listhoadon) {
+		this.listhoadon = listhoadon;
+	}*/
 
 }

@@ -1,7 +1,5 @@
 package com.entity;
 
-
-
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -12,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 @Entity
 @Table
@@ -32,7 +32,7 @@ public class HoaDon {
 	private String thoigian;
 	@Temporal(TemporalType.DATE)
 	private Date ngaythang;
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIME)
 	private Date ngaytao;
 	@ManyToOne
 	@JoinColumn(name = "idkhuyenmai")
@@ -40,6 +40,7 @@ public class HoaDon {
 	@ManyToOne
 	@JoinColumn(name = "idnhahang")
 	private NhaHang nhahang;
+
 	@ManyToOne
 	@JoinColumn(name = "idnguoidung")
 	private NguoiDung nguoiDung;
@@ -50,7 +51,7 @@ public class HoaDon {
 	public HoaDon() {
 		super();
 	}
-	
+
 	public HoaDon(int trangthai, Date ngaytao, NhaHang nhahang) {
 		super();
 		this.trangthai = trangthai;
@@ -58,9 +59,9 @@ public class HoaDon {
 		this.nhahang = nhahang;
 	}
 
-	public HoaDon(String ho,String ten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
-			int trangthai, boolean nhanemail, String thoigian, Date ngaythang, Date ngaytao, KhuyenMai khuyenmai, NhaHang nhahang,
-			NguoiDung nguoiDung) {
+	public HoaDon(String ho, String ten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
+			int trangthai, boolean nhanemail, String thoigian, Date ngaythang, Date ngaytao, KhuyenMai khuyenmai,
+			NhaHang nhahang, NguoiDung nguoiDung) {
 		super();
 		this.ho = ho;
 		this.ten = ten;
@@ -72,13 +73,14 @@ public class HoaDon {
 		this.trangthai = trangthai;
 		this.nhanemail = nhanemail;
 		this.thoigian = thoigian;
-		this.ngaythang = ngaythang;    
+		this.ngaythang = ngaythang;
 		this.ngaytao = ngaytao;
 		this.khuyenmai = khuyenmai;
 		this.nhahang = nhahang;
 		this.nguoiDung = nguoiDung;
 	}
-	public HoaDon(String ho,String ten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
+
+	public HoaDon(String ho, String ten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
 			int trangthai, boolean nhanemail, String thoigian, Date ngaythang, Date ngaytao, NhaHang nhahang,
 			NguoiDung nguoiDung) {
 		super();
@@ -92,15 +94,16 @@ public class HoaDon {
 		this.trangthai = trangthai;
 		this.nhanemail = nhanemail;
 		this.thoigian = thoigian;
-		this.ngaythang = ngaythang;    
+		this.ngaythang = ngaythang;
 		this.ngaytao = ngaytao;
-		
+
 		this.nhahang = nhahang;
 		this.nguoiDung = nguoiDung;
 	}
 
-	public HoaDon(String ho,String ten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
-			int trangthai, boolean nhanemail, String thoigian,Date ngaythang, Date ngaytao, KhuyenMai khuyenmai, NhaHang nhahang) {
+	public HoaDon(String ho, String ten, String email, String dienthoai, String nhandip, String ghichu, int songuoi,
+			int trangthai, boolean nhanemail, String thoigian, Date ngaythang, Date ngaytao, KhuyenMai khuyenmai,
+			NhaHang nhahang) {
 		super();
 		this.ho = ho;
 		this.ten = ten;
@@ -112,15 +115,15 @@ public class HoaDon {
 		this.trangthai = trangthai;
 		this.nhanemail = nhanemail;
 		this.thoigian = thoigian;
-		this.ngaythang = ngaythang;   
+		this.ngaythang = ngaythang;
 		this.ngaytao = ngaytao;
 		this.khuyenmai = khuyenmai;
 		this.nhahang = nhahang;
 	}
 
-	public HoaDon(String ho,String ten, String email, String dienthoai, String nhandip, String ghichu, double tongtien,
-			int songuoi, int trangthai, boolean nhanemail, String thoigian,Date ngaythang, Date ngaytao, KhuyenMai khuyenmai,
-			NhaHang nhahang, NguoiDung nguoiDung, BanAn banan) {
+	public HoaDon(String ho, String ten, String email, String dienthoai, String nhandip, String ghichu, double tongtien,
+			int songuoi, int trangthai, boolean nhanemail, String thoigian, Date ngaythang, Date ngaytao,
+			KhuyenMai khuyenmai, NhaHang nhahang, NguoiDung nguoiDung, BanAn banan) {
 		super();
 		this.ho = ho;
 		this.ten = ten;
@@ -133,7 +136,7 @@ public class HoaDon {
 		this.trangthai = trangthai;
 		this.nhanemail = nhanemail;
 		this.thoigian = thoigian;
-		this.ngaythang = ngaythang;   
+		this.ngaythang = ngaythang;
 		this.ngaytao = ngaytao;
 		this.khuyenmai = khuyenmai;
 		this.nhahang = nhahang;
@@ -148,8 +151,6 @@ public class HoaDon {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
 
 	public String getHo() {
 		return ho;
@@ -174,8 +175,9 @@ public class HoaDon {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getHoTen() {
-		return ho +" " + ten;
+		return ho + " " + ten;
 	}
 
 	public String getDienthoai() {
