@@ -97,4 +97,7 @@
 		</nav>
 	</div>
 </div>
-<jsp:include page="${request.contextPath}/modal-login.html"></jsp:include>
+<script type="text/javascript">
+
+</script>
+<jsp:include page="/views/modals/modal-login.jsp"></jsp:include>

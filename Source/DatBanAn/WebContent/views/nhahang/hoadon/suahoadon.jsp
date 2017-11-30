@@ -1,7 +1,7 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!DOCTYPE html>
+<%-- <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -25,7 +25,7 @@
 
 				<!--------------- Table, form cac thu ---------------->
 
-				<div class="content-nhe">
+				<div class="content-nhe"> --%>
 					<div class="row tieudethemtrang">
 						<span style="margin-top: 30px; color: red;">${message}</span>
 					</div>
@@ -149,7 +149,7 @@
 											value="Sửa">
 									</div>
 									<div class="col-md-3">
-										<a href="nhahang/quanlydatban/index1.html"
+										<a href="${btn_back}"
 											class="btn btn-warning btn-block" type="button">Huỷ</a>
 									</div>
 									<div class="col-md-3"></div>
@@ -173,10 +173,10 @@
 						</div>
 					</div>
 					<div class="line"></div>
-				</div>
+				<%-- </div>
 			</div>
 			<!------------------- Footer dashboard------------ -->
-			<jsp:include page="/include-dashboard/footer.jsp"></jsp:include>
+			<jsp:include page="/include-dashboard/footer.jsp"></jsp:include> --%>
 			<script>
 				/* $(document).ready(function(){ */
 				$(document).ready(function() {
@@ -211,8 +211,8 @@
 				});
 				/* }); */
 			</script>
-		</div>
+		<!-- </div>
 	</div>
 </body>
 
-</html>
+</html> -->

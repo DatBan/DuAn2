@@ -36,7 +36,7 @@ public class UtilityController {
 	@Autowired
 	SessionFactory factory;
 
-	// Đổ dữ liệu ra trang quản lý
+	// Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½
 	@RequestMapping(value = "index")
 	public String quanlytienich(ModelMap model,HttpSession httpSession) {
 		Session session = factory.getCurrentSession();
@@ -49,17 +49,23 @@ public class UtilityController {
 		@SuppressWarnings("unchecked")
 		List<TienIch> list = query.list();
 		model.addAttribute("tienich", list);
-		model.addAttribute("tenbreadcrumb", "QUẢN LÝ TIỆN ÍCH");
-		return "nhahang/quanlytienich";
+		
+		model.addAttribute("btn_add","nhahang/tienich/them.html");
+		model.addAttribute("tenbreadcrumb", "Quản lý tiện ích");
+		return "nhahang/tienich/quanlytienich";
 	}
 
-	// Phương thức GET để tạo giao diện khi click button Thêm
+	// PhÆ°Æ¡ng thá»©c GET Ä‘á»ƒ táº¡o giao diá»‡n khi click button ThÃªm
 	@RequestMapping(value = "them", method = RequestMethod.GET)
 	public String them(ModelMap model) {
-		model.addAttribute("tenbreadcrumb", "THÊM TIỆN ÍCH");
-		return "nhahang/themtienich";
+		
+		model.addAttribute("btn_back","nhahang/tienich/index.html");
+		model.addAttribute("tenbreadcrumb", "Thêm mới tiện ích");
+		model.addAttribute("tenbreadcrumb2", "Quản lý tiện ích");
+		model.addAttribute("urlbreadcrumb2", "nhahang/tienich/index.html");
+		return "nhahang/tienich/themtienich";
 	}
-	// Thêm tiện ích
+	// ThÃªm tiá»‡n Ã­ch
 
 	@Autowired
 	ServletContext context;
@@ -70,7 +76,7 @@ public class UtilityController {
 			// @RequestParam("idnhahang") int idnhahang,
 			@RequestParam("hinh") MultipartFile hinh, HttpSession httpSession) {
 		Session session = factory.openSession();
-		// Lấy id nhà hàng để thêm vào đồ ăn
+		// Láº¥y id nhÃ  hÃ ng Ä‘á»ƒ thÃªm vÃ o Ä‘á»“ Äƒn
 		// NhaHang nhahang = (NhaHang) session.get(NhaHang.class, idnhahang);
 		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 		NhaHang nhahang = nd.getNhahang();
@@ -91,14 +97,14 @@ public class UtilityController {
 			// TODO: handle exception
 			t.rollback();
 			System.out.println(e.toString());
-			model.addAttribute("message", "Thêm tiện ích thất bại!");
+			model.addAttribute("message", "ThÃªm tiá»‡n Ã­ch tháº¥t báº¡i!");
 		} finally {
 			session.close();
 		}
-		return "nhahang/themtienich";
+		return "nhahang/tienich/themtienich";
 	}
 
-	// Xoá tiện ích
+	// XoÃ¡ tiá»‡n Ã­ch
 	@RequestMapping(value = "delete/{id}")
 	public String deleteTienIch(ModelMap model, @PathVariable("id") Integer id) {
 		Session session = factory.openSession();
@@ -109,28 +115,32 @@ public class UtilityController {
 
 			session.delete(tienich);
 			t.commit();
-			model.addAttribute("message", "Xoá thành công");
+			model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
 
 		} catch (Exception e) {
 			t.rollback();
-			model.addAttribute("message", "Xóa thất bại !" + e.getMessage());
+			model.addAttribute("message", "XÃ³a tháº¥t báº¡i !" + e.getMessage());
 		} finally {
 			session.close();
 		}
 		return "redirect:/nhahang/tienich/index.html";
 	}
 
-	// Tạo giao diện edit tiện ích
+	// Táº¡o giao diá»‡n edit tiá»‡n Ã­ch
 	@RequestMapping(value = "edit/{id}")
 	public String editFormTienIch(ModelMap model, @PathVariable("id") Integer id) {
 		Session session = factory.getCurrentSession();
 		TienIch tienich = (TienIch) session.get(TienIch.class, id);
 		model.addAttribute("tienich", tienich);
-		model.addAttribute("tenbreadcrumb", "SỬA TIỆN ÍCH");
-		return "nhahang/suatienich";
+		
+		model.addAttribute("btn_back","nhahang/tienich/index.html");
+		model.addAttribute("tenbreadcrumb", "Sửa thông tin tiện ích");
+		model.addAttribute("tenbreadcrumb2", "Quản lý tiện ích");
+		model.addAttribute("urlbreadcrumb2", "nhahang/tienich/index.html");
+		return "nhahang/tienich/suatienich";
 	}
 
-	// Sửa tiện ích
+	// Sá»­a tiá»‡n Ã­ch
 	@RequestMapping(value = "suatienich", method = RequestMethod.POST)
 	public String suaTienIch(ModelMap model, RedirectAttributes re, @RequestParam("idtienich") int id,
 			@RequestParam("tentienich") String tentienich, @RequestParam("name") String name,
@@ -146,7 +156,7 @@ public class UtilityController {
 
 		Transaction t = session.beginTransaction();
 
-		// Sửa hình
+		// Sá»­a hÃ¬nh
 		String hinhanh = tienich.getIcon();
 		if (!hinh.isEmpty()) {
 			try {
@@ -163,7 +173,7 @@ public class UtilityController {
 		try {
 			session.update(tienich);
 			t.commit();
-			model.addAttribute("message", "Chỉnh sửa thành công !");
+			model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
 			return "redirect:/nhahang/tienich/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -175,7 +185,7 @@ public class UtilityController {
 		return "redirect:/nhahang/tienich/edit/" + id + ".html";
 	}
 
-	// Kiểm tra trùng tên tiện ích
+	// Kiá»ƒm tra trÃ¹ng tÃªn tiá»‡n Ã­ch
 	@RequestMapping(value = "kt-trung-tentienich", method = RequestMethod.GET)
 	public @ResponseBody String ktTrungTenTienIch(@RequestParam("tentienich") String tentienich, @RequestParam("idtienich") int id,
 			HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {
@@ -189,7 +199,7 @@ public class UtilityController {
 		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 		NhaHang nhahang = nd.getNhahang();
 		int idnhahang = nhahang.getId();
-		// Where thêm id nhà hàng để kiểm tra trùng tên đồ ăn riêng nhà hàng đó
+		// Where thÃªm id nhÃ  hÃ ng Ä‘á»ƒ kiá»ƒm tra trÃ¹ng tÃªn Ä‘á»“ Äƒn riÃªng nhÃ  hÃ ng Ä‘Ã³
 		String hql = "FROM TienIch where tentienich =:tentienich and idnhahang =:idnhahang";
 		Query query = session.createQuery(hql);
 		query.setParameter("tentienich", tentienich);
@@ -205,7 +215,7 @@ public class UtilityController {
 		}
 	}
 
-	// Kiểm tra trùng name tiện ích
+	// Kiá»ƒm tra trÃ¹ng name tiá»‡n Ã­ch
 	@RequestMapping(value = "kt-trung-name", method = RequestMethod.GET)
 	public @ResponseBody String ktTrungName(@RequestParam("name") String name, @RequestParam("idtienich") int id,
 			HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {
@@ -219,7 +229,7 @@ public class UtilityController {
 		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 		NhaHang nhahang = nd.getNhahang();
 		int idnhahang = nhahang.getId();
-		// Where thêm id nhà hàng để kiểm tra trùng name đồ ăn riêng nhà hàng đó
+		// Where thÃªm id nhÃ  hÃ ng Ä‘á»ƒ kiá»ƒm tra trÃ¹ng name Ä‘á»“ Äƒn riÃªng nhÃ  hÃ ng Ä‘Ã³
 		String hql = "FROM TienIch where name =:name and idnhahang =:idnhahang";
 		Query query = session.createQuery(hql);
 		query.setParameter("name", name);

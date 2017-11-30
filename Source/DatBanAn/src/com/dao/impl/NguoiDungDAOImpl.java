@@ -49,38 +49,38 @@ public class NguoiDungDAOImpl implements NguoiDungDAO {
 
 	@Override
 	public void createUser(NguoiDung nd) {
-		Session session = factory.openSession();
-		Transaction t = session.beginTransaction();
+		Session session = factory.getCurrentSession();
+		/*Transaction t = session.beginTransaction();*/
 		try {
 			session.save(nd);
-			t.commit();
+			/*t.commit();*/
 			System.out.println("Success!");
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.toString());
 			e.printStackTrace();
-			t.rollback();
-		} finally {
+			/*t.rollback();*/
+		} /*finally {
 			session.close();
-		}
+		}*/
 
 	}
 
 	@Override
 	public void updateUser(NguoiDung nd) {
-		Session session = factory.openSession();
-		Transaction t = session.beginTransaction();
+		Session session = factory.getCurrentSession();
+		/* Transaction t = session.beginTransaction(); */
 		try {
 			session.update(nd);
-			t.commit();
+			/* t.commit(); */
 			System.out.println("Saved!");
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.toString());
-			t.rollback();
-		} finally {
-			session.close();
-		}
+			/* t.rollback(); */
+		} /*
+			 * finally { session.close(); }
+			 */
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class NguoiDungDAOImpl implements NguoiDungDAO {
 		Session session = factory.getCurrentSession();
 		Query query = session.createQuery("FROM NguoiDung WHERE trangthai=:tt");
 		query.setParameter("tt", trangthai);
-		
+
 		@SuppressWarnings("unchecked")
 		List<NguoiDung> nd = query.list();
 		return nd;
@@ -100,8 +100,12 @@ public class NguoiDungDAOImpl implements NguoiDungDAO {
 		Query query = session.createQuery("FROM NguoiDung nd WHERE nd.id=:id AND nd.trangthai=:tthai");
 		query.setParameter("tthai", trangthai);
 		query.setParameter("id", id);
-		
-		NguoiDung nd = (NguoiDung) query.uniqueResult();
+		NguoiDung nd = null;
+		try {
+			nd = (NguoiDung) query.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return nd;
 	}
 
@@ -118,7 +122,7 @@ public class NguoiDungDAOImpl implements NguoiDungDAO {
 	@Override
 	public void deleteUser(NguoiDung nd) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -126,10 +130,39 @@ public class NguoiDungDAOImpl implements NguoiDungDAO {
 		Session session = factory.getCurrentSession();
 		Query query = session.createQuery("FROM NguoiDung nd WHERE nd.email=:email");
 		query.setParameter("email", email);
-		
+
 		NguoiDung nd = (NguoiDung) query.uniqueResult();
 		return nd;
 	}
-	
+
+	@Override
+	public List<NguoiDung> getListByIdNhaHangNull() {
+		Session session = factory.getCurrentSession();
+		Query query = session.createQuery("FROM NguoiDung nd WHERE nd.trangthai = 1 AND nd.quyennd.id !=:ten AND nd.nhahang.id IS NULL ");
+		query.setParameter("ten", 1);
+		@SuppressWarnings("unchecked")
+		List<NguoiDung> list = query.list();
+		return list;
+	}
+
+	@Override
+	public List<NguoiDung> getListByIdQuyenAndIdNhaHang(int quyenid, int idnhahang) {
+		Session session = factory.getCurrentSession();
+		Query query = session.createQuery("FROM NguoiDung nd WHERE nd.trangthai = 1 AND nd.quyennd.id != 1 AND "
+				+ "nd.nhahang.id IS NULL OR (nd.quyennd.id =:quyen AND nd.nhahang.id=:idnhahang)");
+		query.setParameter("quyen", quyenid);
+		query.setParameter("idnhahang", idnhahang);
+		
+		@SuppressWarnings("unchecked")
+		List<NguoiDung> list = query.list();
+		return list;
+	}
+
+	@Override
+	public NguoiDung getById(int id) {
+		Session session = factory.getCurrentSession();
+		NguoiDung nd = (NguoiDung) session.get(NguoiDung.class, id);
+		return nd;
+	}
 
 }

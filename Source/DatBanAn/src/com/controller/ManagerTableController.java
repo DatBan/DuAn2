@@ -38,7 +38,7 @@ public class ManagerTableController {
 	@Autowired
 	SessionFactory factory;
 
-	// Đổ dữ liệu ra trang quản lý
+	// Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½
 	@RequestMapping(value = "index")
 	public String quanLyBan(ModelMap model,HttpSession httpSession) {
 		Session session = factory.getCurrentSession();
@@ -51,17 +51,23 @@ public class ManagerTableController {
 		@SuppressWarnings("unchecked")
 		List<BanAn> list = query.list();
 		model.addAttribute("ban", list);
-		model.addAttribute("tenbreadcrumb", "QUẢN LÝ BÀN");
-		return "nhahang/quanlyban";
+		
+		model.addAttribute("btn_add","nhahang/ban/them.html");
+		model.addAttribute("tenbreadcrumb", "Quản lý bàn ăn");
+		return "nhahang/banan/quanlyban";
 	}
 
-	// Phương thức GET để tạo giao diện khi click button Thêm
+	// PhÆ°Æ¡ng thá»©c GET Ä‘á»ƒ táº¡o giao diá»‡n khi click button ThÃªm
 	@RequestMapping(value = "them", method = RequestMethod.GET)
 	public String them(ModelMap model) {
-		model.addAttribute("tenbreadcrumb", "THÊM BÀN");
-		return "nhahang/themban";
+		
+		model.addAttribute("btn_back","nhahang/ban/index.html");
+		model.addAttribute("tenbreadcrumb", "Thêm mới bàn ăn");
+		model.addAttribute("tenbreadcrumb2", "Quản lý bàn ăn");
+		model.addAttribute("urlbreadcrumb2", "nhahang/ban/index.html");
+		return "nhahang/banan/themban";
 	}
-	// Thêm bàn
+	// ThÃªm bÃ n
 
 	@Autowired
 	ServletContext context;
@@ -85,19 +91,19 @@ public class ManagerTableController {
 			// TODO: handle exception
 			t.rollback();
 			System.out.println(e.toString());
-			model.addAttribute("message", "Thêm bàn thất bại!");
+			model.addAttribute("message", "ThÃªm bÃ n tháº¥t báº¡i!");
 		} finally {
 			session.close();
 		}
-		return "nhahang/themban";
+		return "nhahang/banan/themban";
 	}
-	// Xoá bàn
+	// XoÃ¡ bÃ n
 		@RequestMapping(value = "delete/{id}")
 		public String deleteTienIch(ModelMap model,RedirectAttributes re, @PathVariable("id") Integer id) {
 			Session session = factory.openSession();
 			BanAn ban = (BanAn) session.get(BanAn.class, id);
 			if(ban.getTrangthai()==1){
-				re.addFlashAttribute("message", "Bàn đang được sử dụng không thể xoá!");
+				re.addFlashAttribute("message", "BÃ n Ä‘ang Ä‘Æ°á»£c sá»­ dá»¥ng khÃ´ng thá»ƒ xoÃ¡!");
 				return "redirect:/nhahang/ban/index.html";
 			}else{
 				ban.setTrangthai(2);
@@ -108,27 +114,31 @@ public class ManagerTableController {
 
 				session.update(ban);
 				t.commit();
-				model.addAttribute("message", "Xoá thành công");
+				model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
 
 			} catch (Exception e) {
 				t.rollback();
-				model.addAttribute("message", "Xóa thất bại !" + e.getMessage());
+				model.addAttribute("message", "XÃ³a tháº¥t báº¡i !" + e.getMessage());
 			} finally {
 				session.close();
 			}
 			return "redirect:/nhahang/ban/index.html";
 		}
-	// Tạo giao diện edit
+	// Táº¡o giao diá»‡n edit
 	@RequestMapping(value = "edit/{id}")
 	public String editForm(ModelMap model, @PathVariable("id") Integer id) {
 		Session session = factory.getCurrentSession();
 		BanAn ban = (BanAn) session.get(BanAn.class, id);
 		model.addAttribute("ban", ban);
-		model.addAttribute("tenbreadcrumb", "SỬA BÀN");
-		return "nhahang/suaban";
+		
+		model.addAttribute("btn_back","nhahang/ban/index.html");
+		model.addAttribute("tenbreadcrumb", "Sửa thông tin bàn ăn");
+		model.addAttribute("tenbreadcrumb2", "Quản lý bàn ăn");
+		model.addAttribute("urlbreadcrumb2", "nhahang/ban/index.html");
+		return "nhahang/banan/suaban";
 	}
 
-	// Sửa bàn
+	// Sá»­a bÃ n
 	@RequestMapping(value = "suaban", method = RequestMethod.POST)
 	public String suaAmThuc(ModelMap model, RedirectAttributes re, @RequestParam("idban") int id,
 			@RequestParam("soban") int soban, @RequestParam("songuoi") int songuoi, HttpSession httpSession) {
@@ -140,7 +150,7 @@ public class ManagerTableController {
 		try {
 			session.update(ban);
 			t.commit();
-			model.addAttribute("message", "Chỉnh sửa thành công !");
+			model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
 			return "redirect:/nhahang/ban/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -152,7 +162,7 @@ public class ManagerTableController {
 		return "redirect:/nhahang/ban/edit/" + id + ".html";
 	}
 
-	// Kiểm tra trùng số bàn
+	// Kiá»ƒm tra trÃ¹ng sá»‘ bÃ n
 	@RequestMapping(value = "kt-trung-soban", method = RequestMethod.GET)
 	public @ResponseBody String ktTrungChude(@RequestParam("soban") int soban, @RequestParam("idban") int id,
 			HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {

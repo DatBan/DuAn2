@@ -21,11 +21,8 @@ public class changepass {
 
 	@RequestMapping(value = "updateuserpwdg", method = RequestMethod.POST)
 	public String UpdateUserPwd(ModelMap model,
-
-	@RequestParam("userid") int id, @RequestParam("pwdold") String pwdold, @RequestParam("pwdnew") String matkhau,
-			@RequestParam("pwdnewr") String pwdnewr
-
-	) {
+			@RequestParam("userid") int id, @RequestParam("pwdold") String pwdold, @RequestParam("pwdnew") String matkhau,
+			@RequestParam("pwdnewr") String pwdnewr) {
 		Session session = factory.openSession();
 		NguoiDung user = (NguoiDung) session.get(NguoiDung.class, id);
 

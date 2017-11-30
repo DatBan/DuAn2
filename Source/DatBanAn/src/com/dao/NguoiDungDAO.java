@@ -15,4 +15,7 @@ public interface NguoiDungDAO {
 	public List<NguoiDung> getListByIdQuyen(int idq);
 	public void deleteUser(NguoiDung nd);
 	public NguoiDung getByEmail(String email);
+	public List<NguoiDung> getListByIdNhaHangNull();
+	public List<NguoiDung> getListByIdQuyenAndIdNhaHang(int quyenid, int idnhahang);
+	public NguoiDung getById(int id);
 }

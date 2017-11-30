@@ -2,30 +2,36 @@ package com.entity;
 
 import javax.persistence.*;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table
 
 public class MonAn {
 	@Id
 	@GeneratedValue
+	@Expose
 	private int id;
+	@Expose
 	private String tenmonan;
 	private String name;
+	@Expose
 	private String hinhanh;
 	private double gia;
 	private int solandat;
+
 	@ManyToOne
 	@JoinColumn(name = "idnhahang")
 	private NhaHang nhahang;
+
 	@ManyToOne
 	@JoinColumn(name = "idloaidoan")
 	private LoaiDoAn loai;
 	private int trangthai;
+
 	public MonAn() {
 		super();
 	}
-
-	
 
 	public MonAn(String tenmonan, String name, String hinhanh, double gia, NhaHang nhahang, LoaiDoAn loai) {
 		super();
@@ -36,8 +42,6 @@ public class MonAn {
 		this.nhahang = nhahang;
 		this.loai = loai;
 	}
-
-
 
 	public MonAn(String tenmonan, String name, String hinhanh, double gia, int solandat, NhaHang nhahang,
 			LoaiDoAn loai) {
@@ -55,13 +59,9 @@ public class MonAn {
 		return trangthai;
 	}
 
-
-
 	public void setTrangthai(int trangthai) {
 		this.trangthai = trangthai;
 	}
-
-
 
 	public int getId() {
 		return id;

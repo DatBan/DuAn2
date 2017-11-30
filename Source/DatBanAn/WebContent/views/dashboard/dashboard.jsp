@@ -1,5 +1,5 @@
 <%@ page pageEncoding="utf-8"%>
-<!DOCTYPE html>
+<%-- <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -22,7 +22,7 @@
 							<jsp:include page="/include-dashboard/header-content.jsp"></jsp:include>
 							
 							<!--------------- Table, form cac thu ---------------->
-							<div class="content-nhe">
+							<div class="content-nhe"> --%>
 	                			<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 								        <thead>
 								            <tr>
@@ -503,7 +503,7 @@
 								            </tr>
 								        </tbody>
 								    </table>
-	                			<div class="line"></div>
+	                			<%-- <div class="line"></div>
                 			</div>
 						</div>
 						<!------------------- Footer dashboard------------ -->
@@ -511,4 +511,4 @@
 					</div>
 		</div>
 	</body>
-</html>
+</html> --%>

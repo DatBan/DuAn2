@@ -1,6 +1,7 @@
 package com.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -32,6 +33,10 @@ public class NguoiDung {
 	@ManyToOne
 	@JoinColumn(name = "idnhahang")
 	private NhaHang nhahang;
+	
+	@OneToMany(mappedBy = "nguoidanhgia", fetch = FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
+	private List<DanhGia> listdanhgia;
+	
 	public NguoiDung() {
 		super();
 	}

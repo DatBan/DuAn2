@@ -1,4 +1,4 @@
-function change_alias(alias) {
+/*function change_alias(alias) {
 		var str = alias;
 		str = str.toLowerCase();
 		str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
@@ -9,15 +9,15 @@ function change_alias(alias) {
 		str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
 		str = str.replace(/đ/g, "d");
 		str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'| |\"|\&|\#|\[|\]|~|$|_/g,"-");
-		/* tìm và thay thế các kí tự đặc biệt trong chuỗi sang kí tự - */
+		 tìm và thay thế các kí tự đặc biệt trong chuỗi sang kí tự - 
 		str = str.replace(/-+-/g, "-"); // thay thế 2- thành 1-
 		str = str.replace(/^\-+|\-+$/g, "");
 		// cắt bỏ ký tự - ở đầu và cuối chuỗi
 		return str;
-	}
+	}*/
 $(document).ready(function() {
 	var cmt_moi = [0];
-	//Đổi sang slug
+	
 	//Tooltip the a
 	$('[data-toggle="tooltip"]').tooltip();
 	
@@ -557,5 +557,65 @@ $(document).ready(function() {
 				console.log("LOI "+error);
 			}
 		});
+	});
+	$("#province").bind("change", function(){
+		//alert($(this).val())
+		$("#district").attr("disabled", "disabled");
+		/*alert($(this).val());*/
+		var cainay = $(this).val();
+		var data = {provinceid: $(this).val()};
+		$.ajax({
+			url: "dashboard/restaurants-mng/select-province-ajax.html",
+			type: "POST",
+			dataType: "json",
+			data: data,
+			success: function(data){
+				$("#district").removeAttr("disabled");
+				$("#district").html(data);
+				if(cainay == ''){
+					$("#district").html('<option>-Chọn tỉnh/thành-</option>');
+				}
+				$("#ward").html('<option>-Chọn quận/huyện-</option>');
+			},
+			error: function(error){
+				console.log(error);
+			}
+		});
+	});
+	
+	$("#district").bind("change", function(){
+		//alert($(this).val())
+		$("#ward").attr("disabled", "disabled");
+		var data = {districtid: $(this).val()};
+		$.ajax({
+			url: "dashboard/restaurants-mng/select-district-ajax.html",
+			type: "POST",
+			dataType: "json",
+			data: data,
+			success: function(data){
+				console.log(data);
+				$("#ward").removeAttr("disabled");
+				$("#ward").html(data);
+			},
+			error: function(error){
+				console.log(error);
+			}
+		});
+	});
+	
+	var tieuDe = document.getElementById('tennhahang');
+	if(tieuDe != null){
+		tieuDe.addEventListener('change', function() {
+			var permalink = document.getElementById('slug');
+			doiPermarlink(tieuDe.value, permalink);
+		});
+	}
+	
+	$("#thumbnail").bind("change",function (event) {
+	    var output = document.getElementById('output');
+	    output.style.width = "200px";
+	    output.className = "img-response";
+
+	    output.src = URL.createObjectURL(event.target.files[0]);
 	});
 });

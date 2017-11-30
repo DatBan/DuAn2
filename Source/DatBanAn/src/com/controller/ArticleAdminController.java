@@ -31,13 +31,13 @@ import com.entity.LoaiBaiViet;
 import com.entity.NguoiDung;
 
 @Transactional
-@RequestMapping("Dashboard/BaiViet/")
+@RequestMapping("dashboard/baiviet/")
 @Controller
 public class ArticleAdminController {
 	@Autowired
 	SessionFactory factory;
 
-	// Đổ dữ liệu ra trang quản lý
+	// Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String trangquanly(ModelMap model) {
 		Session session = factory.getCurrentSession();
@@ -46,10 +46,11 @@ public class ArticleAdminController {
 		@SuppressWarnings("unchecked")
 		List<BaiViet> list = query.list();
 		model.addAttribute("baiviet", list);
-		model.addAttribute("tenbreadcrumb", "QUẢN LÝ BÀI VIẾT");
-		return "dashboard/quanlybaiviet";
+		model.addAttribute("btn_add","dashboard/baiviet/them.html");
+		model.addAttribute("tenbreadcrumb", "Quản lý bài viết");
+		return "dashboard/baiviet/quanlybaiviet";
 	}
-	// Xoá nhiều bài viết
+	// XoÃ¡ nhiá»�u bÃ i viáº¿t
 
 	@RequestMapping(value = "deletemulti", method = RequestMethod.POST)
 	public String deletemulti(ModelMap model, HttpServletRequest request) {
@@ -66,21 +67,21 @@ public class ArticleAdminController {
 				}
 				t.commit();
 			}
-			model.addAttribute("message", "Xoá thành công");
-			return "redirect:/Dashboard/BaiViet/index.html";
+			model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
+			return "redirect:/dashboard/baiviet/index.html";
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();
-			model.addAttribute("message", "Xóa thất bại !" + e.getMessage());
+			model.addAttribute("message", "XÃ³a tháº¥t báº¡i !" + e.getMessage());
 		} finally {
 			session.close();
 		}
-		return "redirect:/Dashboard/BaiViet/index.html";
+		return "redirect:/dashboard/baiviet/index.html";
 
 	}
 
-	// Duyệt bài viết của quản trị
+	// Duyá»‡t bÃ i viáº¿t cá»§a quáº£n trá»‹
 	@RequestMapping(value = "duyet/{id}")
 	public String duyetbv(ModelMap model, @PathVariable("id") Integer id){
 		Session session = factory.openSession();		
@@ -96,9 +97,9 @@ public class ArticleAdminController {
 		} finally {
 			session.close();
 		}		
-		return "redirect:/Dashboard/BaiViet/index.html";
+		return "redirect:/dashboard/baiviet/index.html";
 	}
-	//Xem bài viết
+	//Xem bÃ i viáº¿t
 	@RequestMapping(value = "xem/{id}")
 	public String xem(ModelMap model, @PathVariable("id") Integer id) {
 		Session session = factory.getCurrentSession();
@@ -106,11 +107,11 @@ public class ArticleAdminController {
 		model.addAttribute("bv", baiviet);
 		return "chitietbaiviet";
 	}
-	// Xoá bài viết của quản trị
+	// XoÃ¡ bÃ i viáº¿t cá»§a quáº£n trá»‹
 	@RequestMapping(value = "deletee/{id}") public String deleteBaivietquantri(ModelMap model,
 			@PathVariable("id") Integer id) {
 		Session session = factory.openSession();
-		// Lấy bình luận để xoá
+		// Láº¥y bÃ¬nh luáº­n Ä‘á»ƒ xoÃ¡
 		BaiViet bv = (BaiViet) session.get(BaiViet.class, id);
 		bv.setTrangthai(3);
 
@@ -119,20 +120,20 @@ public class ArticleAdminController {
 			
 			session.update(bv);
 			t.commit();
-			model.addAttribute("message", "Xoá thành công");
+			model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
 
 		} catch (Exception e) {
 			t.rollback();
-			model.addAttribute("message", "Xóa thất bại !" + e.getMessage());
+			model.addAttribute("message", "XÃ³a tháº¥t báº¡i !" + e.getMessage());
 		} finally {
 			session.close();
 		}
-		return "redirect:/Dashboard/BaiViet/index.html";
+		return "redirect:/dashboard/baiviet/index.html";
 	}
-	// Phương thức GET để tạo giao diện khi click button Thêm
+	// PhÆ°Æ¡ng thá»©c GET Ä‘á»ƒ táº¡o giao diá»‡n khi click button ThÃªm
 		@RequestMapping(value = "them", method = RequestMethod.GET)
 		public String themBV(ModelMap model) {
-			// Đổ dữ liệu ra combobox
+			// Ä�á»• dá»¯ liá»‡u ra combobox
 			Session session = factory.getCurrentSession();
 			String hql = "FROM LoaiBaiViet";
 			Query query = session.createQuery(hql);
@@ -140,10 +141,13 @@ public class ArticleAdminController {
 			List<LoaiBaiViet> list = query.list();
 			model.addAttribute("loaibv", list);
 
-			model.addAttribute("tenbreadcrumb", "THÊM BÀI VIẾT MỚI");
-			return "dashboard/thembaiviet";
+			model.addAttribute("btn_back","dashboard/baiviet/index.html");
+			model.addAttribute("tenbreadcrumb", "Thêm mới bài viết");
+			model.addAttribute("tenbreadcrumb2", "Quản lý bài viết");
+			model.addAttribute("urlbreadcrumb2", "dashboard/baiviet/index.html");
+			return "dashboard/baiviet/thembaiviet";
 		}
-		// Thêm bài viết
+		// ThÃªm bÃ i viáº¿t
 
 		@Autowired
 		ServletContext context;
@@ -155,9 +159,9 @@ public class ArticleAdminController {
 				// @RequestParam("idnd")int idnd,
 				@RequestParam("hinh") MultipartFile hinh, HttpSession httpSession) {
 			Session session = factory.openSession();
-			// Khi đăng nhập thì chọn cái này
+			// Khi Ä‘Äƒng nháº­p thÃ¬ chá»�n cÃ¡i nÃ y
 			// NguoiDung nd = session.get(NguoiDung.class, idnd);
-			// Cái tạm thời
+			// CÃ¡i táº¡m thá»�i
 			String td = tieude.trim();
 			String n = name.trim();
 			String sl = slug.trim();
@@ -166,16 +170,16 @@ public class ArticleAdminController {
 			LoaiBaiViet loaibv = (LoaiBaiViet) session.get(LoaiBaiViet.class, idloai);
 			Date ngaytao = new Date();
 
-			// Đổ lại loại bài viết
+			// Ä�á»• láº¡i loáº¡i bÃ i viáº¿t
 			String hql = "FROM LoaiBaiViet";
 			Query query = session.createQuery(hql);
 			@SuppressWarnings("unchecked")
 			List<LoaiBaiViet> list = query.list();
 			model.addAttribute("loaibv", list);
 			if (noidung.length() < 200 || content.length() < 200) {
-				model.addAttribute("message", "Nội dung hoặc content không hợp lệ");
+				model.addAttribute("message", "Ná»™i dung hoáº·c content khÃ´ng há»£p lá»‡");
 
-				return "dashboard/thembaiviet";
+				return "dashboard/baiviet/thembaiviet";
 
 			}
 			String photoPath = context.getRealPath("/upload/baiviet/" + hinh.getOriginalFilename());
@@ -194,21 +198,21 @@ public class ArticleAdminController {
 				session.save(baiviet);
 				t.commit();
 				Thread.sleep(5000);
-				return "redirect:/Dashboard/BaiViet/index.html";
+				return "redirect:/dashboard/baiviet/index.html";
 			} catch (Exception e) {
 				// TODO: handle exception
 				System.out.println(e.toString());
-				model.addAttribute("message", "Thêm bài viết thất bại!");
+				model.addAttribute("message", "ThÃªm bÃ i viáº¿t tháº¥t báº¡i!");
 				e.printStackTrace();
 				t.rollback();
 			} finally {
 				session.close();
 			}
 
-			return "dashboard/thembaiviet";
+			return "dashboard/baiviet/thembaiviet";
 		}
 
-		// Xoá bài viết
+		// XoÃ¡ bÃ i viáº¿t
 		@RequestMapping(value = "delete/{id}")
 		public String deleteBaiviet(ModelMap model, @PathVariable("id") Integer id) {
 			Session session = factory.openSession();
@@ -220,18 +224,18 @@ public class ArticleAdminController {
 				
 				session.update(bv);
 				t.commit();
-				model.addAttribute("message", "Xoá thành công");
+				model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
 
 			} catch (Exception e) {
 				t.rollback();
-				model.addAttribute("message", "Xóa thất bại !" + e.getMessage());
+				model.addAttribute("message", "XÃ³a tháº¥t báº¡i !" + e.getMessage());
 			} finally {
 				session.close();
 			}
-			return "redirect:/Dashboard/BaiViet/index.html";
+			return "redirect:/dashboard/baiviet/index.html";
 		}
 
-		// Kiểm tra trùng tên bài viết
+		// Kiá»ƒm tra trÃ¹ng tÃªn bÃ i viáº¿t
 		@RequestMapping(value = "kt-trung-tieude", method = RequestMethod.GET)
 		public @ResponseBody String ktTrungtieude(@RequestParam("tieude") String tieude, @RequestParam("idbv") int id,
 				HttpServletResponse response, HttpServletRequest request) {
@@ -257,7 +261,7 @@ public class ArticleAdminController {
 			}
 		}
 
-		// Kiểm tra trùng name bài viết
+		// Kiá»ƒm tra trÃ¹ng name bÃ i viáº¿t
 		@RequestMapping(value = "kt-trung-name", method = RequestMethod.GET)
 		public @ResponseBody String ktTrungname(@RequestParam("name") String name, @RequestParam("idbv") int id,
 				HttpServletResponse response, HttpServletRequest request) {
@@ -283,23 +287,27 @@ public class ArticleAdminController {
 			}
 		}
 
-		// Tạo giao diện sửa Bài viết
+		// Táº¡o giao diá»‡n sá»­a BÃ i viáº¿t
 		@RequestMapping(value = "edit/{id}")
 		public String editFormTrang(ModelMap model, @PathVariable("id") Integer id) {
 			Session session = factory.getCurrentSession();
 			BaiViet baiviet = (BaiViet) session.get(BaiViet.class, id);
-			// Đổ lại loại bài viết
+			// Ä�á»• láº¡i loáº¡i bÃ i viáº¿t
 			String hql = "FROM LoaiBaiViet";
 			Query query = session.createQuery(hql);
 			@SuppressWarnings("unchecked")
 			List<LoaiBaiViet> list = query.list();
 			model.addAttribute("loaibv", list);
 			model.addAttribute("bv", baiviet);
-			model.addAttribute("tenbreadcrumb", "SỬA Bài viết");
-			return "dashboard/editbaiviet";
+			
+			model.addAttribute("btn_back","dashboard/baiviet/index.html");
+			model.addAttribute("tenbreadcrumb", "sửa thông tin bài viết");
+			model.addAttribute("tenbreadcrumb2", "Quản lý bài viết");
+			model.addAttribute("urlbreadcrumb2", "dashboard/baiviet/index.html");
+			return "dashboard/baiviet/editbaiviet";
 		}
 		
-		// Sửa bài viết
+		// Sá»­a bÃ i viáº¿t
 		@RequestMapping(value = "suabv", method = RequestMethod.POST)
 		public String suaBaiviet(ModelMap model, RedirectAttributes re, @RequestParam("idbv") int id,
 				@RequestParam("tieude") String tieude, @RequestParam("name") String name, @RequestParam("slug") String slug,
@@ -324,16 +332,16 @@ public class ArticleAdminController {
 			bv.setLoaibv(loaibv);
 			bv.setMota(mota);
 			Transaction t = session.beginTransaction();
-			// Đổ lại loại bài viết
+			// Ä�á»• láº¡i loáº¡i bÃ i viáº¿t
 			String hql = "FROM LoaiBaiViet";
 			Query query = session.createQuery(hql);
 			@SuppressWarnings("unchecked")
 			List<LoaiBaiViet> list = query.list();
 			model.addAttribute("loaibv", list);
 			if (noidung.length() < 200 || content.length() < 200) {
-				re.addFlashAttribute("message", "Nội dung hoặc content không hợp lệ");
+				re.addFlashAttribute("message", "Ná»™i dung hoáº·c content khÃ´ng há»£p lá»‡");
 				System.out.println(content.length());
-				return "redirect:/Dashboard/BaiViet/edit/" + id + ".html";
+				return "redirect:/dashboard/baiviet/edit/" + id + ".html";
 			}
 			String hinhanh = bv.getHinh();
 			if (!hinh.isEmpty()) {
@@ -349,15 +357,15 @@ public class ArticleAdminController {
 			try {
 				session.update(bv);
 				t.commit();
-				model.addAttribute("message", "Chỉnh sửa thành công !");
+				model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
 				return "redirect:/Dashboard/BaiViet/index.html";
 			} catch (Exception e) {
 				// TODO: handle exception
 				t.rollback();
-				model.addAttribute("message", "Chỉnh sửa thất bại !");
+				model.addAttribute("message", "Chá»‰nh sá»­a tháº¥t báº¡i !");
 			} finally {
 				session.close();
 			}
-			return "redirect:/Dashboard/BaiViet/edit/" + id + ".html";
+			return "redirect:/dashboard/baiviet/edit/" + id + ".html";
 		}
 }

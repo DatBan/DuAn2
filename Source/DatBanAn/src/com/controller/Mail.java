@@ -23,9 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.entity.NguoiDung;
 import com.services.EnDeCryption;
 
-
-
-
 public class Mail {
 
 	// xac nhan qua mail
@@ -39,7 +36,6 @@ public class Mail {
 	public String QuenmkForm() {
 		return "register";
 	}	
-	
 	
 	static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZzxcvbnmasdfghjklqwertyuiop!@#$%^&*()";
     static Random rnd = new Random();

@@ -34,7 +34,7 @@ public class CulinaryController {
 	@Autowired
 	SessionFactory factory;
 
-	// Đổ dữ liệu ra trang quản lý
+	// Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½
 	@RequestMapping(value = "index")
 	public String quanLyAmThuc(ModelMap model) {
 		Session session = factory.getCurrentSession();
@@ -43,17 +43,22 @@ public class CulinaryController {
 		@SuppressWarnings("unchecked")
 		List<LoaiAmThuc> list = query.list();
 		model.addAttribute("amthuc", list);
-		model.addAttribute("tenbreadcrumb", "QUẢN LÝ ẨM THỰC");
-		return "dashboard/quanlyamthuc";
+		
+		model.addAttribute("btn_add","dashboard/amthuc/them.html");
+		model.addAttribute("tenbreadcrumb", "Quản lý loại ẩm thực");
+		return "dashboard/amthuc/quanlyamthuc";
 	}
 
-	// Phương thức GET để tạo giao diện khi click button Thêm
+	// PhÆ°Æ¡ng thá»©c GET Ä‘á»ƒ táº¡o giao diá»‡n khi click button ThÃªm
 	@RequestMapping(value = "them", method = RequestMethod.GET)
 	public String them(ModelMap model) {
-		model.addAttribute("tenbreadcrumb", "THÊM LOẠI ẨM THỰC");
-		return "dashboard/themamthuc";
+		model.addAttribute("btn_back","dashboard/amthuc/index.html");
+		model.addAttribute("tenbreadcrumb", "Thêm mới loại ẩm thực");
+		model.addAttribute("tenbreadcrumb2", "Quản lý loại ẩm thực");
+		model.addAttribute("urlbreadcrumb2", "dashboard/amthuc/index.html");
+		return "dashboard/amthuc/themamthuc";
 	}
-	// Thêm ẩm thực
+	// ThÃªm áº©m thá»±c
 
 		@Autowired
 		ServletContext context;
@@ -83,13 +88,13 @@ public class CulinaryController {
 				// TODO: handle exception
 				t.rollback();
 				System.out.println(e.toString());
-				model.addAttribute("message", "Thêm ẩm thực thất bại!");
+				model.addAttribute("message", "ThÃªm áº©m thá»±c tháº¥t báº¡i!");
 			} finally {
 				session.close();
 			}
-			return "dashboard/themamthuc";
+			return "dashboard/amthuc/themamthuc";
 		}
-		// Xoá ẩm thực
+		// XoÃ¡ áº©m thá»±c
 		@RequestMapping(value = "delete/{id}")
 		public String deleteAmThuc(ModelMap model, @PathVariable("id") Integer id) {
 			Session session = factory.openSession();
@@ -100,26 +105,29 @@ public class CulinaryController {
 
 				session.update(amthuc);
 				t.commit();
-				model.addAttribute("message", "Xoá thành công");
+				model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
 
 			} catch (Exception e) {
 				t.rollback();
-				model.addAttribute("message", "Xóa thất bại !" + e.getMessage());
+				model.addAttribute("message", "XÃ³a tháº¥t báº¡i !" + e.getMessage());
 			} finally {
 				session.close();
 			}
 			return "redirect:/dashboard/amthuc/index.html";
 		}
-		// Tạo giao diện edit ẩm thực
+		// Táº¡o giao diá»‡n edit áº©m thá»±c
 		@RequestMapping(value = "edit/{id}")
 		public String editFormAmThuc(ModelMap model, @PathVariable("id") Integer id) {
 			Session session = factory.getCurrentSession();
 			LoaiAmThuc amthuc = (LoaiAmThuc) session.get(LoaiAmThuc.class, id);
 			model.addAttribute("amthuc", amthuc);
-			model.addAttribute("tenbreadcrumb", "SỬA LOẠI ẨM THỰC");
-			return "dashboard/suaamthuc";
+			model.addAttribute("btn_back","dashboard/amthuc/index.html");
+			model.addAttribute("tenbreadcrumb", "Sửa thông tin loại ẩm thực");
+			model.addAttribute("tenbreadcrumb2", "Quản lý loại ẩm thực");
+			model.addAttribute("urlbreadcrumb2", "dashboard/amthuc/index.html");
+			return "dashboard/amthuc/suaamthuc";
 		}
-		// Sửa ẩm thực
+		// Sá»­a áº©m thá»±c
 		@RequestMapping(value = "suaamthuc", method = RequestMethod.POST)
 		public String suaAmThuc(ModelMap model, RedirectAttributes re, @RequestParam("idamthuc") int id,
 				@RequestParam("tenloai") String tenloai,
@@ -141,7 +149,7 @@ public class CulinaryController {
 			try {
 				session.update(amthuc);
 				t.commit();
-				model.addAttribute("message", "Chỉnh sửa thành công !");
+				model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
 				return "redirect:/dashboard/amthuc/index.html";
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -152,7 +160,7 @@ public class CulinaryController {
 			}
 			return "redirect:/dashboard/amthuc/edit/" + id + ".html";
 		}
-		// Kiểm tra trùng tên ẩm thực
+		// Kiá»ƒm tra trÃ¹ng tÃªn áº©m thá»±c
 		@RequestMapping(value = "kt-trung-tenamthuc", method = RequestMethod.GET)
 		public @ResponseBody String ktTrungTenAmThuc(@RequestParam("tenloai") String tenloai, @RequestParam("idamthuc") int id,
 				HttpServletResponse response, HttpServletRequest request) {
@@ -178,7 +186,7 @@ public class CulinaryController {
 			}
 		}
 
-		// Kiểm tra trùng name ẩm thực
+		// Kiá»ƒm tra trÃ¹ng name áº©m thá»±c
 		@RequestMapping(value = "kt-trung-name", method = RequestMethod.GET)
 		public @ResponseBody String ktTrungName(@RequestParam("name") String name, @RequestParam("idamthuc") int id,
 				HttpServletResponse response, HttpServletRequest request) {

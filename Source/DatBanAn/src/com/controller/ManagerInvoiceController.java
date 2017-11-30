@@ -37,7 +37,7 @@ public class ManagerInvoiceController {
 	@Autowired
 	SessionFactory factory;
 
-	// Đổ dữ liệu ra trang quản lý đơn mới
+	// Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½ Ä‘Æ¡n má»›i
 	@RequestMapping(value = "index")
 	public String quanLyDatBan(ModelMap model, HttpSession httpSession) {
 		Session session = factory.getCurrentSession();
@@ -50,10 +50,12 @@ public class ManagerInvoiceController {
 		@SuppressWarnings("unchecked")
 		List<HoaDon> list = query.list();
 		model.addAttribute("hoadon", list);
-		model.addAttribute("tenbreadcrumb", "QUẢN LÝ ĐẶT BÀN");
-		return "nhahang/quanlydatban";
+		
+		model.addAttribute("btn_add","nhahang/quanlydatban/them.html");
+		model.addAttribute("tenbreadcrumb", "Quản lý đơn đặt bàn mới");
+		return "nhahang/quanlydatban/quanlydatban";
 	}
-	// Đổ dữ liệu ra trang quản lý đơn đã xác nhận
+	// Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½ Ä‘Æ¡n Ä‘Ã£ xÃ¡c nháº­n
 		@RequestMapping(value = "index1")
 		public String donDatBanDaXacNhan(ModelMap model, HttpSession httpSession) {
 			Session session = factory.getCurrentSession();
@@ -66,10 +68,12 @@ public class ManagerInvoiceController {
 			@SuppressWarnings("unchecked")
 			List<HoaDon> list = query.list();
 			model.addAttribute("hoadon", list);
-			model.addAttribute("tenbreadcrumb", "QUẢN LÝ ĐƠN ĐẶT BÀN");
+			
+			model.addAttribute("btn_add","nhahang/quanlydatban/them.html");
+			model.addAttribute("tenbreadcrumb", "Quản lý đơn đặt bàn đã xác nhận");
 			return "nhahang/hoadon/quanlydondatban";
 		}
-	// Xoá đơn
+	// XoÃ¡ Ä‘Æ¡n
 		@RequestMapping(value = "delete/{id}")
 		public String delete(ModelMap model, @PathVariable("id") Integer id) {
 			Session session = factory.openSession();
@@ -81,7 +85,7 @@ public class ManagerInvoiceController {
 			try {
 				session.update(hd);
 				t.commit();
-				model.addAttribute("message", "Xoá thành công");
+				model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
 				
 			} catch (Exception e) {
 				System.out.println(e.toString());
@@ -91,7 +95,7 @@ public class ManagerInvoiceController {
 			}
 			return "redirect:/nhahang/quanlydatban/index.html";
 		}
-		// Xoá đơn đã duyệt
+		// XoÃ¡ Ä‘Æ¡n Ä‘Ã£ duyá»‡t
 				@RequestMapping(value = "delete1/{id}")
 				public String delete1(ModelMap model, @PathVariable("id") Integer id) {
 					Session session = factory.openSession();
@@ -105,7 +109,7 @@ public class ManagerInvoiceController {
 						session.update(hd);
 						session.update(ban);
 						t.commit();
-						model.addAttribute("message", "Xoá thành công");
+						model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
 						
 					} catch (Exception e) {
 						System.out.println(e.toString());
@@ -115,39 +119,46 @@ public class ManagerInvoiceController {
 					}
 					return "redirect:/nhahang/quanlydatban/index1.html";
 				}
-	// Tạo giao diện edit
+	// Táº¡o giao diá»‡n edit
 	@RequestMapping(value = "edit", method = RequestMethod.GET)
 	public String editForm(ModelMap model, @RequestParam("idhd") Integer id) {
 		Session session = factory.getCurrentSession();
 		HoaDon hd = (HoaDon) session.get(HoaDon.class, id);
 
 		model.addAttribute("hoadon", hd);
-		model.addAttribute("tenbreadcrumb", "SỬA HOÁ ĐƠN");
-		return "nhahang/suadondatban";
+		model.addAttribute("tenbreadcrumb", "Sá»¬A HOÃ� Ä�Æ N");
+		return "nhahang/quanlydatban/suadondatban";
 	}
 
-	// Tạo giao diện edit
+	// Táº¡o giao diá»‡n edit
 	@RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
 	public String editFormHD(ModelMap model, @PathVariable("id") Integer id) {
 		Session session = factory.getCurrentSession();
 		HoaDon hd = (HoaDon) session.get(HoaDon.class, id);
 
 		model.addAttribute("hoadon", hd);
-		model.addAttribute("tenbreadcrumb", "SỬA HOÁ ĐƠN CHƯA XÁC NHẬN");
-		return "nhahang/suadondatban";
+		model.addAttribute("btn_back","nhahang/quanlydatban/index.html");
+		model.addAttribute("tenbreadcrumb", "Sửa thông tin đơn đặt bàn mới");
+		model.addAttribute("tenbreadcrumb2", "Đơn đặt bàn mới");
+		model.addAttribute("urlbreadcrumb2", "nhahang/quanlydatban/index.html");
+		return "nhahang/quanlydatban/suadondatban";
 	}
-	// Tạo giao diện edit
+	// Táº¡o giao diá»‡n edit
 		@RequestMapping(value = "edit1/{id}", method = RequestMethod.GET)
 		public String editFormHDedit(ModelMap model, @PathVariable("id") Integer id) {
 			Session session = factory.getCurrentSession();
 			HoaDon hd = (HoaDon) session.get(HoaDon.class, id);
 
 			model.addAttribute("hoadon", hd);
-			model.addAttribute("tenbreadcrumb", "SỬA HOÁ ĐƠN ĐÃ XÁC NHẬN");
+			
+			model.addAttribute("btn_back","nhahang/quanlydatban/index1.html");
+			model.addAttribute("tenbreadcrumb", "Sửa thông tin đơn đặt bàn đã xác nhận");
+			model.addAttribute("tenbreadcrumb2", "Đơn đã xác nhận");
+			model.addAttribute("urlbreadcrumb2", "nhahang/quanlydatban/index1.html");
 			return "nhahang/hoadon/suahoadon";
 		}
 
-	// Sửa đơn đặt bàn
+	// Sá»­a Ä‘Æ¡n Ä‘áº·t bÃ n
 	@RequestMapping(value = "suadondatban", method = RequestMethod.POST)
 	public String suaDon(ModelMap model, RedirectAttributes re, @RequestParam("idhoadon") int idhoadon,
 			@RequestParam("songuoi") int songuoi, @RequestParam("ngaythang") String ngaythang,
@@ -192,19 +203,19 @@ public class ManagerInvoiceController {
 		try {
 			session.update(hd);
 			t.commit();
-			model.addAttribute("message", "Chỉnh sửa thành công !");
+			model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
 			return "redirect:/nhahang/quanlydatban/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();
-			re.addFlashAttribute("message", "Chỉnh sửa thất bại!");
+			re.addFlashAttribute("message", "Chá»‰nh sá»­a tháº¥t báº¡i!");
 
 		} finally {
 			session.close();
 		}
 		return "redirect:/nhahang/quanlydatban/edit.html?idhd=" + idhoadon;
 	}
-	// Sửa đơn đặt bàn đã duyệt
+	// Sá»­a Ä‘Æ¡n Ä‘áº·t bÃ n Ä‘Ã£ duyá»‡t
 		@RequestMapping(value = "suadondatban1", method = RequestMethod.POST)
 		public String suaDon1(ModelMap model, RedirectAttributes re, @RequestParam("idhoadon") int idhoadon,
 				@RequestParam("songuoi") int songuoi, @RequestParam("ngaythang") String ngaythang,
@@ -249,12 +260,12 @@ public class ManagerInvoiceController {
 			try {
 				session.update(hd);
 				t.commit();
-				model.addAttribute("message", "Chỉnh sửa thành công !");
+				model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
 				return "redirect:/nhahang/quanlydatban/index1.html";
 			} catch (Exception e) {
 				// TODO: handle exception
 				t.rollback();
-				re.addFlashAttribute("message", "Chỉnh sửa thất bại!");
+				re.addFlashAttribute("message", "Chá»‰nh sá»­a tháº¥t báº¡i!");
 
 			} finally {
 				session.close();
@@ -262,7 +273,7 @@ public class ManagerInvoiceController {
 			return "redirect:/nhahang/quanlydatban/edit/"+idhoadon+".html";
 		}
 	
-	// Duyệt đơn
+	// Duyá»‡t Ä‘Æ¡n
 	@RequestMapping(value = "duyet")
 	public String duyet(ModelMap model, @RequestParam("idhd") int idhd) {
 		Session session = factory.openSession();
@@ -273,7 +284,7 @@ public class ManagerInvoiceController {
 		try {
 			session.update(hd);
 			t.commit();
-			model.addAttribute("tenbreadcrumb", "Chọn Bàn");
+			model.addAttribute("tenbreadcrumb", "Chá»�n BÃ n");
 			model.addAttribute("idhd", idhd);
 			model.addAttribute("ban", list);
 		} catch (Exception e) {
@@ -282,9 +293,9 @@ public class ManagerInvoiceController {
 		} finally {
 			session.close();
 		}
-		return "nhahang/duyetdatban";
+		return "nhahang/quanlydatban/duyetdatban";
 	}
-	// Duyệt đơn khi khách tới
+	// Duyá»‡t Ä‘Æ¡n khi khÃ¡ch tá»›i
 		@RequestMapping(value = "duyet2")
 		public String duyetdon(ModelMap model, @RequestParam("idhd") int idhd) {
 			Session session = factory.openSession();
@@ -306,7 +317,7 @@ public class ManagerInvoiceController {
 			}
 			return "redirect:/nhahang/quanlydatban/index1.html";
 		}
-	// Duyệt để chạy qua chọn bàn cho hoá đơn lại
+	// Duyá»‡t Ä‘á»ƒ cháº¡y qua chá»�n bÃ n cho hoÃ¡ Ä‘Æ¡n láº¡i
 		@RequestMapping(value = "duyet1")
 		public String duyet1(ModelMap model, @RequestParam("idhd") int idhd) {
 			Session session = factory.openSession();
@@ -317,7 +328,7 @@ public class ManagerInvoiceController {
 			try {
 				session.update(hd);
 				t.commit();
-				model.addAttribute("tenbreadcrumb", "Chọn Bàn");
+				model.addAttribute("tenbreadcrumb", "Chá»�n BÃ n");
 				model.addAttribute("idhd", idhd);
 				model.addAttribute("ban", list);
 			} catch (Exception e) {
@@ -329,7 +340,7 @@ public class ManagerInvoiceController {
 			return "nhahang/hoadon/chonban";
 		}
 
-	// Chọn bàn
+	// Chá»�n bÃ n
 	@RequestMapping(value = "chonban")
 	public String chonban(ModelMap model, @RequestParam("idhd") int idhd, @RequestParam("idb") int idb) {
 		Session session = factory.openSession();
@@ -355,7 +366,7 @@ public class ManagerInvoiceController {
 
 		return "redirect:/nhahang/quanlydatban/edit.html";
 	}
-	// Chọn bàn cho hoá đơn đã duyệt
+	// Chá»�n bÃ n cho hoÃ¡ Ä‘Æ¡n Ä‘Ã£ duyá»‡t
 		@RequestMapping(value = "chonban1")
 		public String chonban1(ModelMap model, @RequestParam("idhd") int idhd, @RequestParam("idb") int idb) {
 			Session session = factory.openSession();

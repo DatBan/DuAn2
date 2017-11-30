@@ -1,5 +1,8 @@
 <%@ page pageEncoding="utf-8"%>
 <style>
+	div.easy-autocomplete{
+		width: 100% !important;
+	}
   .ui-autocomplete-loading {
     background: white url("css/images/ui-anim_basic_16x16.gif") right center no-repeat;
   }
@@ -10,7 +13,7 @@
 			<div class="input-group">
 		    	<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
 		                <%-- <input class="form-control js-typeahead" id="keyword" name="q" type="search" value="${q}" placeholder="Tên quán ăn hoặc món ăn" autocomplete="off"> --%>
-				<input id="keyword" placeholder="Tên quán ăn hoặc món ăn" name="search" autocomplete="off" value="${tukhoa}"/>
+				<input id="keyword" placeholder="Tên quán ăn hoặc món ăn" style="width: 100%; background: white;" name="search" autocomplete="off" value="${tukhoa}"/>
 			</div>
 	    </div>
 		<div class="form-group">
@@ -127,7 +130,7 @@
 			}
 			$(function(){		
 				$('.timepicker').qcTimepicker({
-					'format': 'H:mm',
+					'format': 'HH:mm',
 					'minTime': '7:00:00',
 					'maxTime': '23:30:00',
 					'step': 900,
@@ -144,117 +147,3 @@
 		});
 	/* }); */
 </script>
-<!-- <script>
-$(document).ready(function(){
-  /* $( function() {
-    var projects = [
-      {
-        value: "jquery",
-        label: "jQuery",
-        desc: "the write less, do more, JavaScript library",
-        icon: "jquery_32x32.png"
-      },
-      {
-        value: "jquery-ui",
-        label: "jQuery UI",
-        desc: "the official user interface library for jQuery",
-        icon: "jqueryui_32x32.png"
-      },
-      
-      {
-        value: "jquery-ui",
-        label: "jQuery UI",
-        desc: "the official user interface library for jQuery",
-        icon: "jqueryui_32x32.png"
-      },
-      
-      {
-        value: "jquery-ui",
-        label: "jQuery UI",
-        desc: "the official user interface library for jQuery",
-        icon: "jqueryui_32x32.png"
-      },
-      
-      {
-        value: "jquery-ui",
-        label: "jQuery UI",
-        desc: "the official user interface library for jQuery",
-        icon: "jqueryui_32x32.png"
-      },
-      
-      {
-        value: "https://www.google.com",
-        label: "jQuery UI",
-        desc: "the official user interface library for jQuery",
-        icon: "jqueryui_32x32.png"
-      },
-      
-      {
-        value: "jquery-ui",
-        label: "jQuery UI",
-        desc: "the official user interface library for jQuery",
-        icon: "jqueryui_32x32.png"
-      },
-      {
-        value: "sizzlejs",
-        label: "Sizzle JS",
-        desc: "a pure-JavaScript CSS selector engine",
-        icon: "sizzlejs_32x32.png"
-      }
-    ];
- 
-    $( "#keyword" ).autocomplete({
-      minLength: 2,
-      source: function( request, response ) {
-          $.ajax( {
-            url: "search-ajax.html",
-            dataType: "json",
-            data: {
-              search: request.term
-            },
-            beforeSend: function(){
-    			$("#keyword").css("background","white url('css/images/ui-anim_basic_16x16.gif') right center no-repeat");
-    		},
-            success: function( data ) {
-            	$("#keyword").css("background","white");
-              response( $.map(data, function (item) {
-            	  console.log(data.length + " hi");
-            	  console.log(item.id);
-                  return {
-                      label: item.tennhahang,
-                      value: item.name,
-                      desc: item.name
-                  };
-              }));
-          },
-          error: function(error){
-        	  console.log(error);
-          }
-        });
-      }, 
-      open: function(event, ui) {
-    	  alert('a aa a a a');
-          $('.ui-autocomplete').append('<li><a href="javascript:alert(\'redirecting...\')">See All Result</a></li>'); //See all results
-      },
-      focus: function( event, ui ) {
-        $( "#keyword" ).val( ui.item.label );
-        return false;
-      },
-      select: function( event, ui ) {
-        $( "#keyword" ).val( ui.item.label );
-         $( "#project-id" ).val( ui.item.value );
-        $( "#project-description" ).html( ui.item.desc );
-        $( "#project-icon" ).attr( "src", "images/" + ui.item.icon );
- 
-          return false;
-      }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-      return $( "<li>" )
-        .append( "<div>" + item.label + "<br>" + item.desc + "</div>" )
-        .appendTo( ul );
-    }; 
-  }); */
-
-
-});
-  </script> -->

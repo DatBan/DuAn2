@@ -29,7 +29,7 @@
 						<i class="glyphicon glyphicon-home"></i> Trang
 				</a>
 				<ul class="collapse list-unstyled" id="ss2">
-					<li><a href="Dashboard/Trang/index.html"><i class="fa fa-circle-o"></i> Quản lý trang</a></li>
+					<li><a href="dashboard/trang/index.html"><i class="fa fa-circle-o"></i> Quản lý trang</a></li>
 					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
 				</ul>
 			</li>	
@@ -38,7 +38,7 @@
 						<i class="glyphicon glyphicon-home"></i> Bài Viết
 				</a>
 				<ul class="collapse list-unstyled" id="ss3">
-					<li><a href="Dashboard/BaiViet/index.html"><i class="fa fa-circle-o"></i> Quản lý bài viết</a></li>
+					<li><a href="dashboard/baiviet/index.html"><i class="fa fa-circle-o"></i> Quản lý bài viết</a></li>
 					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
 				</ul>
 			</li>
@@ -81,6 +81,16 @@
 				<ul class="collapse list-unstyled" id="ss7">
 					<li><a href="dashboard/amthuc/index.html"><i class="fa fa-circle-o"></i> Quản lý loại ẩm thực</a></li>
 					<li><a href="#"><i class="fa fa-circle-o"></i> D2</a></li>
+				</ul>
+			</li>
+			
+			<li class="child-menu">
+				<a href="#ss8" data-toggle="collapse" aria-expanded="false">
+					<i class="glyphicon glyphicon-home"></i> Quản lý nhà hàng
+				</a>
+				<ul class="collapse list-unstyled" id="ss8">
+					<li><a href="dashboard/restaurants-mng.html"><i class="fa fa-circle-o"></i> Danh sách đang hoạt động</a></li>
+					<li><a href="dashboard/restaurants-mng.html?trangthai=0"><i class="fa fa-circle-o"></i> Danh sách đã khóa</a></li>
 				</ul>
 			</li>
 			<li class="child-menu">

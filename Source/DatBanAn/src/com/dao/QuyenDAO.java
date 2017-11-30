@@ -6,4 +6,5 @@ import com.entity.Quyen;
 
 public interface QuyenDAO {
 	public List<Quyen> getListAllQuyen();
+	public Quyen getById(int quyenid);
 }

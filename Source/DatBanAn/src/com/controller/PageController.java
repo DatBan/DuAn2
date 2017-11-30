@@ -26,24 +26,27 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.entity.NguoiDung;
 import com.entity.Trang;
 @Transactional
-@RequestMapping("Dashboard/Trang/")
+@RequestMapping("dashboard/trang/")
 @Controller
 public class PageController {
 	@Autowired
 	SessionFactory factory;
-	//Đổ dữ liệu ra trang quản lý
+	//Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½
 	@RequestMapping(value="index")
-	public String trangquanly(ModelMap model) {
+	public String trangquanly(ModelMap model,
+			HttpServletRequest httpRequest) {
 		Session session = factory.getCurrentSession();
 		String hql ="FROM Trang ORDER BY ngaytao DESC";
 		Query query = session.createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<Trang> list = query.list();
 		model.addAttribute("trang",list);
-		model.addAttribute("tenbreadcrumb","QUẢN LÝ TRANG");
-		return "dashboard/quanlytrang";
+		
+		model.addAttribute("btn_add","dashboard/trang/them.html");
+		model.addAttribute("tenbreadcrumb","Quản lý trang");
+		return "dashboard/trang/quanlytrang";
 	}
-	//Xoá trang
+	//XoÃ¡ trang
 	@RequestMapping(value="delete/{id}")
 	public String DeleteUser(ModelMap model, @PathVariable("id") Integer id){
 		Session session= factory.openSession();
@@ -53,23 +56,26 @@ public class PageController {
 		try {
 			session.delete(trang);
 			t.commit();
-			model.addAttribute("message","Xoá thành công");
+			model.addAttribute("message","XoÃ¡ thÃ nh cÃ´ng");
 			
 		} catch (Exception e) {
 			t.rollback();
-			model.addAttribute("message", "Xóa thất bại !" + e.getMessage());
+			model.addAttribute("message", "XÃ³a tháº¥t báº¡i !" + e.getMessage());
 		}finally {
 			session.close();
 		}
-		return "redirect:/Dashboard/Trang/index.html";
+		return "redirect:/dashboard/trang/index.html";
 	}
 	
-	//Phương thức GET Để Tạo Giao Diện khi click button Thêm
+	//PhÆ°Æ¡ng thá»©c GET Ä�á»ƒ Táº¡o Giao Diá»‡n khi click button ThÃªm
 	@RequestMapping(value="them",method = RequestMethod.GET)
 	public String themTrang(ModelMap model) {
-		model.addAttribute("tenbreadcrumb","THÊM TRANG MỚI");
+		model.addAttribute("btn_back","dashboard/trang/index.html");
+		model.addAttribute("tenbreadcrumb", "Thêm mới trang");
+		model.addAttribute("tenbreadcrumb2", "Quản lý trang");
+		model.addAttribute("urlbreadcrumb2", "dashboard/trang/index.html");
 		
-		return "dashboard/themtrang";
+		return "dashboard/trang/themtrang";
 	}
 	@RequestMapping(value="themtrangmoi",method = RequestMethod.POST)
 	public String themTrangMoi(ModelMap model,
@@ -81,9 +87,9 @@ public class PageController {
 //			@RequestParam("idnd")int idnd,
 			HttpSession httpSession) {
 			Session session = factory.openSession();
-			//Khi đăng nhập thì chọn cái này
+			//Khi Ä‘Äƒng nháº­p thÃ¬ chá»�n cÃ¡i nÃ y
 //			NguoiDung nd = session.get(NguoiDung.class, idnd);
-			//Cái tạm thời
+			//CÃ¡i táº¡m thá»�i
 			System.out.println(noidung.trim().length());
 			String td = tieude.trim();
 			String tt = title.trim();
@@ -94,12 +100,12 @@ public class PageController {
 			Transaction t = session.beginTransaction();
 			
 			if(noidung.length()<200||content.length()<200){
-				model.addAttribute("message", "Nội dung hoặc content không hợp lệ");
+				model.addAttribute("message", "Ná»™i dung hoáº·c content khÃ´ng há»£p lá»‡");
 				return "dashboard/themtrang";
 				
 			}
 //			if(noidung.length()>1500||content.length()>1500){
-//				model.addAttribute("message", "Nội dung quá dài (Content too long)");
+//				model.addAttribute("message", "Ná»™i dung quÃ¡ dÃ i (Content too long)");
 //				return "dashboard/themtrang";
 //				
 //			}
@@ -111,24 +117,28 @@ public class PageController {
 			} catch (Exception e) {
 				// TODO: handle exception
 				t.rollback();
-				model.addAttribute("message", "Thêm trang thất bại!");
+				model.addAttribute("message", "ThÃªm trang tháº¥t báº¡i!");
 			}
 			finally {
 				session.close();
 			}
 			
-		return "dashboard/themtrang";
+		return "dashboard/trang/themtrang";
 	}
-	//Tạo trang edit trang
+	//Táº¡o trang edit trang
 	@RequestMapping(value="edit/{id}")
 	public String editFormTrang(ModelMap model, @PathVariable("id") Integer id){
 		Session session = factory.getCurrentSession();
 		Trang trang = (Trang) session.get(Trang.class, id);
 		model.addAttribute("trang",trang);
-		model.addAttribute("tenbreadcrumb","SỬA TRANG");
-		return "dashboard/edittrang";
+		
+		model.addAttribute("btn_back","dashboard/trang/index.html");
+		model.addAttribute("tenbreadcrumb", "Sửa thông tin trang");
+		model.addAttribute("tenbreadcrumb2", "Quản lý trang");
+		model.addAttribute("urlbreadcrumb2", "dashboard/trang/index.html");
+		return "dashboard/trang/edittrang";
 	}
-	//Sửa trang
+	//Sá»­a trang
 	@RequestMapping(value="suatrang",method = RequestMethod.POST)
 	public String suaTrang(ModelMap model,RedirectAttributes re, @RequestParam("idtrang") int id,
 			@RequestParam("tieude")String tieude,
@@ -157,25 +167,25 @@ public class PageController {
 		System.err.println(nd.length());
 		System.err.println(ct.length());
 		if(nd.length()<400||ct.length()<400){
-			re.addFlashAttribute("message", "Nội dung hoặc content không hợp lệ");
-			return "redirect:/Dashboard/Trang/edit/"+id+".html";
+			re.addFlashAttribute("message", "Ná»™i dung hoáº·c content khÃ´ng há»£p lá»‡");
+			return "redirect:/dashboard/trang/edit/"+id+".html";
 			
 		}
 		try {
 			session.update(trang);
 			t.commit();
-			model.addAttribute("message", "Chỉnh sửa thành công !");
+			model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
 			return "redirect:/Dashboard/Trang/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();
-			 model.addAttribute("message", "Chỉnh sửa thất bại !");
+			 model.addAttribute("message", "Chá»‰nh sá»­a tháº¥t báº¡i !");
 		}finally {
 			session.close();
 		}
-		return "redirect:/Dashboard/Trang/edit/"+id+".html";
+		return "redirect:/dashboard/trang/edit/"+id+".html";
 	}
-	//kiểm tra trùng trang
+	//kiá»ƒm tra trÃ¹ng trang
 	@RequestMapping(value="kt-trung-tieude",method = RequestMethod.GET)
 	public @ResponseBody String ktTrungTieuDe(@RequestParam("tieude") String tieude,
 			@RequestParam("idtrang") int id,
@@ -206,7 +216,7 @@ public class PageController {
 			return "true";
 		}
 	}
-	//kiểm tra trùng titile
+	//kiá»ƒm tra trÃ¹ng titile
 		@RequestMapping(value="kt-trung-title",method = RequestMethod.GET)
 		public @ResponseBody String ktTrungTitle(@RequestParam("title") String title,
 				@RequestParam("idtrang") int id,
@@ -236,7 +246,7 @@ public class PageController {
 				return "true";
 			}
 		}
-		//kiểm tra trùng slug
+		//kiá»ƒm tra trÃ¹ng slug
 				@RequestMapping(value="kt-trung-slug",method = RequestMethod.GET)
 				public @ResponseBody String ktTrungSlug(@RequestParam("slug") String slug,
 						@RequestParam("idtrang") int id,

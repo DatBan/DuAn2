@@ -304,6 +304,7 @@ a:hover{
 .bodydexuat{
 	background-color:white;
 	margin-top:5px;
+	padding-bottom: 30px;
 }
 /*																 Chi Tiet Nha Hang */
 .ctnh{
@@ -667,7 +668,9 @@ div#loading-dropback{
     min-width: 100%;
     filter: opacity(0.6);
 }
-
+.required{
+	color:red;
+}
 
 
 

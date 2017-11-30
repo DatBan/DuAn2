@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.lang.reflect.Modifier;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import com.entity.HoaDon;
 import com.entity.MonAn;
 import com.entity.NhaHang;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Controller
 public class SearchController {
@@ -139,7 +141,7 @@ public class SearchController {
 		idl.add(0);
 		System.out.println(idl);
 		
-		int pageCount = 0, sumRecords = 0, perPage = 2;
+		int pageCount = 0, sumRecords = 0, perPage = 8;
 		List<NhaHang> list = this.nhahangDAO.getListByListID(idl, trang, sorted, thuoctinh);
 		List<NhaHang> sumList = this.nhahangDAO.getSumListByListID(idl);
 		sumRecords = sumList.size();
@@ -198,7 +200,10 @@ public class SearchController {
 		List<MonAn> listMA = this.monanDAO.getListByTenmonan(search);
 
 		response.setContentType("text/html; charset=utf-8");
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder()
+				.excludeFieldsWithoutExposeAnnotation()
+				.create();
+		/*Gson gson = new Gson();*/
 		String nhahang = gson.toJson(list);
 		String monan = gson.toJson(listMA);
 		/*

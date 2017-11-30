@@ -42,8 +42,13 @@ public class AccountDashboardController {
 
 		model.addAttribute("nguoidunglist", list);
 		model.addAttribute("tthai", trangthai);
-		model.addAttribute("tenbreadcrumb", "quản lý người dùng");
-		return "dashboard/user-mng";
+		
+		model.addAttribute("btn_add","dashboard/user-management/them.html");
+		model.addAttribute("tenbreadcrumb", "Danh sách người dùng đang sử dụng");
+		if(trangthai == 0){
+			model.addAttribute("tenbreadcrumb", "Danh sách người dùng đã khóa");
+		}
+		return "dashboard/users/user-mng";
 	}
 
 	// Trang load thong tin nguoi dung voi param edit
@@ -58,8 +63,13 @@ public class AccountDashboardController {
 			System.out.println("nullll " + e.toString());
 			return "redirect:/dashboard/user-management.html?trangthai=1";
 		}
+		
+		model.addAttribute("btn_back","dashboard/user-management.html?trangthai=1");
+		model.addAttribute("tenbreadcrumb", "Cập nhật thông tin người dùng");
+		model.addAttribute("tenbreadcrumb2", "Danh sách đang sử dụng");
+		model.addAttribute("urlbreadcrumb2", "dashboard/user-management.html?trangthai=1");
 
-		return "dashboard/edit-user";
+		return "dashboard/users/edit-user";
 	}
 
 	// Trang execute update thong tin nguoi dung voi param edit va method POST
@@ -101,7 +111,7 @@ public class AccountDashboardController {
 		}
 		model.addAttribute("nguoidung", nd);
 
-		return "dashboard/edit-user";
+		return "dashboard/users/edit-user";
 	}
 
 	// Trang execute delete nguoi dung voi param delete

@@ -9,7 +9,7 @@ public class DoiTenFile {
         file = file.substring(0,index);
         
         Date date = new Date();
-        file =file +date.getTime();
+        file =file+"-" +date.getTime();
         file = file + typeFile;
         
         return file;

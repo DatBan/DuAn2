@@ -37,7 +37,7 @@ public class EventsController {
 	@Autowired
 	SessionFactory factory;
 
-	// Đổ dữ liệu ra trang quản lý
+	// Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½
 	@RequestMapping(value = "index")
 	public String quanLyKhuyenMai(ModelMap model,HttpSession httpSession) {
 		Session session = factory.getCurrentSession();
@@ -51,17 +51,22 @@ public class EventsController {
 		@SuppressWarnings("unchecked")
 		List<KhuyenMai> list = query.list();
 		model.addAttribute("khuyenmai", list);
-		model.addAttribute("tenbreadcrumb", "QUẢN LÝ KHUYẾN MÃI");
-		return "nhahang/quanlykhuyenmai";
+		
+		model.addAttribute("btn_add","nhahang/khuyenmai/them.html");
+		model.addAttribute("tenbreadcrumb", "Quản lý hoạt động khuyến mãi");
+		return "nhahang/khuyenmai/quanlykhuyenmai";
 	}
 
-	// Phương thức GET để tạo giao diện khi click button Thêm
+	// PhÆ°Æ¡ng thá»©c GET Ä‘á»ƒ táº¡o giao diá»‡n khi click button ThÃªm
 	@RequestMapping(value = "them", method = RequestMethod.GET)
 	public String them(ModelMap model) {
-		model.addAttribute("tenbreadcrumb", "THÊM KHUYẾN MÃI");
-		return "nhahang/themkhuyenmai";
+		model.addAttribute("btn_back","nhahang/khuyenmai/index.html");
+		model.addAttribute("tenbreadcrumb", "Thêm mới hoạt động khuyến mãi");
+		model.addAttribute("tenbreadcrumb2", "Quản lý khuyến mãi");
+		model.addAttribute("urlbreadcrumb2", "nhahang/khuyenmai/index.html");
+		return "nhahang/khuyenmai/themkhuyenmai";
 	}
-	// Thêm khuyến mãi
+	// ThÃªm khuyáº¿n mÃ£i
 
 	@Autowired
 	ServletContext context;
@@ -85,8 +90,8 @@ public class EventsController {
 			ngaybd = df.parse(ngaybatdau);
 			ngaykt = df.parse(ngayketthuc);
 			if(ngaybd.getDate() > ngaykt.getDate()||ngaybd.getMonth()>ngaykt.getMonth()||ngaybd.getYear()>ngaykt.getYear()){
-				model.addAttribute("message", "Ngày bắt  đầu không được lớn hơn ngày kết thúc!");
-				return "nhahang/themkhuyenmai";
+				model.addAttribute("message", "NgÃ y báº¯t  Ä‘áº§u khÃ´ng Ä‘Æ°á»£c lá»›n hÆ¡n ngÃ y káº¿t thÃºc!");
+				return "nhahang/khuyenmai/themkhuyenmai";
 			}
 			 /*String da = df.format(date);*/
 			
@@ -108,22 +113,25 @@ public class EventsController {
 			// TODO: handle exception
 			t.rollback();
 			System.out.println(e.toString());
-			model.addAttribute("message", "Thêm khuyến mãi thất bại!");
+			model.addAttribute("message", "ThÃªm khuyáº¿n mÃ£i tháº¥t báº¡i!");
 		} finally {
 			session.close();
 		}
-		return "nhahang/themkhuyenmai";
+		return "nhahang/khuyenmai/themkhuyenmai";
 	}
-	// Tạo giao diện edit khuyến mãi
+	// Táº¡o giao diá»‡n edit khuyáº¿n mÃ£i
 			@RequestMapping(value = "edit/{id}")
 			public String editFormKhuyenMai(ModelMap model, @PathVariable("id") Integer id) {
 				Session session = factory.getCurrentSession();
 				KhuyenMai khuyenmai = (KhuyenMai) session.get(KhuyenMai.class, id);
 				model.addAttribute("khuyenmai", khuyenmai);
-				model.addAttribute("tenbreadcrumb", "SỬA KHUYẾN MÃI");
-				return "nhahang/suakhuyenmai";
+				model.addAttribute("btn_back","nhahang/khuyenmai/index.html");
+				model.addAttribute("tenbreadcrumb", "Sửa thông tin hoạt động khuyến mãi");
+				model.addAttribute("tenbreadcrumb2", "Quản lý khuyến mãi");
+				model.addAttribute("urlbreadcrumb2", "nhahang/khuyenmai/index.html");
+				return "nhahang/khuyenmai/suakhuyenmai";
 			}
-			// Sửa khuyến mãi
+			// Sá»­a khuyáº¿n mÃ£i
 			@RequestMapping(value = "suakhuyenmai", method = RequestMethod.POST)
 			public String suaAmThuc(ModelMap model, RedirectAttributes re, @RequestParam("idkhuyenmai") int id,
 					@RequestParam("ngaybatdau") String ngaybatdau,
@@ -148,7 +156,7 @@ public class EventsController {
 					ngaybd = df.parse(ngaybatdau);
 					ngaykt = df.parse(ngayketthuc);
 					if(ngaybd.getDate() > ngaykt.getDate()||ngaybd.getMonth()>ngaykt.getMonth()||ngaybd.getYear()>ngaykt.getYear()){
-						re.addFlashAttribute("message", "Ngày bắt  đầu không được lớn hơn ngày kết thúc!");
+						re.addFlashAttribute("message", "NgÃ y báº¯t  Ä‘áº§u khÃ´ng Ä‘Æ°á»£c lá»›n hÆ¡n ngÃ y káº¿t thÃºc!");
 						return "redirect:/nhahang/khuyenmai/edit/" + id + ".html";
 					}
 					 /*String da = df.format(date);*/
@@ -164,7 +172,7 @@ public class EventsController {
 				try {
 					session.update(km);
 					t.commit();
-					model.addAttribute("message", "Chỉnh sửa thành công !");
+					model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
 					return "redirect:/nhahang/khuyenmai/index.html";
 				} catch (Exception e) {
 					// TODO: handle exception
@@ -175,7 +183,7 @@ public class EventsController {
 				}
 				return "redirect:/nhahang/khuyenmai/edit/" + id + ".html";
 			}
-			// Kiểm tra trùng chủ đề 
+			// Kiá»ƒm tra trÃ¹ng chá»§ Ä‘á»� 
 			@RequestMapping(value = "kt-trung-chude", method = RequestMethod.GET)
 			public @ResponseBody String ktTrungChude(@RequestParam("chude") String chude, @RequestParam("idkhuyenmai") int id,
 					HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {
@@ -204,7 +212,7 @@ public class EventsController {
 				}
 			}
 
-			// Kiểm tra trùng name 
+			// Kiá»ƒm tra trÃ¹ng name 
 			@RequestMapping(value = "kt-trung-name", method = RequestMethod.GET)
 			public @ResponseBody String ktTrungName(@RequestParam("name") String name, @RequestParam("idkhuyenmai") int id,
 					HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {

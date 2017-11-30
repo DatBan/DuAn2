@@ -46,7 +46,7 @@ public class OpenTableController {
 	@Autowired
 	SessionFactory factory;
 
-	// Tạo form đặt bàn
+	// Táº¡o form Ä‘áº·t bÃ n
 	@RequestMapping(value = "index/{id}", method = RequestMethod.GET)
 	public String datban(ModelMap model, @PathVariable("id") int id, @RequestParam("idkm") int idkm) {
 		Session session = factory.getCurrentSession();
@@ -55,9 +55,9 @@ public class OpenTableController {
 		model.addAttribute("khuyenmai", khuyenmai);
 		model.addAttribute("nhahang", nhahang);
 
-		return "homepage/datban";
+		return "homepage/datban/datban";
 	}
-	// Tạo form đặt bàn khi khhông có khuyến mãi
+	// Táº¡o form Ä‘áº·t bÃ n khi khhÃ´ng cÃ³ khuyáº¿n mÃ£i
 	@RequestMapping(value = "index1/{id}", method = RequestMethod.GET)
 	public String FormDatBan(ModelMap model, @PathVariable("id") int id) {
 		Session session = factory.getCurrentSession();
@@ -65,17 +65,17 @@ public class OpenTableController {
 		
 		model.addAttribute("nhahang", nhahang);
 
-		return "homepage/datbankhongkhuyenmai";
+		return "homepage/datban/datbankhongkhuyenmai";
 	}
 
-	// Trang thông tin đặt bàn
+	// Trang thÃ´ng tin Ä‘áº·t bÃ n
 	@RequestMapping(value = "thongtindatban")
 	public String thongtindatban(ModelMap model) {
 
-		return "user/thongtindatban";
+		return "homepage/datban/thongtindatban";
 	}
 
-	// Đặt bàn
+	// Ä�áº·t bÃ n
 	@Autowired
 	Mailer mailer;
 
@@ -132,22 +132,22 @@ public class OpenTableController {
 			// TODO: handle exception
 			e.printStackTrace();
 			t.rollback();
-			re.addFlashAttribute("message", "Đặt chỗ thất bại!");
+			re.addFlashAttribute("message", "Ä�áº·t chá»— tháº¥t báº¡i!");
 			return "redirect:/datban/index/" + idnhahang + ".html";
 		} finally {
 			session.close();
 		}
 		try {
-			mailer.send(email, "Thông tin bàn ăn của bạn",
-					"<div>Xin chào " + ten1
-							+ " <div>Để xem thông tin bàn cũng như để gọi món vui lòng bấm vào link dưới đây!<br/><div ><a href='http://localhost:9999/DatBanAn/datban/thongtinbanan.html?email="
-							+ email + "&idhoadon=" + hoadon.getId() + "'>Thông tin bàn ăn</a></div></div></div>");
+			mailer.send(email, "ThÃ´ng tin bÃ n Äƒn cá»§a báº¡n",
+					"<div>Xin chÃ o " + ten1
+							+ " <div>Ä�á»ƒ xem thÃ´ng tin bÃ n cÅ©ng nhÆ° Ä‘á»ƒ gá»�i mÃ³n vui lÃ²ng báº¥m vÃ o link dÆ°á»›i Ä‘Ã¢y!<br/><div ><a href='http://localhost:9999/DatBanAn/datban/thongtinbanan.html?email="
+							+ email + "&idhoadon=" + hoadon.getId() + "'>ThÃ´ng tin bÃ n Äƒn</a></div></div></div>");
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return "redirect:/datban/thongtindatban.html";
 	}
-	// Đặt bàn khi không có khuyến mãi
+	// Ä�áº·t bÃ n khi khÃ´ng cÃ³ khuyáº¿n mÃ£i
 		
 
 		@RequestMapping(value = "xacnhandatbankokm", method = RequestMethod.POST)
@@ -202,16 +202,16 @@ public class OpenTableController {
 				// TODO: handle exception
 				e.printStackTrace();
 				t.rollback();
-				re.addFlashAttribute("message", "Đặt chỗ thất bại!");
+				re.addFlashAttribute("message", "Ä�áº·t chá»— tháº¥t báº¡i!");
 				return "redirect:/datban/index/" + idnhahang + ".html";
 			} finally {
 				session.close();
 			}
 			try {
-				mailer.send(email, "Thông tin bàn ăn của bạn",
-						"<div>Xin chào " + ten1
-								+ " <div>Để xem thông tin bàn cũng như để gọi món vui lòng bấm vào link dưới đây!<br/><div ><a href='http://localhost:9999/DatBanAn/datban/thongtinbanan.html?email="
-								+ email + "&idhoadon=" + hoadon.getId() + "'>Thông tin bàn ăn</a></div></div></div>");
+				mailer.send(email, "ThÃ´ng tin bÃ n Äƒn cá»§a báº¡n",
+						"<div>Xin chÃ o " + ten1
+								+ " <div>Ä�á»ƒ xem thÃ´ng tin bÃ n cÅ©ng nhÆ° Ä‘á»ƒ gá»�i mÃ³n vui lÃ²ng báº¥m vÃ o link dÆ°á»›i Ä‘Ã¢y!<br/><div ><a href='http://localhost:9999/DatBanAn/datban/thongtinbanan.html?email="
+								+ email + "&idhoadon=" + hoadon.getId() + "'>ThÃ´ng tin bÃ n Äƒn</a></div></div></div>");
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -223,14 +223,14 @@ public class OpenTableController {
 		return nhanDipDAO.getListNhanDip();
 	}
 
-	// Thông tin
+	// ThÃ´ng tin
 	@RequestMapping(value = "thongtin")
 	public String thongtin(ModelMap model) {
 
-		return "user/thongtin";
+		return "homepage/datban/thongtin";
 	}
 
-	// Thông tin ban an
+	// ThÃ´ng tin ban an
 	@RequestMapping(value = "thongtinbanan", method = RequestMethod.GET)
 	public String thongtinbanan(ModelMap model, @RequestParam("email") String email,
 			@RequestParam("idhoadon") int idhoadon) {
@@ -257,10 +257,10 @@ public class OpenTableController {
 			return "user/thongtinbanan";
 		}
 
-		return "user/thongtinbanan";
+		return "homepage/datban/thongtinbanan";
 	}
 
-	// Check tồn tại email
+	// Check tá»“n táº¡i email
 	@RequestMapping(value="kt-email",method = RequestMethod.GET)
 	public @ResponseBody String ktemail(@RequestParam("email") String email,
 			
@@ -288,7 +288,7 @@ public class OpenTableController {
 			return "false";
 		}
 	}
-	// Check tồn tại hoa don
+	// Check tá»“n táº¡i hoa don
 		@RequestMapping(value="kt-hoadon",method = RequestMethod.GET)
 		public @ResponseBody String ktHoadon(
 				@RequestParam("idhoadon") int id,

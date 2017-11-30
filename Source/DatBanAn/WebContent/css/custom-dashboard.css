@@ -350,6 +350,11 @@ a.article, a.article:hover {
 .social-c .fa>span{
 	display: none;
 }
-
+.required{
+	color:red;
+}
+.table-striped>tbody>tr.moi {
+	background-color:#dff0d8;
+}
 
 

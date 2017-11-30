@@ -1,6 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<!DOCTYPE html>
+<%-- <!DOCTYPE html>
 <html>
 <head>
 	<meta content="text/html; charset=UTF-8">
@@ -8,7 +8,7 @@
 	<jsp:include page="/include/headtag.jsp"></jsp:include>
 </head>
 <body>
-	<jsp:include page="/include/header.jsp"></jsp:include>
+	<jsp:include page="/include/header.jsp"></jsp:include> --%>
 	<!-- form tim kiem -->
 	<div class="container-full conff">
 		<div class="container timkiemm">
@@ -54,14 +54,14 @@
 				</div>
 			</c:forEach>
 		</div>
-		<%-- <c:if test="${listsize > 7}"> --%>
+		<c:if test="${listsize > 8}">
 			<hr/>
 			<div class="row">
 				<div class="col-md-12 text-center linkxemthemgiamgia">
 					<a style="cursor: pointer;" id="xem-them-tk"><span class="xemthemgiamgia">Xem Thêm</span></a>
 				</div>
 			</div>
-		<%-- </c:if> --%>
+		</c:if>
 
 	</div>
 	<!-- <div class="container bodydexuat">
@@ -154,6 +154,6 @@
 		</div>
 	</div> -->
 
-	<jsp:include page="/include/footer.jsp"></jsp:include>
+	<%-- <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
-</html>
+</html> --%>

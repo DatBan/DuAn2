@@ -55,7 +55,7 @@ public class LoginController {
 	@RequestMapping("modal-login")
 	public String modal(ModelMap model) {
 		model.addAttribute("nguoidung", new NguoiDung());
-		return "homepage/modal-login";
+		return "modals/modal-login";
 	}
 
 	// Dang nhap vao he thong
@@ -212,7 +212,7 @@ public class LoginController {
 				Session session = factory.getCurrentSession();
 				NguoiDung nd = userDAO.getByIdGoogle(userId);
 				System.out.println("thu service nha");
-				Quyen quyen = (Quyen) session.get(Quyen.class, 2);
+				Quyen quyen = (Quyen) session.get(Quyen.class, 3);
 				System.out.println("null k " + nd);
 				// Kiem tra de dang ky tai khoan voi mxh
 				if (nd == null) {
@@ -266,7 +266,7 @@ public class LoginController {
 			}
 
 			NguoiDung nd = userDAO.getByIdFacebook(idfacebook);
-			Quyen quyen = (Quyen) session.get(Quyen.class, 2);
+			Quyen quyen = (Quyen) session.get(Quyen.class, 3);
 			if (nd == null) {
 				try {
 					nd = new NguoiDung(first_name, last_name, null, null, email, "", "", 1, new Date(), quyen);

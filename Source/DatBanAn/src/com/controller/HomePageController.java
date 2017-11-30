@@ -36,8 +36,8 @@ public class HomePageController {
 	
 	@RequestMapping("trang-chu")
 	public String index(ModelMap model) {
-		model.addAttribute("nguoidung", new NguoiDung());
-		return "index";
+		/*model.addAttribute("nguoidung", new NguoiDung());*/
+		return "homepage/index";
 	}
 	@RequestMapping("chitietnhahang")
 	public String ctnh(ModelMap model){
@@ -57,13 +57,13 @@ public class HomePageController {
 		System.out.println("khuyeenx mai cua nha hang"+list);
 		/*model.addAttribute("listDG", listDG);*/
 		model.addAttribute("nguoidung", new NguoiDung());
-		return"chitietnhahang";
+		return"homepage/chitietnhahang/chitietnhahang";
 	}
 	
 	@RequestMapping("timkiem")
 	public String timkiem(ModelMap model){
 		model.addAttribute("nguoidung", new NguoiDung());
-		return"ketquatimkiem";
+		return"homepage/timkiemnhahang/ketquatimkiem";
 	}
 	
 	@RequestMapping("khuyenmai")
@@ -80,7 +80,7 @@ public class HomePageController {
 		model.addAttribute("km", listkhuyenmai);
 		
 		
-		return"khuyenmai";
+		return"homepage/khuyenmai";
 	}
 	
 }

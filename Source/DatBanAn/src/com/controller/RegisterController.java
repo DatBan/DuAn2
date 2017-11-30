@@ -39,7 +39,7 @@ public class RegisterController {
 	/* Phương thức get đêt tạo giao diện */
 	@RequestMapping(value="RegisterForm",method = RequestMethod.GET)
 	public String RegisterForm() {
-		return "register";
+		return "homepage/register";
 	}
 	/* Phương thức post để đăng ký */
 	

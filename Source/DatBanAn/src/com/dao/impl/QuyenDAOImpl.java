@@ -29,4 +29,11 @@ public class QuyenDAOImpl implements QuyenDAO {
 		return list;
 	}
 
+	@Override
+	public Quyen getById(int quyenid) {
+		Session session = factory.getCurrentSession();
+		Quyen quyen = (Quyen) session.get(Quyen.class, quyenid);
+		return quyen;
+	}
+
 }

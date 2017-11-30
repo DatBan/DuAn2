@@ -2,12 +2,6 @@
 <footer class="panel-footer">
 	<span><b>Copyright © 2017 <a href="#">Datban</a></b>. All rights reserved.</span>
 </footer>
-<!-- Link toi file jquery -->
-<link href="css/font-awesome.css" rel="stylesheet" type="text/css" >
-<link rel="stylesheet" href="css/jquery-ui.css">
-<link rel="stylesheet" href="css/banan.css">
-<script src="js/jquery.min.js"></script>
-
 <script src="js/jquery-ui.js"></script>
 
 

@@ -12,12 +12,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name = "banan")
 public class BanAn {
 	@Id
 	@GeneratedValue
+	@Expose
 	private int id;
+	@Expose
 	private int soban;
 	private int songuoi;
 	private int trangthai;
@@ -25,8 +29,8 @@ public class BanAn {
 	@JoinColumn(name = "idnhahang")
 	private NhaHang nhahang;
 	
-	@OneToMany(mappedBy = "banan", fetch = FetchType.EAGER)
-	private Collection<HoaDon> listhd;
+	/*@OneToMany(mappedBy = "banan", fetch = FetchType.EAGER)
+	private Collection<HoaDon> listhd;*/
 
 	public BanAn() {
 		super();
@@ -82,12 +86,12 @@ public class BanAn {
 		this.nhahang = nhahang;
 	}
 
-	public Collection<HoaDon> getListhd() {
+	/*public Collection<HoaDon> getListhd() {
 		return listhd;
 	}
 
 	public void setListhd(Collection<HoaDon> listhd) {
 		this.listhd = listhd;
-	}
+	}*/
 
 }
