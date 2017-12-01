@@ -16,6 +16,12 @@ $(document).ready(function() {
 		// cắt bỏ ký tự - ở đầu và cuối chuỗi
 		return str;
 	}
+	
+	//Hàm kiểm tra filesize
+	$.validator.addMethod('filesize', function (value, element, param) {
+	    return this.optional(element) || (element.files[0].size <= param)
+	}, 'File size must be less than {0}');
+	
 	// check họ tên (số chữ)
 	$.validator.addMethod("wordCount", function(value, element, params) {
 		var typedWords = jQuery.trim(value).split(" ").length;
@@ -23,9 +29,7 @@ $(document).ready(function() {
 		if (typedWords >= params[0]) {
 			return true;
 		}
-	}
-
-	);
+	});
 	// Check sdt
 	$.validator.addMethod("chuanSDT", function(value, element) {
 		var regex = new RegExp(/^0[0-9].*$/);
@@ -46,4 +50,13 @@ $(document).ready(function() {
                 return true;
         }
 	});
+	//Check lon hon another field
+	$.validator.addMethod('greaterThan', function(value, element, param) {
+	      return this.optional(element) || value > $(param).val();
+	}, 'Invalid value');
+	
+	//Check nho hon another field
+	$.validator.addMethod('lessThan', function(value, element, param) {
+	      return this.optional(element) || value < $(param).val();
+	}, 'Invalid value');
 });

@@ -130,12 +130,15 @@ $(document).ready(function() {
 	$("#edit-user-db").validate({
 		onchange : true,
 		rules : {
-			hoten : {
+			ho: {
 				required :true,
-				rangelength : [ 4, 50 ],
-				wordCount : [ '2' ],
+				maxlength : 25,
 				notNumber: true
-				
+			},
+			ten: {
+				required :true,
+				maxlength : 25,
+				notNumber: true
 			},
 			matkhau : {
 				minlength : 6,
@@ -181,11 +184,15 @@ $(document).ready(function() {
 
 		},
 		messages : {
-			hoten : {
-				required : "Vui lòng nhập đầy đủ họ tên",
-				rangelength : "Họ tên không hợp lệ",
-				wordCount : "Họ tên phải có khoảng cách",
-				notNumber:"Họ tên không được có số và ký tự đặc biệt"
+			ho : {
+				required : "Vui lòng nhập Họ",
+				maxlength : "Độ dài tối đa {0} ký tự",
+				notNumber:"Họ không được có số và ký tự đặc biệt"
+			},
+			ten : {
+				required : "Vui lòng nhập Tên",
+				maxlength : "Độ dài tối đa {0} ký tự",
+				notNumber:"Tên không được có số và ký tự đặc biệt"
 			},
 			matkhau : {
 				minlength : "Mật khẩu quá ngắn",
@@ -615,7 +622,9 @@ $(document).ready(function() {
 	    var output = document.getElementById('output');
 	    output.style.width = "200px";
 	    output.className = "img-response";
-
-	    output.src = URL.createObjectURL(event.target.files[0]);
+	    output.src = '';
+	    if($(this).val() != ''){
+	    	output.src = URL.createObjectURL(event.target.files[0]);
+	    }
 	});
 });

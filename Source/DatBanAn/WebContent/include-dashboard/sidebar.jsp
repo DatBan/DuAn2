@@ -89,6 +89,7 @@
 					<i class="glyphicon glyphicon-home"></i> Quản lý nhà hàng
 				</a>
 				<ul class="collapse list-unstyled" id="ss8">
+					<li><a href="dashboard/restaurants-mng/them.html"><i class="fa fa-circle-o"></i> Thêm nhà hàng</a></li>
 					<li><a href="dashboard/restaurants-mng.html"><i class="fa fa-circle-o"></i> Danh sách đang hoạt động</a></li>
 					<li><a href="dashboard/restaurants-mng.html?trangthai=0"><i class="fa fa-circle-o"></i> Danh sách đã khóa</a></li>
 				</ul>
@@ -99,6 +100,7 @@
 					Quản lý người dùng
 				</a>
 				<ul class="collapse list-unstyled" id="ss">
+					<li><a href="dashboard/user-management/them.html"><i class="fa fa-circle-o"></i> Thêm người dùng</a></li>
 					<li><a href="dashboard/user-management.html?trangthai=1"><i class="fa fa-circle-o"></i> Danh sách đang sử dụng</a></li>
 					<li><a href="dashboard/user-management.html?trangthai=0"><i class="fa fa-circle-o"></i> Danh sách đã khóa</a></li>
 				</ul>

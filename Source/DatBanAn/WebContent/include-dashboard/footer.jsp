@@ -56,3 +56,5 @@
 <script src="js/ScriptKhuyenMai.js"></script>
 <script src="js/ScriptBan.js"></script>
 <script src="js/ScriptDatBan.js"></script>
+<script src="js/quanly-Nhahang.js"></script>
+<script src="js/add-user.js"></script>

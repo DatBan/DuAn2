@@ -26,6 +26,34 @@
 							
 							<!--------------- Table, form cac thu ---------------->
 							<div class="content-nhe"> --%>
+								<c:if test="${restorestt == 'error'}">
+									<div class="alert alert-danger">
+										<span>Mở khóa người dùng</span> <strong>thất bại</strong>! Vui lòng thử lại<br/>
+									</div>
+								</c:if>
+								<c:if test="${restorestt == 'success'}">
+									<div class="alert alert-success">
+										<span>Mở khóa người dùng</span> <strong>thành công</strong>!<br/>
+										<span style="font-style: italic;">Bạn vừa mở khóa người dùng với Email: <span style="text-decoration: underline;">${emailr}</span></span>
+									</div>
+								</c:if>
+								<c:if test="${deletestt == 'error'}">
+									<div class="alert alert-danger">
+										<span>Khóa người dùng</span> <strong>thất bại</strong>! Vui lòng thử lại<br/>
+									</div>
+								</c:if>
+								<c:if test="${deletestt == 'error1'}">
+									<div class="alert alert-danger">
+										<span>Khóa người dùng</span> <strong>thất bại</strong>!<br/>
+										<span style="font-style: italic;">Phải có ít nhất 1 tài khoản với quyền <strong>ADMIN</strong> đang sử dụng trong Hệ thống</span>
+									</div>
+								</c:if>
+								<c:if test="${deletestt == 'success'}">
+									<div class="alert alert-success">
+										<span>Khóa người dùng</span> <strong>thành công</strong>!<br/>
+										<span style="font-style: italic;">Bạn vừa khóa người dùng với Email: <span style="text-decoration: underline;">${emailx}</span></span>
+									</div>
+								</c:if>
 	                			<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 								        <thead>
 								            <tr>
@@ -53,7 +81,9 @@
 								        </tfoot>
 								        <tbody>
 								        	<c:forEach var="nd" items="${nguoidunglist}" varStatus="status">
-									            <tr>
+									            <c:if test="${nd.id == idndmoi}">
+								        		<tr class="moi">
+								        		</c:if>
 									            	<td>${status.index + 1}</td>
 									                <td>${nd.hoTen}</td>
 									                <td>${nd.tendangnhap}</td>
@@ -77,7 +107,7 @@
 									                			<a href="dashboard/user-management.html?edit&id=${nd.id}"
 																class="btn btn-info" data-toggle="tooltip" title="Chỉnh sửa thông tin người dùng"><i class="fa fa-edit"></i></a> 
 																<a href="dashboard/user-management.html?delete&idxoa=${nd.id}" onclick="return confirm('sdkj')"
-																class="btn btn-danger" data-toggle="tooltip" title="Bỏ vào thùng rác"><i class="fa fa-trash-o"></i></a>
+																class="btn btn-danger" data-toggle="tooltip" title="Khóa tài khoản"><i class="fa fa-ban"></i></a>
 									                		</c:when>
 									                		<c:otherwise>
 									                			<a href="dashboard/user-management.html?restore&idxoa=${nd.id}" onclick="return confirm('khoi phuc hihi')"

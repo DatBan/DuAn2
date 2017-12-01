@@ -26,7 +26,41 @@
 							
 							<!--------------- Table, form cac thu ---------------->
 							<div class="content-nhe"> --%>
-							<div class="alert alert-success">asd</div>
+								<c:if test="${trashstt == 'error'}">
+									<div class="alert alert-danger">
+										<span>Khóa nhà hàng</span> <strong>thất bại</strong>! Vui lòng thử lại<br/>
+									</div>
+								</c:if>
+								<c:if test="${trashstt == 'success'}">
+									<div class="alert alert-success">
+										<span>Khóa nhà hàng</span> <strong>thành công</strong>!<br/>
+										<span style="font-style: italic;">Bạn vừa khóa nhà hàng với Tên nhà hàng: <span style="text-decoration: underline;">${tnhtrash}</span></span>
+									</div>
+								</c:if>
+								
+								<c:if test="${restorestt == 'error'}">
+									<div class="alert alert-danger">
+										<span>Mở khóa nhà hàng</span> <strong>thất bại</strong>! Vui lòng thử lại<br/>
+									</div>
+								</c:if>
+								<c:if test="${restorestt == 'success'}">
+									<div class="alert alert-success">
+										<span>Mở khóa nhà hàng</span> <strong>thành công</strong>!<br/>
+										<span style="font-style: italic;">Bạn vừa mở khóa nhà hàng với Tên nhà hàng: <span style="text-decoration: underline;">${tnhr}</span></span>
+									</div>
+								</c:if>
+								
+								<c:if test="${deletestt == 'error'}">
+									<div class="alert alert-danger">
+										<span>Xóa nhà hàng</span> <strong>thất bại</strong>! Vui lòng thử lại<br/>
+									</div>
+								</c:if>
+								<c:if test="${deletestt == 'success'}">
+									<div class="alert alert-success">
+										<span>Xóa nhà hàng</span> <strong>thành công</strong>!<br/>
+										<span style="font-style: italic;">Bạn vừa xóa nhà hàng với Tên nhà hàng: <span style="text-decoration: underline;">${tnhd}</span></span>
+									</div>
+								</c:if>
 	                			<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 								        <thead>
 								            <tr>

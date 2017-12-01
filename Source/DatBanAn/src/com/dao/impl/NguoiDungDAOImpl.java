@@ -57,7 +57,7 @@ public class NguoiDungDAOImpl implements NguoiDungDAO {
 			System.out.println("Success!");
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println(e.toString());
+			System.out.println("LOI "+e.toString()+" NguoiDungDAOImpl.createUser()");
 			e.printStackTrace();
 			/*t.rollback();*/
 		} /*finally {
@@ -86,7 +86,7 @@ public class NguoiDungDAOImpl implements NguoiDungDAO {
 	@Override
 	public List<NguoiDung> getListByTrangThai(int trangthai) {
 		Session session = factory.getCurrentSession();
-		Query query = session.createQuery("FROM NguoiDung WHERE trangthai=:tt");
+		Query query = session.createQuery("FROM NguoiDung nd WHERE nd.trangthai=:tt ORDER BY nd.id DESC");
 		query.setParameter("tt", trangthai);
 
 		@SuppressWarnings("unchecked")
