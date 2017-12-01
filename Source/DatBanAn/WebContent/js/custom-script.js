@@ -26,7 +26,7 @@ $(document).ready(function() {
 	if(tieuDe != null){
 		tieuDe.addEventListener('change', function() {
 			var permalink = document.getElementById('slug');
-			doiPermarlink(tieuDe.value, permalink);
+			doiPermarlink($('#tieude').val(), permalink);
 		});
 	}
 	

@@ -28,6 +28,7 @@ import com.entity.MonAn;
 import com.entity.NguoiDung;
 import com.entity.NhaHang;
 import com.entity.TienIch;
+import com.services.DoiTenFile;
 
 @Transactional
 @RequestMapping("nhahang/tienich/")
@@ -82,12 +83,13 @@ public class UtilityController {
 		NhaHang nhahang = nd.getNhahang();
 		String tentienich1 = tentienich.trim();
 		String name1 = name.trim();
-		String photoPath = context.getRealPath("/upload/tienich/" + hinh.getOriginalFilename());
+		String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
+		String photoPath = context.getRealPath("/upload/tienich/" + tenhinh);
 		Transaction t = session.beginTransaction();
 		String hinhanh;
 		try {
 			hinh.transferTo(new File(photoPath));
-			hinhanh = hinh.getOriginalFilename();
+			hinhanh = tenhinh;
 			TienIch tienich = new TienIch(tentienich1, name1, hinhanh,nhahang);
 			session.save(tienich);
 			t.commit();
@@ -147,7 +149,8 @@ public class UtilityController {
 			@RequestParam("hinh") MultipartFile hinh, HttpSession httpSession) {
 		Session session = factory.openSession();
 		TienIch tienich = (TienIch) session.get(TienIch.class, id);
-		String photoPath = context.getRealPath("/upload/tienich/" + hinh.getOriginalFilename());
+		String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
+		String photoPath = context.getRealPath("/upload/tienich/" + tenhinh);
 		String tentienich1 = tentienich.trim();
 		String name1 = name.trim();
 
@@ -161,7 +164,7 @@ public class UtilityController {
 		if (!hinh.isEmpty()) {
 			try {
 				hinh.transferTo(new File(photoPath));
-				hinhanh = hinh.getOriginalFilename();
+				hinhanh = tenhinh;
 				tienich.setIcon(hinhanh);
 				Thread.sleep(5000);
 			} catch (Exception e) {

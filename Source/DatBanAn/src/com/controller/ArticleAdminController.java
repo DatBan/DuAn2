@@ -29,6 +29,7 @@ import com.entity.BaiViet;
 import com.entity.BinhLuan;
 import com.entity.LoaiBaiViet;
 import com.entity.NguoiDung;
+import com.services.DoiTenFile;
 
 @Transactional
 @RequestMapping("dashboard/baiviet/")
@@ -104,8 +105,9 @@ public class ArticleAdminController {
 	public String xem(ModelMap model, @PathVariable("id") Integer id) {
 		Session session = factory.getCurrentSession();
 		BaiViet baiviet = (BaiViet) session.get(BaiViet.class, id);		
-		model.addAttribute("bv", baiviet);
-		return "chitietbaiviet";
+		model.addAttribute("baiviet", baiviet);
+		
+		return "homepage/chitietbaiviet";
 	}
 	// XoÃ¡ bÃ i viáº¿t cá»§a quáº£n trá»‹
 	@RequestMapping(value = "deletee/{id}") public String deleteBaivietquantri(ModelMap model,
@@ -182,7 +184,8 @@ public class ArticleAdminController {
 				return "dashboard/baiviet/thembaiviet";
 
 			}
-			String photoPath = context.getRealPath("/upload/baiviet/" + hinh.getOriginalFilename());
+			String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
+			String photoPath = context.getRealPath("/upload/baiviet/" +tenhinh );
 			// String rootPath = context.getRealPath("/");
 			// String filePath =
 			// rootPath.substring(0,rootPath.indexOf(".metadata"))+
@@ -193,7 +196,7 @@ public class ArticleAdminController {
 			String hinhanh;
 			try {
 				hinh.transferTo(new File(photoPath));
-				hinhanh = hinh.getOriginalFilename();			
+				hinhanh = tenhinh;			
 				BaiViet baiviet = new BaiViet(td, n, noidung, content, hinhanh, sl, mota, 1, ngaytao, loaibv, nd);
 				session.save(baiviet);
 				t.commit();
@@ -319,7 +322,8 @@ public class ArticleAdminController {
 			Session session = factory.openSession();
 			BaiViet bv = (BaiViet) session.get(BaiViet.class, id);
 			LoaiBaiViet loaibv = (LoaiBaiViet) session.get(LoaiBaiViet.class, idloai);
-			String photoPath = context.getRealPath("/upload/baiviet/" + hinh.getOriginalFilename());
+			String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
+			String photoPath = context.getRealPath("/upload/baiviet/" +tenhinh );
 			String td = tieude.trim();
 			String tt = name.trim();
 			String sl = slug.trim();
@@ -347,7 +351,7 @@ public class ArticleAdminController {
 			if (!hinh.isEmpty()) {
 				try {
 					hinh.transferTo(new File(photoPath));
-					hinhanh = hinh.getOriginalFilename();
+					hinhanh = tenhinh;
 					bv.setHinh(hinhanh);
 				} catch (Exception e) {
 					// TODO: handle exception
@@ -358,7 +362,7 @@ public class ArticleAdminController {
 				session.update(bv);
 				t.commit();
 				model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
-				return "redirect:/Dashboard/BaiViet/index.html";
+				return "redirect:/dashboard/baiviet/index.html";
 			} catch (Exception e) {
 				// TODO: handle exception
 				t.rollback();

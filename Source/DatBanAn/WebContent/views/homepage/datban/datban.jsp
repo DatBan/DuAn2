@@ -33,7 +33,7 @@
 				<div class="row formdatban col-md-11">
 					<form name="datban" id="datban" action="datban/xacnhandatban.html"
 						method="post" class="">
-						<input style="display: none" name="idkm" type="text"
+						<input style="display: none" name="idkhuyenm" type="text"
 							value="${khuyenmai.id}">
 						<input style="display: none" name="idnhahang" type="text"
 							value="${nhahang.id}"> <input style="display: none"

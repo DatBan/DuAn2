@@ -113,7 +113,7 @@ public class PageController {
 			try {
 				session.save(trang);
 				t.commit();
-				return "redirect:/Dashboard/Trang/index.html";
+				return "redirect:/dashboard/trang/index.html";
 			} catch (Exception e) {
 				// TODO: handle exception
 				t.rollback();
@@ -175,7 +175,7 @@ public class PageController {
 			session.update(trang);
 			t.commit();
 			model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
-			return "redirect:/Dashboard/Trang/index.html";
+			return "redirect:/dashboard/trang/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();
@@ -198,8 +198,8 @@ public class PageController {
 		}
 		response.setCharacterEncoding("UTF-8");
 		Session session = factory.getCurrentSession();
-		
-			
+		System.out.println(tieude);
+		System.out.println(id);
 		
 		String hql="FROM Trang  WHERE tieude =:tieude";
 		Query query = session.createQuery(hql);

@@ -32,7 +32,7 @@ public class HoaDon {
 	private String thoigian;
 	@Temporal(TemporalType.DATE)
 	private Date ngaythang;
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.DATE)
 	private Date ngaytao;
 	@ManyToOne
 	@JoinColumn(name = "idkhuyenmai")

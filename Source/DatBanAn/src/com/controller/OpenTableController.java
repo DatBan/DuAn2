@@ -48,10 +48,10 @@ public class OpenTableController {
 
 	// Táº¡o form Ä‘áº·t bÃ n
 	@RequestMapping(value = "index/{id}", method = RequestMethod.GET)
-	public String datban(ModelMap model, @PathVariable("id") int id, @RequestParam("idkm") int idkm) {
+	public String datban(ModelMap model, @PathVariable("id") int id, @RequestParam("idkm") int idkmm) {
 		Session session = factory.getCurrentSession();
 		NhaHang nhahang = (NhaHang) session.get(NhaHang.class, id);
-		KhuyenMai khuyenmai = (KhuyenMai) session.get(KhuyenMai.class, idkm);
+		KhuyenMai khuyenmai = (KhuyenMai) session.get(KhuyenMai.class, idkmm);
 		model.addAttribute("khuyenmai", khuyenmai);
 		model.addAttribute("nhahang", nhahang);
 
@@ -81,7 +81,7 @@ public class OpenTableController {
 
 	@RequestMapping(value = "xacnhandatban", method = RequestMethod.POST)
 	public String xacnhandat(ModelMap model, RedirectAttributes re, @RequestParam("idnhahang") int idnhahang,
-			@RequestParam("idkm") int idkm, @RequestParam("ho") String ho, @RequestParam("ten") String ten,
+			@RequestParam("idkhuyenm") int idkm1, @RequestParam("ho") String ho, @RequestParam("ten") String ten,
 			@RequestParam("ngaythang") String ngaythang, @RequestParam("thoigian") String thoigian,
 			@RequestParam("songuoi") int songuoi, @RequestParam("nhandip") String nhandip,
 			@RequestParam("email") String email, @RequestParam("sdt") String sdt, @RequestParam("ghichu") String ghichu,
@@ -95,6 +95,7 @@ public class OpenTableController {
 		String ghichu1 = ghichu.trim();
 
 		Date date = new Date();
+		Date ngaytao = new Date();
 		System.out.println(ngaythang);
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		/*
@@ -113,14 +114,14 @@ public class OpenTableController {
 		}
 
 		NhaHang nhahang = (com.entity.NhaHang) session.get(NhaHang.class, idnhahang);
-		KhuyenMai khuyenmai = (KhuyenMai) session.get(KhuyenMai.class, idkm);
+		KhuyenMai khuyenmai = (KhuyenMai) session.get(KhuyenMai.class, idkm1);
 		NguoiDung nguoidung = (NguoiDung) httpSession.getAttribute("nd");
 
-		Date ngaytao = new Date();
+		
 		Transaction t = session.beginTransaction();
 
 		HoaDon hoadon = new HoaDon(ho1, ten1, email1, sdt1, nhandip, ghichu1, songuoi, 0, check, thoigian, date,
-				new Date(), khuyenmai, nhahang, nguoidung);
+				ngaytao, khuyenmai, nhahang, nguoidung);
 
 		try {
 			session.save(hoadon);

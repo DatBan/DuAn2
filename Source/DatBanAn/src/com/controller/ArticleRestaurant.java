@@ -31,6 +31,7 @@ import com.entity.BaiViet;
 import com.entity.BinhLuan;
 import com.entity.LoaiBaiViet;
 import com.entity.NguoiDung;
+import com.services.DoiTenFile;
 
 @Transactional
 @RequestMapping("nhahang/baiviet/")
@@ -109,7 +110,8 @@ public class ArticleRestaurant {
 			return "nhahang/baiviet/thembaiviet";
 
 		}
-		String photoPath = context.getRealPath("/upload/baiviet/" + hinh.getOriginalFilename());
+		String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
+		String photoPath = context.getRealPath("/upload/baiviet/" +tenhinh );
 		// String rootPath = context.getRealPath("/");
 		// String filePath =
 		// rootPath.substring(0,rootPath.indexOf(".metadata"))+
@@ -120,7 +122,7 @@ public class ArticleRestaurant {
 		String hinhanh;
 		try {
 			hinh.transferTo(new File(photoPath));
-			hinhanh = hinh.getOriginalFilename();			
+			hinhanh = tenhinh;			
 			BaiViet baiviet = new BaiViet(td, n, noidung, content, hinhanh, sl, mota, 0, ngaytao, loaibv, nd);
 			session.save(baiviet);
 			t.commit();
@@ -247,7 +249,8 @@ public class ArticleRestaurant {
 		Session session = factory.openSession();
 		BaiViet bv = (BaiViet) session.get(BaiViet.class, id);
 		LoaiBaiViet loaibv = (LoaiBaiViet) session.get(LoaiBaiViet.class, idloai);
-		String photoPath = context.getRealPath("/upload/baiviet/" + hinh.getOriginalFilename());
+		String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
+		String photoPath = context.getRealPath("/upload/baiviet/" +tenhinh );
 		String td = tieude.trim();
 		String tt = name.trim();
 		String sl = slug.trim();
@@ -275,8 +278,9 @@ public class ArticleRestaurant {
 		if (!hinh.isEmpty()) {
 			try {
 				hinh.transferTo(new File(photoPath));
-				hinhanh = hinh.getOriginalFilename();
+				hinhanh = tenhinh;
 				bv.setHinh(hinhanh);
+				Thread.sleep(5000);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

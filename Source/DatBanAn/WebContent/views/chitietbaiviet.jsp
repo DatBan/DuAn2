@@ -56,7 +56,7 @@
 						<div class="tin">
 							<a href="#"><img class="img-responsive"
 								style="width: 948px; height: 277px; margin-left: -14px; margin-bottom: 20px;"
-								class="col-md-4" alt="" src="files/${baiviet.hinh}"></a> <a
+								class="col-md-4" alt="" src="upload/baiviet/${baiviet.hinh}"></a> <a
 								href="#">
 
 								<h2 style="color: #475b6f">${baiviet.tenbaiviet}</h2>

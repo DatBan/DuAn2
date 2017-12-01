@@ -161,7 +161,7 @@ $("#suatienich").validate({
 			},
 			hinh:{
 				extension: "Vui lòng chọn file định dạng ảnh như (jpg|png|gif|jpeg)",
-				filesize: "Dung lượng file nhỏ hơn 2MB"
+				filesize: "Dung lượng file nhỏ hơn 1MB"
 			}
 		}
 	});

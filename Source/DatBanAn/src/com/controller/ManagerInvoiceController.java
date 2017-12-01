@@ -37,14 +37,14 @@ public class ManagerInvoiceController {
 	@Autowired
 	SessionFactory factory;
 
-	// Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½ Ä‘Æ¡n má»›i
+	// Đỗ dữ liệu
 	@RequestMapping(value = "index")
 	public String quanLyDatBan(ModelMap model, HttpSession httpSession) {
 		Session session = factory.getCurrentSession();
 		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 		NhaHang nhahang = nd.getNhahang();
 		int id = nhahang.getId();
-		String hql = "FROM HoaDon where idnhahang =:idnhahang and trangthai=0";
+		String hql = "FROM HoaDon where idnhahang =:idnhahang and trangthai=0 ORDER BY ngaytao DESC";
 		Query query = session.createQuery(hql);
 		query.setParameter("idnhahang", id);
 		@SuppressWarnings("unchecked")
@@ -62,7 +62,7 @@ public class ManagerInvoiceController {
 			NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 			NhaHang nhahang = nd.getNhahang();
 			int id = nhahang.getId();
-			String hql = "FROM HoaDon where idnhahang =:idnhahang and trangthai=1";
+			String hql = "FROM HoaDon where idnhahang =:idnhahang and trangthai=1 ORDER BY ngaytao DESC";
 			Query query = session.createQuery(hql);
 			query.setParameter("idnhahang", id);
 			@SuppressWarnings("unchecked")
@@ -126,6 +126,7 @@ public class ManagerInvoiceController {
 		HoaDon hd = (HoaDon) session.get(HoaDon.class, id);
 
 		model.addAttribute("hoadon", hd);
+		model.addAttribute("btn_back","nhahang/quanlydatban/index.html");
 		model.addAttribute("tenbreadcrumb", "Sá»¬A HOÃ� Ä�Æ N");
 		return "nhahang/quanlydatban/suadondatban";
 	}

@@ -63,14 +63,16 @@ public class InvoiceController {
 			NhaHang nhahang = nguoidung.getNhahang();			
 			
 			Date ngaytao = new Date();
-			Transaction t = session.beginTransaction();		
-			HoaDon hoadon = new HoaDon(2,ngaytao,nhahang);		
+			Transaction t = session.beginTransaction();	
+			System.out.println(ngaytao);
+			HoaDon hoadon = new HoaDon(2,new Date(),nhahang);		
 			try {
 				session.save(hoadon);
 				t.commit();						
 				
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println(e.getMessage());
 				e.printStackTrace();
 				t.rollback();
 				re.addFlashAttribute("message", "Táº¡o má»›i tháº¥t báº¡i!");

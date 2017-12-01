@@ -102,10 +102,13 @@ public class ManagerTableController {
 		public String deleteTienIch(ModelMap model,RedirectAttributes re, @PathVariable("id") Integer id) {
 			Session session = factory.openSession();
 			BanAn ban = (BanAn) session.get(BanAn.class, id);
+			System.out.println(id);
 			if(ban.getTrangthai()==1){
+				
 				re.addFlashAttribute("message", "BÃ n Ä‘ang Ä‘Æ°á»£c sá»­ dá»¥ng khÃ´ng thá»ƒ xoÃ¡!");
 				return "redirect:/nhahang/ban/index.html";
 			}else{
+				
 				ban.setTrangthai(2);
 			}
 			
@@ -117,6 +120,7 @@ public class ManagerTableController {
 				model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
 
 			} catch (Exception e) {
+				System.out.println(e.getMessage());
 				t.rollback();
 				model.addAttribute("message", "XÃ³a tháº¥t báº¡i !" + e.getMessage());
 			} finally {
