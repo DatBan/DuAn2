@@ -1,6 +1,7 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%-- <!DOCTYPE html>
 <html>
 <head>
@@ -89,9 +90,10 @@
 								<div class=" col-md-1"></div>
 
 								<div class="col-md-10">
+									<fmt:formatNumber var="gia"	type="number" pattern="###" value="${monan.gia}"></fmt:formatNumber>
 									<label class="control-label  labeld" for="slug">Giá:<span
 										style="color: red;">*</span>
-									</label> <input type="text" name="gia" id="gia" value="${monan.gia}"
+									</label> <input type="text" name="gia" id="gia" value="${gia}"
 										placeholder="VD: 200000" class="form-control" >
 								</div>
 							</div>

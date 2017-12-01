@@ -1,6 +1,7 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%-- <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +42,7 @@
 						<!-- <p style="text-align: center"><a type="button" class="btn btn-danger"
 										href="baiviet/deletemulti.html"
 										style="color: white; float:left;">Xoá nhiều</a></p></div> -->
-						<form method="post" action="Dashboard/BaiViet/deletemulti.html">
+						<form method="post" action="dashboard/baiviet/deletemulti.html">
 							<input type="submit" type="button" class="btn btn-danger"
 								style="color: white; float: left;" value="Xoá nhiều"
 								onclick="return confirm('Bạn có muốn xoá hết?')" />
@@ -72,9 +73,9 @@
 											</td>
 
 											<td>${dem}</td>
-											<td>${bv.tieude}</td>
+											<td>${fn:substring(bv.tieude,0,20)}...</td>
 
-											<td>${bv.nguoiviet.hoTen}</td>
+											<td>${fn:substring(bv.nguoiviet.hoTen,0,20)}...</td>
 											<td>${bv.loaibv.tenloai}</td>
 											<td>
 												<img class="img-responsive" src="upload/baiviet/${bv.hinh}" style="width: 60px; height: 60px" />
@@ -84,7 +85,7 @@
 											</c:if>
 											<c:if test="${bv.trangthai==0}">
 												<td>
-													<a href="Dashboard/BaiViet/duyet/${bv.id}.html" style="color: Green;" onclick="return confirm ('Bạn có thực sự muốn duyệt bài viết này')">Duyệt</a>
+													<a href="dashboard/baiviet/duyet/${bv.id}.html" style="color: Green;" onclick="return confirm ('Bạn có thực sự muốn duyệt bài viết này')">Duyệt</a>
 												</td>
 											</c:if>
 											<td>${nt}</td>

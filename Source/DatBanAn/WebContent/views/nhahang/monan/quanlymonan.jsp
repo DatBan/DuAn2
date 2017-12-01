@@ -54,6 +54,7 @@
 									<td><img class="img-responsive"
 										src="upload/monan/${monan.hinhanh}" style="width:60px;height:60px;" /></td>
 									<fmt:formatNumber var="gia"	type="number" pattern="###,###,###,###" value="${monan.gia}"></fmt:formatNumber>
+									
 									<td>${gia} VNĐ</td>
 									<td>${monan.solandat}</td>
 									<td>${monan.loai.tenloaidoan}</td>			

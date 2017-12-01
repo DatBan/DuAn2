@@ -29,6 +29,7 @@ import com.entity.LoaiDoAn;
 import com.entity.MonAn;
 import com.entity.NguoiDung;
 import com.entity.NhaHang;
+import com.services.DoiTenFile;
 
 @Transactional
 @RequestMapping("nhahang/monan/")
@@ -44,7 +45,7 @@ public class FoodController {
 		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 		NhaHang nhahang = nd.getNhahang();
 		int id = nhahang.getId();
-		String hql ="FROM MonAn where idnhahang =:idnhahang and trangthai=1";
+		String hql ="FROM MonAn where idnhahang =:idnhahang and trangthai=0";
 		Query query = session.createQuery(hql);
 		query.setParameter("idnhahang", id);
 		@SuppressWarnings("unchecked")
@@ -101,13 +102,13 @@ public class FoodController {
 			@SuppressWarnings("unchecked")
 			List<LoaiDoAn> list = query.list();
 			model.addAttribute("loaidoan",list);
-			
-			String photoPath = context.getRealPath("/upload/monan/" + hinh.getOriginalFilename());
+			String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
+			String photoPath = context.getRealPath("/upload/monan/" + tenhinh);
 			Transaction t = session.beginTransaction();
 			String hinhanh;
 			try {
 				hinh.transferTo(new File(photoPath));
-				hinhanh = hinh.getOriginalFilename();
+				hinhanh = tenhinh;
 				MonAn mon = new MonAn(tendoan1,name1,hinhanh,gia,nhahang,loaidoan);
 				session.save(mon);
 				t.commit();
@@ -129,7 +130,7 @@ public class FoodController {
 			Session session = factory.openSession();
 			MonAn monan = (MonAn) session.get(MonAn.class, id);
 			
-			monan.setTrangthai(2);
+			monan.setTrangthai(1);
 
 			Transaction t = session.beginTransaction();
 			try {
@@ -179,7 +180,8 @@ public class FoodController {
 			Session session = factory.openSession();
 			MonAn monan = (MonAn) session.get(MonAn.class, id);
 			LoaiDoAn loaidoan = (LoaiDoAn) session.get(LoaiDoAn.class, idloaidoan);
-			String photoPath = context.getRealPath("/upload/monan/" + hinh.getOriginalFilename());
+			String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
+			String photoPath = context.getRealPath("/upload/monan/" + tenhinh);
 			String tendoan1 = tendoan.trim();
 			String name1 = name.trim();
 			
@@ -199,7 +201,7 @@ public class FoodController {
 			if (!hinh.isEmpty()) {
 				try {
 					hinh.transferTo(new File(photoPath));
-					hinhanh = hinh.getOriginalFilename();
+					hinhanh = tenhinh;
 					monan.setHinhanh(hinhanh);
 					Thread.sleep(5000);
 				} catch (Exception e) {

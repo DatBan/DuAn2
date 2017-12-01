@@ -54,7 +54,7 @@
 									<td>${dem}</td>
 									<td>${t.tieude}</td>
 									<td>${t.title}</td>
-									<td>${t.nguoiviet.hoten }</td>
+									<td>${t.nguoiviet.ho }${t.nguoiviet.ten }</td>
 									<td>${nt}</td>
 									<td>${ns}</td>
 
