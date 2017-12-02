@@ -230,48 +230,77 @@ public class RestaurantManagement {
 		}
 		return "redirect:/dashboard/restaurants-mng.html";
 	}
-	
+	//Phuong thuc khoa nha hang
 	@RequestMapping(params="trash")
 	public String removeUser(ModelMap model, 
 			@RequestParam("idxoa") int id,
-			HttpServletRequest httpRequest) {		
-		NhaHang nh = this.nhahangDAO.getById(id);
-		nh.setTrangthai(0);
-		
-		this.nhahangDAO.updateNhaHang(nh);
-		System.out.println("asd "+httpRequest.getRequestURL());
+			HttpServletRequest httpRequest,
+			RedirectAttributes ra) {	
+		try{
+			NhaHang nh = this.nhahangDAO.getById(id);
+			nh.setTrangthai(0);
+			
+			this.nhahangDAO.updateNhaHang(nh);
+			System.out.println("asd "+httpRequest.getRequestURL());
+			
+			ra.addFlashAttribute("trashstt", "success");
+			ra.addFlashAttribute("tnhtrash", nh.getTennhahang());
+		}catch(Exception e){
+			System.out.println("LOI "+e.toString()+" RestaurantManagement.removeUser()");
+			e.printStackTrace();
+			ra.addFlashAttribute("trashstt", "error");
+		}
 		return "redirect:/dashboard/restaurants-mng.html?trangthai=0";
 	}
-	
+	//Phuong thuc xoa nha hang
 	@RequestMapping(params="delete")
 	public String deleteUser(ModelMap model, 
 			@RequestParam("idxoa") int id,
-			HttpServletRequest httpRequest) {
+			HttpServletRequest httpRequest,
+			RedirectAttributes ra) {
 		Session session = factory.getCurrentSession();
-		
-		NhaHang nh = (NhaHang) session.get(NhaHang.class, id);
-		this.nhahangDAO.deleteNhaHang(nh);
-		
-		/*this.bananDAO.deleteByIdNhaHang(id);*/
-		//xoa thu muc cua nha hang
-		String photoPath = context.getRealPath("/upload/"+nh.getId());
-		File file = new File(photoPath);
-		this.ghiAnh.xoaThuMuc(file);
-		System.out.println("xoa "+httpRequest.getRequestURL());
+		try{
+			NhaHang nh = (NhaHang) session.get(NhaHang.class, id);
+			this.nhahangDAO.deleteNhaHang(nh);
+			
+			/*this.bananDAO.deleteByIdNhaHang(id);*/
+			//xoa thu muc cua nha hang
+			String photoPath = context.getRealPath("/upload/"+nh.getId());
+			File file = new File(photoPath);
+			this.ghiAnh.xoaThuMuc(file);
+			System.out.println("xoa "+httpRequest.getRequestURL());
+			
+			ra.addFlashAttribute("deletestt", "success");
+			ra.addFlashAttribute("tnhd", nh.getTennhahang());
+		}catch(Exception e){
+			System.out.println("LOI "+e.toString()+" RestaurantManagement.deleteUser()");
+			e.printStackTrace();
+			ra.addFlashAttribute("deletestt", "error");
+		}
 		return "redirect:/dashboard/restaurants-mng.html?trangthai=0";
 	}
-
+	//Ham mo khoa nha hang
 	@RequestMapping(params="restore")
 	public String restoreUser(ModelMap model, 
 			@RequestParam("idxoa") int id,
-			HttpServletRequest httpRequest) {		
-		NhaHang nh = this.nhahangDAO.getById(id);
-		nh.setTrangthai(1);
-		this.nhahangDAO.updateNhaHang(nh);
-		System.out.println("asd "+httpRequest.getRequestURL());
+			HttpServletRequest httpRequest,
+			RedirectAttributes ra) {		
+		try{
+			NhaHang nh = this.nhahangDAO.getById(id);
+			nh.setTrangthai(1);
+			this.nhahangDAO.updateNhaHang(nh);
+			System.out.println("asd "+httpRequest.getRequestURL());
+			
+			ra.addFlashAttribute("restorestt", "success");
+			ra.addFlashAttribute("tnhr", nh.getTennhahang());
+		}catch(Exception e){
+			System.out.println("LOI "+e.toString()+" RestaurantManagement.restoreUser()");
+			e.printStackTrace();
+			ra.addFlashAttribute("restorestt", "error");
+		}
 		return "redirect:/dashboard/restaurants-mng.html?trangthai=1";
 	}
-	
+	//Ham lay thong tin nha hang
 	@RequestMapping(params="edit")
 	public String formEditNhaHang(ModelMap model,
 			@RequestParam("idnhahang") int idnhahang) {		
@@ -292,7 +321,7 @@ public class RestaurantManagement {
 		model.addAttribute("loaiamthuc", this.loaiamthucDAO.getListAll());
 		return "dashboard/restaurant/editnhahang";
 	}
-	
+	//Ham thuc hien cap nhat csdl nha hang
 	@RequestMapping(value="editnhahang", method=RequestMethod.POST)
 	public String editNhaHang(ModelMap model,
 			@RequestParam("idnhahang") int idnhahang,
@@ -401,82 +430,4 @@ public class RestaurantManagement {
 		}
 		return "redirect:/dashboard/restaurants-mng.html?edit&idnhahang="+idnhahang;
 	}
-
-	// sua
-	/*@RequestMapping(value = "suatrang", method = RequestMethod.POST)
-	public String suaTrang(ModelMap model, @RequestParam("idtrang") int id,
-			@RequestParam("tennhahang") String tennhahang, @RequestParam("name") String name,
-			@RequestParam("diachi") String diachi, @RequestParam("address") String address,
-			@RequestParam("tinhthanh") String tinhthanh, @RequestParam("city") String city,
-			@RequestParam("quanhuyen") String quanhuyen, @RequestParam("district") String district,
-			@RequestParam("phuongxa") String phuongxa, @RequestParam("ward") String ward,
-			@RequestParam("sdt") String sdt, @RequestParam("thumbnail") MultipartFile thumbnail,
-			@RequestParam("gioithieu") String gioithieu, @RequestParam("aboutus") String aboutus,
-			@RequestParam("trangthai") int trangthai, @RequestParam("mota") String mota,
-			@RequestParam("slug") String slug, @RequestParam("loaiamthuc") LoaiAmThuc loaiamthuc
-
-	) {
-
-		Date ngaytao = new Date();
-		Date giomocua = new Date();
-		Date giodongcua = new Date();
-
-		Session session = factory.openSession();
-		NhaHang nh = (NhaHang) session.get(NhaHang.class, id);
-		String tnh = tennhahang.trim();
-		String dc = diachi.trim();
-		String ad = address.trim();
-		String tt = tinhthanh.trim();
-		String ct = city.trim();
-		String qh = quanhuyen.trim();
-		String dtris = district.trim();
-		LoaiAmThuc lat = loaiamthuc;
-		String px = phuongxa.trim();
-		String wd = ward.trim();
-		String dt = sdt.trim();
-		String tb = context.getRealPath("/files/imges/" + thumbnail.getOriginalFilename());
-		String gt = gioithieu.trim();
-		String ab = aboutus.trim();
-		String nm = name.trim();
-		int tt2 = trangthai;
-		String mt = mota.trim();
-		String sl = slug.trim();
-
-		nh.setTennhahang(tennhahang);
-		nh.setName(name);
-		nh.setDiachi(diachi);
-		nh.setAddress(address);
-		nh.setTinhthanh(tinhthanh);
-		nh.setCity(city);
-		nh.setQuanhuyen(quanhuyen);
-		nh.setDistrict(district);
-		nh.setPhuongxa(phuongxa);
-		nh.setWard(ward);
-		nh.setSdt(sdt);
-
-		nh.setGioithieu(gioithieu);
-		nh.setAboutus(aboutus);
-		nh.setSlug(sl);
-		nh.setTrangthai(trangthai);
-		nh.setMota(mota);
-		nh.setGiomocua(giomocua);
-		nh.setGiodongcua(giodongcua);
-		nh.setNgaytao(ngaytao);
-
-		Transaction t = session.beginTransaction();
-		try {
-			session.update(nh);
-			t.commit();
-			model.addAttribute("message", "chinh sua thanh cong !");
-			return "redirect:/quanlynhahang/index.html";
-		} catch (Exception e) {
-			// TODO: handle exception
-			t.rollback();
-			model.addAttribute("message", "chinh sua that bai !");
-		} finally {
-
-			session.close();
-		}
-		return "dashboard/quanlynhahang";
-	}*/
 }

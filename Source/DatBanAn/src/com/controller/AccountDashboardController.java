@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dao.QuyenDAO;
 import com.dao.NguoiDungDAO;
 import com.entity.NguoiDung;
 import com.entity.Quyen;
+import com.services.EnDeCryption;
 
 @Controller
 @Transactional
@@ -50,6 +53,46 @@ public class AccountDashboardController {
 		}
 		return "dashboard/users/user-mng";
 	}
+	
+	// Trang load form nhap thong tin nguoi dung
+	@RequestMapping(value="them")
+	public String add_form(ModelMap model) {
+		model.addAttribute("nguoidung", new NguoiDung());
+			
+		model.addAttribute("btn_back","dashboard/user-management.html?trangthai=1");
+		model.addAttribute("tenbreadcrumb", "Thêm mới người dùng");
+		model.addAttribute("tenbreadcrumb2", "Danh sách đang sử dụng");
+		model.addAttribute("urlbreadcrumb2", "dashboard/user-management.html?trangthai=1");
+
+		return "dashboard/users/add-user";
+	}
+	
+	// Trang load form nhap thong tin nguoi dung
+	@RequestMapping(value="them", method=RequestMethod.POST)
+	public String add_execute(ModelMap model, 
+			@ModelAttribute("nguoidung") NguoiDung mND,
+			RedirectAttributes ra) {
+		try{
+			System.out.println(mND.getTendangnhap()+" "+ mND.getMatkhau()+" "+mND.getId());
+			Quyen quyen = this.quyenDAO.getById(3);
+			/*nd.setNgaytao(new Date());*/
+			EnDeCryption mh = new EnDeCryption("sadasdasdsawqewq");
+			String mkmh= mh.encoding(mND.getMatkhau());
+			NguoiDung nd = new NguoiDung(mND.getHo(), mND.getTen(), mND.getTendangnhap(), mkmh, mND.getEmail(), mND.getSdt(), mND.getDiachi(), 1, new Date(), quyen);
+			this.userDAO.createUser(nd);
+			ra.addFlashAttribute("idndmoi", nd.getId());
+			model.addAttribute("nguoidung", nd);
+		}catch(Exception e){
+			System.out.println("LOI "+e.toString()+" AccountDashboardController.add_execute()");
+			e.printStackTrace();
+		}
+		/*model.addAttribute("btn_back","dashboard/user-management.html?trangthai=1");
+		model.addAttribute("tenbreadcrumb", "Thêm mới người dùng");
+		model.addAttribute("tenbreadcrumb2", "Danh sách đang sử dụng");
+		model.addAttribute("urlbreadcrumb2", "dashboard/user-management.html?trangthai=1");*/
+
+		return "redirect:/dashboard/user-management.html?trangthai=1";
+	}
 
 	// Trang load thong tin nguoi dung voi param edit
 	@RequestMapping(params = "edit")
@@ -75,7 +118,8 @@ public class AccountDashboardController {
 	// Trang execute update thong tin nguoi dung voi param edit va method POST
 	@RequestMapping(params = "edit", method = RequestMethod.POST)
 	public String edit_execute(ModelMap model, @RequestParam("id") int idx,
-			@ModelAttribute("nguoidung") NguoiDung ndv) {
+			@ModelAttribute("nguoidung") NguoiDung ndv,
+			RedirectAttributes ra) {
 
 		Session session = factory.getCurrentSession();
 		NguoiDung nd = (NguoiDung) session.get(NguoiDung.class, idx);
@@ -105,18 +149,23 @@ public class AccountDashboardController {
 			System.out.println("mk" + ndv.getMatkhau());
 			//Goi ham sua trong CSDL
 			userDAO.updateUser(nd);
+			ra.addFlashAttribute("updatestt", "success");
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println(e.toString());
+			System.out.println("LOI "+e.toString()+" AccountDashboardController.edit_execute()");
+			e.printStackTrace();
+			ra.addFlashAttribute("updatestt", "error");
 		}
 		model.addAttribute("nguoidung", nd);
 
-		return "dashboard/users/edit-user";
+		return "redirect:/dashboard/user-management.html?edit&id="+idx;
 	}
 
 	// Trang execute delete nguoi dung voi param delete
 	@RequestMapping(params = "delete")
-	public String delete_user(ModelMap model, @RequestParam("idxoa") int idx) {
+	public String delete_user(ModelMap model, 
+			@RequestParam("idxoa") int idx,
+			RedirectAttributes ra) {
 		Session session = factory.getCurrentSession();
 		NguoiDung nd = (NguoiDung) session.get(NguoiDung.class, idx);
 		
@@ -129,14 +178,19 @@ public class AccountDashboardController {
 			// khong duoc xoa
 			if (nd.getQuyennd().getId() == 1 && countList.size() == 1) {
 				System.out.println("Khong xoa nhe");
+				ra.addFlashAttribute("deletestt", "error1");
 			} else {
 				nd.setTrangthai(0);
 				//Goi ham sua trong CSDL
 				userDAO.updateUser(nd);
+				ra.addFlashAttribute("deletestt", "success");
+				ra.addFlashAttribute("emailx", nd.getEmail());
 			}
 			System.out.println("id " + idx);
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			System.out.println("LOI "+e.toString()+" AccountDashboardController.delete_user()");
+			e.printStackTrace();
+			ra.addFlashAttribute("deletestt", "error");
 		}
 
 		return "redirect:/dashboard/user-management.html?trangthai=1";
@@ -144,7 +198,9 @@ public class AccountDashboardController {
 
 	// Trang execute update thong tin nguoi dung voi param restore
 	@RequestMapping(params = "restore")
-	public String restore_user(ModelMap model, @RequestParam("idxoa") int idx) {
+	public String restore_user(ModelMap model, 
+			@RequestParam("idxoa") int idx,
+			RedirectAttributes ra) {
 		Session session = factory.getCurrentSession();
 		NguoiDung nd = (NguoiDung) session.get(NguoiDung.class, idx);
 
@@ -153,8 +209,12 @@ public class AccountDashboardController {
 			//Goi ham sua trong CSDL
 			userDAO.updateUser(nd);
 			System.out.println("khoi phuc nhe " + idx);
+			ra.addFlashAttribute("restorestt", "success");
+			ra.addFlashAttribute("emailr", nd.getEmail());
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			System.out.println("LOI "+e.toString()+" AccountDashboardController.restore_user()");
+			e.printStackTrace();
+			ra.addFlashAttribute("restorestt", "error");
 		}
 
 		return "redirect:/dashboard/user-management.html?trangthai=0";
