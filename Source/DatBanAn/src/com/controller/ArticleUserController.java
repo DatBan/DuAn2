@@ -40,7 +40,7 @@ public class ArticleUserController {
 	@Autowired
 	SessionFactory factory;	
 
-	// Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½ 
+	// Do du lieu ra trang quan ly
 	@RequestMapping(value = "index")
 	public String trangquanlyuser(ModelMap model, HttpSession httpSession) {
 		Session session = factory.getCurrentSession();
@@ -58,10 +58,10 @@ public class ArticleUserController {
 		return "user/baiviet/quanlybaiviet";
 	}
 
-	// PhÆ°Æ¡ng thá»©c GET Ä‘á»ƒ táº¡o giao diá»‡n khi click button ThÃªm
+	// Tao giao dien them
 	@RequestMapping(value = "them", method = RequestMethod.GET)
 	public String themBV(ModelMap model) {
-		// Ä�á»• dá»¯ liá»‡u ra combobox
+		// Lay loai bai viet
 		Session session = factory.getCurrentSession();
 		String hql = "FROM LoaiBaiViet";
 		Query query = session.createQuery(hql);
@@ -75,7 +75,7 @@ public class ArticleUserController {
 		model.addAttribute("urlbreadcrumb2", "nguoidung/baiviet/index.html");
 		return "user/baiviet/thembaiviet";
 	}
-	// ThÃªm bÃ i viáº¿t
+	// Them bai viet
 
 	@Autowired
 	ServletContext context;
@@ -87,9 +87,7 @@ public class ArticleUserController {
 			// @RequestParam("idnd")int idnd,
 			@RequestParam("hinh") MultipartFile hinh, HttpSession httpSession) {
 		Session session = factory.openSession();
-		// Khi Ä‘Äƒng nháº­p thÃ¬ chá»�n cÃ¡i nÃ y
-		// NguoiDung nd = session.get(NguoiDung.class, idnd);
-		// CÃ¡i táº¡m thá»�i
+		
 		String td = tieude.trim();
 		String n = name.trim();
 		String sl = slug.trim();
@@ -98,14 +96,14 @@ public class ArticleUserController {
 		LoaiBaiViet loaibv = (LoaiBaiViet) session.get(LoaiBaiViet.class, idloai);
 		Date ngaytao = new Date();
 
-		// Ä�á»• láº¡i loáº¡i bÃ i viáº¿t
+		// Lay loai bai viet
 		String hql = "FROM LoaiBaiViet";
 		Query query = session.createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<LoaiBaiViet> list = query.list();
 		model.addAttribute("loaibv", list);
 		if (noidung.length() < 200 || content.length() < 200) {
-			model.addAttribute("message", "Ná»™i dung hoáº·c content khÃ´ng há»£p lá»‡");
+			model.addAttribute("message", "Nội dung hoặc content không hợp lệ");
 
 			return "user/baiviet/thembaiviet";
 
@@ -131,7 +129,7 @@ public class ArticleUserController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.toString());
-			model.addAttribute("message", "ThÃªm bÃ i viáº¿t tháº¥t báº¡i!");
+			model.addAttribute("message", "Thêm thất bại!");
 			e.printStackTrace();
 			t.rollback();
 		} finally {
@@ -141,7 +139,7 @@ public class ArticleUserController {
 		return "user/baiviet/thembaiviet";
 	}
 
-	// XoÃ¡ bÃ i viáº¿t
+	// Xoa bai viet
 	@RequestMapping(value = "delete/{id}")
 	public String deleteBaiviet(ModelMap model, @PathVariable("id") Integer id) {
 		Session session = factory.openSession();
@@ -153,18 +151,18 @@ public class ArticleUserController {
 			
 			session.update(bv);
 			t.commit();
-			model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
+			model.addAttribute("message", "Xoá thành công");
 
 		} catch (Exception e) {
 			t.rollback();
-			model.addAttribute("message", "XÃ³a tháº¥t báº¡i !" + e.getMessage());
+			model.addAttribute("message", "Xoá thất bại !" + e.getMessage());
 		} finally {
 			session.close();
 		}
 		return "redirect:/nguoidung/baiviet/index.html";
 	}
 
-	// Kiá»ƒm tra trÃ¹ng tÃªn bÃ i viáº¿t
+	// Kiem tra trung tieu de
 	@RequestMapping(value = "kt-trung-tieude", method = RequestMethod.GET)
 	public @ResponseBody String ktTrungtieude(@RequestParam("tieude") String tieude, @RequestParam("idbv") int id,
 			HttpServletResponse response, HttpServletRequest request) {
@@ -176,7 +174,7 @@ public class ArticleUserController {
 		response.setCharacterEncoding("UTF-8");
 		Session session = factory.getCurrentSession();
 
-		String hql = "FROM BaiViet  WHERE tieude =:tieude";
+		String hql = "FROM BaiViet  WHERE tieude =:tieude and trangthai=0 or trangthai=1";
 		Query query = session.createQuery(hql);
 		query.setParameter("tieude", tieude);
 		BaiViet bv = (BaiViet) query.uniqueResult();
@@ -190,7 +188,7 @@ public class ArticleUserController {
 		}
 	}
 
-	// Kiá»ƒm tra trÃ¹ng name bÃ i viáº¿t
+	// Kiem tra trung name
 	@RequestMapping(value = "kt-trung-name", method = RequestMethod.GET)
 	public @ResponseBody String ktTrungname(@RequestParam("name") String name, @RequestParam("idbv") int id,
 			HttpServletResponse response, HttpServletRequest request) {
@@ -202,7 +200,7 @@ public class ArticleUserController {
 		response.setCharacterEncoding("UTF-8");
 		Session session = factory.getCurrentSession();
 
-		String hql = "FROM BaiViet  WHERE name =:name";
+		String hql = "FROM BaiViet  WHERE name =:name and trangthai=0 or trangthai=1";
 		Query query = session.createQuery(hql);
 		query.setParameter("name", name);
 		BaiViet bv = (BaiViet) query.uniqueResult();
@@ -216,12 +214,12 @@ public class ArticleUserController {
 		}
 	}
 
-	// Táº¡o giao diá»‡n sá»­a BÃ i viáº¿t
+	// Tao giao dien sua
 	@RequestMapping(value = "edit/{id}")
 	public String editFormTrang(ModelMap model, @PathVariable("id") Integer id) {
 		Session session = factory.getCurrentSession();
 		BaiViet baiviet = (BaiViet) session.get(BaiViet.class, id);
-		// Ä�á»• láº¡i loáº¡i bÃ i viáº¿t
+		// Lay loai bai viet
 		String hql = "FROM LoaiBaiViet";
 		Query query = session.createQuery(hql);
 		@SuppressWarnings("unchecked")
@@ -236,7 +234,7 @@ public class ArticleUserController {
 		return "user/baiviet/editbaiviet";
 	}
 	
-	// Sá»­a bÃ i viáº¿t
+	// Sua bai viet
 	@RequestMapping(value = "suabv", method = RequestMethod.POST)
 	public String suaBaiviet(ModelMap model, RedirectAttributes re, @RequestParam("idbv") int id,
 			@RequestParam("tieude") String tieude, @RequestParam("name") String name, @RequestParam("slug") String slug,
@@ -262,14 +260,14 @@ public class ArticleUserController {
 		bv.setLoaibv(loaibv);
 		bv.setMota(mota);
 		Transaction t = session.beginTransaction();
-		// Ä�á»• láº¡i loáº¡i bÃ i viáº¿t
+		// Lay loai bai viet
 		String hql = "FROM LoaiBaiViet";
 		Query query = session.createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<LoaiBaiViet> list = query.list();
 		model.addAttribute("loaibv", list);
 		if (noidung.length() < 200 || content.length() < 200) {
-			re.addFlashAttribute("message", "Ná»™i dung hoáº·c content khÃ´ng há»£p lá»‡");
+			re.addFlashAttribute("message", "Nội dung hoặc content không hợp lệ");
 			System.out.println(content.length());
 			return "redirect:/nguoidung/baiviet/edit/" + id + ".html";
 		}
@@ -288,12 +286,12 @@ public class ArticleUserController {
 		try {
 			session.update(bv);
 			t.commit();
-			model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
+			model.addAttribute("message", "Chỉnh sửa thành công!");
 			return "redirect:/nguoidung/baiviet/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();
-			model.addAttribute("message", "Chá»‰nh sá»­a tháº¥t báº¡i !");
+			model.addAttribute("message", "Chỉnh sửa thất bại!");
 		} finally {
 			session.close();
 		}

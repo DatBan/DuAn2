@@ -10,17 +10,20 @@
 </head>
 <body>
 	<jsp:include page="/include/header.jsp"></jsp:include> --%>
-	<div class="container bodydexuat">
+<div class="container bodydexuat">
 
-		<div class="row rodk">
+	<div class="row rodk">
 
-			<div class="col-sm-12">
-				<div class="login-page" style="margin-top: 50px">
-					<div class="text-center">
-						<div class="login-body">
-							<div class="col-md-12">
+		<div class="col-sm-12">
+			<div class="login-page" style="margin-top: 50px">
+				<div class="text-center">
+					<div class="login-body">
+						<div class="col-md-12">
+							<div class="col-md-10">
+								<span><b>${message}</b></span>
+							</div>
 							<form name="nhapthongtinban" id="nhapthongtinban"
-									action="datban/thongtinbanan.html" method="get">
+								action="datban/thongtinbanan.html" method="get">
 
 								<div class="row rregister">
 									<div class="form-group fullname-custom">
@@ -63,15 +66,15 @@
 
 								</div>
 
-								</form>
-							</div>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
 	</div>
+
+</div>
 <%-- <jsp:include page="/include/footer.jsp"></jsp:include>
 
 </body>

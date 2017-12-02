@@ -34,7 +34,7 @@ public class CulinaryController {
 	@Autowired
 	SessionFactory factory;
 
-	// Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½
+	// Do du lieu ra trang quan ly
 	@RequestMapping(value = "index")
 	public String quanLyAmThuc(ModelMap model) {
 		Session session = factory.getCurrentSession();
@@ -49,7 +49,7 @@ public class CulinaryController {
 		return "dashboard/amthuc/quanlyamthuc";
 	}
 
-	// PhÆ°Æ¡ng thá»©c GET Ä‘á»ƒ táº¡o giao diá»‡n khi click button ThÃªm
+	// Tao giao dien them
 	@RequestMapping(value = "them", method = RequestMethod.GET)
 	public String them(ModelMap model) {
 		model.addAttribute("btn_back","dashboard/amthuc/index.html");
@@ -58,7 +58,7 @@ public class CulinaryController {
 		model.addAttribute("urlbreadcrumb2", "dashboard/amthuc/index.html");
 		return "dashboard/amthuc/themamthuc";
 	}
-	// ThÃªm áº©m thá»±c
+	// Them am thuc
 
 		@Autowired
 		ServletContext context;
@@ -88,13 +88,13 @@ public class CulinaryController {
 				// TODO: handle exception
 				t.rollback();
 				System.out.println(e.toString());
-				model.addAttribute("message", "ThÃªm áº©m thá»±c tháº¥t báº¡i!");
+				model.addAttribute("message", "Thêm ẩm thực thất bại!");
 			} finally {
 				session.close();
 			}
 			return "dashboard/amthuc/themamthuc";
 		}
-		// XoÃ¡ áº©m thá»±c
+		// Xoa am thuc
 		@RequestMapping(value = "delete/{id}")
 		public String deleteAmThuc(ModelMap model, @PathVariable("id") Integer id) {
 			Session session = factory.openSession();
@@ -105,17 +105,17 @@ public class CulinaryController {
 
 				session.update(amthuc);
 				t.commit();
-				model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
+				model.addAttribute("message", "Xoá thành công");
 
 			} catch (Exception e) {
 				t.rollback();
-				model.addAttribute("message", "XÃ³a tháº¥t báº¡i !" + e.getMessage());
+				model.addAttribute("message", "Xoá thất bại !" + e.getMessage());
 			} finally {
 				session.close();
 			}
 			return "redirect:/dashboard/amthuc/index.html";
 		}
-		// Táº¡o giao diá»‡n edit áº©m thá»±c
+		// Tao giao dien sua
 		@RequestMapping(value = "edit/{id}")
 		public String editFormAmThuc(ModelMap model, @PathVariable("id") Integer id) {
 			Session session = factory.getCurrentSession();
@@ -149,7 +149,7 @@ public class CulinaryController {
 			try {
 				session.update(amthuc);
 				t.commit();
-				model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
+				model.addAttribute("message", "Chỉnh sửa thành công!");
 				return "redirect:/dashboard/amthuc/index.html";
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -160,7 +160,7 @@ public class CulinaryController {
 			}
 			return "redirect:/dashboard/amthuc/edit/" + id + ".html";
 		}
-		// Kiá»ƒm tra trÃ¹ng tÃªn áº©m thá»±c
+		// kiem tra trung ten am thuc
 		@RequestMapping(value = "kt-trung-tenamthuc", method = RequestMethod.GET)
 		public @ResponseBody String ktTrungTenAmThuc(@RequestParam("tenloai") String tenloai, @RequestParam("idamthuc") int id,
 				HttpServletResponse response, HttpServletRequest request) {
@@ -172,7 +172,7 @@ public class CulinaryController {
 			response.setCharacterEncoding("UTF-8");
 			Session session = factory.getCurrentSession();
 			
-			String hql = "FROM LoaiAmThuc where tenloai =:tenloai";
+			String hql = "FROM LoaiAmThuc where tenloai =:tenloai and trangthai=0";
 			Query query = session.createQuery(hql);
 			query.setParameter("tenloai", tenloai);
 			LoaiAmThuc amthuc = (LoaiAmThuc) query.uniqueResult();
@@ -186,7 +186,7 @@ public class CulinaryController {
 			}
 		}
 
-		// Kiá»ƒm tra trÃ¹ng name áº©m thá»±c
+		// kiem tra trung name am thuc
 		@RequestMapping(value = "kt-trung-name", method = RequestMethod.GET)
 		public @ResponseBody String ktTrungName(@RequestParam("name") String name, @RequestParam("idamthuc") int id,
 				HttpServletResponse response, HttpServletRequest request) {
@@ -198,7 +198,7 @@ public class CulinaryController {
 			response.setCharacterEncoding("UTF-8");
 			Session session = factory.getCurrentSession();
 			
-			String hql = "FROM LoaiAmThuc where name =:name";
+			String hql = "FROM LoaiAmThuc where name =:name and trangthai=0";
 			Query query = session.createQuery(hql);
 			query.setParameter("name", name);
 			LoaiAmThuc amthuc = (LoaiAmThuc) query.uniqueResult();

@@ -38,7 +38,7 @@ public class ManagerTableController {
 	@Autowired
 	SessionFactory factory;
 
-	// Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½
+	// Do du lieu
 	@RequestMapping(value = "index")
 	public String quanLyBan(ModelMap model,HttpSession httpSession) {
 		Session session = factory.getCurrentSession();
@@ -57,7 +57,7 @@ public class ManagerTableController {
 		return "nhahang/banan/quanlyban";
 	}
 
-	// PhÆ°Æ¡ng thá»©c GET Ä‘á»ƒ táº¡o giao diá»‡n khi click button ThÃªm
+	// Tao giao dien them
 	@RequestMapping(value = "them", method = RequestMethod.GET)
 	public String them(ModelMap model) {
 		
@@ -67,7 +67,7 @@ public class ManagerTableController {
 		model.addAttribute("urlbreadcrumb2", "nhahang/ban/index.html");
 		return "nhahang/banan/themban";
 	}
-	// ThÃªm bÃ n
+	// Them ban
 
 	@Autowired
 	ServletContext context;
@@ -91,13 +91,13 @@ public class ManagerTableController {
 			// TODO: handle exception
 			t.rollback();
 			System.out.println(e.toString());
-			model.addAttribute("message", "ThÃªm bÃ n tháº¥t báº¡i!");
+			model.addAttribute("message", "Thêm bàn thất bại!");
 		} finally {
 			session.close();
 		}
 		return "nhahang/banan/themban";
 	}
-	// XoÃ¡ bÃ n
+	// Xoa ban
 		@RequestMapping(value = "delete/{id}")
 		public String deleteTienIch(ModelMap model,RedirectAttributes re, @PathVariable("id") Integer id) {
 			Session session = factory.openSession();
@@ -105,7 +105,7 @@ public class ManagerTableController {
 			System.out.println(id);
 			if(ban.getTrangthai()==1){
 				
-				re.addFlashAttribute("message", "BÃ n Ä‘ang Ä‘Æ°á»£c sá»­ dá»¥ng khÃ´ng thá»ƒ xoÃ¡!");
+				re.addFlashAttribute("message", "Bàn đang sử dụng không thể xoá!");
 				return "redirect:/nhahang/ban/index.html";
 			}else{
 				
@@ -117,18 +117,18 @@ public class ManagerTableController {
 
 				session.update(ban);
 				t.commit();
-				model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
+				model.addAttribute("message", "Xoa thanh cong");
 
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 				t.rollback();
-				model.addAttribute("message", "XÃ³a tháº¥t báº¡i !" + e.getMessage());
+				model.addAttribute("message", "Xoá thất bại!" + e.getMessage());
 			} finally {
 				session.close();
 			}
 			return "redirect:/nhahang/ban/index.html";
 		}
-	// Táº¡o giao diá»‡n edit
+	// Tao giao dien edit
 	@RequestMapping(value = "edit/{id}")
 	public String editForm(ModelMap model, @PathVariable("id") Integer id) {
 		Session session = factory.getCurrentSession();
@@ -142,7 +142,7 @@ public class ManagerTableController {
 		return "nhahang/banan/suaban";
 	}
 
-	// Sá»­a bÃ n
+	// Sua ban
 	@RequestMapping(value = "suaban", method = RequestMethod.POST)
 	public String suaAmThuc(ModelMap model, RedirectAttributes re, @RequestParam("idban") int id,
 			@RequestParam("soban") int soban, @RequestParam("songuoi") int songuoi, HttpSession httpSession) {
@@ -154,7 +154,7 @@ public class ManagerTableController {
 		try {
 			session.update(ban);
 			t.commit();
-			model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
+			model.addAttribute("message", "Chỉnh sửa thành công!");
 			return "redirect:/nhahang/ban/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -166,7 +166,7 @@ public class ManagerTableController {
 		return "redirect:/nhahang/ban/edit/" + id + ".html";
 	}
 
-	// Kiá»ƒm tra trÃ¹ng sá»‘ bÃ n
+	// kiem tra trung so san
 	@RequestMapping(value = "kt-trung-soban", method = RequestMethod.GET)
 	public @ResponseBody String ktTrungChude(@RequestParam("soban") int soban, @RequestParam("idban") int id,
 			HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {
