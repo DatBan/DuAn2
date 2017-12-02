@@ -46,11 +46,24 @@
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<form class="navbar-form navbar-left">
-						<div class="form-group">
-							<select class="form-control">
-								<option>Dak lak</option>
-								<option>Ha noi</option>
+						<div class="form-group" id="location-div">
+							<select class="form-control" id="location-homepage">
+								<c:forEach items="${dropdown_province}" var="dp">
+									<c:if test="${dp[0] == current_province}">
+										<option value="${dp[0]}" selected="selected">${dp[1]}</option>
+									</c:if>
+									<option value="${dp[0]}">${dp[1]}</option>
+								</c:forEach>
 							</select>
+							<script>
+						        $("#location-div option[selected='selected']").prop('selected', true);
+						        $('#location-homepage').on("change", function () {
+						            window.location.href = $('#location-homepage').val()+".html";
+						        });
+						        $('#sl-city').hover(function () {
+						            $(this).css('cursor', 'pointer');
+						        });      
+						    </script>
 						</div>
 					</form>
 					<ul class="nav navbar-nav">
@@ -97,7 +110,5 @@
 		</nav>
 	</div>
 </div>
-<script type="text/javascript">
-
-</script>
+<script src="js/tinhthanh-dropdown.js"></script>
 <jsp:include page="/views/modals/modal-login.jsp"></jsp:include>

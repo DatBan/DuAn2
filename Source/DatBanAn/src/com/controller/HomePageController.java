@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dao.DanhGiaDAO;
 import com.dao.NhaHangDAO;
+import com.dao.ProvinceDAO;
 import com.entity.DanhGia;
 import com.entity.KhuyenMai;
 import com.entity.NguoiDung;
@@ -28,6 +29,8 @@ import com.google.gson.Gson;
 @Controller
 public class HomePageController {
 	@Autowired
+	private ProvinceDAO provinceDAO;
+	@Autowired
 	private DanhGiaDAO danhgiaDAO;
 	@Autowired
 	private NhaHangDAO nhahangDAO;
@@ -36,6 +39,7 @@ public class HomePageController {
 	
 	@RequestMapping("trang-chu")
 	public String index(ModelMap model) {
+		model.addAttribute("dropdown_province", this.provinceDAO.getByNhaHang());
 		/*model.addAttribute("nguoidung", new NguoiDung());*/
 		return "homepage/index";
 	}
