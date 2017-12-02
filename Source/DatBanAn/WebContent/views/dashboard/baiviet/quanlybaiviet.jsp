@@ -52,7 +52,7 @@
 										<th><input type="checkbox" onclick="check(this)" /></th>
 										<th>STT</th>
 										<th>Tiêu đề</th>
-										<th>Người đăng</th>
+										
 										<th>Loại bài viết</th>
 										<th>Hình</th>
 										<th>Trạng thái</th>
@@ -75,7 +75,7 @@
 											<td>${dem}</td>
 											<td>${fn:substring(bv.tieude,0,20)}...</td>
 
-											<td>${fn:substring(bv.nguoiviet.hoTen,0,20)}...</td>
+											
 											<td>${bv.loaibv.tenloai}</td>
 											<td>
 												<img class="img-responsive" src="upload/baiviet/${bv.hinh}" style="width: 60px; height: 60px" />
@@ -91,8 +91,8 @@
 											<td>${nt}</td>
 											<td style="text-align: center;">
 												<a href="dashboard/baiviet/xem/${bv.id}.html" style="color: green;" target="_blank">Xem</a>
-												<a href="dashboard/baiviet/edit/${bv.id}.html" style="color: green; padding-left: 30px;">Sửa</a>
-												<a href="dashboard/baiviet/deletee/${bv.id}.html" onclick="return confirm ('Bạn có thực sự muốn xoá bài viết này')" style="color: red; padding-left: 30px;">Xoá</a>
+												<a href="dashboard/baiviet/edit/${bv.id}.html" style="color: green; padding-left: 15px;">Sửa</a>
+												<a href="dashboard/baiviet/deletee/${bv.id}.html" onclick="return confirm ('Bạn có thực sự muốn xoá bài viết này')" style="color: red; padding-left: 15px;">Xoá</a>
 											</td>
 										</tr>
 									</c:forEach>

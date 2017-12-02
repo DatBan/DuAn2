@@ -62,6 +62,7 @@
 					<li><a href="nhahang/quanlydatban/index.html"><i class="fa fa-circle-o"></i> Đơn đặt bàn mới</a></li>
 					<li><a href="nhahang/quanlydatban/index1.html"><i class="fa fa-circle-o"></i> Đơn đã xác nhận</a></li>
 					<li><a href="nhahang/hoadon/index.html"><i class="fa fa-circle-o"></i> Quản lý hoá đơn</a></li>
+					<li><a href="datban/yeucau.html"><i class="fa fa-circle-o"></i> Yêu cầu gọi món</a></li>
 				</ul>
 			</li>
 			<li class="child-menu">

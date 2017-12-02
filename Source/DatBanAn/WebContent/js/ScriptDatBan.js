@@ -1,8 +1,15 @@
 /**
  * 
  */
+function getthongtinmonan(idmonan,laytenmonan){
+		$('#idmonanmodal').val(idmonan);
+		$('#settenmon').text(laytenmonan);
+	};
 // Đăng ký validate
 $(document).ready(function() {
+	
+	
+	
 	
 	// Check sdt
 	$.validator.addMethod("chuanSDT", function(value, element) {

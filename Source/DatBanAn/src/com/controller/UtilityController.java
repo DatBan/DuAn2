@@ -37,7 +37,7 @@ public class UtilityController {
 	@Autowired
 	SessionFactory factory;
 
-	// Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½
+	// Do du lieu ra trang quan ly
 	@RequestMapping(value = "index")
 	public String quanlytienich(ModelMap model,HttpSession httpSession) {
 		Session session = factory.getCurrentSession();
@@ -56,7 +56,7 @@ public class UtilityController {
 		return "nhahang/tienich/quanlytienich";
 	}
 
-	// PhÆ°Æ¡ng thá»©c GET Ä‘á»ƒ táº¡o giao diá»‡n khi click button ThÃªm
+	// Phuong thuc get tao giao dien them
 	@RequestMapping(value = "them", method = RequestMethod.GET)
 	public String them(ModelMap model) {
 		
@@ -66,7 +66,7 @@ public class UtilityController {
 		model.addAttribute("urlbreadcrumb2", "nhahang/tienich/index.html");
 		return "nhahang/tienich/themtienich";
 	}
-	// ThÃªm tiá»‡n Ã­ch
+	// Them tien ich
 
 	@Autowired
 	ServletContext context;
@@ -77,8 +77,7 @@ public class UtilityController {
 			// @RequestParam("idnhahang") int idnhahang,
 			@RequestParam("hinh") MultipartFile hinh, HttpSession httpSession) {
 		Session session = factory.openSession();
-		// Láº¥y id nhÃ  hÃ ng Ä‘á»ƒ thÃªm vÃ o Ä‘á»“ Äƒn
-		// NhaHang nhahang = (NhaHang) session.get(NhaHang.class, idnhahang);
+		
 		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 		NhaHang nhahang = nd.getNhahang();
 		String tentienich1 = tentienich.trim();
@@ -99,14 +98,14 @@ public class UtilityController {
 			// TODO: handle exception
 			t.rollback();
 			System.out.println(e.toString());
-			model.addAttribute("message", "ThÃªm tiá»‡n Ã­ch tháº¥t báº¡i!");
+			model.addAttribute("message", "Thêm thất bại!");
 		} finally {
 			session.close();
 		}
 		return "nhahang/tienich/themtienich";
 	}
 
-	// XoÃ¡ tiá»‡n Ã­ch
+	// xoa tien ich
 	@RequestMapping(value = "delete/{id}")
 	public String deleteTienIch(ModelMap model, @PathVariable("id") Integer id) {
 		Session session = factory.openSession();
@@ -117,18 +116,18 @@ public class UtilityController {
 
 			session.delete(tienich);
 			t.commit();
-			model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
+			model.addAttribute("message", "Xoá thành công");
 
 		} catch (Exception e) {
 			t.rollback();
-			model.addAttribute("message", "XÃ³a tháº¥t báº¡i !" + e.getMessage());
+			model.addAttribute("message", "Xoá thất bại!" + e.getMessage());
 		} finally {
 			session.close();
 		}
 		return "redirect:/nhahang/tienich/index.html";
 	}
 
-	// Táº¡o giao diá»‡n edit tiá»‡n Ã­ch
+	// Tao giao dien sua
 	@RequestMapping(value = "edit/{id}")
 	public String editFormTienIch(ModelMap model, @PathVariable("id") Integer id) {
 		Session session = factory.getCurrentSession();
@@ -142,7 +141,7 @@ public class UtilityController {
 		return "nhahang/tienich/suatienich";
 	}
 
-	// Sá»­a tiá»‡n Ã­ch
+	// Sua tien ich
 	@RequestMapping(value = "suatienich", method = RequestMethod.POST)
 	public String suaTienIch(ModelMap model, RedirectAttributes re, @RequestParam("idtienich") int id,
 			@RequestParam("tentienich") String tentienich, @RequestParam("name") String name,
@@ -159,7 +158,7 @@ public class UtilityController {
 
 		Transaction t = session.beginTransaction();
 
-		// Sá»­a hÃ¬nh
+		// Sua hinh anh
 		String hinhanh = tienich.getIcon();
 		if (!hinh.isEmpty()) {
 			try {
@@ -176,7 +175,7 @@ public class UtilityController {
 		try {
 			session.update(tienich);
 			t.commit();
-			model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
+			model.addAttribute("message", "Chỉnh sửa thành công!");
 			return "redirect:/nhahang/tienich/index.html";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -188,7 +187,7 @@ public class UtilityController {
 		return "redirect:/nhahang/tienich/edit/" + id + ".html";
 	}
 
-	// Kiá»ƒm tra trÃ¹ng tÃªn tiá»‡n Ã­ch
+	// kiem tra trung ten tien ich
 	@RequestMapping(value = "kt-trung-tentienich", method = RequestMethod.GET)
 	public @ResponseBody String ktTrungTenTienIch(@RequestParam("tentienich") String tentienich, @RequestParam("idtienich") int id,
 			HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {
@@ -202,7 +201,7 @@ public class UtilityController {
 		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 		NhaHang nhahang = nd.getNhahang();
 		int idnhahang = nhahang.getId();
-		// Where thÃªm id nhÃ  hÃ ng Ä‘á»ƒ kiá»ƒm tra trÃ¹ng tÃªn Ä‘á»“ Äƒn riÃªng nhÃ  hÃ ng Ä‘Ã³
+		
 		String hql = "FROM TienIch where tentienich =:tentienich and idnhahang =:idnhahang";
 		Query query = session.createQuery(hql);
 		query.setParameter("tentienich", tentienich);
@@ -218,7 +217,7 @@ public class UtilityController {
 		}
 	}
 
-	// Kiá»ƒm tra trÃ¹ng name tiá»‡n Ã­ch
+	// Kiem tra trung name tien ich
 	@RequestMapping(value = "kt-trung-name", method = RequestMethod.GET)
 	public @ResponseBody String ktTrungName(@RequestParam("name") String name, @RequestParam("idtienich") int id,
 			HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {
@@ -232,7 +231,7 @@ public class UtilityController {
 		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 		NhaHang nhahang = nd.getNhahang();
 		int idnhahang = nhahang.getId();
-		// Where thÃªm id nhÃ  hÃ ng Ä‘á»ƒ kiá»ƒm tra trÃ¹ng name Ä‘á»“ Äƒn riÃªng nhÃ  hÃ ng Ä‘Ã³
+
 		String hql = "FROM TienIch where name =:name and idnhahang =:idnhahang";
 		Query query = session.createQuery(hql);
 		query.setParameter("name", name);

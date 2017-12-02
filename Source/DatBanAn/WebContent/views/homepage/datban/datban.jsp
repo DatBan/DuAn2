@@ -39,7 +39,7 @@
 							value="${nhahang.id}"> <input style="display: none"
 							name="idnguoidung" type="text" value="${sessionScope.id}">
 							<c:choose>
-								<c:when test="${sessionScope.tdn == null}">
+								<c:when test="${sessionScope.tdn != null}">
 									<div class="row text-center cotkrdn">
 										<span>Có tài khoản rồi? <a href="javascript:;"
 											class="linkdangnhap"

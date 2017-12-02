@@ -35,7 +35,8 @@
 								<th>Bàn số</th>
 								
 								<th>Thời gian</th>
-								
+								<th>Thêm món ăn</th>
+								<th>Món đã gọi</th>
 								<th>Trạng thái</th>
 								<th>Thao tác</th>
 							</tr>
@@ -58,9 +59,12 @@
 									<td><a href="nhahang/hoadon/chonban.html?idhd=${t.id}" style="color: green; ">Chọn bàn</a></td>
 									</c:if>
 									<td>${t.thoigian}</td>
-									
+									<td><a href="nhahang/hoadon/chondoan.html?idhd=${t.id}" style="color: green; ">Thêm</a>
+										
+									</td>
+									<td><a href="nhahang/hoadon/xemdanhsach.html?idhd=${t.id}" style="color: green; ">Xem</a></td>
 									<c:if test="${t.trangthai==2}">
-										<td style="text-align: center"><a href="nhahang/quanlydatban/duyet2.html?idhd=${t.id}" onclick="return confirm ('Khách hàng đã nhận bàn?')" style="color: green; ">Thanh toán</a></td>
+										<td style="text-align: center"><a href="nhahang/quanlydatban/duyet2.html?idhd=${t.id}" onclick="return confirm ('Khách hàng đã yêu cầu thanh toán?')" style="color: green; ">Thanh toán</a></td>
 									</c:if>
 									
 									

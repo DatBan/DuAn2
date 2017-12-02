@@ -37,7 +37,7 @@ import com.services.DoiTenFile;
 public class FoodController {
 	@Autowired
 	SessionFactory factory;
-	//Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½
+	//Do du lieu ra trang quan ly
 	@RequestMapping(value="index")
 	public String quanlydoan(ModelMap model,HttpSession httpSession){
 		Session session = factory.getCurrentSession();
@@ -56,10 +56,10 @@ public class FoodController {
 		model.addAttribute("tenbreadcrumb", "Quản lý món ăn");
 		return "nhahang/monan/quanlymonan";
 	}
-	// PhÆ°Æ¡ng thá»©c GET Ä‘á»ƒ táº¡o giao diá»‡n khi click button ThÃªm
+	// Tao giao dien them
 	@RequestMapping(value = "them", method = RequestMethod.GET)
 	public String them(ModelMap model){
-		// Ä�á»• dá»¯ liá»‡u ra combobox
+		// Lay loai do an
 		Session session = factory.getCurrentSession();
 		String hql = "FROM LoaiDoAn";
 		Query query = session.createQuery(hql);
@@ -73,7 +73,7 @@ public class FoodController {
 		model.addAttribute("urlbreadcrumb2", "nhahang/monan/index.html");
 		return "nhahang/monan/themdoan";
 	}
-	// ThÃªm Ä‘á»“ Äƒn
+	// Them do an
 
 		@Autowired
 		ServletContext context;
@@ -87,7 +87,7 @@ public class FoodController {
 				@RequestParam("hinh") MultipartFile hinh,
 				 HttpSession httpSession){
 			Session session = factory.openSession();
-			//Láº¥y id nhÃ  hÃ ng Ä‘á»ƒ thÃªm vÃ o Ä‘á»“ Äƒn
+			
 //			NhaHang nhahang = (NhaHang) session.get(NhaHang.class, idnhahang);
 			
 			String tendoan1 = tendoan.trim();
@@ -96,7 +96,7 @@ public class FoodController {
 			LoaiDoAn loaidoan = (LoaiDoAn) session.get(LoaiDoAn.class, idloaidoan);
 			NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 			NhaHang nhahang = nd.getNhahang();
-			// Ä�á»• láº¡i dá»¯ liá»‡u ra combobox náº¿u nhÆ° thÃªm tháº¥t báº¡i
+			// Lay loai do an khi them that bai
 			String hql = "FROM LoaiDoAn";
 			Query query = session.createQuery(hql);
 			@SuppressWarnings("unchecked")
@@ -118,13 +118,13 @@ public class FoodController {
 				// TODO: handle exception
 				t.rollback();
 				System.out.println(e.toString());
-				model.addAttribute("message", "ThÃªm mÃ³n Äƒn tháº¥t báº¡i!");
+				model.addAttribute("message", "Thêm đồ ăn thất bại!");
 			}finally {
 				session.close();
 			}
 			return "nhahang/monan/themdoan";
 		}
-		// XoÃ¡ mÃ³n Äƒn
+		// Xoa do an
 		@RequestMapping(value = "delete/{id}")
 		public String deleteBaiviet(ModelMap model, @PathVariable("id") Integer id) {
 			Session session = factory.openSession();
@@ -138,22 +138,22 @@ public class FoodController {
 				
 				session.update(monan);
 				t.commit();
-				model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
+				model.addAttribute("message", "Xoá thành công");
 
 			} catch (Exception e) {
 				t.rollback();
-				model.addAttribute("message", "XÃ³a tháº¥t báº¡i !" + e.getMessage());
+				model.addAttribute("message", "Xoá thất bại !" + e.getMessage());
 			} finally {
 				session.close();
 			}
 			return "redirect:/nhahang/monan/index.html";
 		}
-		//Táº¡o giao diá»‡n edit mÃ³n Äƒn
+		//Tao giao dien sua
 		@RequestMapping(value = "edit/{id}")
 		public String editFormMonAn(ModelMap model, @PathVariable("id") Integer id){
 			Session session = factory.getCurrentSession();
 			MonAn monan = (MonAn) session.get(MonAn.class, id);
-			// Ä�á»• láº¡i dá»¯ liá»‡u ra combobox 
+			//Lay loai do an
 			String hql = "FROM LoaiDoAn";
 			Query query = session.createQuery(hql);
 			@SuppressWarnings("unchecked")
@@ -167,7 +167,7 @@ public class FoodController {
 			model.addAttribute("urlbreadcrumb2", "nhahang/monan/index.html");
 			return "nhahang/monan/suamonan";
 		}
-		//Sá»­a mÃ³n Äƒn
+		//Sua do an
 		@RequestMapping(value = "suadoan", method = RequestMethod.POST)
 		public String suaMonAn(ModelMap model, RedirectAttributes re,
 				@RequestParam("idmonan") int id,
@@ -190,13 +190,13 @@ public class FoodController {
 			monan.setGia(gia);
 			monan.setLoai(loaidoan);
 			Transaction t = session.beginTransaction();
-			// Ä�á»• láº¡i dá»¯ liá»‡u ra combobox náº¿u sá»­a tháº¥t báº¡i
+			// Lay loai do an
 			String hql = "FROM LoaiDoAn";
 			Query query = session.createQuery(hql);
 			@SuppressWarnings("unchecked")
 			List<LoaiDoAn> list = query.list();
 			model.addAttribute("loaidoan",list);
-			//Sá»­a hÃ¬nh
+			
 			String hinhanh = monan.getHinhanh();
 			if (!hinh.isEmpty()) {
 				try {
@@ -213,7 +213,7 @@ public class FoodController {
 			try {
 				session.update(monan);
 				t.commit();
-				model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
+				model.addAttribute("message", "Chỉnh sửa thành công !");
 				return "redirect:/nhahang/monan/index.html";
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -224,7 +224,7 @@ public class FoodController {
 			}
 			return "redirect:/nhahang/monan/edit/" + id + ".html";
 		}
-		//Kiá»ƒm tra trÃ¹ng tÃªn Ä‘á»“ Äƒn
+		//kiem tra trung ten do an
 		@RequestMapping(value = "kt-trung-tendoan", method = RequestMethod.GET)
 		public @ResponseBody String ktTrungTenDoAn(@RequestParam("tendoan") String tendoan,@RequestParam("idmonan") int id,
 				HttpServletResponse response, HttpServletRequest request,HttpSession httpSession){
@@ -238,8 +238,8 @@ public class FoodController {
 			NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 			NhaHang nhahang = nd.getNhahang();
 			int idnhahang = nhahang.getId();
-			//Where thÃªm id nhÃ  hÃ ng Ä‘á»ƒ kiá»ƒm tra trÃ¹ng tÃªn Ä‘á»“ Äƒn riÃªng nhÃ  hÃ ng Ä‘Ã³
-			String hql ="FROM MonAn where tenmonan =:tenmonan and idnhahang =:idnhahang";
+			
+			String hql ="FROM MonAn where tenmonan =:tenmonan and idnhahang =:idnhahang and trangthai=0";
 			Query query = session.createQuery(hql);
 			query.setParameter("tenmonan", tendoan);
 			query.setParameter("idnhahang", idnhahang);
@@ -253,7 +253,7 @@ public class FoodController {
 				return "true";
 			}
 		}
-		//Kiá»ƒm tra trÃ¹ng name Ä‘á»“ Äƒn
+		//kiem tra trung name
 				@RequestMapping(value = "kt-trung-name", method = RequestMethod.GET)
 				public @ResponseBody String ktTrungName(@RequestParam("name") String name,@RequestParam("idmonan") int id,
 						HttpServletResponse response, HttpServletRequest request,HttpSession httpSession){
@@ -267,8 +267,8 @@ public class FoodController {
 					NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 					NhaHang nhahang = nd.getNhahang();
 					int idnhahang = nhahang.getId();
-					//Where thÃªm id nhÃ  hÃ ng Ä‘á»ƒ kiá»ƒm tra trÃ¹ng name Ä‘á»“ Äƒn riÃªng nhÃ  hÃ ng Ä‘Ã³
-					String hql ="FROM MonAn where name =:name and idnhahang =:idnhahang";
+					
+					String hql ="FROM MonAn where name =:name and idnhahang =:idnhahang and trangthai=0";
 					Query query = session.createQuery(hql);
 					query.setParameter("name", name);
 					query.setParameter("idnhahang", idnhahang);

@@ -37,7 +37,7 @@ public class EventsController {
 	@Autowired
 	SessionFactory factory;
 
-	// Ä�á»• dá»¯ liá»‡u ra trang quáº£n lÃ½
+	// Do du lieu ra trang quan ly
 	@RequestMapping(value = "index")
 	public String quanLyKhuyenMai(ModelMap model,HttpSession httpSession) {
 		Session session = factory.getCurrentSession();
@@ -57,7 +57,7 @@ public class EventsController {
 		return "nhahang/khuyenmai/quanlykhuyenmai";
 	}
 
-	// PhÆ°Æ¡ng thá»©c GET Ä‘á»ƒ táº¡o giao diá»‡n khi click button ThÃªm
+	// Tao giao dien them
 	@RequestMapping(value = "them", method = RequestMethod.GET)
 	public String them(ModelMap model) {
 		model.addAttribute("btn_back","nhahang/khuyenmai/index.html");
@@ -66,7 +66,7 @@ public class EventsController {
 		model.addAttribute("urlbreadcrumb2", "nhahang/khuyenmai/index.html");
 		return "nhahang/khuyenmai/themkhuyenmai";
 	}
-	// ThÃªm khuyáº¿n mÃ£i
+	// Them khuyen mai
 
 	@Autowired
 	ServletContext context;
@@ -90,7 +90,7 @@ public class EventsController {
 			ngaybd = df.parse(ngaybatdau);
 			ngaykt = df.parse(ngayketthuc);
 			if(ngaybd.getDate() > ngaykt.getDate()||ngaybd.getMonth()>ngaykt.getMonth()||ngaybd.getYear()>ngaykt.getYear()){
-				model.addAttribute("message", "NgÃ y báº¯t  Ä‘áº§u khÃ´ng Ä‘Æ°á»£c lá»›n hÆ¡n ngÃ y káº¿t thÃºc!");
+				model.addAttribute("message", "Ngày bắt đầu không được lớn hơn ngày kết thúc!");
 				return "nhahang/khuyenmai/themkhuyenmai";
 			}
 			 /*String da = df.format(date);*/
@@ -113,13 +113,13 @@ public class EventsController {
 			// TODO: handle exception
 			t.rollback();
 			System.out.println(e.toString());
-			model.addAttribute("message", "ThÃªm khuyáº¿n mÃ£i tháº¥t báº¡i!");
+			model.addAttribute("message", "Thêm khuyến mãi thất bại!");
 		} finally {
 			session.close();
 		}
 		return "nhahang/khuyenmai/themkhuyenmai";
 	}
-	// Táº¡o giao diá»‡n edit khuyáº¿n mÃ£i
+	// Tao giao dien sua
 			@RequestMapping(value = "edit/{id}")
 			public String editFormKhuyenMai(ModelMap model, @PathVariable("id") Integer id) {
 				Session session = factory.getCurrentSession();
@@ -131,7 +131,7 @@ public class EventsController {
 				model.addAttribute("urlbreadcrumb2", "nhahang/khuyenmai/index.html");
 				return "nhahang/khuyenmai/suakhuyenmai";
 			}
-			// Sá»­a khuyáº¿n mÃ£i
+			// Sua khuyen mai
 			@RequestMapping(value = "suakhuyenmai", method = RequestMethod.POST)
 			public String suaAmThuc(ModelMap model, RedirectAttributes re, @RequestParam("idkhuyenmai") int id,
 					@RequestParam("ngaybatdau") String ngaybatdau,
@@ -156,7 +156,7 @@ public class EventsController {
 					ngaybd = df.parse(ngaybatdau);
 					ngaykt = df.parse(ngayketthuc);
 					if(ngaybd.getDate() > ngaykt.getDate()||ngaybd.getMonth()>ngaykt.getMonth()||ngaybd.getYear()>ngaykt.getYear()){
-						re.addFlashAttribute("message", "NgÃ y báº¯t  Ä‘áº§u khÃ´ng Ä‘Æ°á»£c lá»›n hÆ¡n ngÃ y káº¿t thÃºc!");
+						re.addFlashAttribute("message", "Ngày bắt đầu không được lớn hơn ngày kết thúc!");
 						return "redirect:/nhahang/khuyenmai/edit/" + id + ".html";
 					}
 					 /*String da = df.format(date);*/
@@ -172,7 +172,7 @@ public class EventsController {
 				try {
 					session.update(km);
 					t.commit();
-					model.addAttribute("message", "Chá»‰nh sá»­a thÃ nh cÃ´ng !");
+					model.addAttribute("message", "Chỉnh sửa thành công!");
 					return "redirect:/nhahang/khuyenmai/index.html";
 				} catch (Exception e) {
 					// TODO: handle exception
@@ -183,7 +183,7 @@ public class EventsController {
 				}
 				return "redirect:/nhahang/khuyenmai/edit/" + id + ".html";
 			}
-			// Kiá»ƒm tra trÃ¹ng chá»§ Ä‘á»� 
+			// kiem tra trung tieu de
 			@RequestMapping(value = "kt-trung-chude", method = RequestMethod.GET)
 			public @ResponseBody String ktTrungChude(@RequestParam("chude") String chude, @RequestParam("idkhuyenmai") int id,
 					HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {
@@ -212,7 +212,7 @@ public class EventsController {
 				}
 			}
 
-			// Kiá»ƒm tra trÃ¹ng name 
+			//Kiem tra trung name
 			@RequestMapping(value = "kt-trung-name", method = RequestMethod.GET)
 			public @ResponseBody String ktTrungName(@RequestParam("name") String name, @RequestParam("idkhuyenmai") int id,
 					HttpServletResponse response, HttpServletRequest request,HttpSession httpSession) {
