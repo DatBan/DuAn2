@@ -256,14 +256,14 @@ public class OpenTableController {
 		return nhanDipDAO.getListNhanDip();
 	}
 
-	// ThÃ´ng tin
+	// Thong tin
 	@RequestMapping(value = "thongtin")
 	public String thongtin(ModelMap model) {
 
 		return "homepage/datban/thongtin";
 	}
 
-	// ThÃ´ng tin ban an
+	// Thong tin ban an
 	@RequestMapping(value = "thongtinbanan", method = RequestMethod.GET)
 	public String thongtinbanan(ModelMap model, @RequestParam("email") String email,
 			@RequestParam("idhoadon") int idhoadon) {

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dao.DanhGiaDAO;
 import com.dao.NhaHangDAO;
+import com.entity.BaiViet;
 import com.entity.DanhGia;
 import com.entity.KhuyenMai;
 import com.entity.NguoiDung;
@@ -82,6 +83,39 @@ public class HomePageController {
 		
 		return"homepage/khuyenmai";
 	}
-	
+	@RequestMapping("baiviet")
+	public String baiviet(ModelMap model){
+		
+		Session session = factory.openSession();		
+		String hql ="FROM BaiViet where trangthai=1 ORDER BY ngaytao DESC";
+		Query query = session.createQuery(hql);		
+
+		
+		@SuppressWarnings("unchecked")
+		List<BaiViet> list = query.list();		
+		
+		model.addAttribute("bv", list);
+		
+		
+		return"homepage/baiviet";
+	}
+	@RequestMapping("chitietbaiviet")
+	public String ctbv(ModelMap model,@RequestParam("idbv")int idbc){
+		
+		Session session = factory.openSession();		
+		BaiViet bv = (BaiViet) session.get(BaiViet.class, idbc)	;
+		String hql ="FROM BaiViet where trangthai=1 ORDER BY ngaytao DESC";
+		Query query = session.createQuery(hql);		
+
+		
+		@SuppressWarnings("unchecked")
+		List<BaiViet> list = query.list();		
+		
+		model.addAttribute("bv", list);
+		model.addAttribute("ctbv", bv);
+		
+		
+		return"homepage/chitietbaiviet";
+	}
 }
 

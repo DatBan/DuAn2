@@ -18,30 +18,32 @@ import com.entity.NguoiDung;
 
 
 
+
+
 @Controller
 public class BinhLuanController {
 	@Autowired
 	SessionFactory factory;
 
-	@RequestMapping("comments")
+	/*@RequestMapping("comments")
 	public String comment(ModelMap model, @RequestParam("noidung") String noidung,
-			@RequestParam("idbaiviet") int id, @RequestParam("iduser") int iduser
+			@RequestParam("idbaiviet") int idbaiviet, @RequestParam("iduser") int iduser
 			) {
 
 		Session session = factory.openSession();
 		
 		
 
-		NguoiDung nguoidung = (NguoiDung) session.get(NguoiDung.class, iduser);
+		NguoiDung user = (NguoiDung) session.get(NguoiDung.class, iduser);
 
-		BaiViet baiviet = (BaiViet) session.get(BaiViet.class, id);
+		BaiViet baiviet = (BaiViet) session.get(BaiViet.class, idbaiviet);
 		Transaction t = null;
 		try {
 
-			BinhLuan binhluan = new BinhLuan();
+			BinhLuan binhluan = new BinhLuan(user, baiviet, noidung);
 			session.save(binhluan);
 
-			/* t.commit(); */
+			 t.commit(); 
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			t.rollback();
@@ -49,9 +51,9 @@ public class BinhLuanController {
 			session.close();
 		}
 
-		return "redirect:/baiviet/chitietbaiviet/" + id + ".htm";
+		return "redirect:/baiviet/chitiet/" + idbaiviet + ".htm";
 
-	}
+	}*/
 
 	@RequestMapping("traloi")
 	public String traloi(ModelMap model, @RequestParam("traloi") String noidung,

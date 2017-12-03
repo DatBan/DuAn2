@@ -55,7 +55,7 @@
 					</form>
 					<ul class="nav navbar-nav">
 						<li><a href="khuyenmai.html"><b>Khuyến mãi</b></a></li>
-						<li><a href="#"><b>Bài viết</b></a></li>
+						<li><a href="baiviet.html"><b>Bài viết</b></a></li>
 						<li><a href="#"><b>Trợ giúp</b></a></li>
 						<c:forEach var="t" items="${trang}">
 							<li><a href="#">${t.tieude}</a></li>

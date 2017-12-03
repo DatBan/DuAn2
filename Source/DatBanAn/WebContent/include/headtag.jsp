@@ -14,7 +14,7 @@
 <link href="css/jquery.barCharts.css" rel="stylesheet" type="text/css" >
 <!-- tuy chinh -->
 <link href="css/custom.css" rel="stylesheet" type="text/css" >
-
+<link href="css/baiviet.css" rel="stylesheet" type="text/css" >
 
 <!-- Link toi file jquery -->
 <script src="js/jquery.min.js"></script>
