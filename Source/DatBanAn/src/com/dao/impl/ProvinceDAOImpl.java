@@ -35,4 +35,15 @@ public class ProvinceDAOImpl implements ProvinceDAO {
 		return tinhthanh;
 	}
 
+	@Override
+	public List<Province> getByNhaHang() {
+		Session session = factory.getCurrentSession();
+		Query query = session.createQuery("SELECT nh.tinhthanh.provinceid, nh.tinhthanh.name, nh.tinhthanh.type"
+				+ " FROM NhaHang nh GROUP BY nh.tinhthanh.provinceid");
+		
+		@SuppressWarnings("unchecked")
+		List<Province> list = query.list();
+		return list;
+	}
+
 }
