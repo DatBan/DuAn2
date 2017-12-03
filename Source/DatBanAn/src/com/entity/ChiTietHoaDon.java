@@ -13,7 +13,7 @@ public class ChiTietHoaDon {
 	@Id
 	@GeneratedValue
 	private int id;
-	
+
 	private int trangthai;
 	@ManyToOne
 	@JoinColumn(name = "idhoadon")
@@ -21,41 +21,26 @@ public class ChiTietHoaDon {
 	@ManyToOne
 	@JoinColumn(name = "idmonan")
 	private MonAn monan;
-	
+
 	public ChiTietHoaDon() {
 		super();
 	}
 
-	
-
-	public ChiTietHoaDon( int trangthai, HoaDon hoadon, MonAn monan) {
+	public ChiTietHoaDon(int trangthai, HoaDon hoadon, MonAn monan) {
 		super();
-		
+
 		this.trangthai = trangthai;
 		this.hoadon = hoadon;
 		this.monan = monan;
 	}
 
-
-
-
-
-
-
-	
-
-
 	public int getTrangthai() {
 		return trangthai;
 	}
 
-
-
 	public void setTrangthai(int trangthai) {
 		this.trangthai = trangthai;
 	}
-
-
 
 	public int getId() {
 		return id;

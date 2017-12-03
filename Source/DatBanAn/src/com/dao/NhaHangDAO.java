@@ -22,4 +22,8 @@ public interface NhaHangDAO {
 	public void updateNhaHang(NhaHang nh);
 
 	public void deleteNhaHang(NhaHang nh);
+	
+	public List<NhaHang> getListByProvinceId(String provinceid);
+	
+	public List<NhaHang> getListByPromotion(Collection<Integer> listid, String provinceid);
 }

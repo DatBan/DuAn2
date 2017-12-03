@@ -52,7 +52,9 @@
 									<c:if test="${dp[0] == current_province}">
 										<option value="${dp[0]}" selected="selected">${dp[1]}</option>
 									</c:if>
-									<option value="${dp[0]}">${dp[1]}</option>
+									<c:if test="${dp[0] != current_province}">
+										<option value="${dp[0]}">${dp[1]}</option>
+									</c:if>
 								</c:forEach>
 							</select>
 							<script>

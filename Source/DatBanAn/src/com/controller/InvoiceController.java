@@ -96,6 +96,7 @@ public class InvoiceController {
 					}
 					t.commit();
 				} catch (Exception e) {
+					e.printStackTrace();
 					// TODO: handle exception
 					t.rollback();
 				} finally {

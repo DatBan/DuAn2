@@ -137,4 +137,33 @@ public class NhaHangDAOImpl implements NhaHangDAO {
 		}*/
 	}
 
+	@Override
+	public List<NhaHang> getListByProvinceId(String provinceid) {
+		Session session = factory.getCurrentSession();
+		Query query = session.createQuery("FROM NhaHang nh WHERE nh.tinhthanh.provinceid=:provinceid AND nh.trangthai=:trangthai "
+				+ "ORDER BY nh.countinvoice DESC");
+		query.setParameter("provinceid", provinceid);
+		query.setParameter("trangthai", 1);
+		
+		@SuppressWarnings("unchecked")
+		List<NhaHang> list = query.list();
+		return list;
+	}
+
+	@Override
+	public List<NhaHang> getListByPromotion(Collection<Integer> listid, String provinceid) {
+		Session session = factory.getCurrentSession();
+		Query query = session.createQuery("FROM NhaHang nh WHERE nh.tinhthanh.provinceid=:provinceid AND nh.id IN (:listid) AND nh.trangthai=:trangthai");
+		query.setParameter("trangthai", 1);
+		query.setParameter("provinceid", provinceid);
+		query.setParameterList("listid", listid);
+		
+		@SuppressWarnings("unchecked")
+		List<NhaHang> list = query.list();
+		System.out.println("list nh "+list.size());
+		return list;
+	}
+	
+	
+
 }

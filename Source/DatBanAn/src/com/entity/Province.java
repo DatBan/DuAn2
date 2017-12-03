@@ -4,11 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table
 public class Province {
 	@Id
 	private String provinceid;
+	@Expose
 	private String name;
 	private String type;
 
