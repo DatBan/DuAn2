@@ -20,14 +20,16 @@
 				<div class="text-center">
 					<div class="login-body">
 						<c:choose>
-							<c:when test="${loi == null}">
+							<c:when test="${hoadon != null}">
 								<div class="col-md-12">
 
 									<ul class="nav nav-tabs">
-										<li class="active"><a data-toggle="tab" href="#home">Thông
-												tin</a></li>
-										<li><a data-toggle="tab" href="#menu1">Menu món ăn</a></li>
-										<li><a data-toggle="tab" href="#menu2">Bàn ăn</a></li>
+										<li id="lithongtin" class="active"><a data-toggle="tab"
+											href="#home">Thông tin</a></li>
+										<li id="limenumonan"><a data-toggle="tab" href="#menu1">Menu
+												món ăn</a></li>
+										<li id="libanan"><a data-toggle="tab" href="#menu2">Bàn
+												ăn</a></li>
 
 									</ul>
 
@@ -137,7 +139,9 @@
 												<div class="row">
 													<div class="col-md-1"></div>
 													<div class="col-md-5 " style="margin-top: 20px;">
-														<a class="btn btn-success btn-block" type="submit">Gọi
+														<!-- ffs -->
+														<a onclick="setactive();" data-toggle="tab" href="#menu1"
+															class="btn btn-success btn-block" type="submit">Gọi
 															món</a>
 													</div>
 													<div class="col-md-5 " style="margin-top: 20px;">
@@ -156,7 +160,7 @@
 															<b>Món đã gọi </b><span> ( ${cthd.size()} )</span>
 														</p>
 														<c:forEach var="c" items="${cthd}" varStatus="status">
-														<c:set var="dem" value="${status.index+1}"></c:set>	
+															<c:set var="dem" value="${status.index+1}"></c:set>
 															<div class="row">
 																<div class="col-md-1">
 																	<p>${dem}</p>
@@ -165,12 +169,15 @@
 																	<p>${c.monan.tenmonan}</p>
 																</div>
 																<div class="col-md-3">
-																<fmt:formatNumber var="gia"	type="number" pattern="###,###,###,###" value="${c.monan.gia}"></fmt:formatNumber>
+																	<fmt:formatNumber var="gia" type="number"
+																		pattern="###,###,###,###" value="${c.monan.gia}"></fmt:formatNumber>
 																	<p>${gia}đ</p>
 																</div>
 																<div class="col-md-1">
 																	<c:if test="${c.trangthai==0}">
-																	<a href="datban/delete/${c.id}.html?idhoadon=${hoadon.id}" onclick="return confirm ('Bạn có thực sự muốn xoá món này')">Xoá</a>
+																		<a
+																			href="datban/delete/${c.id}.html?idhoadon=${hoadon.id}"
+																			onclick="return confirm ('Bạn có thực sự muốn xoá món này')">Xoá</a>
 																	</c:if>
 																</div>
 															</div>
@@ -181,13 +188,14 @@
 																<p>Tổng tiền</p>
 															</div>
 															<div class="col-md-6" style="margin-top: 10px;">
-																<fmt:formatNumber var="tien"	type="number" pattern="###,###,###,###" value="${tongtien}"></fmt:formatNumber>
+																<fmt:formatNumber var="tien" type="number"
+																	pattern="###,###,###,###" value="${tongtien}"></fmt:formatNumber>
 																<p>${tien}đ</p>
 															</div>
 														</div>
-														<div class="row " style="margin-top: 10px;">													
-															<a class="btn btn-success btn-block" >Gọi
-																món</a>
+														<div class="row " style="margin-top: 10px;">
+															<a onclick="setactive();" data-toggle="tab" href="#menu1"
+																class="btn btn-success btn-block">Gọi món</a>
 														</div>
 													</div>
 												</div>
@@ -203,7 +211,8 @@
 														<input name="timkiem" type="text" class="form-control"
 															placeholder="Search" />
 														<div class="input-group-btn">
-															<button class="btn btn-default form-control" type="submit">
+															<button class="btn btn-default form-control"
+																type="submit">
 																<i class="glyphicon glyphicon-search"></i>
 															</button>
 														</div>
@@ -224,12 +233,12 @@
 																		<input style="display: none" name="idmonan"
 																			type="text" value="${monan.id}" id="idmonan">
 																	</div>
-																	<div class="col-md-2">
+																	<div class="col-md-2 col-xs-4">
 																		<img class="img-responsive"
 																			src="upload/monan/${monan.hinhanh}"
 																			style="width: 60px; height: 60px;" />
 																	</div>
-																	<div class="col-md-5">
+																	<div class="col-md-5 col-xs-8">
 																		<div class="row">
 																			<p style="float: left;" id="laytenmonan">${monan.tenmonan}</p>
 																		</div>
@@ -247,12 +256,11 @@
 
 																		<p style="float: left; margin-top: 8px;">${gia}đ</p>
 
-
-																		<a class="btn btn-success" data-toggle="modal"
-																			data-target="#addmonan" style="float: right;"
-																			onclick="getthongtinmonan(${monan.id},'${monan.tenmonan}');">Thêm</a>
-
-
+																		<c:if test="${hoadon.trangthai==2 }">
+																				<a class="btn btn-success" data-toggle="modal"
+																					data-target="#addmonan" style="float: right;"
+																					onclick="getthongtinmonan(${monan.id},'${monan.tenmonan}');">Thêm</a>
+																		</c:if>
 																	</div>
 
 																</div>
@@ -291,11 +299,11 @@
 
 																		<p style="float: left; margin-top: 8px;">${gia}đ</p>
 
-
+																		<c:if test="${hoadon.trangthai==2 }">
 																		<a class="btn btn-success" data-toggle="modal"
 																			data-target="#addmonan" style="float: right;"
 																			onclick="getthongtinmonan(${monan.id},'${monan.tenmonan}');">Thêm</a>
-
+																		</c:if>
 
 																	</div>
 
@@ -312,7 +320,7 @@
 															<b>Món đã gọi </b><span> ( ${cthd.size()} )</span>
 														</p>
 														<c:forEach var="c" items="${cthd}" varStatus="status">
-														<c:set var="dem" value="${status.index+1}"></c:set>	
+															<c:set var="dem" value="${status.index+1}"></c:set>
 															<div class="row">
 																<div class="col-md-1">
 																	<p>${dem}</p>
@@ -321,12 +329,15 @@
 																	<p>${c.monan.tenmonan}</p>
 																</div>
 																<div class="col-md-3">
-																<fmt:formatNumber var="gia"	type="number" pattern="###,###,###,###" value="${c.monan.gia}"></fmt:formatNumber>
+																	<fmt:formatNumber var="gia" type="number"
+																		pattern="###,###,###,###" value="${c.monan.gia}"></fmt:formatNumber>
 																	<p>${gia}đ</p>
 																</div>
 																<div class="col-md-1">
 																	<c:if test="${c.trangthai==0}">
-																	<a href="datban/delete/${c.id}.html?idhoadon=${hoadon.id}" onclick="return confirm ('Bạn có thực sự muốn xoá món này')">Xoá</a>
+																		<a
+																			href="datban/delete/${c.id}.html?idhoadon=${hoadon.id}"
+																			onclick="return confirm ('Bạn có thực sự muốn xoá món này')">Xoá</a>
 																	</c:if>
 																</div>
 															</div>
@@ -337,12 +348,14 @@
 																<p>Tổng tiền</p>
 															</div>
 															<div class="col-md-6" style="margin-top: 10px;">
-																<fmt:formatNumber var="tien"	type="number" pattern="###,###,###,###" value="${tongtien}"></fmt:formatNumber>
+																<fmt:formatNumber var="tien" type="number"
+																	pattern="###,###,###,###" value="${tongtien}"></fmt:formatNumber>
 																<p>${tien}đ</p>
 															</div>
 														</div>
 														<div class="row " style="margin-top: 10px;">
-															<a class="btn btn-success btn-block" type="submit">Gọi
+															<a onclick="setactive();" data-toggle="tab" href="#menu1"
+																class="btn btn-success btn-block" type="submit">Gọi
 																món</a>
 														</div>
 													</div>
@@ -391,7 +404,7 @@
 															<b>Món đã gọi </b><span> ( ${cthd.size()} )</span>
 														</p>
 														<c:forEach var="c" items="${cthd}" varStatus="status">
-														<c:set var="dem" value="${status.index+1}"></c:set>	
+															<c:set var="dem" value="${status.index+1}"></c:set>
 															<div class="row">
 																<div class="col-md-1">
 																	<p>${dem}</p>
@@ -400,12 +413,15 @@
 																	<p>${c.monan.tenmonan}</p>
 																</div>
 																<div class="col-md-3">
-																<fmt:formatNumber var="gia"	type="number" pattern="###,###,###,###" value="${c.monan.gia}"></fmt:formatNumber>
+																	<fmt:formatNumber var="gia" type="number"
+																		pattern="###,###,###,###" value="${c.monan.gia}"></fmt:formatNumber>
 																	<p>${gia}đ</p>
 																</div>
 																<div class="col-md-1">
 																	<c:if test="${c.trangthai==0}">
-																	<a href="datban/delete/${c.id}.html?idhoadon=${hoadon.id}" onclick="return confirm ('Bạn có thực sự muốn xoá món này')">Xoá</a>
+																		<a
+																			href="datban/delete/${c.id}.html?idhoadon=${hoadon.id}"
+																			onclick="return confirm ('Bạn có thực sự muốn xoá món này')">Xoá</a>
 																	</c:if>
 																</div>
 															</div>
@@ -416,12 +432,14 @@
 																<p>Tổng tiền</p>
 															</div>
 															<div class="col-md-6" style="margin-top: 10px;">
-																<fmt:formatNumber var="tien"	type="number" pattern="###,###,###,###" value="${tongtien}"></fmt:formatNumber>
+																<fmt:formatNumber var="tien" type="number"
+																	pattern="###,###,###,###" value="${tongtien}"></fmt:formatNumber>
 																<p>${tien}đ</p>
 															</div>
 														</div>
 														<div class="row " style="margin-top: 10px;">
-															<a class="btn btn-success btn-block" type="submit">Gọi
+															<a onclick="setactive();" data-toggle="tab" href="#menu1"
+																class="btn btn-success btn-block" type="submit">Gọi
 																món</a>
 														</div>
 													</div>
@@ -437,7 +455,7 @@
 							<c:otherwise>
 								<span class="text-danger">Hoá đơn không tồn tại</span>
 								<br />
-								<a class="btn btn-info" href="#">Quay ve trang chu</a>
+								<a class="btn btn-info" href="#">Quay lại trang chủ</a>
 							</c:otherwise>
 						</c:choose>
 
@@ -465,7 +483,9 @@
 							style="display: none" value="${hoadon.id}" /> <input
 							name="idmonanmodal" id="idmonanmodal" style="display: none" />
 						<div class="col-md-12">
-							<p><span  id="settenmon" style="color:black"></span></p>
+							<p>
+								<span id="settenmon" style="color: black"></span>
+							</p>
 						</div>
 
 						<input type="number" class="form-control" name="soluong" value="1"

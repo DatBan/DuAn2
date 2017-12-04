@@ -1,6 +1,12 @@
 /**
  * 
  */
+
+function setactive(){
+	$('#lithongtin').removeAttr('class');
+	$('#libanan').removeAttr('class');
+	$('#limenumonan').attr('class','active');
+};
 function getthongtinmonan(idmonan,laytenmonan){
 		$('#idmonanmodal').val(idmonan);
 		$('#settenmon').text(laytenmonan);

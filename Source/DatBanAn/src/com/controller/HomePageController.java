@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dao.DanhGiaDAO;
 import com.dao.NhaHangDAO;
-<<<<<<< HEAD
+
 import com.entity.BaiViet;
-=======
+
 import com.dao.ProvinceDAO;
->>>>>>> 349cb2e1561140942ae4e3e84220d0f88433d2a2
+
 import com.entity.DanhGia;
 import com.entity.KhuyenMai;
 import com.entity.NguoiDung;
