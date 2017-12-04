@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dao.DanhGiaDAO;
 import com.dao.NhaHangDAO;
-<<<<<<< HEAD
+
 
 import com.entity.BaiViet;
 
 import com.dao.ProvinceDAO;
 
 import com.entity.DanhGia;
-=======
+
 import com.dao.ProvinceDAO;
 import com.entity.BaiViet;
->>>>>>> f072948b1d5992c2be6c00a42365056e8aa10565
+
 import com.entity.KhuyenMai;
 import com.entity.NguoiDung;
 import com.entity.NhaHang;

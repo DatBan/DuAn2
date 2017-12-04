@@ -357,13 +357,20 @@ public class InvoiceController {
 
 		HoaDon hd = (HoaDon) session.get(HoaDon.class, id);
 		hd.setTrangthai(4);
-
-		BanAn ban = hd.getBanan();
-		ban.setTrangthai(0);
+		if(hd.getBanan()!=null){
+			BanAn ban = hd.getBanan();
+			ban.setTrangthai(0);
+			try {
+				session.update(ban);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		
 		Transaction t = session.beginTransaction();
 		try {
 			session.update(hd);
-			session.update(ban);
+			
 			t.commit();
 			model.addAttribute("message", "Xoá thành công");
 

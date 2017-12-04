@@ -32,7 +32,8 @@
 												ăn</a></li>
 
 									</ul>
-
+									<input id="koxoadc" hidden="hidden" value="${koxoadc}"/>
+									<input id="ycthanhtoan" hidden="hidden" value="${ycthanhtoan}"/>
 									<div class="tab-content">
 										<div id="home" class="tab-pane fade in active">
 
@@ -145,8 +146,10 @@
 															món</a>
 													</div>
 													<div class="col-md-5 " style="margin-top: 20px;">
-														<a class="btn btn-danger btn-block" type="submit">Thanh
+														<c:if test="${hoadon.trangthai==2 }">
+														<a href="datban/yeucauthanhtoan/${hoadon.id}.html" class="btn btn-danger btn-block" type="submit">Thanh
 															toán</a>
+															</c:if>
 													</div>
 													<div class="col-md-1"></div>
 
@@ -317,7 +320,7 @@
 												<div class="row dbttkm cdbthongtin">
 													<div class="col-md-12">
 														<p class="pdatbanttkm">
-															<b>Món đã gọi </b><span> ( ${cthd.size()} )</span>
+															<b>Món đã gọi </b><span > ( ${cthd.size()} )</span>
 														</p>
 														<c:forEach var="c" items="${cthd}" varStatus="status">
 															<c:set var="dem" value="${status.index+1}"></c:set>
@@ -402,6 +405,7 @@
 													<div class="col-md-12">
 														<p class="pdatbanttkm">
 															<b>Món đã gọi </b><span> ( ${cthd.size()} )</span>
+															
 														</p>
 														<c:forEach var="c" items="${cthd}" varStatus="status">
 															<c:set var="dem" value="${status.index+1}"></c:set>
@@ -426,6 +430,7 @@
 																</div>
 															</div>
 														</c:forEach>
+														
 														<div class="row "
 															style="margin-top: 10px; border-top: 1px solid #d4d4d4;">
 															<div class="col-md-6" style="margin-top: 10px;">
@@ -501,6 +506,16 @@
 		</form>
 	</div>
 </div>
+<script>$(document).ready(function(){
+	var loi = $('#koxoadc').val();
+	if(loi != ""){
+		alert(loi)
+	}
+	var yctt = $('#ycthanhtoan').val();
+	if(yctt != ""){
+		alert(yctt)
+	}
+});</script>
 <%-- <jsp:include page="/include/footer.jsp"></jsp:include>
 
 </body>

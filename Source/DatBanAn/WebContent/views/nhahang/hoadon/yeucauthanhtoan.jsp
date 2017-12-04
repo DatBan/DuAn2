@@ -21,7 +21,7 @@
 			<!-- main content -->
 			<div class="main-content">
 				<!------------- Breadcrumb, nut bam cac thu -------------->
-				<jsp:include page="/include-dashboard/header-hoadon.jsp"></jsp:include>
+				<jsp:include page="/include-dashboard/header-hoadon-xacnhan.jsp"></jsp:include>
 
 				<!--------------- Table, form cac thu ---------------->
 				<div class="content-nhe"> --%>
@@ -31,88 +31,54 @@
 	<thead>
 		<tr>
 			<th>STT</th>
-			<th>Họ tên</th>
-			<th>Bàn số</th>
+			<th>Hoá đơn</th>
+			<th>Bàn</th>
+			<th>Tổng tiền</th>
 
-			<th>Thời gian</th>
-			<th>Thêm món ăn</th>
-			<th>Món đã gọi</th>
-			<th>Thanh toán</th>
 			<th>Thao tác</th>
+
 		</tr>
 	</thead>
 
 	<tbody>
-		<c:forEach var="t" items="${hoadon}" varStatus="status">
+
+		<c:forEach var="hd" items="${hoadon}" varStatus="status">
 			<c:set var="dem" value="${status.index+1}"></c:set>
-
-			<fmt:formatDate var="tg" value="${t.ngaythang}" pattern="dd-MM-yyyy" />
-			<tr>
-				<td>${dem}</td>
-				<td>${t.ho}${t.ten}</td>
-				<c:if test="${t.banan.soban!=null}">
-
-					<td>${t.banan.soban}</td>
-				</c:if>
-				<c:if test="${t.banan.soban==null}">
-					<td><a href="nhahang/hoadon/chonban.html?idhd=${t.id}"
-						style="color: green;">Chọn bàn</a></td>
-				</c:if>
-				<td>${t.thoigian}</td>
-				<c:choose>
-						<c:when test="${t.banan.soban!=null}">
-				
-				<td><a href="nhahang/hoadon/chondoan.html?idhd=${t.id}"
-					style="color: green;">Thêm</a></td>
-				<td><a href="nhahang/hoadon/xemdanhsach.html?idhd=${t.id}"
-					style="color: green;">Xem</a></td>
-				
-				</c:when>
-						<c:otherwise>
-						<td></td>
-						<td></td>
-						</c:otherwise>
-					</c:choose>
-				<c:set var="tongtien" value="0"></c:set>
-				<c:forEach var="cthd" items="${t.listcthd}">
-					<c:if test="${cthd.trangthai==1}">
+			<c:if test="${hd.trangthai == 5}">
+				<tr>
+					<td>${dem}</td>
+					<td>#${hd.id}</td>
+					<td>#${hd.banan.soban}</td>
+					<c:set var="tongtien" value="0"></c:set>
+					<c:forEach var="cthd" items="${hd.listcthd}">
+						<c:if test="${cthd.trangthai==1}">
 							<c:set var="tongtien" value="${tongtien + cthd.monan.gia}"></c:set>
 						</c:if>
-				</c:forEach>
-				<c:set var="km" value="${t.khuyenmai.thongtin}"></c:set>
-				<fmt:formatNumber var="tien" type="number" pattern="###,###,###,###"
-					value="${tongtien}"></fmt:formatNumber>
-				<c:if test="${t.trangthai==2}">
+					</c:forEach>
+					<c:set var="km" value="${hd.khuyenmai.thongtin}"></c:set>
+					<fmt:formatNumber var="tien" type="number"
+						pattern="###,###,###,###" value="${tongtien}"></fmt:formatNumber>
+					<td>${tien}đ</td>
+					<td style="text-align: center"><a data-toggle="modal"
+						data-target="#mothanhtoan"
+						onclick="getthongtinhoadon(${hd.id},'${hd.banan.soban}','${tien} đ','${km}');"
+						class="btn btn-success" style="padding-left: 15px;">Thanh toán</a></td>
+				</tr>
 
-					<c:choose>
-						<c:when test="${tongtien != 0 }">
-							<td style="text-align: center;"><a data-toggle="modal"
-								data-target="#mothanhtoan" class="btn btn-success" type="button"
-								onclick="getthongtinhoadon(${t.id},'${t.banan.soban}','${tien} đ','${km}');">Thanh
-									toán</a></td>
-						</c:when>
-						<c:otherwise>
-						<td></td>
-						</c:otherwise>
-					</c:choose>
-				</c:if>
+			</c:if>
 
 
-				<td style="text-align: center"><a
-					href="nhahang/hoadon/edit/${t.id}.html" style="color: green;">Sửa</a>
-					<a href="nhahang/hoadon/delete/${t.id}.html"
-					onclick="return confirm ('Bạn có thực sự muốn xoá đơn này')"
-					style="color: red; padding-left: 30px;">Xoá</a></td>
-			</tr>
+
 		</c:forEach>
 	</tbody>
 </table>
 <div class="line"></div>
+
 <div class="modal fade" id="mothanhtoan" role="dialog">
 	<div class="modal-dialog">
 
 		<!-- Modal content-->
-		<form action="datban/hoadonthanhtoan.html" method="post">
+		<form action="datban/thanhtoan.html" method="post">
 			<div class="modal-content" style="margin-top: 77px;">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>

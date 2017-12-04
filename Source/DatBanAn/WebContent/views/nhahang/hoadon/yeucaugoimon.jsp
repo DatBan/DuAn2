@@ -34,25 +34,37 @@
 								<th>Hoá đơn</th>
 								<th>Bàn</th>
 								<th>Tên món</th>
+								<th>Hình ảnh</th>
 								<th>Thao tác</th>
 								
 							</tr>
 						</thead>
 
 						<tbody>
+						<c:set var="dem" value="1"></c:set>	
 							<c:forEach var="hd" items="${hoadon}" varStatus="status">
-								<c:set var="dem" value="${status.index+1}"></c:set>		
-								<c:forEach var="cthd" items="${hd.listcthd}">		
+								
+								<c:forEach var="cthd" items="${hd.listcthd}" >
+											
 									<c:if test="${cthd.trangthai == 0}">			
 										<tr>
 											<td>${dem}</td>
 											<td>#${hd.id}</td>
 											<td>#${hd.banan.soban}</td>
 											<td>${cthd.monan.tenmonan}</td>
-											<td></td>
+											<td><img class="img-responsive"
+										src="upload/monan/${cthd.monan.hinhanh}" style="width:60px;height:60px;" /></td>
+											<td style="text-align: center"> <a href="datban/duyetmon/${cthd.id}.html"
+										style="color: green; padding-left: 15px;">Duyệt</a><a
+										href="datban/xoayeucau/${cthd.id}.html"
+										onclick="return confirm ('Bạn có thực sự muốn xoá yêu cầu này')"
+										style="color: red; padding-left: 30px;">Xoá</a></td>
 										</tr>
+										<c:set var="dem" value="${dem+1}"></c:set>
 									</c:if>	
+									
 								</c:forEach>
+								
 							</c:forEach>
 						</tbody>
 					</table>

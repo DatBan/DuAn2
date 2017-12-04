@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dao.NhanDipDao;
+import com.entity.BanAn;
 import com.entity.ChiTietHoaDon;
 import com.entity.HoaDon;
 import com.entity.KhuyenMai;
@@ -141,11 +142,11 @@ public class OpenTableController {
 			session.close();
 		}
 		try {
-			mailer.send(email, "Thông tin bàn ăn của bạn",
+			/*mailer.send(email, "Thông tin bàn ăn của bạn",
 					"<div>Xin Chào: " + ten1
 							+ " <div>Để xem thông tin bàn ăn của bạn bấm vào link dưới đây!<br/><div ><a href='http://localhost:9999/DatBanAn/datban/thongtinbanan.html?email="
-							+ email + "&idhoadon=" + hoadon.getId() + "'>Thông tin bàn ăn</a></div></div></div>");
-			/*mailer.send(email, "Thông tin bàn ăn của bạn",
+							+ email + "&idhoadon=" + hoadon.getId() + "'>Thông tin bàn ăn</a></div></div></div>");*/
+			mailer.send(email, "Thông tin bàn ăn của bạn",
 					"<link rel="+"'stylesheet'" +"href="+"'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'"+">"
 					+"<link rel="+"'stylesheet'"+" href="+"'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'"+">"
 					
@@ -178,7 +179,7 @@ public class OpenTableController {
 					 +"           </div>"
 					+"          </div>"
 					+"	</div>"
-					+"</div>");*/
+					+"</div>");
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -389,13 +390,16 @@ public class OpenTableController {
 
 	// Xoa Mon
 	@RequestMapping(value = "delete/{id}")
-	public String deleteTienIch(ModelMap model, @PathVariable("id") Integer id,
+	public String deletemon(ModelMap model, @PathVariable("id") Integer id,RedirectAttributes re,
 			@RequestParam("idhoadon") int idhoadon) {
 		Session session = factory.openSession();
 		ChiTietHoaDon ct = (ChiTietHoaDon) session.get(ChiTietHoaDon.class, id);
 		HoaDon hd = (HoaDon) session.get(HoaDon.class, idhoadon);
 		Transaction t = session.beginTransaction();
-
+		if(ct.getTrangthai()==1){
+			re.addFlashAttribute("koxoadc", "Món đã được làm không thể xoá");
+			return "redirect:/datban/thongtinbanan.html?email=" + hd.getEmail() + "&idhoadon=" + hd.getId() + "";
+		}
 		try {
 
 			session.delete(ct);
@@ -426,8 +430,148 @@ public class OpenTableController {
 		List<HoaDon> list = query.list();
 		model.addAttribute("hoadon", list);
 
-		model.addAttribute("btn_add", "datban/yeucau.html");
+		
 		model.addAttribute("tenbreadcrumb", "Yêu cầu gọi món");
 		return "nhahang/hoadon/yeucaugoimon";
 	}
+	// Xoa yeu cau
+		@RequestMapping(value = "xoayeucau/{id}")
+		public String xoayeucau(ModelMap model, @PathVariable("id") Integer id
+			) {
+			Session session = factory.openSession();
+			ChiTietHoaDon ct = (ChiTietHoaDon) session.get(ChiTietHoaDon.class, id);
+			ct.setTrangthai(2);
+			Transaction t = session.beginTransaction();
+
+			try {
+
+				session.update(ct);
+				t.commit();
+				model.addAttribute("message", "Xoá thành công");
+
+			} catch (Exception e) {
+				t.rollback();
+				model.addAttribute("message", "Xoá thất bại !" + e.getMessage());
+			} finally {
+				session.close();
+			}
+			return "redirect:/datban/yeucau.html";
+		}
+		// Duyet yeu cau
+		@RequestMapping(value = "duyetmon/{id}")
+		public String duyetyeucau(ModelMap model, @PathVariable("id") Integer id
+			) {
+			Session session = factory.openSession();
+			ChiTietHoaDon ct = (ChiTietHoaDon) session.get(ChiTietHoaDon.class, id);
+			ct.setTrangthai(1);
+			Transaction t = session.beginTransaction();
+
+			try {
+
+				session.update(ct);
+				t.commit();
+				model.addAttribute("message", "Duyệt thành công");
+
+			} catch (Exception e) {
+				t.rollback();
+				model.addAttribute("message", "Duyệt thất bại !" + e.getMessage());
+			} finally {
+				session.close();
+			}
+			return "redirect:/datban/yeucau.html";
+		}
+		// gui yeu cau thanh toan
+		@RequestMapping(value = "yeucauthanhtoan/{id}")
+		public String yeucauthanhtoan(ModelMap model, @PathVariable("id") Integer id,RedirectAttributes re
+			) {
+			Session session = factory.openSession();
+			HoaDon hd = (HoaDon) session.get(HoaDon.class, id);
+			hd.setTrangthai(5);
+			Transaction t = session.beginTransaction();
+
+			try {
+
+				session.update(hd);
+				t.commit();
+				re.addFlashAttribute("ycthanhtoan", "Bạn đã gửi yêu cầu xin vui lòng đợi");
+
+			} catch (Exception e) {
+				t.rollback();
+				model.addAttribute("message", "Gửi yêu cầu thất bại !" + e.getMessage());
+			} finally {
+				session.close();
+			}
+			return "redirect:/datban/thongtinbanan.html?email=" + hd.getEmail() + "&idhoadon=" + hd.getId() + "";
+		}
+		// Do yeu cau thanh toan
+		@RequestMapping(value = "yeucauthanhtoan")
+		public String yeucauthanhtoan(ModelMap model, HttpSession httpSession) {
+			Session session = factory.getCurrentSession();
+			NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
+			NhaHang nhahang = nd.getNhahang();
+			int id = nhahang.getId();
+			String hql = "FROM HoaDon where idnhahang =:idnhahang and trangthai=5";
+			Query query = session.createQuery(hql);
+			query.setParameter("idnhahang", id);
+
+			@SuppressWarnings("unchecked")
+			List<HoaDon> list = query.list();
+			model.addAttribute("hoadon", list);
+
+			
+			model.addAttribute("tenbreadcrumb", "Yêu cầu thanh toán");
+			return "nhahang/hoadon/yeucauthanhtoan";
+		}
+		// Duyet yeu cau
+				@RequestMapping(value = "thanhtoan")
+				public String thanhtoan(ModelMap model, @RequestParam("mahd") Integer id
+					) {
+					Session session = factory.openSession();
+					HoaDon hd = (HoaDon) session.get(HoaDon.class, id);
+					hd.setTrangthai(6);
+					int idban = hd.getBanan().getId();
+					BanAn ban = (BanAn) session.get(BanAn.class, idban);
+					ban.setTrangthai(0);
+					Transaction t = session.beginTransaction();
+
+					try {
+
+						session.update(hd);
+						t.commit();
+						model.addAttribute("message", "Thanh toán thành công");
+
+					} catch (Exception e) {
+						t.rollback();
+						model.addAttribute("message", "Thanh toán thất bại !" + e.getMessage());
+					} finally {
+						session.close();
+					}
+					return "redirect:/datban/yeucauthanhtoan.html";
+				}
+				// Duyet yeu cau
+				@RequestMapping(value = "hoadonthanhtoan")
+				public String hoadonthanhtoan(ModelMap model, @RequestParam("mahd") Integer id
+					) {
+					Session session = factory.openSession();
+					HoaDon hd = (HoaDon) session.get(HoaDon.class, id);
+					hd.setTrangthai(6);
+					int idban = hd.getBanan().getId();
+					BanAn ban = (BanAn) session.get(BanAn.class, idban);
+					ban.setTrangthai(0);
+					Transaction t = session.beginTransaction();
+
+					try {
+
+						session.update(hd);
+						t.commit();
+						model.addAttribute("message", "Thanh toán thành công");
+
+					} catch (Exception e) {
+						t.rollback();
+						model.addAttribute("message", "Thanh toán thất bại !" + e.getMessage());
+					} finally {
+						session.close();
+					}
+					return "redirect:/nhahang/hoadon/index.html";
+				}
 }
