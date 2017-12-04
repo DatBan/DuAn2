@@ -87,12 +87,11 @@ public class NhaHang {
 
 	@Formula("(SELECT COUNT(*) FROM hoadon c WHERE c.idnhahang = id)")
 	private int countinvoice;
-	
-	/*@Formula("(SELECT nd FROM nguoidung nd WHERE nd.idnhahang = id)")*/
+
+	/* @Formula("(SELECT nd FROM nguoidung nd WHERE nd.idnhahang = id)") */
 	@ManyToOne
 	@JoinColumnsOrFormulas({
-		@JoinColumnOrFormula(formula=@JoinFormula(value="(SELECT nd.id FROM nguoidung nd WHERE nd.idnhahang = id AND nd.idquyen = 2)", referencedColumnName="id"))
-	})
+			@JoinColumnOrFormula(formula = @JoinFormula(value = "(SELECT nd.id FROM nguoidung nd WHERE nd.idnhahang = id AND nd.idquyen = 2)", referencedColumnName = "id")) })
 	private NguoiDung ndowner;
 
 	public NguoiDung getNdowner() {
@@ -116,35 +115,37 @@ public class NhaHang {
 
 	@ManyToOne
 	@JoinColumn(name = "tinhthanh")
+	@Expose
 	private Province tinhthanh;
 
 	@ManyToOne
 	@JoinColumn(name = "quanhuyen")
+	@Expose
 	private District quanhuyen;
 
 	@ManyToOne
 	@JoinColumn(name = "phuongxa")
 	private Ward phuongxa;
 
-	@OneToMany(mappedBy = "nhahang", fetch = FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
+	@OneToMany(mappedBy = "nhahang", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<HoaDon> listhoadon;
 
-	@OneToMany(mappedBy = "nhahang", fetch = FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
+	@OneToMany(mappedBy = "nhahang", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BanAn> listbanan;
-	
-	@OneToMany(mappedBy = "nhahang", fetch = FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
+
+	@OneToMany(mappedBy = "nhahang", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<NguoiDung> listnguoidung;
-	
-	@OneToMany(mappedBy = "nhahang", fetch = FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
+
+	@OneToMany(mappedBy = "nhahang", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<DanhGia> listdanhgia;
-	
-	@OneToMany(mappedBy = "nhahang", fetch = FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
+
+	@OneToMany(mappedBy = "nhahang", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<MonAn> listmonan;
-	
-	@OneToMany(mappedBy = "nhahang", fetch = FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
+
+	@OneToMany(mappedBy = "nhahang", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<TienIch> listtienich;
-	
-	@OneToMany(mappedBy = "nhahang", fetch = FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
+
+	@OneToMany(mappedBy = "nhahang", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<KhuyenMai> listkhuyenmai;
 
 	public NhaHang() {
@@ -175,7 +176,8 @@ public class NhaHang {
 	}
 
 	public String getDiachifull() {
-		return diachi + ", " + phuongxa.getLabelfull() + ", "+quanhuyen.getLabelfull()+ ", "+tinhthanh.getLabelfull();
+		return diachi + ", " + phuongxa.getLabelfull() + ", " + quanhuyen.getLabelfull() + ", "
+				+ tinhthanh.getLabelfull();
 	}
 
 	public int getId() {
@@ -362,11 +364,11 @@ public class NhaHang {
 		this.count1 = count1;
 	}
 
-	public int getCountinvoice() {
+	public Integer getCountinvoice() {
 		return countinvoice;
 	}
 
-	public void setCountinvoice(int countinvoice) {
+	public void setCountinvoice(Integer countinvoice) {
 		this.countinvoice = countinvoice;
 	}
 
@@ -448,6 +450,14 @@ public class NhaHang {
 
 	public void setListnguoidung(List<NguoiDung> listnguoidung) {
 		this.listnguoidung = listnguoidung;
+	}
+
+	public List<KhuyenMai> getListkhuyenmai() {
+		return listkhuyenmai;
+	}
+
+	public void setListkhuyenmai(List<KhuyenMai> listkhuyenmai) {
+		this.listkhuyenmai = listkhuyenmai;
 	}
 
 }

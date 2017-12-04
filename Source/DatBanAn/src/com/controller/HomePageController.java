@@ -1,9 +1,6 @@
 package com.controller;
 
-import java.io.IOException;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -11,24 +8,25 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dao.DanhGiaDAO;
 import com.dao.NhaHangDAO;
+<<<<<<< HEAD
 
 import com.entity.BaiViet;
 
 import com.dao.ProvinceDAO;
 
 import com.entity.DanhGia;
+=======
+import com.dao.ProvinceDAO;
+import com.entity.BaiViet;
+>>>>>>> f072948b1d5992c2be6c00a42365056e8aa10565
 import com.entity.KhuyenMai;
 import com.entity.NguoiDung;
 import com.entity.NhaHang;
-import com.entity.Trang;
-import com.google.gson.Gson;
 
 @Controller
 public class HomePageController {
@@ -45,7 +43,7 @@ public class HomePageController {
 	public String index(ModelMap model) {
 		model.addAttribute("dropdown_province", this.provinceDAO.getByNhaHang());
 		/*model.addAttribute("nguoidung", new NguoiDung());*/
-		return "homepage/index";
+		return "homepage/trangchu/index";
 	}
 	@RequestMapping("chitietnhahang")
 	public String ctnh(ModelMap model){

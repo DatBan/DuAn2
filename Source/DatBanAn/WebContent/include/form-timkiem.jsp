@@ -77,7 +77,18 @@
 								if(item.showmore != null){
 									return "Tìm kiếm thêm với từ khóa \""+value+"\"";
 								}
-								return "<img src=\"\" />" + value;
+								if(item.tennhahang != undefined){
+									var hinhanh = item.photopath + item.thumbnail;
+									var diachifull = item.quanhuyen.type +" "+item.quanhuyen.name+", "+item.tinhthanh.name;
+									var nhahang = "";
+									nhahang += "<a href='"+item.slug+".html' title='"+item.tennhahang+"'>";
+									nhahang += 	"<img src='" + hinhanh + "' class='img-response' width='40px'/>"+value;
+									nhahang += 	"<br/><small>" + diachifull + "</small>";
+									nhahang += "</a>";
+									return nhahang;
+								}
+								return value;
+								
 							}
 					    },
 

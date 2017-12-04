@@ -40,16 +40,19 @@
 						</thead>
 
 						<tbody>
-							<c:forEach var="t" items="${hoadon}" varStatus="status">
-								<c:set var="dem" value="${status.index+1}"></c:set>								
-								
-								<tr>
-									<td>a</td>
-									<td>a</td>
-									<td>a</td>
-									<td>a</td>
-									<td>a</td>
-								</tr>
+							<c:forEach var="hd" items="${hoadon}" varStatus="status">
+								<c:set var="dem" value="${status.index+1}"></c:set>		
+								<c:forEach var="cthd" items="${hd.listcthd}">		
+									<c:if test="${cthd.trangthai == 0}">			
+										<tr>
+											<td>${dem}</td>
+											<td>#${hd.id}</td>
+											<td>#${hd.banan.soban}</td>
+											<td>${cthd.monan.tenmonan}</td>
+											<td></td>
+										</tr>
+									</c:if>	
+								</c:forEach>
 							</c:forEach>
 						</tbody>
 					</table>

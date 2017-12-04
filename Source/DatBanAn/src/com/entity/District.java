@@ -13,6 +13,7 @@ public class District {
 	private String districtid;
 	@Expose
 	private String name;
+	@Expose
 	private String type;
 	private String location;
 	private String provinceid;
