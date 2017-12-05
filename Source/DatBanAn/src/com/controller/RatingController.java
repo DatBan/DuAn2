@@ -196,6 +196,9 @@ public class RatingController {
 		String trave = gson.toJson(strListDG);
 		String trangthai = "in";
 		/*System.out.println(trave);*/
+		if(idmoi.size() >  1){
+			pageCount = pageCount - 1;
+		}
 		if(pageCount <= trang){
 			trangthai = "out";
 		}

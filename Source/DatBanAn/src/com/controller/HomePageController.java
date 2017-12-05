@@ -8,9 +8,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.dao.BaiVietDAO;
 import com.dao.DanhGiaDAO;
 import com.dao.NhaHangDAO;
 
@@ -31,6 +33,8 @@ import com.entity.NhaHang;
 @Controller
 public class HomePageController {
 	@Autowired
+	private BaiVietDAO baivietDAO;
+	@Autowired
 	private ProvinceDAO provinceDAO;
 	@Autowired
 	private DanhGiaDAO danhgiaDAO;
@@ -45,17 +49,20 @@ public class HomePageController {
 		/*model.addAttribute("nguoidung", new NguoiDung());*/
 		return "homepage/trangchu/index";
 	}
-	@RequestMapping("chitietnhahang")
-	public String ctnh(ModelMap model){
-		/*List<DanhGia> listDG = this.danhgiaDAO.getListDanhGiaByIdNhaHang(1, 2);*/
+	@RequestMapping("{slug}-r{idnh}")
+	public String ctnh(ModelMap model,
+			@PathVariable("idnh") int idnh){
+		/*List<DanhGia> listDG = this.danhgiaDAO.getListDanhGiaByIdNhaHang(1, 
+
+2);*/
+		System.out.println("zozooz");
 		Session session = factory.openSession();
-		
-		NhaHang nh = this.nhahangDAO.getById(1);
+		NhaHang nh = this.nhahangDAO.getById(idnh);
 		
 		String hql ="FROM KhuyenMai km where trangthai='1' and idnhahang =:idnhahang ";
 		Query query = session.createQuery(hql);
 		
-		query.setParameter("idnhahang", 1);
+		query.setParameter("idnhahang", idnh);
 		@SuppressWarnings("unchecked")
 		List<KhuyenMai> list = query.list();
 		model.addAttribute("km", list);
@@ -104,11 +111,12 @@ public class HomePageController {
 		
 		return"homepage/baiviet";
 	}
-	@RequestMapping("chitietbaiviet")
-	public String ctbv(ModelMap model,@RequestParam("idbv")int idbc){
+	@RequestMapping("bai-viet/{slug}-p{id}")
+	public String ctbv(ModelMap model,
+			@PathVariable("id") int id){
+		BaiViet bv = this.baivietDAO.getById(id);
 		
 		Session session = factory.openSession();		
-		BaiViet bv = (BaiViet) session.get(BaiViet.class, idbc)	;
 		String hql ="FROM BaiViet where trangthai=1 ORDER BY ngaytao DESC";
 		Query query = session.createQuery(hql);		
 
@@ -120,7 +128,7 @@ public class HomePageController {
 		model.addAttribute("ctbv", bv);
 		
 		
-		return"homepage/chitietbaiviet";
+		return"homepage/chitietbaiviet/chitietbaiviet";
 	}
 }
 

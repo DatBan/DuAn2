@@ -17,15 +17,16 @@
 		<div class="col-md-8">
 			<c:forEach var="bv" items="${bv}">
 				<div class="row rbv">
+				<c:set var="slug" value="bai-viet/${bv.slug}-p${bv.id}.html"></c:set>
 					<div class="col-md-5">
-						<a href="chitietbaiviet.html?idbv=${bv.id}"><img class="img-responsive" alt="" src="upload/baiviet/${bv.hinh}"></a>
+						<a href="${slug}"><img class="img-responsive" alt="" src="upload/baiviet/${bv.hinh}"></a>
 					</div>
 					<div class="col-md-7">
 						<div class="row" style="margin-bottom: 10px;">
-							<a href="chitietbaiviet.html?idbv=${bv.id}"><span style="font-size: 16px;"><b>${fn:substring(bv.tieude,0,55)}...</b></span></a>
+							<a href="${slug}"><span style="font-size: 16px;"><b>${fn:substring(bv.tieude,0,55)}...</b></span></a>
 						</div>
 						<div class="row">
-							<a href="chitietbaiviet.html?idbv=${bv.id}"><span>${fn:substring(bv.noidung,0,630)}...</span></a>
+							<a href="${slug}"><span><%-- ${fn:substring(bv.noidung,0,630)} --%>...${bv.mota}</span></a>
 						</div>
 
 					</div>
@@ -55,14 +56,15 @@
 			</div>
 
 			<c:forEach var="bv" items="${bv}">
+				<c:set var="slug" value="bai-viet/${bv.slug}-p${bv.id}.html"></c:set>
 				<div class="row rbv">
 					<div class="col-md-5">
-						<a href="chitietbaiviet.html?idbv=${bv.id}"><img class="img-responsive" alt="" src="upload/baiviet/${bv.hinh}"></a>
+						<a href="${slug}"><img class="img-responsive" alt="" src="upload/baiviet/${bv.hinh}"></a>
 					</div>
 					
 					<div class="col-md-7">
 						<div class="row" style="margin-bottom: 10px;">
-							<a href="chitietbaiviet.html?idbv=${bv.id}"><span>${fn:substring(bv.tieude,0,80)}...</span></a>
+							<a href="${slug}"><span>${fn:substring(bv.tieude,0,80)}...</span></a>
 							
 						</div>
 

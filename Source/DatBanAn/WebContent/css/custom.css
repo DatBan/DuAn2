@@ -671,7 +671,15 @@ div#loading-dropback{
 .required{
 	color:red;
 }
-
+div#bl-section div.filter-bl{
+	display:none;
+}
+.form-control:focus{
+	border-color:#CCD0D7;box-shadow:none!important
+}
+.form-control {
+    border-radius: 0;
+}
 
 
 

@@ -381,7 +381,7 @@ $(document).ready(function() {
 	});
 		var sapxep = "new";
 		var target = $("div.danhgia").offset();
-		var sotrang = 0;
+		var sotrang_dg = 0;
 		if(target != undefined){
 			target = $("div.danhgia").offset().top - 300;
 			var interval = setInterval(function() {
@@ -391,14 +391,14 @@ $(document).ready(function() {
 			    /*console.log(scroll);*/
 					 if (scroll >= target) {
 						 $("#xem-them-dg").html('<i class="fa-li fa fa-spinner fa-spin" style="position: initial;"></i> Đang tải');
-							sotrang++;
+						 sotrang_dg++;
 						 	$.ajax({
 								type: "GET",
 								url: "list-danh-gia.html",
-								data: {trang: sotrang, 'idmoi[]': cmt_moi, sapxep: sapxep},
+								data: {trang: sotrang_dg, 'idmoi[]': cmt_moi, sapxep: sapxep},
 								dataType: "json",
 								success: function(result){
-									/*console.log(result);*/
+									console.log(result);
 									setTimeout(function(){
 										if(result.rong == 'dung' || result.trave == ""){
 											$("#xem-them-dg").css("display", "none");
@@ -428,12 +428,12 @@ $(document).ready(function() {
 		}
 	$("#xem-them-dg").bind("click",function(){
 		$(this).html('<i class="fa-li fa fa-spinner fa-spin" style="position: initial;"></i> Đang tải');
-		sotrang++;
+		sotrang_dg++;
 		$.ajax({
 			type: "GET",
 			url: "list-danh-gia.html",/*
 			dataType: "json",*/
-			data: {trang: sotrang, 'idmoi[]': cmt_moi, sapxep: sapxep},
+			data: {trang: sotrang_dg, 'idmoi[]': cmt_moi, sapxep: sapxep},
 			dataType: "json",
 			success: function(result){
 				console.log(result);
@@ -451,19 +451,19 @@ $(document).ready(function() {
 		});
 	});
 	//Xem them tim kiem
-	var sotrang = 1;
+	var sotrang_tk = 1;
 	$("#xem-them-tk").bind("click",function(){
 		var search = $("#h-tukhoa").val();
 		var ngaythang = $("#h-ngaythang").val();
 		var songuoi = $("#h-songuoi").val();
 		$(this).html('<i class="fa-li fa fa-spinner fa-spin" style="position: initial;"></i> Đang tải');
-		sotrang++;
+		sotrang_tk++;
 		
 		$.ajax({
 			type: "POST",
 			url: "tim-kiem-ajax.html",/*
 			dataType: "json",*/
-			data: {trang: sotrang, sapxep: sapxep, search: search, ngaythang: ngaythang, songuoi: songuoi},
+			data: {trang: sotrang_tk, sapxep: sapxep, search: search, ngaythang: ngaythang, songuoi: songuoi},
 			dataType: "json",
 			success: function(result){
 				console.log(result);
@@ -486,7 +486,7 @@ $(document).ready(function() {
 	});
 	
 	$(".sap-xep-tk").bind("change",function(){
-		sotrang = 1 ;
+		sotrang_tk = 1 ;
 		var search = $("#h-tukhoa").val();
 		var ngaythang = $("#h-ngaythang").val();
 		var songuoi = $("#h-songuoi").val();
@@ -507,7 +507,7 @@ $(document).ready(function() {
 			type: "POST",
 			url: "tim-kiem-ajax.html",/*
 			dataType: "json",*/
-			data: {trang: sotrang, sapxep: sapxep, search: search, ngaythang: ngaythang, songuoi: songuoi},
+			data: {trang: sotrang_tk, sapxep: sapxep, search: search, ngaythang: ngaythang, songuoi: songuoi},
 			dataType: "json",
 			success: function(result){
 				console.log(result);
@@ -529,7 +529,7 @@ $(document).ready(function() {
 	});
 	
 	$(".sap-xep").bind("change",function(){
-		sotrang = 1 ;
+		sotrang_dg = 1 ;
 		$("#xem-them-dg").html('<i class="fa-li fa fa-spinner fa-spin" style="position: initial;"></i> Đang tải');
 		$("#danhsach-dg").html('');
 		$("#xem-them-dg").css("display", "block");

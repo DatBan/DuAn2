@@ -43,7 +43,6 @@ import com.services.EnDeCryption;
 
 @Controller
 @Transactional
-@RequestMapping("/")
 public class LoginController {
 	@Autowired
 	private NguoiDungDAO userDAO;

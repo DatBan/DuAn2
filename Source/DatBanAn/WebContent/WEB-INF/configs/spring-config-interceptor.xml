@@ -31,6 +31,7 @@
 			<bean class="com.interceptors.CheckSessionInterceptor" />
 		</mvc:interceptor>
 		<!-- Lọc tất cả các URL -->
+		<bean class="com.interceptors.GlobalInterceptor" />
 	</mvc:interceptors>
 
 </beans>

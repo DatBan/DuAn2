@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Collection;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,15 +38,14 @@ public class LoadHomepage {
 		response.getWriter().println(province);
 	}
 	
-	@RequestMapping("{id}")
+	@RequestMapping("quan-an-{id}")
 	public String index(ModelMap model,
 			@PathVariable("id") String provinceid) {
+		System.out.println("zozo ozo zo ");
 		Collection<Integer> listid = this.khuyenmaiDAO.getByIdNhaHang();
 		
 		model.addAttribute("promotion_nh", this.nhahangDAO.getListByPromotion(listid, provinceid));
 		
-		model.addAttribute("dropdown_province", this.provinceDAO.getByNhaHang());
-		/*model.addAttribute("nguoidung", new NguoiDung());*/
 		System.out.println("size "+this.nhahangDAO.getListByProvinceId(provinceid).size());
 		model.addAttribute("best_book", this.nhahangDAO.getListByProvinceId(provinceid));
 		model.addAttribute("current_province", provinceid);

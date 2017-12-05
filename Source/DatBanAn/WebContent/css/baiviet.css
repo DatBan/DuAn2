@@ -15,3 +15,32 @@
     height: 50%;
     background: #00b3b3;
 }
+.noi-dung-bv p >img{
+	width:100%;
+}
+div.media-right div.dropdown{
+	position: absolute;
+}
+div.media-right div.dropdown > ul.dropdown-menu{
+	left: -155px;
+}
+div.media div.media-right div.dropdown > a:clicked, div.media div.media-right div.dropdown > a:active{
+	text-decoration: none;
+}
+div.media div.media-right div.dropdown > a.fa-ellipsis-v{
+	font-size: x-large;
+}
+div.media div.media-right{
+	padding-left: 0px;
+}
+div.conbv .col-md-4  .panel-default{
+	border-color: #f0ad4e;
+}
+div.conbv .col-md-4  .panel-heading{
+	border-color: #f0ad4e;
+	color: hsl(0, 0%, 100%);
+    background-color: #f0ad4e;
+}
+span.ngaytao-bv{
+	color:#999;
+}

@@ -40,21 +40,24 @@ public class DanhGiaDAOImpl implements DanhGiaDAO {
 	@Override
 	public List<DanhGia> getListDanhGiaByIdNhaHang(int idNhaHang, int trang, int idnho, String sapXep, String paramSX) {
 		Session session = factory.getCurrentSession();
-		int /*pageCount = 0, sumRecords = 0,*/ perPage = 10;
-		String hql = "FROM DanhGia dg WHERE dg.nhahang.id=:idnhahang AND dg.trangthai=:tthai AND dg.id <=:idnho ORDER BY "+paramSX+" "+sapXep;
+		int /* pageCount = 0, sumRecords = 0, */ perPage = 10;
+		String hql = "FROM DanhGia dg WHERE dg.nhahang.id=:idnhahang AND dg.trangthai=:tthai AND dg.id <=:idnho ORDER BY "
+				+ paramSX + " " + sapXep;
 		Query query = session.createQuery(hql);
-		
+
 		query.setParameter("idnhahang", idNhaHang);
 		query.setParameter("idnho", idnho);
 		query.setParameter("tthai", true);
-		
+
 		query.setFirstResult(perPage * (trang - 1));
 		query.setMaxResults(perPage);
-		
+
 		@SuppressWarnings("unchecked")
 		List<DanhGia> list = query.list();
-		/*sumRecords = list.size();
-		pageCount = sumRecords / perPage + (sumRecords % perPage > 0 ? 1 : 0);*/
+		/*
+		 * sumRecords = list.size(); pageCount = sumRecords / perPage +
+		 * (sumRecords % perPage > 0 ? 1 : 0);
+		 */
 		return list;
 	}
 
@@ -66,7 +69,7 @@ public class DanhGiaDAOImpl implements DanhGiaDAO {
 		query.setFirstResult(0);
 		query.setMaxResults(1);
 		query.setParameter("idnhahang", idNhaHang);
-		
+
 		DanhGia dg = (DanhGia) query.uniqueResult();
 		return dg;
 	}

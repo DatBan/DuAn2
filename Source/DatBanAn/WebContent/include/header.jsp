@@ -60,7 +60,7 @@
 							<script>
 						        $("#location-div option[selected='selected']").prop('selected', true);
 						        $('#location-homepage').on("change", function () {
-						            window.location.href = $('#location-homepage').val()+".html";
+						            window.location.href = "quan-an-"+$('#location-homepage').val()+".html";
 						        });
 						        $('#sl-city').hover(function () {
 						            $(this).css('cursor', 'pointer');

@@ -1,23 +1,28 @@
 package com.entity;
 
-
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
+
+import com.google.gson.annotations.Expose;
 
 @Entity
 @Table
 public class BinhLuan {
 	@Id
 	@GeneratedValue
+	@Expose
 	private int idbinhluan;
+	@Expose
 	private String noidung;
-
+	
 	private int trangthai;
 	private int soluonglike;
 	private int baocao;
 	@Temporal(TemporalType.TIMESTAMP)
+	@Expose
 	private Date ngaytao;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date ngaysua;
@@ -37,10 +42,19 @@ public class BinhLuan {
 	@JoinColumn(name = "idtraloi")
 	private BinhLuan traloi;
 	@OneToMany(mappedBy = "traloi", fetch = FetchType.EAGER)
-	private Collection<BinhLuan> blcap;
-
+	private List<BinhLuan> blcap;
+	
 	public BinhLuan() {
 		super();
+	}
+
+	public BinhLuan(String noidung, int trangthai, Date ngaytao, NguoiDung nguoibl, BaiViet baivietbl) {
+		super();
+		this.noidung = noidung;
+		this.trangthai = trangthai;
+		this.ngaytao = ngaytao;
+		this.nguoibl = nguoibl;
+		this.baivietbl = baivietbl;
 	}
 
 	public BinhLuan(String noidung, Date ngaytao, NguoiDung nguoibl, BaiViet baivietbl, Anh anhbl, MonAn monanbl,
@@ -54,10 +68,6 @@ public class BinhLuan {
 		this.monanbl = monanbl;
 		this.traloi = traloi;
 	}
-	
-	
-
-	
 
 	public BinhLuan(NguoiDung nguoibl, BaiViet baivietbl, BinhLuan traloi) {
 		super();
@@ -162,11 +172,11 @@ public class BinhLuan {
 		this.traloi = traloi;
 	}
 
-	public Collection<BinhLuan> getBlcap() {
+	public List<BinhLuan> getBlcap() {
 		return blcap;
 	}
 
-	public void setBlcap(Collection<BinhLuan> blcap) {
+	public void setBlcap(List<BinhLuan> blcap) {
 		this.blcap = blcap;
 	}
 
