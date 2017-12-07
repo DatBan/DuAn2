@@ -10,4 +10,8 @@ public interface ProvinceDAO {
 	public Province getById(String provinceid);
 
 	public List<Province> getByNhaHang();
+
+	public void updateProvince(Province pv);
+	
+	public Province getByName(String provincename);
 }

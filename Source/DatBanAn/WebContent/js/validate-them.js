@@ -1,5 +1,4 @@
-$(document).ready(function() {
-	function change_alias(alias) {
+function change_alias(alias) {
 		var str = alias;
 		str = str.toLowerCase();
 		str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
@@ -16,7 +15,7 @@ $(document).ready(function() {
 		// cắt bỏ ký tự - ở đầu và cuối chuỗi
 		return str;
 	}
-	
+$(document).ready(function() {	
 	//Hàm kiểm tra filesize
 	$.validator.addMethod('filesize', function (value, element, param) {
 	    return this.optional(element) || (element.files[0].size <= param)

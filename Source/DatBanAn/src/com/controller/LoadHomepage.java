@@ -40,15 +40,15 @@ public class LoadHomepage {
 	
 	@RequestMapping("quan-an-{id}")
 	public String index(ModelMap model,
-			@PathVariable("id") String provinceid) {
+			@PathVariable("id") String provinceslug) {
 		System.out.println("zozo ozo zo ");
 		Collection<Integer> listid = this.khuyenmaiDAO.getByIdNhaHang();
 		
-		model.addAttribute("promotion_nh", this.nhahangDAO.getListByPromotion(listid, provinceid));
+		model.addAttribute("promotion_nh", this.nhahangDAO.getListByPromotion(listid, provinceslug+""));
 		
-		System.out.println("size "+this.nhahangDAO.getListByProvinceId(provinceid).size());
-		model.addAttribute("best_book", this.nhahangDAO.getListByProvinceId(provinceid));
-		model.addAttribute("current_province", provinceid);
+		System.out.println("size "+this.nhahangDAO.getListByProvinceSlug(provinceslug+"").size());
+		model.addAttribute("best_book", this.nhahangDAO.getListByProvinceSlug(provinceslug+""));
+		model.addAttribute("current_province", provinceslug);
 		return "homepage/trangchu/index";
 	}
 }

@@ -10,22 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dao.BaiVietDAO;
 import com.dao.DanhGiaDAO;
 import com.dao.NhaHangDAO;
-
-
-import com.entity.BaiViet;
-
-import com.dao.ProvinceDAO;
-
-import com.entity.DanhGia;
-
 import com.dao.ProvinceDAO;
 import com.entity.BaiViet;
-
 import com.entity.KhuyenMai;
 import com.entity.NguoiDung;
 import com.entity.NhaHang;
@@ -101,7 +91,6 @@ public class HomePageController {
 		Session session = factory.openSession();		
 		String hql ="FROM BaiViet where trangthai=1 ORDER BY ngaytao DESC";
 		Query query = session.createQuery(hql);		
-
 		
 		@SuppressWarnings("unchecked")
 		List<BaiViet> list = query.list();		

@@ -138,11 +138,11 @@ public class NhaHangDAOImpl implements NhaHangDAO {
 	}
 
 	@Override
-	public List<NhaHang> getListByProvinceId(String provinceid) {
+	public List<NhaHang> getListByProvinceSlug(String provinceslug) {
 		Session session = factory.getCurrentSession();
-		Query query = session.createQuery("FROM NhaHang nh WHERE nh.tinhthanh.provinceid=:provinceid AND nh.trangthai=:trangthai "
+		Query query = session.createQuery("FROM NhaHang nh WHERE nh.tinhthanh.slug=:provinceslug AND nh.trangthai=:trangthai "
 				+ "ORDER BY nh.countinvoice DESC");
-		query.setParameter("provinceid", provinceid);
+		query.setParameter("provinceslug", provinceslug);
 		query.setParameter("trangthai", 1);
 		
 		@SuppressWarnings("unchecked")
@@ -151,11 +151,11 @@ public class NhaHangDAOImpl implements NhaHangDAO {
 	}
 
 	@Override
-	public List<NhaHang> getListByPromotion(Collection<Integer> listid, String provinceid) {
+	public List<NhaHang> getListByPromotion(Collection<Integer> listid, String provinceslug) {
 		Session session = factory.getCurrentSession();
-		Query query = session.createQuery("FROM NhaHang nh WHERE nh.tinhthanh.provinceid=:provinceid AND nh.id IN (:listid) AND nh.trangthai=:trangthai");
+		Query query = session.createQuery("FROM NhaHang nh WHERE nh.tinhthanh.slug=:provinceslug AND nh.id IN (:listid) AND nh.trangthai=:trangthai");
 		query.setParameter("trangthai", 1);
-		query.setParameter("provinceid", provinceid);
+		query.setParameter("provinceslug", provinceslug);
 		query.setParameterList("listid", listid);
 		
 		@SuppressWarnings("unchecked")

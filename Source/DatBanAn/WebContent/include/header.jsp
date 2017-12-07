@@ -1,6 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<!DOCTYPE html>
 <div class="container con">
 	<!-- Menu top top top -->
 	<div class="row menu-top">
@@ -60,7 +59,13 @@
 							<script>
 						        $("#location-div option[selected='selected']").prop('selected', true);
 						        $('#location-homepage').on("change", function () {
-						            window.location.href = "quan-an-"+$('#location-homepage').val()+".html";
+						        	var pathname_moi = "quan-an-"+$('#location-homepage').val()+".html";
+						        	if(window.location.pathname != '/'+pathname_moi){
+						        		console.log(pathname_moi);
+						        		window.location.href = pathname_moi;
+						        	}
+						            
+						            console.log( window.location.pathname);
 						        });
 						        $('#sl-city').hover(function () {
 						            $(this).css('cursor', 'pointer');
@@ -114,3 +119,61 @@
 </div>
 <script src="js/tinhthanh-dropdown.js"></script>
 <jsp:include page="/views/modals/modal-login.jsp"></jsp:include>
+<script>
+      function initMap() {
+       /*  var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: {lat: 40.731, lng: -73.997}
+        }); */
+        var geocoder = new google.maps.Geocoder;
+        /* var infowindow = new google.maps.InfoWindow; */
+        /* document.getElementById('submit').addEventListener('click', function() {
+          geocodeLatLng(geocoder, map, infowindow);
+        }); */
+     	// Try HTML5 geolocation.
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+			console.log(position);
+			geocodeLatLng(geocoder, pos);
+			/* infowindow.setPosition(pos);
+			infowindow.setContent('Location found.');
+			infowindow.open(map);
+            map.setCenter(pos); */
+          });
+      }
+
+      function geocodeLatLng(geocoder, pos) {
+        /* var input = document.getElementById('latlng').value;
+        var latlngStr = input.split(',', 2);
+        console.log('latlngStr '+latlngStr);
+        var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+        console.log(latlng); */
+        geocoder.geocode({'location': pos}, function(results, status) {
+        	console.log(status);
+          if (status === 'OK') {
+            if (results[0]) {
+              /* map.setZoom(11);
+              var marker = new google.maps.Marker({
+                position: pos,
+                map: map
+              }); */
+              console.log(results[0]);
+              console.log(results[0].address_components[5]);
+              /* infowindow.setContent(results[0].formatted_address); */
+              /* infowindow.open(map, marker); */
+              /*$('#location-homepage').trigger('change');*/
+            } else {
+              console.log('No results found');
+            }
+          } else {
+            console.log('Geocoder failed due to: ' + status);
+          }
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9luxjN2MQFR3SJY-obplEq7An6PkEcO4&callback=initMap">
+    </script>

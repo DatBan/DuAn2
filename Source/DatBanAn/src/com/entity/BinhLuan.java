@@ -41,7 +41,7 @@ public class BinhLuan {
 	@ManyToOne
 	@JoinColumn(name = "idtraloi")
 	private BinhLuan traloi;
-	@OneToMany(mappedBy = "traloi", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "traloi", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BinhLuan> blcap;
 	
 	public BinhLuan() {
@@ -55,6 +55,19 @@ public class BinhLuan {
 		this.ngaytao = ngaytao;
 		this.nguoibl = nguoibl;
 		this.baivietbl = baivietbl;
+	}
+	
+	
+
+	public BinhLuan(String noidung, int trangthai, Date ngaytao, NguoiDung nguoibl, BaiViet baivietbl,
+			BinhLuan traloi) {
+		super();
+		this.noidung = noidung;
+		this.trangthai = trangthai;
+		this.ngaytao = ngaytao;
+		this.nguoibl = nguoibl;
+		this.baivietbl = baivietbl;
+		this.traloi = traloi;
 	}
 
 	public BinhLuan(String noidung, Date ngaytao, NguoiDung nguoibl, BaiViet baivietbl, Anh anhbl, MonAn monanbl,

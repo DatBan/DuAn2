@@ -33,11 +33,12 @@ public class BinhLuanDAOImpl implements BinhLuanDAO {
 	@Override
 	public List<BinhLuan> getByIdBaiViet(int idbv, int trang, String sapxep, String paramsx, int idnho) {
 		Session session = factory.getCurrentSession();
-		int /* pageCount = 0, sumRecords = 0, */ perPage = 1;
+		int /* pageCount = 0, sumRecords = 0, */ perPage = 10;
 		List<BinhLuan> list = null;
 		try {
 			Query query = session.createQuery(
-					"FROM BinhLuan bl WHERE bl.trangthai=:trangthai AND bl.id <= :idnho AND bl.baivietbl.id=:idbv AND bl.traloi.id IS NULL ORDER BY "+paramsx+" "+sapxep);
+					"FROM BinhLuan bl WHERE bl.trangthai=:trangthai AND bl.id <= :idnho AND bl.baivietbl.id=:idbv AND bl.traloi.id IS NULL ORDER BY "
+							+ paramsx + " " + sapxep);
 			query.setParameter("trangthai", 1);
 			query.setParameter("idnho", idnho);
 			query.setParameter("idbv", idbv);
@@ -64,10 +65,9 @@ public class BinhLuanDAOImpl implements BinhLuanDAO {
 			query.setParameter("trangthai", 1);
 			query.setParameter("idbv", idbv);
 
-
 			sizeBL = (Long) query.uniqueResult();
 		} catch (Exception e) {
-			System.out.println("LOI " + e.toString() + " BinhLuanDAOImpl.getMaxByIdBaiViet()");
+			System.out.println("LOI " + e.toString() + " BinhLuanDAOImpl.getSizeByIdBaiViet()");
 			e.printStackTrace();
 		}
 		return sizeBL;
@@ -91,7 +91,7 @@ public class BinhLuanDAOImpl implements BinhLuanDAO {
 		List<BinhLuan> bl = null;
 		try {
 			Query query = session.createQuery(
-					"FROM BinhLuan bl WHERE bl.trangthai=:trangthai AND bl.traloi.id=:idbl ORDER BY bl.id DESC");
+					"FROM BinhLuan bl WHERE bl.trangthai=:trangthai AND bl.traloi.id=:idbl ORDER BY bl.id ASC");
 			query.setParameter("trangthai", 1);
 			query.setParameter("idbl", id);
 
@@ -108,8 +108,7 @@ public class BinhLuanDAOImpl implements BinhLuanDAO {
 		Session session = factory.getCurrentSession();
 		BinhLuan bl = null;
 		try {
-			Query query = session.createQuery(
-					"FROM BinhLuan bl WHERE bl.trangthai=:trangthai AND bl.id=:idbl");
+			Query query = session.createQuery("FROM BinhLuan bl WHERE bl.trangthai=:trangthai AND bl.id=:idbl");
 			query.setParameter("trangthai", 1);
 			query.setParameter("idbl", id);
 
@@ -131,7 +130,6 @@ public class BinhLuanDAOImpl implements BinhLuanDAO {
 			query.setParameter("trangthai", 1);
 			query.setParameter("idbv", idbv);
 
-
 			maxId = (Integer) query.uniqueResult();
 		} catch (Exception e) {
 			System.out.println("LOI " + e.toString() + " BinhLuanDAOImpl.getMaxByIdBaiViet()");
@@ -139,7 +137,16 @@ public class BinhLuanDAOImpl implements BinhLuanDAO {
 		}
 		return maxId;
 	}
-	
-	
+
+	@Override
+	public void deleteBinhLuan(BinhLuan bl) {
+		Session session = factory.getCurrentSession();
+		try {
+			session.delete(bl);
+		} catch (Exception e) {
+			System.out.println("LOI " + e.toString() + " BinhLuanDAOImpl.deleteBinhLuan()");
+			e.printStackTrace();
+		}
+	}
 
 }
