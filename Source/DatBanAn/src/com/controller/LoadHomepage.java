@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.server.PathParam;
 
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,6 +20,8 @@ import com.dao.NhaHangDAO;
 import com.dao.ProvinceDAO;
 import com.entity.Province;
 import com.google.gson.Gson;
+
+import javassist.NotFoundException;
 
 @Controller
 public class LoadHomepage {
@@ -38,17 +41,15 @@ public class LoadHomepage {
 		response.getWriter().println(province);
 	}
 	
-	@RequestMapping("quan-an-{id}")
+	@RequestMapping("/{slug}")
 	public String index(ModelMap model,
-			@PathVariable("id") String provinceslug) {
-		System.out.println("zozo ozo zo ");
+			@PathVariable("slug") String provinceslug,
+			HttpServletResponse response){
+		/*if(false == false) throw new NullPointerException();*/
+		model.addAttribute("recommend", this.nhahangDAO.getListByMostRating(provinceslug));
 		Collection<Integer> listid = this.khuyenmaiDAO.getByIdNhaHang();
-		
-		model.addAttribute("promotion_nh", this.nhahangDAO.getListByPromotion(listid, provinceslug+""));
-		
-		System.out.println("size "+this.nhahangDAO.getListByProvinceSlug(provinceslug+"").size());
-		model.addAttribute("best_book", this.nhahangDAO.getListByProvinceSlug(provinceslug+""));
-		model.addAttribute("current_province", provinceslug);
+		model.addAttribute("promotion_nh", this.nhahangDAO.getListByPromotion(listid, provinceslug));
+		model.addAttribute("best_book", this.nhahangDAO.getListByProvinceSlug(provinceslug));
 		return "homepage/trangchu/index";
 	}
 }

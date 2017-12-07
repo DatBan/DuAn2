@@ -263,10 +263,11 @@ div.menu-top ul.navbar-right>li{
 }
 .tennhgiamgia{
 	color:#e33e20;
-	font-size: 18px;
+	font-size: 16px;
 }
 .diachinhgiamgia{
 	color:black;
+	font-size: 12px;
 }
 .ndgiamgia{
 	color:#5576b7;
@@ -308,6 +309,7 @@ a:hover{
 }
 /*																 Chi Tiet Nha Hang */
 .ctnh{
+	padding: 10px;
 	margin-top: 5px;
 	background-color:white;
 }
@@ -350,6 +352,7 @@ a:hover{
 	margin-top: 25px;
 }
 .lhctnh{
+	margin-bottom: 12px;
     margin-top: 25px;	
 }
 /* 								Chuong Trinh Khuyen Mai*/
@@ -679,6 +682,9 @@ div#bl-section div.filter-bl{
 }
 .form-control {
     border-radius: 0;
+}
+form#tim-kiem-nh .form-group .input-group-addon, form#tim-kiem-nh .form-group input{
+	border-radius: 0px;
 }
 
 

@@ -11,7 +11,8 @@
 					<b>Đánh giá nhà hàng</b>
 				</h4>
 			</div>
-			<form action="danh-gia.html" method="POST" id="danh-gia">
+			<form action="danh-gia/gui-danh-gia.html" method="POST" id="danh-gia">
+				<input type="hidden" name="idnh" value="${ctnhahang.id}"/>
 				<div class="modal-body">
 						<div class="row">
 							<div class="col-md-12 col-sm-6">

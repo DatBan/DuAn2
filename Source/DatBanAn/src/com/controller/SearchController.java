@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -193,9 +194,11 @@ public class SearchController {
 	@RequestMapping(value = "search-autocomplete-ajax", method = RequestMethod.POST)
 	public @ResponseBody void ajax_timkiem(
 			@RequestParam(value = "search", required = false, defaultValue = "") String search,
-			HttpServletResponse response) throws IOException, InterruptedException {
+			HttpServletResponse response,
+			HttpSession httpSession) throws IOException, InterruptedException {
 		Thread.sleep(500);
-		List<NhaHang> list = nhahangDAO.getListByTenNhaHang(search);
+		String provinceslug = httpSession.getAttribute("current_province")+"";
+		List<NhaHang> list = this.nhahangDAO.getListByTenNhaHang(search, provinceslug);
 
 		List<MonAn> listMA = this.monanDAO.getListByTenmonan(search);
 

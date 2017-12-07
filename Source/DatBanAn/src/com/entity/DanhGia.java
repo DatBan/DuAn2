@@ -11,29 +11,40 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table
 public class DanhGia {
 	@Id
 	@GeneratedValue
+	@Expose
 	private int id;
 	private String tieude;
+	@Expose
 	private String noidung;
+	@Expose
 	private int doan;
+	@Expose
 	private int khongian;
+	@Expose
 	private int giaca;
+	@Expose
 	private int phucvu;
+	@Expose
 	private double diemdanhgia;
 	private boolean trangthai;
 	private int soluonglike;
 	private int baocao;
 	@Temporal(TemporalType.TIMESTAMP)
+	@Expose
 	private Date ngaytao;
 	@ManyToOne
 	@JoinColumn(name = "idnhahang")
 	private NhaHang nhahang;
 	@ManyToOne
 	@JoinColumn(name = "idnguoidungdanhgia")
+	@Expose
 	private NguoiDung nguoidanhgia;
 
 	public DanhGia() {

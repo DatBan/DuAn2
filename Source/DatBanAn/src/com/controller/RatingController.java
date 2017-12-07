@@ -27,9 +27,11 @@ import com.entity.DanhGia;
 import com.entity.NguoiDung;
 import com.entity.NhaHang;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Controller
 @Transactional
+@RequestMapping("danh-gia")
 public class RatingController {
 	@Autowired
 	private DanhGiaDAO danhGiaDAO;
@@ -37,9 +39,10 @@ public class RatingController {
 	@Autowired
 	private SessionFactory factory;
 
-	@RequestMapping(value="danh-gia", method=RequestMethod.GET)
+	@RequestMapping(value="gui-danh-gia", method=RequestMethod.POST)
 	@ResponseBody
-	public void execute(@RequestParam("tieudedg") String tieude,
+	public void execute(@RequestParam("idnh") int idnh,
+			@RequestParam("tieudedg") String tieude,
 			@RequestParam("noidungdg") String noidung, 
 			@RequestParam("doan") int doan,
 			@RequestParam("khong-gian") int khonggian, 
@@ -65,27 +68,31 @@ public class RatingController {
 		
 		NguoiDung nd2 = (NguoiDung) httpSession.getAttribute("nd");
 		
-		NhaHang nh = (NhaHang) session.get(NhaHang.class, 1);
+		NhaHang nh = (NhaHang) session.get(NhaHang.class, idnh);
 		/*NguoiDung nd = (NguoiDung) session.get(NguoiDung.class, 2);*/
 		
 		System.out.println(doan+ " " + khonggian + " "+giaca + " " +phucvu+" = "+diemdanhgia);
 		 
 		DanhGia dg = new DanhGia(tieude, noidung, doan, khonggian, giaca, phucvu, diemdanhgia, true, new Date(), nh,
 				nd2);
-		 this.danhGiaDAO.createDanhGia(dg); 
+		this.danhGiaDAO.createDanhGia(dg); 
 
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder()
+				.excludeFieldsWithoutExposeAnnotation()
+				.create();
 		String trave = gson.toJson(dg);
 		response.getWriter().print(trave);
 	}
 	
-	@RequestMapping("list-danh-gia")
+	//Lay list dnah gia theo nha hang
+	@RequestMapping(value="list-danh-gia", method=RequestMethod.POST)
 	@ResponseBody
-	public void loadDanhGia(@RequestParam("trang") int trang,
+	public void loadDanhGia(@RequestParam("idnh") int idNhaHang,
+			@RequestParam("trang") int trang,
 			@RequestParam("idmoi[]") List<Integer> idmoi,
 			@RequestParam(value="sapxep", defaultValue="new", required=false) String sapXep,
 			HttpServletResponse response) throws IOException{
-		int pageCount = 0, sumRecords = 0, perPage = 10, idNhaHang = 1, idnho = 0;
+		int pageCount = 0, sumRecords = 0, perPage = 10, idnho = 0;
 		String rong = "sai", sorted = "DESC", thuoctinh = "dg.id";
 		
 		if(sapXep.equals("old")){

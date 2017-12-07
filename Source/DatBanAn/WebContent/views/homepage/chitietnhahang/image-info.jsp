@@ -1,9 +1,8 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<!DOCTYPE html>
 <div class="row ">
 	<div class="col-md-6">
-		<img class="imgctnh" src="images/ctnh.png" />
+		<img class="img-response" src="${ctnhahang.photopath}${ctnhahang.thumbnail}" width="100%"/>
 	</div>
 	<div class="col-md-6">
 		<div class="row dckhuvuc">
@@ -21,7 +20,7 @@
 		</div>
 		<div class="row rdcctnh">
 			<div class="col-md-12">
-				<span class="dcctnh">${ctnhahang.diachi}</span>
+				<span class="dcctnh">${ctnhahang.diachifull}</span>
 			</div>
 		</div>
 		<c:choose>
@@ -52,6 +51,7 @@
 		<div class="row saodanhgia">
 			<div class="col-md-3" title="${ctnhahang.sumRating} điểm">
 				<select class="diemdg">
+					<option value=""></option>
 					<option value="1" data-html="good">1</option>
 					<option value="2" data-html="better">2</option>
 					<option value="3" data-html="best">3</option>
@@ -69,10 +69,12 @@
 				<img src="images/dhctnh.png" />
 			</div>
 			<div class="col-md-11">
-				<span class="dangmocua" style="float: left;"> <b>Đang mở
-						cửa: </b>
-				</span> <span style="float: left;"><b> ${ctnhahang.giomocua} AM
-						- ${ctnhahang.giodongcua} PM</b></span>
+				<span class="dangmocua" style="float: left;"> 
+					<b>Đang mở cửa: </b> &nbsp;
+				</span> 
+				<span style="float: left;"> <b>${ctnhahang.giomocua} AM
+						- ${ctnhahang.giodongcua} PM</b>
+				</span>
 			</div>
 		</div>
 		<div class="row giatbctnh">
@@ -83,7 +85,7 @@
 				<p class="giatb" style="float: left;">
 					<b>Giá trung bình: </b>
 				</p>
-				<span style="float: left;"><b>200.000</b></span><b>đ - </b><span><b>400.000</b></span><span><b>đ</b></span>
+				<span style="float: left;">&nbsp; <b>200.000</b></span><b>đ - </b><span><b>400.000</b></span><span><b>đ</b></span>
 			</div>
 		</div>
 		<div class="row lhctnh">
@@ -94,7 +96,7 @@
 				<p class="lh" style="float: left;">
 					<b>Liên hệ: </b>
 				</p>
-				<span style="float: left;"><b> ${ctnhahang.sdt}</b></span>
+				<span style="float: left;">&nbsp; <b> ${ctnhahang.sdt}</b></span>
 			</div>
 		</div>
 	</div>

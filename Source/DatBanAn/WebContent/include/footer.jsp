@@ -29,9 +29,9 @@
 				<span class="ketnoi"><b>Kết nối với chúng tôi</b></span>
 			</div>
 			<div class="row iconft"> 
-				<a href="" ><img src="images/fb.png"/></a>
-				<a href="" ><img src="images/gg.png"/></a> 
-				<a href=""><img src="images/tw.png"/></a>
+				<a href="" ><img src="images/fb.png" style="height: 51px;"/></a>
+				<a href="" ><img src="images/gg.png" style="height: 51px;"/></a> 
+				<a href=""><img src="images/tw.png" style="height: 51px;"/></a>
 			</div>
 		</div>
 	</div>

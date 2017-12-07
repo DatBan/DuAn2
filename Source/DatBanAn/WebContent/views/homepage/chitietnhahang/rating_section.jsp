@@ -3,7 +3,8 @@
 <div class="container danhgia">
 	<div class="row ">
 		<div class="col-md-12 rtddg">
-			<span class="dgnh tieudegtctnh"><b>Đánh giá nhà hàng ${ctnhahang.id}</b></span>
+			<span class="dgnh tieudegtctnh"><b>Đánh giá nhà hàng</b></span>
+			<input type="hidden" id="idctnh" value="${ctnhahang.id}" />
 		</div>
 	</div>
 	<div class="row mucdg">
@@ -123,13 +124,14 @@
 		</div>
 	</div>
 </div>
+<script src="js/ScriptDanhGia.js"></script>
 <script>
 $(document).ready(function(){
 	$('.barChart').barChart();
 	var diemddg = 'asdsad';
 	$('.diemdg').barrating('show',{
-	theme: 'fontawesome-stars-o',
-	initialRating: ${ctnhahang.sumRating}
+		theme: 'fontawesome-stars-o',
+		initialRating: ${ctnhahang.sumRating}
 	}).barrating('readonly', true);
 });
 </script>
