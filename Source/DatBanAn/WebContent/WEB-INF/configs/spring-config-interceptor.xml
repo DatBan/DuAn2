@@ -24,17 +24,32 @@
 			<bean class="poly.interceptor.LoggerInterceptor" />
 		</mvc:interceptor>
 		 -->
-		<mvc:interceptor>
+		<!-- <mvc:interceptor>
 			<mvc:mapping path="/nguoidung/*"/>
+			<mvc:exclude-mapping path="/RegisterForm.html"/>
+			<bean class="com.interceptors.NguoiDungInterceptor" />
+		</mvc:interceptor> -->
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/nguoidung/**"/>
 			<bean class="com.interceptors.NguoiDungInterceptor" />
 		</mvc:interceptor>
+		
 		<mvc:interceptor>
-			<mvc:mapping path="/nhahang/*"/>
+			<mvc:mapping path="/nhahang/**"/>
 			<bean class="com.interceptors.NhaHangInterceptor" />
 		</mvc:interceptor>
 		
+		<mvc:interceptor>
+			<mvc:mapping path="/dashboard/**"/>
+			<mvc:exclude-mapping path="/dashboard/user-management.html?thongtincanhan**"/>
+			<bean class="com.interceptors.DashboardInterceptor" />
+		</mvc:interceptor>
+		
 		 <mvc:interceptor>
-			<mvc:mapping path="/dashboard/*"/>
+		 	<mvc:mapping path="/nguoidung/**"/>
+		 	<mvc:mapping path="/nhahang/**"/>
+			<mvc:mapping path="/dashboard/**"/>
 			<mvc:exclude-mapping path="/RegisterForm.html"/>
 			<bean class="com.interceptors.AuthorizeInterceptor" />
 		</mvc:interceptor>

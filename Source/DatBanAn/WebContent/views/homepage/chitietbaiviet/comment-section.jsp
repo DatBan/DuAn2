@@ -66,7 +66,7 @@
 					</div>
 					<div class="form-group col-md-12">
 						<button type='button' class='btn btn-default' data-dismiss="modal">Hủy</button>
-						<button type='submit' class='btn btn-info' id="btn-sua-modal" disabled="disabled">Chỉnh sửa</button>
+						<button type='submit' class='btn btn-info' id="btn-sua-modal">Chỉnh sửa</button>
 					</div>
 				</form>
 			</div>

@@ -13,13 +13,16 @@ public class NguoiDungInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 			Object handler) throws Exception{
 		HttpSession session = request.getSession();
-		NguoiDung nd = (NguoiDung) session.getAttribute("nd");
-		if(session.getAttribute("nd") != null && nd.getQuyennd().getId() != 3){
-			response.sendRedirect(request.getContextPath()+ "/trang-chu.html");
-			System.out.println("AuthorizeInterceptor.preHandle() ==> redirect");
-			return false;
+		NguoiDung nd = null;
+		if(session.getAttribute("nd") != null){
+			nd = (NguoiDung) session.getAttribute("nd");
+			if(nd.getQuyennd().getId() != 3){
+				System.out.println("NguoiDungInterceptor.preHandle() ==> redirect");
+				response.sendRedirect(request.getContextPath()+ "/trang-chu.html");
+				return false;
+			}
 		}
-		System.out.println("AuthorizeInterceptor.preHandle()");
+		System.out.println("NguoiDungInterceptor.preHandle() ==> redirect");
 		return true;
 	}
 }

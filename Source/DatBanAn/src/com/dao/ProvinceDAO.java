@@ -9,9 +9,11 @@ public interface ProvinceDAO {
 
 	public Province getById(String provinceid);
 
-	public List<Province> getByNhaHang();
+	public List<Object[]> getByNhaHang();
 
 	public void updateProvince(Province pv);
-	
+
 	public Province getByName(String provincename);
+
+	public Province getBySlug(String provinceslug);
 }

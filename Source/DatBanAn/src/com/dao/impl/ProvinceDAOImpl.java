@@ -36,23 +36,23 @@ public class ProvinceDAOImpl implements ProvinceDAO {
 	}
 
 	@Override
-	public List<Province> getByNhaHang() {
+	public List<Object[]> getByNhaHang() {
 		Session session = factory.getCurrentSession();
 		Query query = session.createQuery("SELECT nh.tinhthanh.slug, nh.tinhthanh.name, nh.tinhthanh.type"
 				+ " FROM NhaHang nh GROUP BY nh.tinhthanh.provinceid");
-		
+
 		@SuppressWarnings("unchecked")
-		List<Province> list = query.list();
+		List<Object[]> list = query.list();
 		return list;
 	}
 
 	@Override
 	public void updateProvince(Province pv) {
 		Session session = factory.getCurrentSession();
-		try{
+		try {
 			session.update(pv);
-		}catch(Exception e){
-			System.out.println("LOI "+e.toString()+" ProvinceDAOImpl.updateProvince()");
+		} catch (Exception e) {
+			System.out.println("LOI " + e.toString() + " ProvinceDAOImpl.updateProvince()");
 			e.printStackTrace();
 		}
 	}
@@ -60,8 +60,17 @@ public class ProvinceDAOImpl implements ProvinceDAO {
 	@Override
 	public Province getByName(String provincename) {
 		Session session = factory.getCurrentSession();
-		Query query =session.createQuery("FROM Province p WHERE p.name=:provincename");
+		Query query = session.createQuery("FROM Province p WHERE p.name=:provincename");
 		query.setParameter("provincename", provincename);
+		Province tinhthanh = (Province) query.uniqueResult();
+		return tinhthanh;
+	}
+
+	@Override
+	public Province getBySlug(String provinceslug) {
+		Session session = factory.getCurrentSession();
+		Query query = session.createQuery("FROM Province p WHERE p.slug=:provinceslug");
+		query.setParameter("provinceslug", provinceslug);
 		Province tinhthanh = (Province) query.uniqueResult();
 		return tinhthanh;
 	}

@@ -47,6 +47,10 @@ public class BinhLuanController {
 			HttpServletResponse response,
 			@RequestParam("idbaiviet") int idbv,
 			@RequestParam("noidung") String noidung) throws IOException{
+		NguoiDung ndht = null;
+		if(httpSession.getAttribute("nd") != null){
+			ndht = (NguoiDung) httpSession.getAttribute("nd");
+		}
 		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 		
 		BaiViet bv = this.baivietDAO.getById(idbv);
@@ -87,15 +91,17 @@ public class BinhLuanController {
 		strBL += 			"</form>";
 		strBL += 		"</div>";
 		strBL += 	"</div>";
-		strBL += 	"<div class='media-right'>";
-		strBL += 		"<div class='dropdown'>";
-		strBL += 			"<a href='javascript:;' class='fa fa-ellipsis-v hanh-dong' data-toggle='dropdown'></a>";
-		strBL += 			"<ul class='dropdown-menu'>";
-		strBL += 				"<li><a href='#' class='edit-cmt' data-idbl='"+bl.getIdbinhluan()+"'><i class='fa fa-wrench'></i> Chỉnh sửa</a></li>";
-		strBL += 				"<li><a href='#' class='delete-cmt' data-idx='"+bl.getIdbinhluan()+"'><i class='fa fa-remove'></i> Xóa</a></li>";
-		strBL += 			"</ul>";
-		strBL += 		"</div>";
-		strBL += 	"</div>";
+		if(ndht.getQuyennd().getId() == 1 || ndht.getId() == bl.getNguoibl().getId()){
+			strBL += 	"<div class='media-right'>";
+			strBL += 		"<div class='dropdown'>";
+			strBL += 			"<a href='javascript:;' class='fa fa-ellipsis-v hanh-dong' data-toggle='dropdown'></a>";
+			strBL += 			"<ul class='dropdown-menu'>";
+			strBL += 				"<li><a href='#' class='edit-cmt' data-idbl='"+bl.getIdbinhluan()+"'><i class='fa fa-wrench'></i> Chỉnh sửa</a></li>";
+			strBL += 				"<li><a href='#' class='delete-cmt' data-idx='"+bl.getIdbinhluan()+"'><i class='fa fa-remove'></i> Xóa</a></li>";
+			strBL += 			"</ul>";
+			strBL += 		"</div>";
+			strBL += 	"</div>";
+		}
 		strBL += "</div>";
 		strBL += "<script>";
 		strBL += 	"$(document).ready(function(){";
@@ -116,6 +122,10 @@ public class BinhLuanController {
 			@RequestParam("trang") int trang,
 			@RequestParam("idmoi[]") List<Integer> idmoi,
 			@RequestParam("sapxep") String sapxep) throws IOException{
+		NguoiDung ndht = null;
+		if(httpSession.getAttribute("nd") != null){
+			ndht = (NguoiDung) httpSession.getAttribute("nd");
+		}
 		
 		System.out.println("idmoi "+idmoi+" size "+idmoi.size()+" 1 "+ idmoi.get(0));
 		int pageCount = 0, perPage = 10, idnho = 0;
@@ -183,15 +193,17 @@ public class BinhLuanController {
 			strLbl += 			"</form>";
 			strLbl += 		"</div>";
 			strLbl += 	"</div>";
-			strLbl += 	"<div class='media-right'>";
-			strLbl += 		"<div class='dropdown'>";
-			strLbl += 			"<a href='javascript:;' class='fa fa-ellipsis-v' data-toggle='dropdown'></a>";
-			strLbl += 			"<ul class='dropdown-menu'>";
-			strLbl += 				"<li><a href='#' class='edit-cmt' data-idbl='"+bl.getIdbinhluan()+"'><i class='fa fa-wrench'></i> Chỉnh sửa</a></li>";
-			strLbl += 				"<li><a href='#' class='delete-cmt' data-idx='"+bl.getIdbinhluan()+"'><i class='fa fa-remove'></i> Xóa</a></li>";
-			strLbl += 			"</ul>";
-			strLbl += 		"</div>";
-			strLbl += 	"</div>";
+			if(ndht.getQuyennd().getId() == 1 || ndht.getId() == bl.getNguoibl().getId()){
+				strLbl += 	"<div class='media-right'>";
+				strLbl += 		"<div class='dropdown'>";
+				strLbl += 			"<a href='javascript:;' class='fa fa-ellipsis-v' data-toggle='dropdown'></a>";
+				strLbl += 			"<ul class='dropdown-menu'>";
+				strLbl += 				"<li><a href='#' class='edit-cmt' data-idbl='"+bl.getIdbinhluan()+"'><i class='fa fa-wrench'></i> Chỉnh sửa</a></li>";
+				strLbl += 				"<li><a href='#' class='delete-cmt' data-idx='"+bl.getIdbinhluan()+"'><i class='fa fa-remove'></i> Xóa</a></li>";
+				strLbl += 			"</ul>";
+				strLbl += 		"</div>";
+				strLbl += 	"</div>";
+			}
 			strLbl += "</div>";
 			strLbl += "<script>";
 			strLbl += 	"$(document).ready(function(){";
@@ -216,6 +228,10 @@ public class BinhLuanController {
 	public @ResponseBody void loadBinhLuan_reply(HttpSession httpSession,
 			HttpServletResponse response,
 			@RequestParam("idbl") int idbl) throws IOException{
+		NguoiDung ndht = null;
+		if(httpSession.getAttribute("nd") != null){
+			ndht = (NguoiDung) httpSession.getAttribute("nd");
+		}
 		
 		List<BinhLuan> lbl = this.binhluanDAO.getByIdCha(idbl);
 		System.out.println(lbl);
@@ -243,15 +259,17 @@ public class BinhLuanController {
 			strLbl += 		"<a href='javascript:;'> Thích</a>&nbsp;&nbsp;";
 			strLbl += 		"<a href='javascript:;' class='fa fa-flag'></a><br />";
 			strLbl += 	"</div>";
-			strLbl += 	"<div class='media-right'>";
-			strLbl += 		"<div class='dropdown'>";
-			strLbl += 			"<a href='javascript:;' class='fa fa-ellipsis-v' data-toggle='dropdown'></a>";
-			strLbl += 			"<ul class='dropdown-menu'>";
-			strLbl += 				"<li><a href='#' class='edit-cmt' data-idbl='"+bl.getIdbinhluan()+"'><i class='fa fa-wrench'></i> Chỉnh sửa</a></li>";
-			strLbl += 				"<li><a href='#' class='delete-cmt' data-idx='"+bl.getIdbinhluan()+"'><i class='fa fa-remove'></i> Xóa</a></li>";
-			strLbl += 			"</ul>";
-			strLbl += 		"</div>";
-			strLbl += 	"</div>";
+			if(ndht.getQuyennd().getId() == 1 || ndht.getId() == bl.getNguoibl().getId()){
+				strLbl += 	"<div class='media-right'>";
+				strLbl += 		"<div class='dropdown'>";
+				strLbl += 			"<a href='javascript:;' class='fa fa-ellipsis-v' data-toggle='dropdown'></a>";
+				strLbl += 			"<ul class='dropdown-menu'>";
+				strLbl += 				"<li><a href='#' class='edit-cmt' data-idbl='"+bl.getIdbinhluan()+"'><i class='fa fa-wrench'></i> Chỉnh sửa</a></li>";
+				strLbl += 				"<li><a href='#' class='delete-cmt' data-idx='"+bl.getIdbinhluan()+"'><i class='fa fa-remove'></i> Xóa</a></li>";
+				strLbl += 			"</ul>";
+				strLbl += 		"</div>";
+				strLbl += 	"</div>";
+			}
 			strLbl += "</div>";
 			strLbl += "<script>";
 			strLbl += 	"$(document).ready(function(){";
@@ -269,6 +287,10 @@ public class BinhLuanController {
 			@RequestParam("idreply") int idreply,
 			HttpServletResponse response,
 			HttpSession httpSession) throws IOException {
+		NguoiDung ndht = null;
+		if(httpSession.getAttribute("nd") != null){
+			ndht = (NguoiDung) httpSession.getAttribute("nd");
+		}
 		//Lay nguoi binh luan hien tai
 		NguoiDung nguoibl = (NguoiDung) httpSession.getAttribute("nd");
 		//Lay binh luan cha theo id
@@ -300,15 +322,17 @@ public class BinhLuanController {
 		strBL += 		"<a href='javascript:;'> Thích</a>&nbsp;&nbsp;";
 		strBL += 		"<a href='javascript:;' class='fa fa-flag'></a><br />";
 		strBL += 	"</div>";
-		strBL += 	"<div class='media-right'>";
-		strBL += 		"<div class='dropdown'>";
-		strBL += 			"<a href='javascript:;' class='fa fa-ellipsis-v' data-toggle='dropdown'></a>";
-		strBL += 			"<ul class='dropdown-menu'>";
-		strBL += 				"<li><a href='#' class='edit-cmt' data-idbl='"+bl.getIdbinhluan()+"'><i class='fa fa-wrench'></i> Chỉnh sửa</a></li>";
-		strBL += 				"<li><a href='#' class='delete-cmt' data-idx='"+bl.getIdbinhluan()+"'><i class='fa fa-remove'></i> Xóa</a></li>";
-		strBL += 			"</ul>";
-		strBL += 		"</div>";
-		strBL += 	"</div>";
+		if(ndht.getQuyennd().getId() == 1 || ndht.getId() == bl.getNguoibl().getId()){
+			strBL += 	"<div class='media-right'>";
+			strBL += 		"<div class='dropdown'>";
+			strBL += 			"<a href='javascript:;' class='fa fa-ellipsis-v' data-toggle='dropdown'></a>";
+			strBL += 			"<ul class='dropdown-menu'>";
+			strBL += 				"<li><a href='#' class='edit-cmt' data-idbl='"+bl.getIdbinhluan()+"'><i class='fa fa-wrench'></i> Chỉnh sửa</a></li>";
+			strBL += 				"<li><a href='#' class='delete-cmt' data-idx='"+bl.getIdbinhluan()+"'><i class='fa fa-remove'></i> Xóa</a></li>";
+			strBL += 			"</ul>";
+			strBL += 		"</div>";
+			strBL += 	"</div>";
+		}
 		strBL += "</div>";
 		strBL += "<script>";
 		strBL += 	"$(document).ready(function(){";

@@ -8,7 +8,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.entity.NguoiDung;
 
-public class NhaHangInterceptor extends HandlerInterceptorAdapter {
+public class DashboardInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 			Object handler) throws Exception{
@@ -16,13 +16,13 @@ public class NhaHangInterceptor extends HandlerInterceptorAdapter {
 		NguoiDung nd = null;
 		if(session.getAttribute("nd") != null){
 			nd = (NguoiDung) session.getAttribute("nd");
-			if(nd.getQuyennd().getId() != 2){
-				System.out.println("NhaHangInterceptor.preHandle() ==> redirect");
+			if(nd.getQuyennd().getId() != 1){
+				System.out.println("DashboardInterceptor.preHandle() ==> redirect");
 				response.sendRedirect(request.getContextPath()+ "/trang-chu.html");
 				return false;
 			}
 		}
-		System.out.println("NhaHangInterceptor.preHandle() ==> redirect");
+		System.out.println("DashboardInterceptor.preHandle() ==> redirect");
 		return true;
 	}
 }

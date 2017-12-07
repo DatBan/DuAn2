@@ -31,11 +31,12 @@ public class BanAnDAOImpl implements BanAnDAO {
 	}
 
 	@Override
-	public List<BanAn> getListBySoNguoiAndTenNhaHang(String songuoi, String tennh) {
+	public List<BanAn> getListBySoNguoiAndTenNhaHang(String songuoi, String tennh, String provinceslug) {
 		Session session = factory.getCurrentSession();
 		Query query = session.createQuery(
-				"FROM BanAn b WHERE b.songuoi >=:songuoi AND b.nhahang.tennhahang LIKE :tennh GROUP BY b.nhahang.id");
+				"FROM BanAn b WHERE b.songuoi >=:songuoi AND b.nhahang.tennhahang LIKE :tennh AND b.nhahang.tinhthanh.slug=:provinceslug GROUP BY b.nhahang.id");
 		query.setParameter("songuoi", Integer.parseInt(songuoi));
+		query.setParameter("provinceslug", provinceslug);
 		query.setParameter("tennh", "%" + tennh + "%");
 
 		@SuppressWarnings("unchecked")

@@ -31,7 +31,7 @@
 			<div class="row iconft"> 
 				<a href="" ><img src="images/fb.png" style="height: 51px;"/></a>
 				<a href="" ><img src="images/gg.png" style="height: 51px;"/></a> 
-				<a href=""><img src="images/tw.png" style="height: 51px;"/></a>
+				<a href=""><img src="images/tw.png" style="height: 45px;"/></a>
 			</div>
 		</div>
 	</div>

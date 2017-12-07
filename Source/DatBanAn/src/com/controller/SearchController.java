@@ -47,7 +47,9 @@ public class SearchController {
 			/*@RequestParam("thoigian") String thoigian,*/
 			@RequestParam("ngaythang") String ngaythang,
 			@RequestParam("songuoi") String songuoi,
-			ModelMap model) throws ParseException{
+			ModelMap model,
+			HttpSession httpSession) throws ParseException{
+		String provinceslug = httpSession.getAttribute("current_province")+"";
 		int trang = 0;
 		String sapXep = "DESC", paramSX = "nh.id";
 		
@@ -59,7 +61,7 @@ public class SearchController {
 		
 		System.out.println("ngaythang "+ngaythang);
 		System.out.println("ngaythang2 "+ngaythang2);
-		List<BanAn> listba = this.bananDAO.getListBySoNguoiAndTenNhaHang(songuoi, tenNH);
+		List<BanAn> listba = this.bananDAO.getListBySoNguoiAndTenNhaHang(songuoi, tenNH, provinceslug);
 		System.out.println("listba "+listba.size());
 		NhaHang nh = new NhaHang();
 		List<HoaDon> listhd = new ArrayList<>();
@@ -100,7 +102,8 @@ public class SearchController {
 			@RequestParam("ngaythang") String ngaythang,
 			@RequestParam("songuoi") String songuoi,
 			ModelMap model,
-			HttpServletResponse response) throws ParseException, IOException{
+			HttpServletResponse response,
+			HttpSession httpSession) throws ParseException, IOException{
 		String rong = "sai", sorted = "DESC", thuoctinh = "nh.id";
 		
 		if(sapXep.equals("old")){
@@ -117,10 +120,10 @@ public class SearchController {
 		Date ngaythang2 = new Date();
 		ngaythang2 = sdf.parse(ngaythang);
 		System.out.println("sdf2 "+sdf2.format(ngaythang2));
-		
+		String provinceslug = httpSession.getAttribute("current_province")+"";
 		System.out.println("ngaythang "+ngaythang);
 		System.out.println("ngaythang2 "+ngaythang2);
-		List<BanAn> listba = this.bananDAO.getListBySoNguoiAndTenNhaHang(songuoi, tenNH);
+		List<BanAn> listba = this.bananDAO.getListBySoNguoiAndTenNhaHang(songuoi, tenNH, provinceslug);
 		System.out.println("listba "+listba.size());
 		NhaHang nh = new NhaHang();
 		List<HoaDon> listhd = new ArrayList<>();
