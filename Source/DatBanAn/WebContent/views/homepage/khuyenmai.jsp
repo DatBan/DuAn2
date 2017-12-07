@@ -34,18 +34,19 @@
 		
 		<div class="row">
 			<c:forEach var="km" items="${km}">
+				<c:set var="slug" value="${km.nhahang.tinhthanh.slug}/${km.nhahang.slug}-r${km.nhahang.id}.html"/>
 				<div class=col-md-3>
 					<div class="row">
-						<a class="linknhgiamgia" href="chitietnhahang.html"><img
+						<a class="linknhgiamgia" href="${slug}"><img
 							class="hinhgiamgia" src="images/baochau.png" /></a>
 					</div>
 					<div class="row text-center giantoptennh">
-						<a href="${km.nhahang.id}"><span class="tennhgiamgia">${km.nhahang.tennhahang}</span></a>
+						<a href="${slug}"><span class="tennhgiamgia">${km.nhahang.tennhahang}</span></a>
 					</div>
 					<div class="row text-center">
 						<div class="col-md-1"></div>
 						<div class="col-md-10">
-							<a href="#"><span class="diachinhgiamgia">${km.nhahang.diachi}</span></a>
+							<a href="${slug}"><span class="diachinhgiamgia">${km.nhahang.diachifull}</span></a>
 						</div>
 						<div class="col-md-1"></div>
 					</div>
@@ -53,7 +54,7 @@
 					<div class="row text-center">
 						<div class="col-md-1"></div>
 						<div class="col-md-10">
-							<a href="${km.id}"><span class="ndgiamgia">${km.thongtin}</span></a>
+							<a href="${slug}"><span class="ndgiamgia">${km.thongtin}</span></a>
 						</div>
 						<div class="col-md-1"></div>
 	

@@ -277,6 +277,9 @@ public class NhaHang {
 	}
 
 	public Double getSumRating() {
+		if(sumRating == null){
+			return 0.0;
+		}
 		return sumRating;
 	}
 
@@ -285,6 +288,9 @@ public class NhaHang {
 	}
 
 	public Double getSumDoAn() {
+		if(sumDoAn == null){
+			return 0.0;
+		}
 		return sumDoAn;
 	}
 
@@ -293,6 +299,9 @@ public class NhaHang {
 	}
 
 	public Double getSumKhongGian() {
+		if(sumKhongGian == null){
+			return 0.0;
+		}
 		return sumKhongGian;
 	}
 
@@ -301,6 +310,9 @@ public class NhaHang {
 	}
 
 	public Double getSumPhucVu() {
+		if(sumPhucVu == null){
+			return 0.0;
+		}
 		return sumPhucVu;
 	}
 
@@ -309,6 +321,9 @@ public class NhaHang {
 	}
 
 	public Double getSumGiaCa() {
+		if(sumGiaCa == null){
+			return 0.0;
+		}
 		return sumGiaCa;
 	}
 
@@ -316,7 +331,7 @@ public class NhaHang {
 		this.sumGiaCa = sumGiaCa;
 	}
 
-	public int getCountRating() {
+	public Integer getCountRating() {
 		return countRating;
 	}
 

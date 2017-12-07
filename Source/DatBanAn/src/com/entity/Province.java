@@ -14,6 +14,7 @@ public class Province {
 	@Expose
 	private String name;
 	private String type;
+	@Expose
 	private String slug;
 
 	public Province() {

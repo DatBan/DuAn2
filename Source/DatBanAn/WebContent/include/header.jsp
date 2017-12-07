@@ -59,9 +59,22 @@
 							<script>
 						        $("#location-div option[selected='selected']").prop('selected', true);
 						        $('#location-homepage').on("change", function () {
-						        	var pathname_moi = "quan-an-"+$('#location-homepage').val()+".html";
+						        	var slug = $(this).val();
+						        	var pathname_moi = $('#location-homepage').val()+".html";
 						        	if(window.location.pathname != '/'+pathname_moi){
 						        		console.log(pathname_moi);
+						        		$.ajax({
+						        			url: "location/switch.html",
+						        			type: "POST",
+						        			data: {provinceslug: slug},
+						        			dataType: "json",
+						        			success: function(result){
+						        				console.log(result);
+						        			},
+						        			error: function(error){
+						        				console.log(error);
+						        			}
+						        		});
 						        		window.location.href = pathname_moi;
 						        	}
 						            
@@ -74,8 +87,8 @@
 						</div>
 					</form>
 					<ul class="nav navbar-nav">
-						<li><a href="khuyenmai.html"><b>Khuyến mãi</b></a></li>
-						<li><a href="baiviet.html"><b>Bài viết</b></a></li>
+						<li><a href="${current_province}/nha-hang-khuyen-mai.html"><b>Khuyến mãi</b></a></li>
+						<li><a href="bai-viet.html"><b>Bài viết</b></a></li>
 						<li><a href="#"><b>Trợ giúp</b></a></li>
 						<c:forEach var="t" items="${trang}">
 							<li><a href="#">${t.tieude}</a></li>

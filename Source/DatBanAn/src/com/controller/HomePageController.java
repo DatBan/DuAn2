@@ -2,6 +2,8 @@ package com.controller;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dao.BaiVietDAO;
 import com.dao.DanhGiaDAO;
+import com.dao.KhuyenMaiDAO;
 import com.dao.NhaHangDAO;
 import com.dao.ProvinceDAO;
 import com.entity.BaiViet;
@@ -22,6 +25,8 @@ import com.entity.NhaHang;
 
 @Controller
 public class HomePageController {
+	@Autowired
+	private KhuyenMaiDAO khuyenmaiDAO;
 	@Autowired
 	private BaiVietDAO baivietDAO;
 	@Autowired
@@ -39,25 +44,16 @@ public class HomePageController {
 		/*model.addAttribute("nguoidung", new NguoiDung());*/
 		return "homepage/trangchu/index";
 	}
-	@RequestMapping("{slug}-r{idnh}")
+	@RequestMapping("/{tinhthanh}/{slug}-r{idnh}")
 	public String ctnh(ModelMap model,
 			@PathVariable("idnh") int idnh){
-		/*List<DanhGia> listDG = this.danhgiaDAO.getListDanhGiaByIdNhaHang(1, 
-
-2);*/
 		System.out.println("zozooz");
-		Session session = factory.openSession();
 		NhaHang nh = this.nhahangDAO.getById(idnh);
+		String provinceid = nh.getTinhthanh().getProvinceid();
 		
-		String hql ="FROM KhuyenMai km where trangthai='1' and idnhahang =:idnhahang ";
-		Query query = session.createQuery(hql);
-		
-		query.setParameter("idnhahang", idnh);
-		@SuppressWarnings("unchecked")
-		List<KhuyenMai> list = query.list();
-		model.addAttribute("km", list);
+		model.addAttribute("km", this.khuyenmaiDAO.getByIdNhaHang(idnh));
+		model.addAttribute("nhlienquan", this.nhahangDAO.getListByProvinceId(provinceid, idnh));
 		model.addAttribute("ctnhahang", nh);
-		System.out.println("khuyeenx mai cua nha hang"+list);
 		/*model.addAttribute("listDG", listDG);*/
 		model.addAttribute("nguoidung", new NguoiDung());
 		return"homepage/chitietnhahang/chitietnhahang";
@@ -69,23 +65,19 @@ public class HomePageController {
 		return"homepage/timkiemnhahang/ketquatimkiem";
 	}
 	
-	@RequestMapping("khuyenmai")
-	public String khuyenmai(ModelMap model){
+	@RequestMapping("{tinhthanh}/nha-hang-khuyen-mai")
+	public String khuyenmai(ModelMap model,
+			@PathVariable("tinhthanh") String tinhthanh){
 		/*List<DanhGia> listDG = this.danhgiaDAO.getListDanhGiaByIdNhaHang(1, 2);*/
-		Session session = factory.openSession();		
-		String hql ="FROM KhuyenMai km WHERE km.trangthai='1' GROUP BY km.nhahang.id";
-		Query query = session.createQuery(hql);		
-
+				
 		
-		@SuppressWarnings("unchecked")
-		List<KhuyenMai> listkhuyenmai = query.list();		
-		
-		model.addAttribute("km", listkhuyenmai);
+		model.addAttribute("km", this.khuyenmaiDAO.getByProvinceSlug(tinhthanh));
+		model.addAttribute("tinh-thanhs", tinhthanh);
 		
 		
 		return"homepage/khuyenmai";
 	}
-	@RequestMapping("baiviet")
+	@RequestMapping("bai-viet")
 	public String baiviet(ModelMap model){
 		
 		Session session = factory.openSession();		

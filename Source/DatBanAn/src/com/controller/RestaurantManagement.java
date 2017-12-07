@@ -82,13 +82,12 @@ public class RestaurantManagement {
 			@RequestParam(value="trangthai", defaultValue="1") int trangthai,
 			HttpServletRequest httpRequest){
 		
-		System.out.println(httpRequest.getServletMapping().getMatchValue());
 		model.addAttribute("dsnhahang", this.nhahangDAO.getListByTrangThai(trangthai));
 		model.addAttribute("tenbreadcrumb", "danh sách nhà hàng đang hoạt động");
 		if(trangthai == 0){
 			model.addAttribute("tenbreadcrumb", "danh sách nhà hàng đã khóa");
 		}
-		model.addAttribute("btn_add",httpRequest.getServletMapping().getMatchValue()+"/them.html");
+		model.addAttribute("btn_add","dashboard/restaurants-mng/them.html");
 		model.addAttribute("tthai",trangthai);
 		model.addAttribute("urlurl", httpRequest.getRequestURL());
 		

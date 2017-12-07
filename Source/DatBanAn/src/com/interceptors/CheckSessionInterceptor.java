@@ -41,6 +41,11 @@ public class CheckSessionInterceptor extends HandlerInterceptorAdapter {
 					if(!c.getValue().equals("")) {
 						httpSession.setAttribute("nd", nguoidungDAO.getByIdGoogle(c.getValue()));
 					}
+				}else if(c.getName().equals("province_slug") && httpSession.getAttribute("current_province") == null){
+					if(!c.getValue().equals("")) {
+						httpSession.setAttribute("current_province", c.getValue());
+						System.out.println(c.getName()+" "+c.getValue());
+					}
 				}
 			}
 		}

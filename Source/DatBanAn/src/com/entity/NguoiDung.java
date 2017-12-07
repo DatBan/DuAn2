@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * @author TuTo
  *
@@ -15,7 +17,9 @@ public class NguoiDung {
 	@Id
 	@GeneratedValue
 	private int id;
+	@Expose
 	private String ho;
+	@Expose
 	private String ten;
 	private String tendangnhap;
 	private String matkhau;

@@ -55,12 +55,12 @@
 						{
 					        listLocation: "monan",
 					        maxNumberOfElements: 4,
-					        header: "<i class='fa fa fa-cutlery'></i> Món ăn"
+					        header: "<span style='font-size: large;'><i class='fa fa fa-cutlery'></i> Món ăn</span>"
 					    }, 
 					    {
 					        listLocation: "nhahang",
 					        maxNumberOfElements: 4,
-					        header: "<i class='fa fa-building-o'></i> Nhà hàng"
+					        header: "<span style='font-size: large;'><i class='fa fa-building-o'></i> Nhà hàng</span>"
 					    }],
 
 					  getValue: function(element) {
@@ -79,11 +79,12 @@
 								}
 								if(item.tennhahang != undefined){
 									var hinhanh = item.photopath + item.thumbnail;
+									var slug = item.tinhthanh.slug+"/"+item.slug+"-r"+item.id+".html";
 									var diachifull = item.quanhuyen.type +" "+item.quanhuyen.name+", "+item.tinhthanh.name;
 									var nhahang = "";
-									nhahang += "<a href='"+item.slug+".html' title='"+item.tennhahang+"'>";
-									nhahang += 	"<img src='" + hinhanh + "' class='img-response' width='40px'/>"+value;
-									nhahang += 	"<br/><small>" + diachifull + "</small>";
+									nhahang += "<a href='"+slug+"' title='"+item.tennhahang+"' style='color:#333;'>";
+									nhahang += 		"<img src='" + hinhanh + "' class='img-response' width='40px'/><span>"+value;
+									nhahang += 		"</span><br/><small>" + diachifull + "</small>";
 									nhahang += "</a>";
 									return nhahang;
 								}

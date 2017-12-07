@@ -54,27 +54,16 @@
 	<div class="container gioithieuctnh">
 		<div class="row rgtctnh">
 			<div class="col-md-2">
-				<span class="gtctnh tieudegtctnh"><b>Giới thiệu :</b></span>
+				<span class="gtctnh tieudegtctnh"><b>Giới thiệu</b></span>
 			</div>
-			<div class="col-md-10">
-				<span class="tieudegtctnh"><b> GIỚI THIỆU SUSHI DINING
-						AOI - MÓN NHẬT</b></span>
-			</div>
+			<%-- <div class="col-md-10">
+				<span class="tieudegtctnh"><b>${ctnhahang.tennhahang}</b></span>
+			</div> --%>
 
 		</div>
 		<div class="row rndgtctnh">
 			<div class="col-md-12">
-				<span class="ndgtctnh">Theo Feng Jianghua, kỹ sư trưởng chế
-					tạo tàu, hệ thống đường ray ảo có chi phí xây dựng rẻ hơn so với
-					đường ray tàu hỏa hoặc hệ thống tàu điện ngầm. Feng cho biết chi
-					phí xây một kilomet đường ray tàu hỏa ở Trung Quốc là 22 – 30 triệu
-					USD, nhưng với đường ray ảo công nghệ cao, chi phí giảm xuống 7,5 –
-					15 triệu USD cho cùng quãng đường. Đoàn tàu có thể nhận biết lề
-					đường và trang bị nhiều cảm biến khác nhau để thu thập thông tin
-					giao thông. Ba đoàn tàu thông minh đang được thử nghiệm trên đường
-					phố Chu Châu. Đường tàu sẽ chính thức đi vào hoạt động trong mùa
-					xuân năm sau. Theo dự kiến, tàu sẽ chuyển sang vận hành tự động
-					trong tương lai gần.</span>
+				<span class="ndgtctnh">${ctnhahang.gioithieu}</span>
 			</div>
 		</div>
 	</div>
@@ -413,95 +402,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="container bodydexuat">
-		<div class="row">
-			<div class="col-md-4">
-
-				<span class="giamgia tieudegtctnh">Có thể bạn sẽ thích</span>
-			</div>
-		</div>
-		<div class="row">
-			<div class=col-md-3>
-
-				<div class="row">
-					<a class="linknhgiamgia" href="#"><img class="hinhgiamgia"
-						src="images/baochau.png" /></a>
-				</div>
-				<div class="row text-center giantoptennh">
-					<a href="#"><span class="tennhgiamgia">Nhà Hàng Cửu Châu</span></a>
-				</div>
-				<div class="row text-center">
-					<div class="col-md-1"></div>
-					<div class="col-md-10">
-						<a href="#"><span class="diachinhgiamgia">27 Phan Bội
-								Châu Buôn Ma Thuột Đăk Lăk</span></a>
-					</div>
-					<div class="col-md-1"></div>
-				</div>
-
-
-			</div>
-			<div class=col-md-3>
-				<div class="row">
-					<a href="#"><img class="hinhgiamgia" src="images/thienbao.png" /></a>
-				</div>
-				<div class="row text-center giantoptennh">
-					<a href="#"><span class="tennhgiamgia">Nhà Hàng Thiên
-							Bảo</span></a>
-				</div>
-				<div class="row text-center">
-					<div class="col-md-1"></div>
-					<div class="col-md-10">
-						<a href="#"><span class="diachinhgiamgia">27 Phan Bội
-								Châu Buôn Ma Thuột Đăk Lăk</span></a>
-					</div>
-					<div class="col-md-1"></div>
-				</div>
-
-			</div>
-			<div class=col-md-3>
-				<div class="row">
-					<a href="#"><img class="hinhgiamgia" src="images/tinhyeu.png" /></a>
-				</div>
-				<div class="row text-center giantoptennh">
-					<a href="#"><span class="tennhgiamgia">Nhà Hàng Tình Yêu</span></a>
-				</div>
-				<div class="row text-center">
-					<div class="col-md-1"></div>
-					<div class="col-md-10">
-						<a href="#"><span class="diachinhgiamgia">27 Phan Bội
-								Châu Buôn Ma Thuột Đăk Lăk</span></a>
-					</div>
-					<div class="col-md-1"></div>
-				</div>
-
-			</div>
-			<div class=col-md-3>
-				<div class="row">
-					<a href="#"><img class="hinhgiamgia" src="images/phuquoc.png" /></a>
-				</div>
-				<div class="row text-center giantoptennh">
-					<a href="#"><span class="tennhgiamgia">Nhà Hàng Phú Quốc</span></a>
-				</div>
-				<div class="row text-center">
-					<div class="col-md-1"></div>
-					<div class="col-md-10">
-						<a href="#"><span class="diachinhgiamgia">27 Phan Bội
-								Châu Buôn Ma Thuột Đăk Lăk</span></a>
-					</div>
-					<div class="col-md-1"></div>
-				</div>
-
-			</div>
-		</div>
-		<div class="row">
-
-			<div class="col-md-12 text-center linkxemthemgiamgia">
-				<a href="#"><span class="xemthemgiamgia">Xem Thêm</span></a>
-			</div>
-
-		</div>
-	</div>
+	<jsp:include page="bansethich.jsp"></jsp:include>
 
 	<%-- <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
