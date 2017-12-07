@@ -294,7 +294,10 @@ public class OpenTableController {
 			double tongtien = 0;
 			for (int i = 0; i < listcthd.size(); i++) {
 				ChiTietHoaDon ct = listcthd.get(i);
-				tongtien = tongtien + ct.getMonan().getGia();
+				if(ct.getTrangthai() == 1){
+					tongtien = tongtien + ct.getMonan().getGia();
+
+				}
 			}
 			model.addAttribute("tongtien", tongtien);
 			model.addAttribute("monan", list);
@@ -400,6 +403,23 @@ public class OpenTableController {
 			re.addFlashAttribute("koxoadc", "Món đã được làm không thể xoá");
 			return "redirect:/datban/thongtinbanan.html?email=" + hd.getEmail() + "&idhoadon=" + hd.getId() + "";
 		}
+		if(ct.getTrangthai()==2){
+			re.addFlashAttribute("koxoadc", "Món đã hết bạn thông bảm");
+			try {
+
+				session.delete(ct);
+				t.commit();
+				model.addAttribute("message", "Xoá thành công");
+
+			} catch (Exception e) {
+				t.rollback();
+				
+				model.addAttribute("message", "Xoá thất bại !" + e.getMessage());
+			} finally {
+				session.close();
+			}
+			return "redirect:/datban/thongtinbanan.html?email=" + hd.getEmail() + "&idhoadon=" + hd.getId() + "";
+		}
 		try {
 
 			session.delete(ct);
@@ -408,6 +428,7 @@ public class OpenTableController {
 
 		} catch (Exception e) {
 			t.rollback();
+			
 			model.addAttribute("message", "Xoá thất bại !" + e.getMessage());
 		} finally {
 			session.close();

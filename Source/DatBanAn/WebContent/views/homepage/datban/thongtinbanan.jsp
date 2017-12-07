@@ -182,6 +182,9 @@
 																			href="datban/delete/${c.id}.html?idhoadon=${hoadon.id}"
 																			onclick="return confirm ('Bạn có thực sự muốn xoá món này')">Xoá</a>
 																	</c:if>
+																	<c:if test="${c.trangthai==2}">
+																			<p style="color:red">Hết</p>
+																		</c:if>
 																</div>
 															</div>
 														</c:forEach>
@@ -342,6 +345,9 @@
 																			href="datban/delete/${c.id}.html?idhoadon=${hoadon.id}"
 																			onclick="return confirm ('Bạn có thực sự muốn xoá món này')">Xoá</a>
 																	</c:if>
+																	<c:if test="${c.trangthai==2}">
+																			<p style="color:red">Hết</p>
+																		</c:if>
 																</div>
 															</div>
 														</c:forEach>
@@ -409,26 +415,32 @@
 														</p>
 														<c:forEach var="c" items="${cthd}" varStatus="status">
 															<c:set var="dem" value="${status.index+1}"></c:set>
-															<div class="row">
-																<div class="col-md-1">
-																	<p>${dem}</p>
+															
+																
+																<div class="row">
+																	<div class="col-md-1">
+																		<p>${dem}</p>
+																	</div>
+																	<div class="col-md-6">
+																		<p>${c.monan.tenmonan}</p>
+																	</div>
+																	<div class="col-md-3">
+																		<fmt:formatNumber var="gia" type="number"
+																			pattern="###,###,###,###" value="${c.monan.gia}"></fmt:formatNumber>
+																		<p>${gia}đ</p>
+																	</div>
+																	<div class="col-md-1">
+																		<c:if test="${c.trangthai==0}">
+																			<a
+																				href="datban/delete/${c.id}.html?idhoadon=${hoadon.id}"
+																				onclick="return confirm ('Bạn có thực sự muốn xoá món này')">Xoá</a>
+																		</c:if>
+																		<c:if test="${c.trangthai==2}">
+																			<p style="color:red">Hết</p>
+																		</c:if>
+																	</div>
 																</div>
-																<div class="col-md-6">
-																	<p>${c.monan.tenmonan}</p>
-																</div>
-																<div class="col-md-3">
-																	<fmt:formatNumber var="gia" type="number"
-																		pattern="###,###,###,###" value="${c.monan.gia}"></fmt:formatNumber>
-																	<p>${gia}đ</p>
-																</div>
-																<div class="col-md-1">
-																	<c:if test="${c.trangthai==0}">
-																		<a
-																			href="datban/delete/${c.id}.html?idhoadon=${hoadon.id}"
-																			onclick="return confirm ('Bạn có thực sự muốn xoá món này')">Xoá</a>
-																	</c:if>
-																</div>
-															</div>
+															
 														</c:forEach>
 														
 														<div class="row "

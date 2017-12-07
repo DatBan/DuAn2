@@ -45,7 +45,7 @@ public class ManagerTableController {
 		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 		NhaHang nhahang = nd.getNhahang();
 		int id = nhahang.getId();
-		String hql = "FROM BanAn where idnhahang =:idnhahang and trangthai=0 or trangthai=1";
+		String hql = "FROM BanAn where nhahang.id =:idnhahang and (trangthai=0 or trangthai=1)";
 		Query query = session.createQuery(hql);
 		query.setParameter("idnhahang", id);
 		@SuppressWarnings("unchecked")

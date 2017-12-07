@@ -108,7 +108,7 @@ public class ArticleAdminController {
 		BaiViet baiviet = (BaiViet) session.get(BaiViet.class, id);
 		model.addAttribute("baiviet", baiviet);
 
-		return "homepage/chitietbaiviet";
+		return "redirect:/bai-viet/"+baiviet.getSlug()+"-p"+id+".html";
 	}
 
 	// Xoa bai viet
@@ -229,17 +229,22 @@ public class ArticleAdminController {
 		}
 		response.setCharacterEncoding("UTF-8");
 		Session session = factory.getCurrentSession();
-
-		String hql = "FROM BaiViet  WHERE tieude =:tieude and trangthai=0 or trangthai=1";
+		System.out.println("aaaaaa");
+		String hql = "FROM BaiViet  WHERE tieude =:tieude and (trangthai=0 or trangthai=1)";
 		Query query = session.createQuery(hql);
 		query.setParameter("tieude", tieude);
 		BaiViet bv = (BaiViet) query.uniqueResult();
+		System.out.println(bv);
 		if (bv != null) {
 			if (bv.getId() == id) {
+				System.out.println("hihi");
 				return "true";
+				
 			}
+			System.out.println("haha");
 			return "false";
 		} else {
+			System.out.println("hoho");
 			return "true";
 		}
 	}
@@ -256,7 +261,7 @@ public class ArticleAdminController {
 		response.setCharacterEncoding("UTF-8");
 		Session session = factory.getCurrentSession();
 
-		String hql = "FROM BaiViet  WHERE name =:name and trangthai=0 or trangthai=1";
+		String hql = "FROM BaiViet  WHERE name =:name and (trangthai=0 or trangthai=1)";
 		Query query = session.createQuery(hql);
 		query.setParameter("name", name);
 		BaiViet bv = (BaiViet) query.uniqueResult();
@@ -302,8 +307,7 @@ public class ArticleAdminController {
 		Session session = factory.openSession();
 		BaiViet bv = (BaiViet) session.get(BaiViet.class, id);
 		LoaiBaiViet loaibv = (LoaiBaiViet) session.get(LoaiBaiViet.class, idloai);
-		String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
-		String photoPath = context.getRealPath("/upload/baiviet/" + tenhinh);
+		
 		String td = tieude.trim();
 		String tt = name.trim();
 		String sl = slug.trim();
@@ -329,6 +333,8 @@ public class ArticleAdminController {
 		}
 		String hinhanh = bv.getHinh();
 		if (!hinh.isEmpty()) {
+			String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
+			String photoPath = context.getRealPath("/upload/baiviet/" + tenhinh);
 			try {
 				hinh.transferTo(new File(photoPath));
 				hinhanh = tenhinh;

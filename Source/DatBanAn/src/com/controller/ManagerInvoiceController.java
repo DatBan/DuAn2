@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dao.BanAnDAO;
+import com.entity.BaiViet;
 import com.entity.BanAn;
 import com.entity.HoaDon;
 import com.entity.NguoiDung;
@@ -276,9 +277,17 @@ public class ManagerInvoiceController {
 	
 	// Duyet 
 	@RequestMapping(value = "duyet")
-	public String duyet(ModelMap model, @RequestParam("idhd") int idhd) {
+	public String duyet(ModelMap model, @RequestParam("idhd") int idhd,HttpSession httpSession) {
 		Session session = factory.openSession();
-		List<BanAn> list = banAnDAO.getListByTrangThaiTrong();
+		
+		NguoiDung nguoidung = (NguoiDung) httpSession.getAttribute("nd");
+		int idnh=nguoidung.getNhahang().getId();
+		
+		String hql = "FROM BanAn where nhahang.id =:idnhahang and trangthai=0";		
+		Query query = session.createQuery(hql);
+		query.setParameter("idnhahang", idnh);
+		@SuppressWarnings("unchecked")
+		List<BanAn> list = query.list();
 		HoaDon hd = (HoaDon) session.get(HoaDon.class, idhd);
 		
 		Transaction t = session.beginTransaction();
@@ -320,9 +329,17 @@ public class ManagerInvoiceController {
 		}
 	// Duyet ban
 		@RequestMapping(value = "duyet1")
-		public String duyet1(ModelMap model, @RequestParam("idhd") int idhd) {
+		public String duyet1(ModelMap model, @RequestParam("idhd") int idhd,HttpSession httpSession) {
 			Session session = factory.openSession();
-			List<BanAn> list = banAnDAO.getListByTrangThaiTrong();
+			NguoiDung nguoidung = (NguoiDung) httpSession.getAttribute("nd");
+			int idnh=nguoidung.getNhahang().getId();
+			
+			String hql = "FROM BanAn where nhahang.id =:idnhahang and trangthai=0";		
+			Query query = session.createQuery(hql);
+			query.setParameter("idnhahang", idnh);
+			@SuppressWarnings("unchecked")
+			List<BanAn> list = query.list();
+			
 			HoaDon hd = (HoaDon) session.get(HoaDon.class, idhd);
 			
 			Transaction t = session.beginTransaction();

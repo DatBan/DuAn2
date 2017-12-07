@@ -45,7 +45,7 @@ public class FoodController {
 		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 		NhaHang nhahang = nd.getNhahang();
 		int id = nhahang.getId();
-		String hql ="FROM MonAn where idnhahang =:idnhahang and trangthai=0";
+		String hql ="FROM MonAn where nhahang.id =:idnhahang and trangthai=0";
 		Query query = session.createQuery(hql);
 		query.setParameter("idnhahang", id);
 		@SuppressWarnings("unchecked")
@@ -180,8 +180,7 @@ public class FoodController {
 			Session session = factory.openSession();
 			MonAn monan = (MonAn) session.get(MonAn.class, id);
 			LoaiDoAn loaidoan = (LoaiDoAn) session.get(LoaiDoAn.class, idloaidoan);
-			String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
-			String photoPath = context.getRealPath("/upload/monan/" + tenhinh);
+			
 			String tendoan1 = tendoan.trim();
 			String name1 = name.trim();
 			
@@ -199,6 +198,8 @@ public class FoodController {
 			
 			String hinhanh = monan.getHinhanh();
 			if (!hinh.isEmpty()) {
+				String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
+				String photoPath = context.getRealPath("/upload/monan/" + tenhinh);
 				try {
 					hinh.transferTo(new File(photoPath));
 					hinhanh = tenhinh;
@@ -239,7 +240,7 @@ public class FoodController {
 			NhaHang nhahang = nd.getNhahang();
 			int idnhahang = nhahang.getId();
 			
-			String hql ="FROM MonAn where tenmonan =:tenmonan and idnhahang =:idnhahang and trangthai=0";
+			String hql ="FROM MonAn where tenmonan =:tenmonan and (idnhahang =:idnhahang and trangthai=0)";
 			Query query = session.createQuery(hql);
 			query.setParameter("tenmonan", tendoan);
 			query.setParameter("idnhahang", idnhahang);
@@ -268,7 +269,7 @@ public class FoodController {
 					NhaHang nhahang = nd.getNhahang();
 					int idnhahang = nhahang.getId();
 					
-					String hql ="FROM MonAn where name =:name and idnhahang =:idnhahang and trangthai=0";
+					String hql ="FROM MonAn where name =:name and (idnhahang =:idnhahang and trangthai=0)";
 					Query query = session.createQuery(hql);
 					query.setParameter("name", name);
 					query.setParameter("idnhahang", idnhahang);

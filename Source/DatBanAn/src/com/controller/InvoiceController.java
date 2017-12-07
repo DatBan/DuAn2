@@ -46,7 +46,7 @@ public class InvoiceController {
 		NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");
 		NhaHang nhahang = nd.getNhahang();
 		int id = nhahang.getId();
-		String hql = "FROM HoaDon where idnhahang =:idnhahang and trangthai=2 ORDER BY ngaytao DESC";
+		String hql = "FROM HoaDon where nhahang.id =:idnhahang and trangthai=2 ORDER BY ngaytao DESC";
 		Query query = session.createQuery(hql);
 		query.setParameter("idnhahang", id);
 		@SuppressWarnings("unchecked")
@@ -255,9 +255,16 @@ public class InvoiceController {
 
 	// Chon ban
 	@RequestMapping(value = "chonban")
-	public String duyet1(ModelMap model, @RequestParam("idhd") int idhd) {
+	public String duyet1(ModelMap model, @RequestParam("idhd") int idhd,HttpSession httpSession) {
 		Session session = factory.openSession();
-		List<BanAn> list = banAnDAO.getListByTrangThaiTrong();
+		NguoiDung nguoidung = (NguoiDung) httpSession.getAttribute("nd");
+		int idnh=nguoidung.getNhahang().getId();
+		
+		String hql = "FROM BanAn where nhahang.id =:idnhahang and trangthai=0";		
+		Query query = session.createQuery(hql);
+		query.setParameter("idnhahang", idnh);
+		@SuppressWarnings("unchecked")
+		List<BanAn> list = query.list();
 		HoaDon hd = (HoaDon) session.get(HoaDon.class, idhd);
 
 		Transaction t = session.beginTransaction();
@@ -278,9 +285,16 @@ public class InvoiceController {
 
 	// Chon ban khi sua
 	@RequestMapping(value = "chonban1")
-	public String chonban1(ModelMap model, @RequestParam("idhd") int idhd) {
+	public String chonban1(ModelMap model, @RequestParam("idhd") int idhd,HttpSession httpSession) {
 		Session session = factory.openSession();
-		List<BanAn> list = banAnDAO.getListByTrangThaiTrong();
+		NguoiDung nguoidung = (NguoiDung) httpSession.getAttribute("nd");
+		int idnh=nguoidung.getNhahang().getId();
+		
+		String hql = "FROM BanAn where nhahang.id =:idnhahang and trangthai=0";		
+		Query query = session.createQuery(hql);
+		query.setParameter("idnhahang", idnh);
+		@SuppressWarnings("unchecked")
+		List<BanAn> list = query.list();
 		HoaDon hd = (HoaDon) session.get(HoaDon.class, idhd);
 
 		Transaction t = session.beginTransaction();

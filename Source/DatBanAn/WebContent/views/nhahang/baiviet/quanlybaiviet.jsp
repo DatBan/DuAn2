@@ -34,7 +34,7 @@
 							<tr>
 								<th>STT</th>
 								<th>Tiêu đề</th>
-								<th>Name</th>
+								
 								<th>Loại ẩm thực</th>
 								<th>Hình</th>
 								<th>Trạng thái</th>
@@ -55,7 +55,7 @@
 								<tr>
 									<td>${dem}</td>
 									<td>${bv.tieude}</td>
-									<td>${bv.name}</td>
+									
 									<td>${bv.loaibv.tenloai}</td>
 									<td><img class="img-responsive"
 										src="upload/baiviet/${bv.hinh}" style="width:60px;height:60px;" /></td>
@@ -76,7 +76,7 @@
 
 
 									<td style="text-align: center"> <a href="nhahang/baiviet/edit/${bv.id}.html"
-										style="color: green; padding-left: 30px;">Sửa</a> <a
+										style="color: green;">Sửa</a> <a
 										href="nhahang/baiviet/delete/${bv.id}.html"
 										onclick="return confirm ('Bạn có thực sự muốn xoá bài viết này')"
 										style="color: red; padding-left: 30px;">Xoá</a></td>

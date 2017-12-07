@@ -148,8 +148,7 @@ public class UtilityController {
 			@RequestParam("hinh") MultipartFile hinh, HttpSession httpSession) {
 		Session session = factory.openSession();
 		TienIch tienich = (TienIch) session.get(TienIch.class, id);
-		String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
-		String photoPath = context.getRealPath("/upload/tienich/" + tenhinh);
+		
 		String tentienich1 = tentienich.trim();
 		String name1 = name.trim();
 
@@ -161,6 +160,8 @@ public class UtilityController {
 		// Sua hinh anh
 		String hinhanh = tienich.getIcon();
 		if (!hinh.isEmpty()) {
+			String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
+			String photoPath = context.getRealPath("/upload/tienich/" + tenhinh);
 			try {
 				hinh.transferTo(new File(photoPath));
 				hinhanh = tenhinh;

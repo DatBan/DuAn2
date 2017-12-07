@@ -61,12 +61,12 @@
 				<td>${t.thoigian}</td>
 				<c:choose>
 						<c:when test="${t.banan.soban!=null}">
-				
+				<c:if test="${t.trangthai != 5}">
 				<td><a href="nhahang/hoadon/chondoan.html?idhd=${t.id}"
 					style="color: green;">Thêm</a></td>
 				<td><a href="nhahang/hoadon/xemdanhsach.html?idhd=${t.id}"
 					style="color: green;">Xem</a></td>
-				
+				</c:if>
 				</c:when>
 						<c:otherwise>
 						<td></td>

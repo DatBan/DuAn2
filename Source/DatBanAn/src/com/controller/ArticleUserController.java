@@ -46,7 +46,7 @@ public class ArticleUserController {
 		Session session = factory.getCurrentSession();
 		NguoiDung nguoidung = (NguoiDung) httpSession.getAttribute("nd");
 		int idnd=nguoidung.getId();
-		String hql = "FROM BaiViet where idnguoiviet =:idnguoiviet and trangthai=0 or trangthai=1 ORDER BY ngaytao DESC";	
+		String hql = "FROM BaiViet where nguoiviet.id =:idnguoiviet and (trangthai=0 or trangthai=1) ORDER BY ngaytao DESC";	
 		Query query = session.createQuery(hql);
 		query.setParameter("idnguoiviet", idnd);
 		@SuppressWarnings("unchecked")
@@ -174,7 +174,7 @@ public class ArticleUserController {
 		response.setCharacterEncoding("UTF-8");
 		Session session = factory.getCurrentSession();
 
-		String hql = "FROM BaiViet  WHERE tieude =:tieude and trangthai=0 or trangthai=1";
+		String hql = "FROM BaiViet  WHERE tieude =:tieude and (trangthai=0 or trangthai=1)";
 		Query query = session.createQuery(hql);
 		query.setParameter("tieude", tieude);
 		BaiViet bv = (BaiViet) query.uniqueResult();
@@ -200,7 +200,7 @@ public class ArticleUserController {
 		response.setCharacterEncoding("UTF-8");
 		Session session = factory.getCurrentSession();
 
-		String hql = "FROM BaiViet  WHERE name =:name and trangthai=0 or trangthai=1";
+		String hql = "FROM BaiViet  WHERE name =:name and (trangthai=0 or trangthai=1)";
 		Query query = session.createQuery(hql);
 		query.setParameter("name", name);
 		BaiViet bv = (BaiViet) query.uniqueResult();
@@ -246,8 +246,7 @@ public class ArticleUserController {
 		Session session = factory.openSession();
 		BaiViet bv = (BaiViet) session.get(BaiViet.class, id);
 		LoaiBaiViet loaibv = (LoaiBaiViet) session.get(LoaiBaiViet.class, idloai);
-		String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
-		String photoPath = context.getRealPath("/upload/baiviet/" +tenhinh );
+		
 		String td = tieude.trim();
 		String tt = name.trim();
 		String sl = slug.trim();
@@ -273,6 +272,8 @@ public class ArticleUserController {
 		}
 		String hinhanh = bv.getHinh();
 		if (!hinh.isEmpty()) {
+			String tenhinh = DoiTenFile.DoiFile(hinh.getOriginalFilename());
+			String photoPath = context.getRealPath("/upload/baiviet/" +tenhinh );
 			try {
 				hinh.transferTo(new File(photoPath));
 				hinhanh = tenhinh;
