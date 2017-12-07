@@ -227,4 +227,10 @@ public class AccountDashboardController {
 
 		return list;
 	}
+	//Thong tin user
+	@RequestMapping(value = "thongtincanhan")
+	public String thongtincanhan(ModelMap model){
+		
+		return "dashboard/users/thongtin";
+	}
 }
