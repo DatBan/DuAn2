@@ -10,8 +10,7 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><p class="navbar-text">
-							<i class="fa fa-phone" style="color: #e54d3f;"></i><b
-								style="color: #e54d3f;"> 1900 1008</b>
+							<i class="fa fa-phone" style="color: #e54d3f;"></i><b style="color: #e54d3f;">1900 1008</b>
 						</p></li>
 					<li>
 						<p class="navbar-text">
@@ -19,13 +18,16 @@
 								AM - 8:00 PM</b>
 						</p>
 					</li>
-					<li class="dropdown"><a href="#" data-toggle="dropdown"> <i
-							class="fa fa-globe"></i> VI <span
-							class="glyphicon glyphicon-menu-down"></span></a>
+					<li class="dropdown">
+						<a href="#" data-toggle="dropdown"> 
+							<i class="fa fa-globe"></i> VI <span class="glyphicon glyphicon-menu-down"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#"><i class="glyphicon glyphicon-user"></i>
-									EN</a></li>
-						</ul></li>
+							<li>
+								<a href="#"><i class="glyphicon glyphicon-user"></i> EN
+								</a>
+							</li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</nav>
@@ -40,8 +42,7 @@
 						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="trang-chu.html"><img
-						src="images/logo.png" /></a>
+					<a class="navbar-brand" href=""><img src="images/logo.png" /></a>
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<form class="navbar-form navbar-left">
@@ -57,32 +58,24 @@
 								</c:forEach>
 							</select>
 							<script>
+								var thanhpho = 'ko co';
 						        $("#location-div option[selected='selected']").prop('selected', true);
 						        $('#location-homepage').on("change", function () {
 						        	var slug = $(this).val();
-						        	var pathname_moi = $('#location-homepage').val()+".html";
-						        	if(window.location.pathname != '/'+pathname_moi){
-						        		console.log(pathname_moi);
-						        		$.ajax({
-						        			url: "location/switch.html",
-						        			type: "POST",
-						        			data: {provinceslug: slug},
-						        			dataType: "json",
-						        			success: function(result){
-						        				console.log(result);
-						        			},
-						        			error: function(error){
-						        				console.log(error);
-						        			}
-						        		});
-						        		window.location.href = pathname_moi;
-						        	}
-						            
-						            console.log( window.location.pathname);
+						        	var current_path = window.location.pathname;
+						        	var sub_path = current_path.indexOf('/', 1);
+						        	var pathname_moi = current_path.substring(0, sub_path)+'/'+slug+".html";
+						        	console.log('moi ' +pathname_moi);
+						        	window.location.href = pathname_moi;
+						        	console.log( window.location.pathname);
 						        });
-						        $('#sl-city').hover(function () {
+						        /* $('#sl-city').hover(function () 
+
+{
 						            $(this).css('cursor', 'pointer');
-						        });      
+						        }); */     
+						        
+						        /*$('#location-homepage').trigger("change");*/
 						    </script>
 						</div>
 					</form>
@@ -104,26 +97,25 @@
 								</li>
 							</c:when>
 							<c:otherwise>
-								<li class="dropdown"><a href="#" data-toggle="dropdown">Welcome,
-										${sessionScope.nd.hoTen} <span class="glyphicon glyphicon-menu-down"></span>
-								</a>
+								<li class="dropdown">
+									<a href="#" data-toggle="dropdown">Welcome, ${sessionScope.nd.hoTen} <span class="glyphicon glyphicon-menu-down"></span>
+									</a>
 									<ul class="dropdown-menu">
 										<li>
-											<a href="dashboard/index.html"><i class="glyphicon glyphicon-user"></i>
-												Trang quản trị</a>
+											<a href="dashboard/index.html"><i class="glyphicon glyphicon-user"></i>	Trang quản trị</a>
 										</li>
 										<li>
-											<a href="dashboard/user-management.html?thongtincanhan&id=${sessionScope.nd.id}"><i class="glyphicon glyphicon-user"></i>
-												Thông tin tài khoản</a>
+											<a href="dashboard/user-management.html?thongtincanhan&id=${sessionScope.nd.id}"><i class="glyphicon glyphicon-user"></i> Thông tin tài khoản</a>
 										</li>
 										<li class="divider"></li>
 										<li><a href="logout.html" onclick="signOut();"><i class="fa fa-sign-out"></i>Thoát</a></li>
-									</ul></li>
+									</ul>
+								</li>
 							</c:otherwise>
 						</c:choose>
-						<li><a href="#" class="btn btn-warning  "
-							style="padding-top: 6px; padding-left: 10px; padding-bottom: 6px; padding-right: 10px; margin-top: 9px; color: white; font-size: 15px; background-color: #f0ad4e; border: none;"><b>Đặt
-									bàn</b></a></li>
+						<li>
+							<a href="#" class="btn btn-warning" style="padding-top: 6px; padding-left: 10px; padding-bottom: 6px; padding-right: 10px; margin-top: 9px; color: white;font-size: 15px; background-color: #f0ad4e; border: none;"><b>Đặt bàn</b></a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -134,50 +126,47 @@
 <jsp:include page="/views/modals/modal-login.jsp"></jsp:include>
 <script>
       function initMap() {
-       /*  var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 8,
-          center: {lat: 40.731, lng: -73.997}
-        }); */
         var geocoder = new google.maps.Geocoder;
-        /* var infowindow = new google.maps.InfoWindow; */
-        /* document.getElementById('submit').addEventListener('click', function() {
-          geocodeLatLng(geocoder, map, infowindow);
-        }); */
      	// Try HTML5 geolocation.
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-			console.log(position);
-			geocodeLatLng(geocoder, pos);
-			/* infowindow.setPosition(pos);
-			infowindow.setContent('Location found.');
-			infowindow.open(map);
-            map.setCenter(pos); */
-          });
+     	if (navigator.geolocation) {
+	        navigator.geolocation.getCurrentPosition(function(position) {
+	            var pos = {
+	              lat: position.coords.latitude,
+	              lng: position.coords.longitude
+	            };
+				geocodeLatLng(geocoder, pos);
+	          }, showError);
+     	} else { 
+            console.log("Geolocation is not supported by this browser.");
+        }
       }
 
       function geocodeLatLng(geocoder, pos) {
-        /* var input = document.getElementById('latlng').value;
-        var latlngStr = input.split(',', 2);
-        console.log('latlngStr '+latlngStr);
-        var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-        console.log(latlng); */
+    	  
         geocoder.geocode({'location': pos}, function(results, status) {
-        	console.log(status);
           if (status === 'OK') {
             if (results[0]) {
-              /* map.setZoom(11);
-              var marker = new google.maps.Marker({
-                position: pos,
-                map: map
-              }); */
+             
               console.log(results[0]);
-              console.log(results[0].address_components[5]);
-              /* infowindow.setContent(results[0].formatted_address); */
-              /* infowindow.open(map, marker); */
-              /*$('#location-homepage').trigger('change');*/
+              thanhpho = results[0].address_components[5].long_name;
+              
+	      		$.ajax({
+	      			url: "location/switch.html",
+	      			type: "POST",
+	      			data: {thanhpho: thanhpho},
+	      			dataType: "json",
+	      			success: function(result){
+	      				console.log(result);
+	      				status_location = result.status;
+	      				console.log(status);
+	      				if(result.status == 'co' && result.status_ck != 'daghi'){
+	      					window.location.href = result.provinceslug+'.html';
+	      				}
+	      			},
+	      			error: function(error){
+	      				console.log(error);
+	      			}
+	      		});
             } else {
               console.log('No results found');
             }
@@ -186,6 +175,41 @@
           }
         });
       }
+      
+      function showError(error) {
+    	 	 var coloi = '0';
+    	    switch(error.code) {
+    	        case error.PERMISSION_DENIED:
+    	        	console.log("User denied the request for Geolocation.");
+    	        	coloi = '1';
+    	            break;
+    	        case error.POSITION_UNAVAILABLE:
+    	        	console.log("Location information is unavailable.");
+    	        	coloi = '1';
+    	            break;
+    	        case error.TIMEOUT:
+    	        	console.log("The request to get user location timed out.");
+    	        	coloi = '1';
+    	            break;
+    	        case error.UNKNOWN_ERROR:
+    	        	console.log("An unknown error occurred.");
+    	        	coloi = '1';
+    	            break;
+    	    }
+    	    if(coloi == '1'){
+	    	    $.ajax({
+	      			url: "location/remove-cookie.html",
+	      			type: "POST",
+	      			dataType: "json",
+	      			success: function(result){
+	      				console.log(result);
+	      			},
+	      			error: function(error){
+	      				console.log(error);
+	      			}
+	      		});
+    	    }
+    	}
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9luxjN2MQFR3SJY-obplEq7An6PkEcO4&callback=initMap">
