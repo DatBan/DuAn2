@@ -182,7 +182,7 @@ function checkLoginState() {
 							</div>
 							<div class="checkbox">
 								<label><input type="checkbox" id="remember"> Ghi nhớ mật khẩu</label> 
-								<label class="pull-right"><a href="#">Quên mật khẩu?</a></label>
+								<label class="pull-right"><a href="user/mailer/quenmk.html">Quên mật khẩu?</a></label>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary btn-block" id="nut-dn">Đăng

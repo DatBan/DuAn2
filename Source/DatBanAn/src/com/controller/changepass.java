@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.entity.NguoiDung;
 import com.services.EnDeCryption;
@@ -19,9 +20,9 @@ public class changepass {
 	@Autowired
 	SessionFactory factory;
 
-	@RequestMapping(value = "updateuserpwdg", method = RequestMethod.POST)
+	@RequestMapping(value = "doimaikhau", method = RequestMethod.POST)
 	public String UpdateUserPwd(ModelMap model,
-			@RequestParam("userid") int id, @RequestParam("pwdold") String pwdold, @RequestParam("pwdnew") String matkhau,
+			@RequestParam("userid") int id, @RequestParam("pwdold") String pwdold, @RequestParam("pwdnew") String matkhau,RedirectAttributes re,
 			@RequestParam("pwdnewr") String pwdnewr) {
 		Session session = factory.openSession();
 		NguoiDung user = (NguoiDung) session.get(NguoiDung.class, id);
@@ -40,7 +41,7 @@ public class changepass {
 				user.setMatkhau(matkhau);
 				session.update(user);
 				t.commit();
-				model.addAttribute("message", "chinh thanh cong !");
+				re.addFlashAttribute("message", "Đổi mật khẩu thành công !");
 
 			}
 		} catch (Exception e) {
@@ -50,7 +51,7 @@ public class changepass {
 			session.close();
 		}
 
-		return "thongtincanhan";
+		return "redirect:/user/mailer/doimk.html";
 	}
 
 	@RequestMapping("fogotpass")
