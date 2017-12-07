@@ -26,6 +26,7 @@
 <script src="js/jquery.barChart.js"></script>
 <script src="js/jquery.easy-autocomplete.min.js"></script>
 <script src="js/jquery.barrating.min.js"></script>
+<script src="js/validate-them.js"></script>
 <script src="js/qcTimepicker.js"></script>
 <script src="js/jquery.validate.js"></script>
 <script src="js/additional-methods.min.js"></script>

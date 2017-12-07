@@ -23,7 +23,7 @@ public interface NhaHangDAO {
 
 	public void deleteNhaHang(NhaHang nh);
 	
-	public List<NhaHang> getListByProvinceId(String provinceid);
+	public List<NhaHang> getListByProvinceSlug(String provinceslug);
 	
 	public List<NhaHang> getListByPromotion(Collection<Integer> listid, String provinceid);
 }

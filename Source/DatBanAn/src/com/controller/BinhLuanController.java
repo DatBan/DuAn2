@@ -52,7 +52,10 @@ public class BinhLuanController {
 		BaiViet bv = this.baivietDAO.getById(idbv);
 		
 		BinhLuan blm = new BinhLuan(noidung, 1, new Date(), nd, bv);
-		
+		String symbol = "";
+		if(nd.getQuyennd().getId() == 1){
+			symbol = "<small class='badge'><i class='fa fa-get-pocket'></i> Admin</small>";
+		}
 		this.binhluanDAO.createBinhLuan(blm);
 		BinhLuan bl = this.binhluanDAO.getById(blm.getIdbinhluan());
 		String strBL = "";
@@ -63,22 +66,33 @@ public class BinhLuanController {
 		strBL += 	"<div class='media-body'>";
 		strBL += 		"<h4 class='media-heading'>";
 		strBL += 		"<input type='hidden' class='ngaytao"+bl.getIdbinhluan()+"' value='"+bl.getNgaytao()+"' />";
-		strBL+= 		bl.getNguoibl().getHoTen()+" <small><i>Posted on <span class='display-ngaytao"+bl.getIdbinhluan()+"'>"+bl.getNgaytao()+"<span></i></small>";
+		strBL+= 		bl.getNguoibl().getHoTen()+" "+symbol+" <small><i>Posted on <span class='display-ngaytao"+bl.getIdbinhluan()+"'>"+bl.getNgaytao()+"<span></i></small>";
 		strBL += 		"</h4>";
-		strBL += 		"<p>"+bl.getNoidung()+"</p>";
+		strBL += 		"<p id='noidung-cmt"+bl.getIdbinhluan()+"'>"+bl.getNoidung()+"</p>";
 		strBL += 		"<a href='javascript:;' data-toggle='collapse' data-target='#reply"+bl.getIdbinhluan()+"'>Trả lời</a>&nbsp;";
-		strBL += 		"<a href='#'> Thích</a>&nbsp;&nbsp;";
-		strBL += 		"<a href='#' class='fa fa-flag'></a><br />";
-		strBL += 		"<div id='reply"+bl.getIdbinhluan()+"' class='collapse'>";
-		strBL += 			"........";
+		strBL += 		"<a href='javascript:;'> Thích</a>&nbsp;&nbsp;";
+		strBL += 		"<a href='javascript:;' class='fa fa-flag'></a><br />";
+		strBL += 		"<div class='cmts-reply"+bl.getIdbinhluan()+" collapse' data-empty='1'>";
+		strBL += 		"</div>";
+		strBL += 		"<div id='reply"+bl.getIdbinhluan()+"' class='collapse clearfix'>";
+		strBL += 			"<form class='reply-cmt'>";
+		strBL += 				"<input type='hidden' name='idreply' value='"+bl.getIdbinhluan()+"' />";
+		strBL += 				"<div class='form-group col-md-12'>";
+		strBL += 					"<textarea rows='1' placeholder='Viết bình luận của bạn' name='noidung' class='form-control'></textarea>";
+		strBL += 				"</div>";
+		strBL += 				"<div class='form-group col-md-12'>";
+		strBL += 					"<button type='button' data-huy='reply"+bl.getIdbinhluan()+"' class='btn btn-default btn-huy'>Hủy</button> ";
+		strBL += 					"<button type='submit' class='btn btn-info'>Trả lời</button>";
+		strBL += 				"</div>";
+		strBL += 			"</form>";
 		strBL += 		"</div>";
 		strBL += 	"</div>";
 		strBL += 	"<div class='media-right'>";
 		strBL += 		"<div class='dropdown'>";
-		strBL += 			"<a href='javascript:;' class='fa fa-ellipsis-v' data-toggle='dropdown'></a>";
+		strBL += 			"<a href='javascript:;' class='fa fa-ellipsis-v hanh-dong' data-toggle='dropdown'></a>";
 		strBL += 			"<ul class='dropdown-menu'>";
-		strBL += 				"<li><a href='#'>Chỉnh sửa</a></li>";
-		strBL += 				"<li><a href='#'>Xóa</a></li>";
+		strBL += 				"<li><a href='#' class='edit-cmt' data-idbl='"+bl.getIdbinhluan()+"'><i class='fa fa-wrench'></i> Chỉnh sửa</a></li>";
+		strBL += 				"<li><a href='#' class='delete-cmt' data-idx='"+bl.getIdbinhluan()+"'><i class='fa fa-remove'></i> Xóa</a></li>";
 		strBL += 			"</ul>";
 		strBL += 		"</div>";
 		strBL += 	"</div>";
@@ -104,7 +118,7 @@ public class BinhLuanController {
 			@RequestParam("sapxep") String sapxep) throws IOException{
 		
 		System.out.println("idmoi "+idmoi+" size "+idmoi.size()+" 1 "+ idmoi.get(0));
-		int pageCount = 0, perPage = 1, idnho = 0;
+		int pageCount = 0, perPage = 10, idnho = 0;
 		String rong = "sai", paramsx = "bl.ngaytao";
 		if(sapxep.equals("popular")){
 			sapxep = "DESC";
@@ -131,7 +145,11 @@ public class BinhLuanController {
 				.excludeFieldsWithoutExposeAnnotation()
 				.create();
 		String strLbl = "";
+		String symbol = "";
 		for (BinhLuan bl: lbl) {
+			if(bl.getNguoibl().getQuyennd().getId() == 1){
+				symbol = "<small class='badge'><i class='fa fa-get-pocket'></i> Admin</small>";
+			}
 			strLbl += "<div class='media'>";
 			strLbl += 	"<div class='media-left'>";
 			strLbl += 		"<img src='images/userdg.png' class='media-object' style='width: 45px'>";
@@ -139,27 +157,38 @@ public class BinhLuanController {
 			strLbl += 	"<div class='media-body'>";
 			strLbl += 		"<h4 class='media-heading'>";
 			strLbl += 		"<input type='hidden' class='ngaytao"+bl.getIdbinhluan()+"' value='"+bl.getNgaytao()+"' />";
-			strLbl+= 		bl.getNguoibl().getHoTen()+" <small><i>Posted on <span class='display-ngaytao"+bl.getIdbinhluan()+"'>"+bl.getNgaytao()+"<span></i></small>";
+			strLbl+= 		bl.getNguoibl().getHoTen()+" "+symbol+" <small><i>Posted on <span class='display-ngaytao"+bl.getIdbinhluan()+"'>"+bl.getNgaytao()+"<span></i></small>";
 			strLbl += 		"</h4>";
-			strLbl += 		"<p>"+bl.getNoidung()+"</p>";
-			strLbl += 		"<a href='javascript:;' data-toggle='collapse' data-target='#reply"+bl.getIdbinhluan()+"'>Trả lời</a>&nbsp;";
-			strLbl += 		"<a href='#'> Thích</a>&nbsp;&nbsp;";
-			strLbl += 		"<a href='#' class='fa fa-flag'></a><br />";
-			strLbl += 		"<div id='reply"+bl.getIdbinhluan()+"' class='collapse'>";
-			strLbl += 			"........";
-			strLbl += 		"</div>";
+			strLbl += 		"<p id='noidung-cmt"+bl.getIdbinhluan()+"'>"+bl.getNoidung()+"</p>";
+			strLbl += 		"<a href='javascript:;' class='taolao' data-toggle='collapse' data-target='#reply"+bl.getIdbinhluan()+"'>Trả lời</a>&nbsp;";
+			strLbl += 		"<a href='javascript:;'> Thích</a>&nbsp;&nbsp;";
+			strLbl += 		"<a href='javascript:;' class='fa fa-flag'></a><br />";
 			if(bl.getBlcap().size() > 0){
 				strLbl += 		"<a  style='cursor: pointer;' class='load-reply' data-bl='"+bl.getIdbinhluan()+"'><i class='fa fa-chevron-down'></i> Xem "+bl.getBlcap().size()+" câu trả lời</a>";
-				strLbl += 		"<div class='cmts-reply"+bl.getIdbinhluan()+" collapse'><br/>";
-				strLbl += 		"</div>";
+				strLbl += 		"<div class='cmts-reply"+bl.getIdbinhluan()+" collapse' data-empty='0'>";
+			} else {
+				strLbl += 		"<div class='cmts-reply"+bl.getIdbinhluan()+" collapse' data-empty='1'>";
 			}
+			strLbl += 		"</div>";
+			strLbl += 		"<div id='reply"+bl.getIdbinhluan()+"' class='collapse clearfix'>";
+			strLbl += 			"<form class='reply-cmt'>";
+			strLbl += 				"<input type='hidden' name='idreply' value='"+bl.getIdbinhluan()+"' />";
+			strLbl += 				"<div class='form-group col-md-12'>";
+			strLbl += 					"<textarea rows='1' placeholder='Viết bình luận của bạn' name='noidung' class='form-control'></textarea>";
+			strLbl += 				"</div>";
+			strLbl += 				"<div class='form-group col-md-12'>";
+			strLbl += 					"<button type='button' data-huy='reply"+bl.getIdbinhluan()+"' class='btn btn-default btn-huy'>Hủy</button> ";
+			strLbl += 					"<button type='submit' class='btn btn-info'>Trả lời</button>";
+			strLbl += 				"</div>";
+			strLbl += 			"</form>";
+			strLbl += 		"</div>";
 			strLbl += 	"</div>";
 			strLbl += 	"<div class='media-right'>";
 			strLbl += 		"<div class='dropdown'>";
 			strLbl += 			"<a href='javascript:;' class='fa fa-ellipsis-v' data-toggle='dropdown'></a>";
 			strLbl += 			"<ul class='dropdown-menu'>";
-			strLbl += 				"<li><a href='#'>Chỉnh sửa</a></li>";
-			strLbl += 				"<li><a href='#'>Xóa</a></li>";
+			strLbl += 				"<li><a href='#' class='edit-cmt' data-idbl='"+bl.getIdbinhluan()+"'><i class='fa fa-wrench'></i> Chỉnh sửa</a></li>";
+			strLbl += 				"<li><a href='#' class='delete-cmt' data-idx='"+bl.getIdbinhluan()+"'><i class='fa fa-remove'></i> Xóa</a></li>";
 			strLbl += 			"</ul>";
 			strLbl += 		"</div>";
 			strLbl += 	"</div>";
@@ -195,7 +224,11 @@ public class BinhLuanController {
 				.excludeFieldsWithoutExposeAnnotation()
 				.create();
 		String strLbl = "";
+		String symbol = "";
 		for (BinhLuan bl: lbl) {
+			if(bl.getNguoibl().getQuyennd().getId() == 1){
+				symbol = "<small class='badge'><i class='fa fa-get-pocket'></i> Admin</small>";
+			}
 			strLbl += "<div class='media'>";
 			strLbl += 	"<div class='media-left'>";
 			strLbl += 		"<img src='images/userdg.png' class='media-object' style='width: 45px'>";
@@ -203,22 +236,19 @@ public class BinhLuanController {
 			strLbl += 	"<div class='media-body'>";
 			strLbl += 		"<h4 class='media-heading'>";
 			strLbl += 		"<input type='hidden' class='ngaytao"+bl.getIdbinhluan()+"' value='"+bl.getNgaytao()+"' />";
-			strLbl+= 		bl.getNguoibl().getHoTen()+" <small><i>Posted on <span class='display-ngaytao"+bl.getIdbinhluan()+"'>"+bl.getNgaytao()+"<span></i></small>";
+			strLbl+= 		bl.getNguoibl().getHoTen()+" "+symbol+" <small><i>Posted on <span class='display-ngaytao"+bl.getIdbinhluan()+"'>"+bl.getNgaytao()+"<span></i></small>";
 			strLbl += 		"</h4>";
-			strLbl += 		"<p>"+bl.getNoidung()+"</p>";
-			strLbl += 		"<a href='javascript:;' data-toggle='collapse' data-target='#reply"+bl.getIdbinhluan()+"'>Trả lời</a>&nbsp;";
-			strLbl += 		"<a href='#'> Thích</a>&nbsp;&nbsp;";
-			strLbl += 		"<a href='#' class='fa fa-flag'></a><br />";
-			strLbl += 		"<div id='reply"+bl.getIdbinhluan()+"' class='collapse'>";
-			strLbl += 			"........";
-			strLbl += 		"</div>";
+			strLbl += 		"<p id='noidung-cmt"+bl.getIdbinhluan()+"'>"+bl.getNoidung()+"</p>";
+			strLbl += 		"<a href='javascript:;' data-toggle='collapse' data-target='#reply"+bl.getTraloi().getIdbinhluan()+"'>Trả lời</a>&nbsp;";
+			strLbl += 		"<a href='javascript:;'> Thích</a>&nbsp;&nbsp;";
+			strLbl += 		"<a href='javascript:;' class='fa fa-flag'></a><br />";
 			strLbl += 	"</div>";
 			strLbl += 	"<div class='media-right'>";
 			strLbl += 		"<div class='dropdown'>";
 			strLbl += 			"<a href='javascript:;' class='fa fa-ellipsis-v' data-toggle='dropdown'></a>";
 			strLbl += 			"<ul class='dropdown-menu'>";
-			strLbl += 				"<li><a href='#'>Chỉnh sửa</a></li>";
-			strLbl += 				"<li><a href='#'>Xóa</a></li>";
+			strLbl += 				"<li><a href='#' class='edit-cmt' data-idbl='"+bl.getIdbinhluan()+"'><i class='fa fa-wrench'></i> Chỉnh sửa</a></li>";
+			strLbl += 				"<li><a href='#' class='delete-cmt' data-idx='"+bl.getIdbinhluan()+"'><i class='fa fa-remove'></i> Xóa</a></li>";
 			strLbl += 			"</ul>";
 			strLbl += 		"</div>";
 			strLbl += 	"</div>";
@@ -234,25 +264,90 @@ public class BinhLuanController {
 		response.getWriter().print("{\"trave\":"+gsonLbl+"}");
 	}
 
-	@RequestMapping("traloi")
-	public String traloi(ModelMap model, @RequestParam("traloi") String noidung,
-			@RequestParam("idbaiviet") int idbaiviet, @RequestParam("idbinhluan") int id,
-			@RequestParam("iduser") int iduser, @Validated @ModelAttribute("loi") BinhLuan bll, BindingResult errors) {
-		Session session = factory.openSession();
-		NguoiDung nguoidung = (NguoiDung) session.get(NguoiDung.class, iduser);
-		BaiViet baiviet = (BaiViet) session.get(BaiViet.class, idbaiviet);
-		BinhLuan bl = (BinhLuan) session.get(BinhLuan.class, id);
-		Transaction t = null;
-		try {
-			BinhLuan binhluan = new BinhLuan(nguoidung, baiviet, bl);
-			session.save(binhluan);
-			/* t.commit(); */
-		} catch (Exception e) {
-			System.out.println(e.toString());
-			t.rollback();
-		} finally {
-			session.close();
+	@RequestMapping(value="tra-loi", method=RequestMethod.POST)
+	public @ResponseBody void traloi(@RequestParam("noidung") String noidung,
+			@RequestParam("idreply") int idreply,
+			HttpServletResponse response,
+			HttpSession httpSession) throws IOException {
+		//Lay nguoi binh luan hien tai
+		NguoiDung nguoibl = (NguoiDung) httpSession.getAttribute("nd");
+		//Lay binh luan cha theo id
+		BinhLuan reply = this.binhluanDAO.getById(idreply);
+		//LAy bai viet bl
+		BaiViet baivietbl = reply.getBaivietbl();
+		//Tao doi tuong Binhluan moi
+		BinhLuan blm = new BinhLuan(noidung, 1, new Date(), nguoibl, baivietbl, reply);
+		//Thuc hien them vao csdl
+		this.binhluanDAO.createBinhLuan(blm);
+			
+		BinhLuan bl = this.binhluanDAO.getById(blm.getIdbinhluan());
+		String symbol = "";
+		if(nguoibl.getQuyennd().getId() == 1){
+			symbol = "<small class='badge'><i class='fa fa-get-pocket'></i> Admin</small>";
 		}
-		return "redirect:/baiviet/chitiet/" + idbaiviet + ".htm";
+		String strBL = "";
+		strBL += "<div class='media'>";
+		strBL += 	"<div class='media-left'>";
+		strBL += 		"<img src='images/userdg.png' class='media-object' style='width: 45px'>";
+		strBL += 	"</div>";
+		strBL += 	"<div class='media-body'>";
+		strBL += 		"<h4 class='media-heading'>";
+		strBL += 		"<input type='hidden' class='ngaytao"+bl.getIdbinhluan()+"' value='"+bl.getNgaytao()+"' />";
+		strBL+= 		bl.getNguoibl().getHoTen()+" "+symbol+" <small><i>Posted on <span class='display-ngaytao"+bl.getIdbinhluan()+"'>"+bl.getNgaytao()+"<span></i></small>";
+		strBL += 		"</h4>";
+		strBL += 		"<p id='noidung-cmt"+bl.getIdbinhluan()+"'>"+bl.getNoidung()+"</p>";
+		strBL += 		"<a href='javascript:;' data-toggle='collapse' data-target='#reply"+bl.getTraloi().getIdbinhluan()+"'>Trả lời</a>&nbsp;";
+		strBL += 		"<a href='javascript:;'> Thích</a>&nbsp;&nbsp;";
+		strBL += 		"<a href='javascript:;' class='fa fa-flag'></a><br />";
+		strBL += 	"</div>";
+		strBL += 	"<div class='media-right'>";
+		strBL += 		"<div class='dropdown'>";
+		strBL += 			"<a href='javascript:;' class='fa fa-ellipsis-v' data-toggle='dropdown'></a>";
+		strBL += 			"<ul class='dropdown-menu'>";
+		strBL += 				"<li><a href='#' class='edit-cmt' data-idbl='"+bl.getIdbinhluan()+"'><i class='fa fa-wrench'></i> Chỉnh sửa</a></li>";
+		strBL += 				"<li><a href='#' class='delete-cmt' data-idx='"+bl.getIdbinhluan()+"'><i class='fa fa-remove'></i> Xóa</a></li>";
+		strBL += 			"</ul>";
+		strBL += 		"</div>";
+		strBL += 	"</div>";
+		strBL += "</div>";
+		strBL += "<script>";
+		strBL += 	"$(document).ready(function(){";
+		strBL +=		"var day = moment($('.ngaytao"+bl.getIdbinhluan()+"').val());";
+		strBL +=		"$('.display-ngaytao"+bl.getIdbinhluan()+"').html(day.fromNow());";
+		strBL += 	"});";
+		strBL +="</script>" ;
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(strBL);
+		response.getWriter().print("{\"blmoi\":"+json+"}");
+	}
+	
+	@RequestMapping("sua-binh-luan")
+	public @ResponseBody void updateBinhLuan(HttpSession httpSession,
+			HttpServletResponse response,
+			@RequestParam("idbl") int idbl,
+			@RequestParam("noidung") String noidung) throws IOException{
+		/*NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");*/
+		
+		BinhLuan bl = this.binhluanDAO.getById(idbl);
+		bl.setNoidung(noidung);
+		bl.setNgaysua(new Date());
+		this.binhluanDAO.updateBinhLuan(bl);
+		Gson gson = new Gson();
+		String json = gson.toJson("OK");
+		response.getWriter().print(json);
+	}
+	
+	@RequestMapping(value="xoa-binh-luan", method=RequestMethod.POST)
+	public @ResponseBody void deleteBinhLuan(HttpSession httpSession,
+			HttpServletResponse response,
+			@RequestParam("idbl") int idbl) throws IOException{
+		/*NguoiDung nd = (NguoiDung) httpSession.getAttribute("nd");*/
+		
+		BinhLuan bl = this.binhluanDAO.getById(idbl);
+		this.binhluanDAO.deleteBinhLuan(bl);
+		Gson gson = new Gson();
+		String json = gson.toJson("OK");
+		response.getWriter().print(json);
 	}
 }

@@ -14,6 +14,7 @@ public class Province {
 	@Expose
 	private String name;
 	private String type;
+	private String slug;
 
 	public Province() {
 		super();
@@ -52,6 +53,14 @@ public class Province {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getSlug() {
+		return slug;
+	}
+
+	public void setSlug(String slug) {
+		this.slug = slug;
 	}
 
 }

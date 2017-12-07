@@ -18,4 +18,6 @@ public interface BinhLuanDAO {
 	public BinhLuan getById(int id);
 
 	public Integer getMaxByIdBaiViet(int idbv);
+	
+	public void deleteBinhLuan(BinhLuan bl);
 }
