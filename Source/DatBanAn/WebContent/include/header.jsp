@@ -113,7 +113,7 @@
 												Trang quản trị</a>
 										</li>
 										<li>
-											<a href="#"><i class="glyphicon glyphicon-user"></i>
+											<a href="dashboard/user-management.html?thongtincanhan&id=${sessionScope.nd.id}"><i class="glyphicon glyphicon-user"></i>
 												Thông tin tài khoản</a>
 										</li>
 										<li class="divider"></li>

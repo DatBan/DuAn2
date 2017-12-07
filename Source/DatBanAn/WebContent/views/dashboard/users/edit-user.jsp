@@ -53,7 +53,7 @@
 												Mật khẩu <span class="required">*</span>
 											</label>
 											<div class="col-md-7 col-sm-6 col-xs-12">
-												<input type="text" name="matkhau" class="form-control" placeholder="Để trống nếu không thay đổi"/>								
+												<input type="password" name="matkhau" class="form-control" placeholder="Để trống nếu không thay đổi"/>								
 											</div>
 										</div>
 									</div>

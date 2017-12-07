@@ -3,6 +3,7 @@ package com.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
@@ -228,9 +229,53 @@ public class AccountDashboardController {
 		return list;
 	}
 	//Thong tin user
-	@RequestMapping(value = "thongtincanhan")
-	public String thongtincanhan(ModelMap model){
-		
+	@RequestMapping(params = "thongtincanhan")
+	public String thongtincanhan(ModelMap model,@RequestParam("id") int id,
+			HttpSession httpSession){
+		Session session = factory.getCurrentSession();
+		NguoiDung ndht = (NguoiDung) httpSession.getAttribute("nd");
+		NguoiDung nd = (NguoiDung) session.get(NguoiDung.class, id);
+		if(ndht.getId() != nd.getId()){
+			return "redirect:/trang-chu.html";
+		}
+		model.addAttribute("nguoidung", nd);
 		return "dashboard/users/thongtin";
 	}
+	//Doi Thong tin
+	@RequestMapping(params = "editthongtin")
+	public String editthongtin(ModelMap model,
+			@RequestParam("ho") String ho,
+			@RequestParam("ten") String ten,
+			@RequestParam("matkhau") String matkhau,
+			@RequestParam("diachi") String diachi,
+			@RequestParam("sdt") String sdt,
+			@RequestParam("id") int id,RedirectAttributes re
+			) {
+		Session session = factory.openSession();
+		NguoiDung nd = (NguoiDung) session.get(NguoiDung.class, id);
+		nd.setHo(ho);
+		nd.setTen(ten);
+		nd.setDiachi(diachi);
+		nd.setSdt(sdt);
+		EnDeCryption mh = new EnDeCryption("sadasdasdsawqewq");
+		
+		if(matkhau != ""){
+			String mkmh= mh.encoding(matkhau);
+			nd.setMatkhau(mkmh);
+		}
+		Transaction t = session.beginTransaction();
+		try {
+			session.update(nd);
+			t.commit();
+			re.addFlashAttribute("updatestt", "success");
+		} catch (Exception e) {
+			// TODO: handle exception
+			t.rollback();
+			re.addFlashAttribute("updatestt", "error");
+		}finally {
+			session.close();
+		}
+		return "redirect:/dashboard/user-management.html?thongtincanhan&id="+id+"";
+	}
+	
 }

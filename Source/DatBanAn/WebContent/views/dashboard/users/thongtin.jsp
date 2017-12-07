@@ -27,24 +27,33 @@
 							
 							<!--------------- Table, form cac thu ---------------->
 							<div class="content-nhe"> --%>
-								
-	                			<form:form id="edit-user-db" class="form-label-left clearfix" method="post" action="dashboard/user-management.html?edit&id=${sessionScope.nd.id}" modelAttribute="nguoidung">
+								<c:if test="${updatestt == 'error'}">
+									<div class="alert alert-danger">
+										<span>Cập nhật</span> <strong>thất bại</strong>! Vui lòng thử lại.
+									</div>
+								</c:if>
+								<c:if test="${updatestt == 'success'}">
+									<div class="alert alert-success">
+										<span>Cập nhật</span> <strong>thành công</strong>!
+									</div>
+								</c:if>
+	                			<form:form id="edit-user-db" class="form-label-left clearfix" method="post" action="dashboard/user-management.html?editthongtin&id=${nguoidung.id}" modelAttribute="nguoidung">
 	                				<div class="row">
 		                				<div class="item form-group col-md-6 clearfix">
 											<label class="control-label col-md-4 col-sm-3 col-xs-12" for="number">
 												Tên đăng nhập <span class="required">*</span>
 											</label>
 											<div class="col-md-7 col-sm-6 col-xs-12">
-												<input id="tdn" class="form-control" style="display: none;" value="${sessionScope.nd.tendangnhap}"/>								
+												<input disabled="disabled" id="tdn" class="form-control"  value="${nguoidung.tendangnhap}"/>								
 											</div>
 										</div>
 											
 										<div class="item form-group col-md-6 clearfix">
 											<label class="control-label col-md-4 col-sm-3 col-xs-12" for="number">
-												Mật khẩu <span class="required">*</span>
+												Mật khẩu <span class="required"></span>
 											</label>
 											<div class="col-md-7 col-sm-6 col-xs-12">
-												<input type="text" name="matkhau" class="form-control" placeholder="Để trống nếu không thay đổi"/>								
+												<input type="password" name="matkhau" class="form-control" placeholder="Để trống nếu không thay đổi"/>								
 											</div>
 										</div>
 									</div>
@@ -55,7 +64,7 @@
 												Họ <span class="required">*</span>
 											</label>
 											<div class="col-md-7 col-sm-6 col-xs-12">
-												<input  class="form-control"/>								
+												<input value="${nguoidung.ho}" name="ho" class="form-control"/>								
 											</div>
 										</div>
 										
@@ -64,7 +73,7 @@
 												Tên <span class="required">*</span>
 											</label>
 											<div class="col-md-7 col-sm-6 col-xs-12">
-												<input  class="form-control"/>								
+												<input value="${nguoidung.ten}" name="ten" class="form-control"/>								
 											</div>
 										</div>
 									</div>
@@ -75,7 +84,7 @@
 												Email <span class="required">*</span>
 											</label>
 											<div class="col-md-7 col-sm-6 col-xs-12">
-												<input style="display: none;" class="form-control"/>								
+												<input value="${nguoidung.email}" class="form-control" disabled="disabled"/>								
 											</div>
 										</div>
 										
@@ -84,7 +93,7 @@
 												Điện thoại <span class="required">*</span>
 											</label>
 											<div class="col-md-7 col-sm-6 col-xs-12">
-												<input  class="form-control"/>								
+												<input value="${nguoidung.sdt}" name="sdt" class="form-control"/>								
 											</div>
 										</div>
 									</div>
@@ -95,7 +104,7 @@
 												Địa chỉ <span class="required">*</span>
 											</label>
 											<div class="col-md-7 col-sm-6 col-xs-12">
-												<input  class="form-control" />							
+												<input value="${nguoidung.diachi}" name="diachi" class="form-control" />							
 											</div>
 										</div>
 										
@@ -104,7 +113,7 @@
 												Vai trò <span class="required">*</span>
 											</label>
 											<div class="col-md-7 col-sm-6 col-xs-12">
-												<input  style="display: none;" class="form-control"/>							
+												<input value="${nguoidung.quyennd.tenquyen}" class="form-control" disabled="disabled"/>							
 											</div>
 											
 										</div>
@@ -117,7 +126,7 @@
 											</label>
 											<div class="col-md-7 col-sm-6 col-xs-12">
 												<input type="text" disabled class="form-control"
-													placeholder='<fmt:formatDate value="${sessionScope.nd.ngaytao}" pattern="dd/MM/yyyy HH:mm:ss"/>'>										
+													placeholder='<fmt:formatDate value="${nguoidung.ngaytao}" pattern="dd/MM/yyyy HH:mm:ss"/>'>										
 											</div>
 										</div>
 										
