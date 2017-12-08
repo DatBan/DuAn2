@@ -37,7 +37,7 @@
 										<span>Cập nhật</span> <strong>thành công</strong>!
 									</div>
 								</c:if>
-	                			<form:form id="edit-user-db" class="form-label-left clearfix" method="post" action="dashboard/user-management.html?editthongtin&id=${nguoidung.id}" modelAttribute="nguoidung">
+	                			<form:form id="edit-user-db" class="form-label-left clearfix" method="post" action="thongtincanhan.html?editthongtin&id=${nguoidung.id}" modelAttribute="nguoidung">
 	                				<div class="row">
 		                				<div class="item form-group col-md-6 clearfix">
 											<label class="control-label col-md-4 col-sm-3 col-xs-12" for="number">

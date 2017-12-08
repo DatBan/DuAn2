@@ -22,28 +22,62 @@
 		</div>
 		<c:set var="q_admin" value="1"/>
 		<c:set var="q_nh" value="2"/>
-		<c:set var="q_user" value="2"/>
+		<c:set var="q_user" value="3"/>
 		<!-- Sidebar links -->
 		<ul class="list-unstyled components">
-			<li>
-				<a href="dashboard/index.html"><i class="glyphicon glyphicon-briefcase"></i>Dashboard</a> 
-			</li>
-			<li class="child-menu">
-				<a href="#ss2" data-toggle="collapse" aria-expanded="false">
-						<i class="glyphicon glyphicon-home"></i> Trang
-				</a>
-				<ul class="collapse list-unstyled" id="ss2">
-					<li><a href="dashboard/trang/index.html"><i class="fa fa-circle-o"></i> Quản lý trang</a></li>
-				</ul>
-			</li>	
-			<li class="child-menu">
-				<a href="#ss3" data-toggle="collapse" aria-expanded="false">
-						<i class="glyphicon glyphicon-home"></i> Bài Viết
-				</a>
-				<ul class="collapse list-unstyled" id="ss3">
-					<li><a href="dashboard/baiviet/index.html"><i class="fa fa-circle-o"></i> Quản lý bài viết</a></li>
-				</ul>
-			</li>
+			<c:if test="${nd.quyennd.id == q_admin}">
+				<li>
+					<a href="dashboard/index.html"><i class="glyphicon glyphicon-briefcase"></i>Dashboard</a> 
+				</li>
+				<li class="child-menu">
+					<a href="#ss2" data-toggle="collapse" aria-expanded="false">
+							<i class="glyphicon glyphicon-home"></i> Trang
+					</a>
+					<ul class="collapse list-unstyled" id="ss2">
+						<li><a href="dashboard/trang/index.html"><i class="fa fa-circle-o"></i> Quản lý trang</a></li>
+					</ul>
+				</li>	
+				<li class="child-menu">
+					<a href="#ss3" data-toggle="collapse" aria-expanded="false">
+							<i class="glyphicon glyphicon-home"></i> Bài Viết
+					</a>
+					<ul class="collapse list-unstyled" id="ss3">
+						<li><a href="dashboard/baiviet/index.html"><i class="fa fa-circle-o"></i> Quản lý bài viết</a></li>
+					</ul>
+				</li>
+				
+				<li class="child-menu">
+					<a href="#ss7" data-toggle="collapse" aria-expanded="false">
+							<i class="glyphicon glyphicon-home"></i> Ẩm thực
+					</a>
+					<ul class="collapse list-unstyled" id="ss7">
+						<li><a href="dashboard/amthuc/index.html"><i class="fa fa-circle-o"></i> Quản lý loại ẩm thực</a></li>
+					</ul>
+				</li>
+				
+				<li class="child-menu">
+					<a href="#ss8" data-toggle="collapse" aria-expanded="false">
+						<i class="glyphicon glyphicon-home"></i> Quản lý nhà hàng
+					</a>
+					<ul class="collapse list-unstyled" id="ss8">
+						<li><a href="dashboard/restaurants-mng/them.html"><i class="fa fa-circle-o"></i> Thêm nhà hàng</a></li>
+						<li><a href="dashboard/restaurants-mng.html"><i class="fa fa-circle-o"></i> Danh sách đang hoạt động</a></li>
+						<li><a href="dashboard/restaurants-mng.html?trangthai=0"><i class="fa fa-circle-o"></i> Danh sách đã khóa</a></li>
+					</ul>
+				</li>
+				<li class="child-menu">
+					<a href="#ss" data-toggle="collapse" aria-expanded="false"> 
+						<i class="glyphicon glyphicon-home"></i>
+						Quản lý người dùng
+					</a>
+					<ul class="collapse list-unstyled" id="ss">
+						<li><a href="dashboard/user-management/them.html"><i class="fa fa-circle-o"></i> Thêm người dùng</a></li>
+						<li><a href="dashboard/user-management.html?trangthai=1"><i class="fa fa-circle-o"></i> Danh sách đang sử dụng</a></li>
+						<li><a href="dashboard/user-management.html?trangthai=0"><i class="fa fa-circle-o"></i> Danh sách đã khóa</a></li>
+					</ul>
+				</li>
+			</c:if>
+			
 			<c:if test="${nd.quyennd.id == q_nh}">
 				<li class="child-menu">
 					<a href="#ss4" data-toggle="collapse" aria-expanded="false">
@@ -71,14 +105,6 @@
 					</ul>
 				</li>
 			</c:if>
-			<li class="child-menu">
-				<a href="#ss7" data-toggle="collapse" aria-expanded="false">
-						<i class="glyphicon glyphicon-home"></i> Ẩm thực
-				</a>
-				<ul class="collapse list-unstyled" id="ss7">
-					<li><a href="dashboard/amthuc/index.html"><i class="fa fa-circle-o"></i> Quản lý loại ẩm thực</a></li>
-				</ul>
-			</li>
 			<c:if test="${nd.quyennd.id == q_user}">
 				<li class="child-menu">
 					<a href="#ss5" data-toggle="collapse" aria-expanded="false">
@@ -89,27 +115,6 @@
 					</ul>
 				</li>
 			</c:if>
-			<li class="child-menu">
-				<a href="#ss8" data-toggle="collapse" aria-expanded="false">
-					<i class="glyphicon glyphicon-home"></i> Quản lý nhà hàng
-				</a>
-				<ul class="collapse list-unstyled" id="ss8">
-					<li><a href="dashboard/restaurants-mng/them.html"><i class="fa fa-circle-o"></i> Thêm nhà hàng</a></li>
-					<li><a href="dashboard/restaurants-mng.html"><i class="fa fa-circle-o"></i> Danh sách đang hoạt động</a></li>
-					<li><a href="dashboard/restaurants-mng.html?trangthai=0"><i class="fa fa-circle-o"></i> Danh sách đã khóa</a></li>
-				</ul>
-			</li>
-			<li class="child-menu">
-				<a href="#ss" data-toggle="collapse" aria-expanded="false"> 
-					<i class="glyphicon glyphicon-home"></i>
-					Quản lý người dùng
-				</a>
-				<ul class="collapse list-unstyled" id="ss">
-					<li><a href="dashboard/user-management/them.html"><i class="fa fa-circle-o"></i> Thêm người dùng</a></li>
-					<li><a href="dashboard/user-management.html?trangthai=1"><i class="fa fa-circle-o"></i> Danh sách đang sử dụng</a></li>
-					<li><a href="dashboard/user-management.html?trangthai=0"><i class="fa fa-circle-o"></i> Danh sách đã khóa</a></li>
-				</ul>
-			</li>
 			
 		</ul>
 	</div>

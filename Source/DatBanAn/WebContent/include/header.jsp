@@ -101,11 +101,23 @@
 									<a href="#" data-toggle="dropdown">Welcome, ${sessionScope.nd.hoTen} <span class="glyphicon glyphicon-menu-down"></span>
 									</a>
 									<ul class="dropdown-menu">
+										<c:if test="${sessionScope.nd.quyennd.id==1}">
 										<li>
 											<a href="dashboard/index.html"><i class="glyphicon glyphicon-user"></i>	Trang quản trị</a>
 										</li>
+										</c:if>
+										<c:if test="${sessionScope.nd.quyennd.id==2}">
 										<li>
-											<a href="dashboard/user-management.html?thongtincanhan&id=${sessionScope.nd.id}"><i class="glyphicon glyphicon-user"></i> Thông tin tài khoản</a>
+											<a href="dashboard/nhahang/hoadon/index.html"><i class="glyphicon glyphicon-user"></i>	Trang quản trị</a>
+										</li>
+										</c:if>
+										<c:if test="${sessionScope.nd.quyennd.id==3}">
+										<li>
+											<a href="nguoidung/baiviet/index.html"><i class="glyphicon glyphicon-user"></i>	Trang quản trị</a>
+										</li>
+										</c:if>
+										<li>
+											<a href="thongtincanhan.html?hienthi&id=${sessionScope.nd.id}"><i class="glyphicon glyphicon-user"></i> Thông tin tài khoản</a>
 										</li>
 										<li class="divider"></li>
 										<li><a href="logout.html" onclick="signOut();"><i class="fa fa-sign-out"></i>Thoát</a></li>
@@ -148,7 +160,15 @@
             if (results[0]) {
              
               console.log(results[0]);
-              thanhpho = results[0].address_components[5].long_name;
+              var lalala = results[0].address_components;
+              var lelele = $(lalala);
+              var thanhpho = '';
+              for(var i = 0; i < lalala.length; i++){
+            	  if((lelele[i]).types[0] == 'administrative_area_level_1'){
+            		  thanhpho = (lelele[i]).long_name;
+            	  }
+              }
+              thanhpho = results[0].address_components[6].long_name;
               
 	      		$.ajax({
 	      			url: "location/switch.html",

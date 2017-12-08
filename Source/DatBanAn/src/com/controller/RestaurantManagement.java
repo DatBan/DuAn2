@@ -97,7 +97,7 @@ public class RestaurantManagement {
 	@RequestMapping(value = "them", method = RequestMethod.GET)
 	public String themTrang(ModelMap model,
 			HttpServletRequest httpRequest) {		
-		System.out.println(httpRequest.getServletMapping().getMatchValue());
+		/*System.out.println(httpRequest.getServletMapping().getMatchValue());*/
 		
 		model.addAttribute("btn_back","dashboard/restaurants-mng.html?trangthai=1");
 		model.addAttribute("tenbreadcrumb", "Thêm mới nhà hàng");

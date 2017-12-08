@@ -243,9 +243,39 @@ public class OpenTableController {
 		}
 		try {
 			mailer.send(email, "Thông tin bàn ăn của bạn",
-					"<div>Xin Chào: " + ten1
-							+ " <div>Để xem thông tin bàn ăn của bạn bấm vào link dưới đây!<br/><div ><a href='http://localhost:9999/DatBanAn/datban/thongtinbanan.html?email="
-							+ email + "&idhoadon=" + hoadon.getId() + "'>Thông tin bàn ăn</a></div></div></div>");
+					"<link rel="+"'stylesheet'" +"href="+"'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'"+">"
+					+"<link rel="+"'stylesheet'"+" href="+"'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'"+">"
+					
+					+" <div class="+"'form-gap'"+"></div>"
+					+"<div class="+"'container'"+">"
+					+"	<div class="+"'row'"+">"
+					+"		<div class="+"'col-md-4 col-md-offset-4'"+">"
+					+"            <div class="+"'panel panel-default'"+">"
+					+"              <div class="+"'panel-body'"+">"
+					+"               <div class="+"'text-center'"+">"
+					+"                 <h3><i class="+"'fa fa-cutlery fa-4x'"+"></i></h3>"
+					+"                  <h2 class="+"'text-center'"+" style="+"'text-align: center;'"+">Thông tin bàn ăn</h2>"
+					+"                 <p style="+"'text-align: center;'"+">Bạn có thể gọi món hoặc thanh toán</p>"
+					+"                  <div class="+"'panel-body'"+">"
+					    
+					+"                   <form id="+"'register-form'" +"role="+"'form'" +"autocomplete="+"'off'" +"class="+"'form'" +"method="+"'post'"+">"
+					    
+					                      
+					+"                      <div class="+"'form-group'"+" style="+"'text-align: center;'"+">"
+					+"                        <a href='http://localhost:9999/DatBanAn/datban/thongtinbanan.html?email="
+							+ email + "&idhoadon=" + hoadon.getId() + "' type="+"button" +"class="+"btn btn-lg btn-primary btn-block"  +">Xem thông tin bàn của bạn</a>"
+					+"                      </div>"
+					                      
+					
+					+"                    </form>"
+					    
+					 +"                 </div>"
+					 +"               </div>"
+					+"              </div>"
+					 +"           </div>"
+					+"          </div>"
+					+"	</div>"
+					+"</div>");
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

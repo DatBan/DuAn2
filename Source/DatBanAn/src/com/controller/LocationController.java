@@ -29,6 +29,7 @@ public class LocationController {
 			HttpSession httpSession,
 			HttpServletRequest request,
 			@RequestParam("thanhpho") String provinceName) throws IOException{
+		System.out.println(request.getRequestURL());
 		System.out.println(request.getContextPath());
 		String status = "ko";
 		String status_ck = "ko";
